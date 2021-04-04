@@ -1,5 +1,7 @@
 package entity;
 
-public class Angel extends Entity{
+import entity.base.Entity;
+
+public class Angel extends Entity {
 
 }
