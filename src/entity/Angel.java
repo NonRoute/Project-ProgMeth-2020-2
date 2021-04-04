@@ -8,10 +8,10 @@ import card.Card;
 import card.base.FighterCard;
 import card.base.TrickCard;
 import entity.base.Entity;
-import entity.base.character;
+import entity.base.Character;
 import javafx.scene.canvas.GraphicsContext;
 
-public class Angel extends character {
+public class Angel extends Character {
 	public static String filename = "AngelDeck.csv";
 	public static ArrayList<Card> deck = importDeck(filename);
 
