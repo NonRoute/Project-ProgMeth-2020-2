@@ -1,6 +1,8 @@
 package card;
 
-public abstract class Card {
+import entity.Entity;
+
+public abstract class Card extends Entity{
 	protected String name;
 	protected int cost;
 	protected String effect;

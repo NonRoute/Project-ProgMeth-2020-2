@@ -1,4 +1,4 @@
-package entity.base;
+package entity;
 
 import sharedObject.IRenderable;
 

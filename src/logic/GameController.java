@@ -4,14 +4,18 @@ import java.util.ArrayList;
 
 import application.CSVParser;
 import card.Card;
-import card.base.FighterCard;
-import card.base.TrickCard;
+import card.FighterCard;
+import card.TrickCard;
 
 public class GameController {
 	private static ArrayList<Card> angelDeck;
 	private static ArrayList<Card> devilDeck;
 	private static ArrayList<Card> cardInPlayerHand;
 	private static ArrayList<Card> cardInBotHand;
+	private static GameMap gameMap;
+	private static int turn;
+	private static int playerHeart;
+	private static int botHeart;
 	
 	static {
 		angelDeck = importDeck("AngelDeck.csv");
@@ -45,6 +49,36 @@ public class GameController {
 		}
 		return deck;
 	}
+	
+	public static void startGame(Card playerCard, Card botCard, String gameMode) {
+		switch(gameMode) {
+		case "Easy":
+			playerHeart = 30;
+			botHeart = 20;
+		case "Normal":
+			playerHeart = 20;
+			botHeart = 20;
+		case "Hard" :
+			playerHeart = 20;
+			botHeart = 30;
+		}
+		gameMap = new GameMap();
+		turn = 0;
+		//cardInPlayerHand = random 4 card
+		//cardInBotHand = random 4 card
+		//while game not end
+		startTurn();
+		
+	}
+	public static void startTurn() {
+		turn++;
+		//TODO
+	}
+	
+	public static Card drawCard(ArrayList<Card> deck) {
+		
+	}
+	
 
 	public static ArrayList<Card> getAngelDeck() {
 		return angelDeck;
