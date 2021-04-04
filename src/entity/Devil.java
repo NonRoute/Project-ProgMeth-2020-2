@@ -2,6 +2,6 @@ package entity;
 
 import entity.base.Entity;
 
-public class Devil extends Entity {
+public class Devil extends character {
 
 }
