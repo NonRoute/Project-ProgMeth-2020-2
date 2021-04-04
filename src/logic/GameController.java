@@ -8,8 +8,13 @@ import card.base.FighterCard;
 import card.base.TrickCard;
 
 public class GameController {
-	private static ArrayList<Card> angelDeck = importDeck("AngelDeck.csv");
-	private static ArrayList<Card> devilDeck = importDeck("DevilDeck.csv");
+	private static ArrayList<Card> angelDeck;
+	private static ArrayList<Card> devilDeck;
+	
+	static {
+		angelDeck = importDeck("AngelDeck.csv");
+		devilDeck = importDeck("DevilDeck.csv");
+	}
 
 	public static ArrayList<Card> importDeck(String filename) {
 		ArrayList<Card> deck = new ArrayList<Card>();
