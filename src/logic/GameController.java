@@ -8,15 +8,15 @@ import card.base.FighterCard;
 import card.base.TrickCard;
 
 public class GameController {
-	public static ArrayList<Card> Angeldeck = importDeck("AngelDeck.csv");
-	public static ArrayList<Card> Devildeck = importDeck("DevilDeck.csv");
+	private static ArrayList<Card> angelDeck = importDeck("AngelDeck.csv");
+	private static ArrayList<Card> devilDeck = importDeck("DevilDeck.csv");
 
 	public static ArrayList<Card> importDeck(String filename) {
 		ArrayList<Card> deck = new ArrayList<Card>();
 		String[][] deckData = CSVParser.readCSV(filename);
 
 		for (int i = 2; i < deckData.length; i++) { // each row = each card
-			System.out.println(deckData[i][0]);
+			
 			if (deckData[i][0].equals("Fighter")) {
 				FighterCard card = new FighterCard();
 				card.setName(deckData[i][1]);
@@ -37,6 +37,14 @@ public class GameController {
 			}
 		}
 		return deck;
+	}
+
+	public static ArrayList<Card> getAngelDeck() {
+		return angelDeck;
+	}
+
+	public static ArrayList<Card> getDevilDeck() {
+		return devilDeck;
 	}
 
 }
