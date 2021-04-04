@@ -10,6 +10,10 @@ public class RenderableHolder {
 
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
+	
+	static {
+		loadResource();
+	}
 
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
@@ -22,6 +26,10 @@ public class RenderableHolder {
 
 	public static RenderableHolder getInstance() {
 		return instance;
+	}
+	
+	public static void loadResource() {
+		
 	}
 
 	public void add(IRenderable entity) {
