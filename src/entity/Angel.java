@@ -12,8 +12,6 @@ import entity.base.Character;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Angel extends Character {
-	public static String filename = "AngelDeck.csv";
-	public static ArrayList<Card> deck = importDeck(filename);
 
 	@Override
 	public void draw(GraphicsContext gc) {
