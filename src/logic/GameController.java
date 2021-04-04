@@ -74,6 +74,11 @@ public class GameController {
 		turn++;
 		//TODO
 	}
+	
+	public static Card drawCard(ArrayList<Card> deck) {
+		
+	}
+	
 
 	public static ArrayList<Card> getAngelDeck() {
 		return angelDeck;
