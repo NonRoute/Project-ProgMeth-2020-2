@@ -3,7 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.Entity;
+import entity.base.Entity;
 import sharedObject.RenderableHolder;
 
 public class GameLogic {
