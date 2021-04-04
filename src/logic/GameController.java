@@ -12,6 +12,7 @@ public class GameController {
 	private static ArrayList<Card> devilDeck;
 	private static ArrayList<Card> cardInPlayerHand;
 	private static ArrayList<Card> cardInBotHand;
+	private static GameMap gameMap;
 	
 	static {
 		angelDeck = importDeck("AngelDeck.csv");
