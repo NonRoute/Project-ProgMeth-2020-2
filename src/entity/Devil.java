@@ -1,8 +1,18 @@
 package entity;
 
-import entity.base.Entity;
-import entity.base.character;
+import java.util.ArrayList;
 
-public class Devil extends character {
+import card.Card;
+import entity.base.Entity;
+import entity.base.Character;
+import javafx.scene.canvas.GraphicsContext;
+
+public class Devil extends Character {
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
