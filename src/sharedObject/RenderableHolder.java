@@ -31,7 +31,7 @@ public class RenderableHolder {
 
 	public void update() {
 		for (int i = entities.size() - 1; i >= 0; i--) {
-			if (entities.get(i).isDestroyed())
+			if (!entities.get(i).isVisible())
 				entities.remove(i);
 		}
 	}
