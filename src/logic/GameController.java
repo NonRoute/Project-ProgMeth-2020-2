@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import application.CSVParser;
 import card.Card;
-import card.base.FighterCard;
-import card.base.TrickCard;
+import card.FighterCard;
+import card.TrickCard;
 
 public class GameController {
 	private static ArrayList<Card> angelDeck;

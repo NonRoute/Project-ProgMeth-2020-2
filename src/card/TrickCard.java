@@ -1,6 +1,4 @@
-package card.base;
-
-import card.Card;
+package card;
 
 public class TrickCard extends Card{
 
