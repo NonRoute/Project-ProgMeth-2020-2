@@ -10,6 +10,8 @@ import card.base.TrickCard;
 public class GameController {
 	private static ArrayList<Card> angelDeck;
 	private static ArrayList<Card> devilDeck;
+	private static ArrayList<Card> cardInPlayerHand;
+	private static ArrayList<Card> cardInBotHand;
 	
 	static {
 		angelDeck = importDeck("AngelDeck.csv");
