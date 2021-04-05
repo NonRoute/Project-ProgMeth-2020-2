@@ -7,6 +7,11 @@ import card.Card;
 import card.FighterCard;
 import card.TrickCard;
 import deck.Deck;
+import entity.BotEasy;
+import entity.BotHard;
+import entity.BotNormal;
+import entity.Controller;
+import entity.Player;
 
 public class GameController {
 	private static Deck angelDeck;

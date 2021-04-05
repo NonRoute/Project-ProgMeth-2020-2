@@ -118,8 +118,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="logic.Player" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="entity.Player" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/entity/Player.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="104" x="2517" y="417"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -127,8 +127,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="logic.Bot" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/Bot.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="15" language="java" name="entity.Bot" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/entity/Bot.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="104" x="2373" y="417"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -136,8 +136,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="logic.BotEasy" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/BotEasy.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="entity.BotEasy" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/entity/BotEasy.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="104" x="2373" y="706"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -145,8 +145,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="logic.BotHard" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/BotHard.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="entity.BotHard" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/entity/BotHard.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="104" x="2229" y="706"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -154,8 +154,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="logic.Controller" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="18" language="java" name="entity.Controller" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/entity/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="104" x="2517" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -163,8 +163,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="logic.BotNormal" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/BotNormal.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="19" language="java" name="entity.BotNormal" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/entity/BotNormal.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="104" x="2517" y="706"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -182,27 +182,27 @@
     </display>  
   </class>  
   <generalization id="21">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="18"/>  
   </generalization>  
   <generalization id="22">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="18"/>  
   </generalization>  
   <generalization id="23">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="24">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
   <generalization id="25">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="18"/>  
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="13"/>  
   </generalization>  
   <generalization id="26">    
-    <end type="SOURCE" refId="19"/>    
+    <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
   <realization id="27">    
@@ -210,11 +210,11 @@
     <end type="TARGET" refId="7"/>  
   </realization>  
   <generalization id="28">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="13"/>  
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
   </generalization>  
   <generalization id="29">    
-    <end type="SOURCE" refId="17"/>    
+    <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

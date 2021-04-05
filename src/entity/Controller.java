@@ -1,4 +1,4 @@
-package logic;
+package entity;
 
 public class Controller {
 
