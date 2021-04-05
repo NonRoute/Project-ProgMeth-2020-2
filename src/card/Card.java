@@ -3,10 +3,10 @@ package card;
 import entity.Entity;
 
 public abstract class Card extends Entity{
-	protected String name;
-	protected int cost;
-	protected String effect;
-	protected boolean isInHand;
+	private String name;
+	private int cost;
+	private String effect;
+	private boolean isInHand;
 	
 	public String getName() {
 		return name;
