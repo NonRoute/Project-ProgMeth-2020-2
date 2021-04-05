@@ -6,6 +6,7 @@ public abstract class Card extends Entity{
 	protected String name;
 	protected int cost;
 	protected String effect;
+	protected boolean isInHand;
 	
 	public String getName() {
 		return name;

@@ -7,13 +7,18 @@ import card.Card;
 import card.FighterCard;
 import card.TrickCard;
 import deck.Deck;
+import entity.BotEasy;
+import entity.BotHard;
+import entity.BotNormal;
+import entity.Controller;
+import entity.Player;
 
 public class GameController {
 	private static Deck angelDeck;
 	private static Deck devilDeck;
-	private static ArrayList<Card> cardInLeftSideHand;
-	private static ArrayList<Card> cardInRightSideHand;
-	private static GameMap gameMap;
+	private static Board gameMap;
+	public static int initialMoney;
+	public static int initialNumberOfCardInHand;
 	private static int turn;
 	private static Controller leftSideController;
 	private static Controller rightSideController;
@@ -44,7 +49,7 @@ public class GameController {
 		case "Hard":
 			rightSideController = new BotHard();
 		}
-		gameMap = new GameMap();
+		gameMap = new Board();
 		turn = 0;
 		// cardInPlayerHand = random 4 card
 		// cardInBotHand = random 4 card
@@ -56,10 +61,6 @@ public class GameController {
 	public static void startTurn() {
 		turn++;
 		// TODO
-	}
-
-	public static Card drawCard(ArrayList<Card> deck) {
-
 	}
 
 	public static Deck getAngelDeck() {

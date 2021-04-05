@@ -2,13 +2,13 @@ package logic;
 
 import card.Card;
 
-public class GameMap {
-	private int numberOfRow = 5;
-	private int numberOfColumn = 9;
-	private Cell[][] cellMap;
+public class Board {
+	private static final int NUMBER_OF_ROW = 5;
+	private static final int NUMBER_OF_COLUMN = 9;
+	private static Cell[][] board;
 
-	public GameMap() {
-		cellMap = new Cell[numberOfRow][numberOfColumn];
+	public Board() {
+		board = new Cell[NUMBER_OF_ROW][NUMBER_OF_COLUMN];
 	}
 
 	public boolean setCardOnMap(Cell[][] cellMap, Card card, int row, int column) {
