@@ -1,5 +1,5 @@
 package entity;
 
-public class Controller {
+public abstract class Controller extends Entity {
 
 }
