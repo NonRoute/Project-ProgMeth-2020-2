@@ -16,8 +16,6 @@ import entity.Player;
 public class GameController {
 	private static Deck angelDeck;
 	private static Deck devilDeck;
-	private static ArrayList<Card> cardInLeftSideHand;
-	private static ArrayList<Card> cardInRightSideHand;
 	private static GameMap gameMap;
 	private static int turn;
 	private static Controller leftSideController;
