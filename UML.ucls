@@ -100,8 +100,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="logic.GameMap" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/GameMap.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="12" language="java" name="logic.Board" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/logic/Board.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="178" width="298" x="1414" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
