@@ -62,11 +62,11 @@ public class GameController {
 
 	}
 
-	public static ArrayList<Card> getAngelDeck() {
+	public static Deck getAngelDeck() {
 		return angelDeck;
 	}
 
-	public static ArrayList<Card> getDevilDeck() {
+	public static Deck getDevilDeck() {
 		return devilDeck;
 	}
 
