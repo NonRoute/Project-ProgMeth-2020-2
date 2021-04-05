@@ -3,9 +3,9 @@ package entity;
 import sharedObject.IRenderable;
 
 public abstract class Entity implements IRenderable {
-	protected double x,y;
-	protected int z;
-	protected boolean visible;
+	private double x,y;
+	private int z;
+	private boolean visible;
 	
 	@Override
 	public boolean isVisible(){
