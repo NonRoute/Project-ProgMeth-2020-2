@@ -33,6 +33,7 @@ public class Deck {
 				card.setCost(Integer.parseInt(deckData[i][4]));
 				card.setSpeed(Integer.parseInt(deckData[i][5]));
 				card.setAttackRange(Integer.parseInt(deckData[i][6]));
+				//TODO
 				card.setEffect(deckData[i][7]);
 				deck.add(card);
 

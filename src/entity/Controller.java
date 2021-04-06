@@ -33,6 +33,7 @@ public abstract class Controller extends Entity {
 			// random select index of card that have this cost
 			int indexOfCard = rand.nextInt((getDeck().getNumberOfCardsEachCost()).get(costOfCard));
 			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
+			card.setPlayingSide(playingSide);
 			cardsInHand.add(card);
 			// TODO sleep()
 		}

@@ -3,6 +3,7 @@ package card;
 import effect.Effect;
 import effect.NoEffect;
 import entity.Entity;
+import logic.Direction;
 
 public abstract class Card extends Entity implements Cloneable {
 	private String name;
@@ -17,7 +18,7 @@ public abstract class Card extends Entity implements Cloneable {
 			throw new InternalError(e.toString());
 		}
 	}
-	
+
 	public void activateEffect() {
 		effect.activate();
 	}
@@ -43,10 +44,22 @@ public abstract class Card extends Entity implements Cloneable {
 	}
 
 	public void setEffect(String name, String type) {
-		switch(type) {
-		case(""):
+		switch (type) {
+		case (""):
 			this.effect = new NoEffect(name);
 		}
+	}
+
+	public boolean isInHand() {
+		return isInHand;
+	}
+
+	public void setInHand(boolean isInHand) {
+		this.isInHand = isInHand;
+	}
+
+	public void setEffect(Effect effect) {
+		this.effect = effect;
 	}
 
 }
