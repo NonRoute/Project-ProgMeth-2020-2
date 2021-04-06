@@ -16,7 +16,7 @@ public class Deck {
 	public Deck(String Name, String fileName) {
 		this.Name = Name;
 		this.cards = importDeck(fileName);
-		this.numberOfCardsEachCost = countNumberOfCardsEachCost(cards);
+		this.numberOfCardsEachCost = countNumberOfCardsEachCost();
 	}
 
 	public static ArrayList<Card> importDeck(String filename) {
@@ -47,9 +47,9 @@ public class Deck {
 		return deck;
 	}
 
-	public ArrayList<Integer> countNumberOfCardsEachCost(ArrayList<Card> cards) {
+	public ArrayList<Integer> countNumberOfCardsEachCost() {
 		ArrayList<Integer> temp = new ArrayList<>();
-		for (Card card : cards) {
+		for (Card card : this.cards) {
 			temp.add(card.getCost());
 		}
 		// set the initial size = [0,1,2,3,...,max cost]
@@ -61,6 +61,16 @@ public class Deck {
 			numberOfCardsEachCost.set(cost, numberOfCardsEachCost.get(cost) + 1); // index = cost
 		}
 		return numberOfCardsEachCost;
+	}
+
+	public ArrayList<Card> getListOfCardsbyCost(int cost) {
+		ArrayList<Card> listOfCardsbyCost = new ArrayList<>();
+		for (Card card : this.cards) {
+			if (card.getCost() == cost) {
+				listOfCardsbyCost.add(card);
+			}
+		}
+		return listOfCardsbyCost;
 	}
 
 	public String getName() {
