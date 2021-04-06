@@ -41,6 +41,10 @@ public abstract class Controller extends Entity {
 	public abstract int getMaxCardCostCanDraw();
 
 	public void useCard(int index) {
+		if (cardsInHand.get(index).getEffect().isActivateWhenUseCard()) {
+			cardsInHand.get(index).activateEffect();
+		}
+		cardsInHand.remove(index);
 	}
 
 	public int getHeart() {
