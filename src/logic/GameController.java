@@ -17,7 +17,7 @@ public class GameController {
 	private static Deck angelDeck;
 	private static Deck devilDeck;
 	private static Board gameMap;
-	private static int turn;
+	public static int turn;
 	private static Controller leftSideController;
 	private static Controller rightSideController;
 
