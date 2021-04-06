@@ -32,7 +32,8 @@ public abstract class Controller extends Entity {
 			int costOfCard = rand.nextInt(getMaxCardCostCanDraw() + 1);
 			// random select index of card that have this cost
 			int indexOfCard = rand.nextInt((getDeck().getNumberOfCardsEachCost()).get(costOfCard));
-			Card card = getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard);
+			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
+			card.setPlayingSide(playingSide);
 			cardsInHand.add(card);
 			// TODO sleep()
 		}
@@ -41,6 +42,10 @@ public abstract class Controller extends Entity {
 	public abstract int getMaxCardCostCanDraw();
 
 	public void useCard(int index) {
+		if (cardsInHand.get(index).getEffect().isActivateWhenUseCard()) {
+			cardsInHand.get(index).activateEffect();
+		}
+		cardsInHand.remove(index);
 	}
 
 	public int getHeart() {
