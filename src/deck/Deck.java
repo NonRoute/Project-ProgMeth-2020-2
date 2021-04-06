@@ -78,4 +78,8 @@ public class Deck {
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
+
+	public ArrayList<Integer> getNumberOfCardsEachCost() {
+		return numberOfCardsEachCost;
+	}
 }
