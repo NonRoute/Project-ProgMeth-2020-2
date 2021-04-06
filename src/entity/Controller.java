@@ -9,25 +9,23 @@ import logic.GameController;
 
 public abstract class Controller extends Entity {
 
-	private int heart;
-	private int money;
+	protected int heart;
+	protected int money;
 	private Deck deck;
 	private ArrayList<Card> cardsInHand;
-	private Direction playingSide;
+	protected Direction playingSide;
 
-	public Controller(int heart, int money, ArrayList<Card> cardsInHand, Direction playingSide) {
+	public Controller(int heart, int money, int initialNumberOfCardInHand, Direction playingSide) {
 		this.heart = Math.max(1, heart);
-		this.money = GameController.initialMoney;
-		drawCard(GameController.initialNumberOfCardInHand);
+		this.money = money;
+		drawCard(initialNumberOfCardInHand);
 		this.playingSide = playingSide;
 	}
 
-	public void drawCard(int number) {
-		for (int i = 0; i < number; i++) {
-			// random pick 1 card from deck
-			cardsInHand.add(card);
-		}
-	}
+	public abstract void drawCard(int number);
+//		for (int i = 0; i < number; i++) {
+//			// random pick 1 card from deck
+//			cardsInHand.add(card);
 
 	public void useCard(int index) {
 	}
