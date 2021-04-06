@@ -1,6 +1,7 @@
 package deck;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import application.CSVParser;
 import card.Card;
@@ -10,10 +11,12 @@ import card.TrickCard;
 public class Deck {
 	private String Name;
 	private ArrayList<Card> cards;
+	private ArrayList<Integer> numberOfCardsEachCost; // index = cost
 
 	public Deck(String Name, String fileName) {
 		this.Name = Name;
 		this.cards = importDeck(fileName);
+		this.numberOfCardsEachCost = countNumberOfCardsEachCost(cards);
 	}
 
 	public static ArrayList<Card> importDeck(String filename) {
@@ -42,6 +45,22 @@ public class Deck {
 			}
 		}
 		return deck;
+	}
+
+	public ArrayList<Integer> countNumberOfCardsEachCost(ArrayList<Card> cards) {
+		ArrayList<Integer> temp = new ArrayList<>();
+		for (Card card : cards) {
+			temp.add(card.getCost());
+		}
+		// set the initial size = [0,1,2,3,...,max cost]
+		ArrayList<Integer> numberOfCardsEachCost = new ArrayList<>();
+		for (int i = 0; i <= Collections.max(temp); i++) {
+			numberOfCardsEachCost.add(0);
+		}
+		for (int cost : temp) {
+			numberOfCardsEachCost.set(cost, numberOfCardsEachCost.get(cost) + 1); // index = cost
+		}
+		return numberOfCardsEachCost;
 	}
 
 	public String getName() {
