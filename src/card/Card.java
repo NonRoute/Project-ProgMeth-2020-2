@@ -1,11 +1,13 @@
 package card;
 
+import effect.Effect;
+import effect.NoEffect;
 import entity.Entity;
 
 public abstract class Card extends Entity implements Cloneable {
 	private String name;
 	private int cost;
-	private String effect;
+	private Effect effect;
 	private boolean isInHand;
 
 	public Object clone() {
@@ -14,6 +16,10 @@ public abstract class Card extends Entity implements Cloneable {
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
 		}
+	}
+	
+	public void activateEffect() {
+		effect.activate();
 	}
 
 	public String getName() {
@@ -32,12 +38,15 @@ public abstract class Card extends Entity implements Cloneable {
 		this.cost = cost;
 	}
 
-	public String getEffect() {
+	public Effect getEffect() {
 		return effect;
 	}
 
-	public void setEffect(String effect) {
-		this.effect = effect;
+	public void setEffect(String name, String type) {
+		switch(type) {
+		case(""):
+			this.effect = new NoEffect(name);
+		}
 	}
 
 }
