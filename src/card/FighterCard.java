@@ -10,7 +10,6 @@ public class FighterCard extends Card {
 	private int speed;
 	private int row;
 	private int column;
-	private Direction playingSide;
 
 	public void setPosition(int row, int column) {
 		this.row = row;
