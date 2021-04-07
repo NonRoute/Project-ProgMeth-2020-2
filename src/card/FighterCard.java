@@ -49,11 +49,6 @@ public class FighterCard extends Card {
 				}
 			}
 		}
-
-	}
-
-	public void attackController() {
-
 	}
 
 	public int getAttackDamage() {

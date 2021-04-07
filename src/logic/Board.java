@@ -42,12 +42,4 @@ public class Board {
 			return false;
 		}
 	}
-
-	public Direction getDirectionOutOfBoard(int column) {
-		if (column >= NUMBER_OF_COLUMN) {
-			return Direction.RIGHT;
-		} else {
-			return Direction.LEFT;
-		}
-	}
 }
