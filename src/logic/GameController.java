@@ -16,10 +16,10 @@ import entity.Player;
 public class GameController {
 	private static Deck angelDeck;
 	private static Deck devilDeck;
-	private static Board gameMap;
+	public static Board board;
 	public static int turn;
-	private static Controller leftSideController;
-	private static Controller rightSideController;
+	public static Controller leftSideController;
+	public static Controller rightSideController;
 
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");

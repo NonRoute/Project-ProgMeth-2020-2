@@ -52,6 +52,11 @@ public abstract class Controller extends Entity {
 		return heart;
 	}
 
+	public void reduceHeart(int number) {
+		//TODO heart <= 0 ; game end
+		heart -= number;
+	}
+
 	public int getMoney() {
 		return money;
 	}

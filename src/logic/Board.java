@@ -5,7 +5,7 @@ import card.Card;
 public class Board {
 	private static final int NUMBER_OF_ROW = 5;
 	private static final int NUMBER_OF_COLUMN = 9;
-	public static Cell[][] board;
+	private Cell[][] board;
 
 	public Board() {
 		board = new Cell[NUMBER_OF_ROW][NUMBER_OF_COLUMN];
@@ -17,11 +17,37 @@ public class Board {
 
 	}
 
-	public boolean setCardOnMap(Cell[][] board, Card card, int row, int column) {
-		return board[row][column].setCardOnCell(card);
+	public void setCardOnMap(Card card, int row, int column) {
+		board[row][column].setCardOnCell(card);
 	}
 
-	public boolean removeCardOnMap(Cell[][] board, Card card, int row, int column) {
-		return board[row][column].removeCardOnCell(card);
+	public void removeCardOnMap(int row, int column) {
+		board[row][column].removeCardOnCell();
+	}
+
+	public boolean isEmpty(int row, int column) {
+		if (!isOutOfBoard(row, column)) {
+			return board[row][column].isEmpty();
+		} else {
+			return false;
+		}
+	}
+
+	public boolean isOutOfBoard(int row, int column) {
+		if (column < 0 || column >= NUMBER_OF_COLUMN) {
+			return true;
+		} else if (row < 0 || row >= NUMBER_OF_ROW) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public Direction getDirectionOutOfBoard(int column) {
+		if (column >= NUMBER_OF_COLUMN) {
+			return Direction.RIGHT;
+		} else {
+			return Direction.LEFT;
+		}
 	}
 }
