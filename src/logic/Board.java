@@ -1,6 +1,8 @@
 package logic;
 
 import card.Card;
+import card.FighterCard;
+import card.TrickCard;
 
 public class Board {
 	private static final int NUMBER_OF_ROW = 5;
@@ -14,7 +16,6 @@ public class Board {
 				board[r][c] = new Cell();
 			}
 		}
-
 	}
 
 	public void setCardOnMap(Card card, int row, int column) {
@@ -23,6 +24,25 @@ public class Board {
 
 	public void removeCardOnMap(int row, int column) {
 		board[row][column].removeCardOnCell();
+	}
+
+	public void moveAllCard(Direction sideMoveFirst) {
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			switch (sideMoveFirst) {
+			case LEFT:
+				for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+					if (board[r][c].getCardOnCell() instanceof FighterCard) {
+						((FighterCard) board[r][c].getCardOnCell()).move();
+					}
+				}
+			case RIGHT:
+				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
+					if (board[r][c].getCardOnCell() instanceof FighterCard) {
+						((FighterCard) board[r][c].getCardOnCell()).move();
+					}
+				}
+			}
+		}
 	}
 
 	public boolean isEmpty(int row, int column) {
