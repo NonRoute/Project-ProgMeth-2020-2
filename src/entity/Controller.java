@@ -24,6 +24,7 @@ public abstract class Controller extends Entity {
 	}
 
 	public void drawCard(int number) {
+		//TODO if card exceed max; not draw
 		for (int i = 0; i < number; i++) {
 			// random pick 1 card from deck
 			Random rand = new Random();
@@ -53,8 +54,11 @@ public abstract class Controller extends Entity {
 	}
 
 	public void reduceHeart(int number) {
-		//TODO heart <= 0 ; game end
-		heart -= number;
+		if (heart - number <= 0) {
+			GameController.isGameEnd = true;
+		} else {
+			heart -= number;
+		}
 	}
 
 	public int getMoney() {
