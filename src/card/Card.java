@@ -10,6 +10,7 @@ public abstract class Card extends Entity implements Cloneable {
 	private int cost;
 	private Effect effect;
 	private boolean isInHand;
+	protected Direction playingSide;
 
 	public Object clone() {
 		try {
@@ -62,4 +63,11 @@ public abstract class Card extends Entity implements Cloneable {
 		this.effect = effect;
 	}
 
+	public Direction getPlayingSide() {
+		return playingSide;
+	}
+
+	public void setPlayingSide(Direction playingSide) {
+		this.playingSide = playingSide;
+	}
 }
