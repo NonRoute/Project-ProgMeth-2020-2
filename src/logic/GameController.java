@@ -16,20 +16,21 @@ import entity.Player;
 public class GameController {
 	private static Deck angelDeck;
 	private static Deck devilDeck;
-	private static Board gameMap;
+	public static Board board;
 	public static int turn;
-	private static Controller leftSideController;
-	private static Controller rightSideController;
+	public static Controller leftSideController;
+	public static Controller rightSideController;
+	public static Boolean isGameEnd;
 
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
 	}
 
-	public static void startGame(Card playerCard, Card botCard, String difficulty, String gameMode) {
+	public static void selectGameMode(Card playerCard, Card botCard, String difficulty, String gameMode) {
 		switch (gameMode) {
 		case "PvB":
-			startGamePvB(playerCard, botCard, difficulty);
+			initializeGamePvB(playerCard, botCard, difficulty);
 		case "PvP":
 			// WIP
 		case "BvB":
@@ -37,7 +38,7 @@ public class GameController {
 		}
 	}
 
-	public static void startGamePvB(Card playerCard, Card botCard, String difficulty) {
+	public static void initializeGamePvB(Card playerCard, Card botCard, String difficulty) {
 		switch (difficulty) {
 		case "Easy":
 			leftSideController = new Player(30, 1, 4, Direction.LEFT);
@@ -49,16 +50,30 @@ public class GameController {
 			leftSideController = new Player(20, 1, 4, Direction.LEFT);
 			rightSideController = new BotHard(30, 1, 4, Direction.RIGHT);
 		}
-		gameMap = new Board();
+		startGame();
+	}
+
+	public static void startGame() {
+		board = new Board();
+		isGameEnd = false;
 		turn = 0;
 		// while game not end
-		startTurn();
-
+		
+		while (!isGameEnd) {
+			startTurn();
+		}
+		//TODO play end screen
 	}
 
 	public static void startTurn() {
 		turn++;
 		// TODO
+		//Random side play first
+		//side play first; select card , place card
+		//side play after; select card , place card
+		//gamemap moveall, side play first move first
+		//change side play first
+		//draw card += turn
 	}
 
 	public static Deck getAngelDeck() {

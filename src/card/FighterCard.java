@@ -1,6 +1,7 @@
 package card;
 
 import logic.Direction;
+import logic.GameController;
 
 public class FighterCard extends Card {
 	private int attackDamage;
@@ -9,7 +10,6 @@ public class FighterCard extends Card {
 	private int speed;
 	private int row;
 	private int column;
-	private Direction playingSide;
 
 	public void setPosition(int row, int column) {
 		this.row = row;
@@ -19,10 +19,34 @@ public class FighterCard extends Card {
 	public void move() {
 		switch (playingSide) {
 		case LEFT:
-			column++;
-			//TODO if end of board -> attack controller, remove card
+			for (int i = 1; i <= speed; i++) {
+				if (GameController.board.isEmpty(row, column + 1)) {
+					// can move to next cell
+					GameController.board.removeCardOnMap(row, column);
+					column++;
+					GameController.board.setCardOnMap(this, row, column);
+				} else if (GameController.board.isOutOfBoard(row, column + 1)) {
+					// can attack controller
+					GameController.rightSideController.reduceHeart(attackDamage);
+					GameController.board.removeCardOnMap(row, column);
+				} else {
+					// stop moving
+					break;
+				}
+			}
 		case RIGHT:
-			column--;
+			for (int i = 1; i <= speed; i++) {
+				if (GameController.board.isEmpty(row, column - 1)) {
+					GameController.board.removeCardOnMap(row, column);
+					column--;
+					GameController.board.setCardOnMap(this, row, column);
+				} else if (GameController.board.isOutOfBoard(row, column - 1)) {
+					GameController.leftSideController.reduceHeart(attackDamage);
+					GameController.board.removeCardOnMap(row, column);
+				} else {
+					break;
+				}
+			}
 		}
 	}
 
