@@ -7,6 +7,7 @@ import logic.Direction;
 
 public abstract class Card extends Entity implements Cloneable {
 	private String name;
+	private String description;
 	private int cost;
 	private Effect effect;
 	private boolean isInHand;
@@ -30,6 +31,14 @@ public abstract class Card extends Entity implements Cloneable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getCost() {
