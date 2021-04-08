@@ -1,5 +1,7 @@
 package card;
 
+import effect.Effect;
+import effect.NoEffect;
 import logic.Direction;
 import logic.GameController;
 
@@ -10,6 +12,7 @@ public class MagicianCard extends Card implements Moveable{
 	private int speed;
 	private int row;
 	private int column;
+	private Effect effect;
 
 	public void setPosition(int row, int column) {
 		this.row = row;
@@ -47,6 +50,21 @@ public class MagicianCard extends Card implements Moveable{
 					break;
 				}
 			}
+		}
+	}
+	
+	public void activateEffect() {
+		effect.activate();
+	}
+	
+	public Effect getEffect() {
+		return effect;
+	}
+
+	public void setEffect(String name, String type) {
+		switch (type) {
+		case (""):
+			this.effect = new NoEffect();
 		}
 	}
 
