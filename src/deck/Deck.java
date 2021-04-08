@@ -48,7 +48,7 @@ public class Deck {
 				magicianCard.setAttackRange(Integer.parseInt(deckData[i][7]));
 				switch (deckData[i][8]) {
 				case ("NoEffect"):
-					magicianCard.setEffect(new NoEffect());
+					magicianCard.setEffect(new NoEffect()); //TODO
 				}
 				deck.add(magicianCard);
 			case "Trick":
@@ -58,7 +58,7 @@ public class Deck {
 				trickCard.setCost(Integer.parseInt(deckData[i][5]));
 				switch (deckData[i][8]) {
 				case ("NoEffect"):
-					trickCard.setEffect(new NoEffect());
+					trickCard.setEffect(new NoEffect()); //TODO
 				}
 				deck.add(trickCard);
 			}
