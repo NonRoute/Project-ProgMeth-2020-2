@@ -1,6 +1,12 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import card.Card;
+import logic.Board;
 import logic.Direction;
+import logic.GameController;
 
 public abstract class Bot extends Controller {
 
@@ -8,4 +14,27 @@ public abstract class Bot extends Controller {
 		super(heart, money, initialNumberOfCardInHand, playingSide);
 	}
 
+	public int randomRow() {
+		Random rand = new Random();
+		return rand.nextInt(Board.NUMBER_OF_ROW);
+	}
+
+	public int randomIndexCardInHand() {
+		Random rand = new Random();
+		return rand.nextInt(cardsInHand.size());
+	}
+
+	public boolean IsCardTooExpensive(Card card) {
+		return card.getCost() > money;
+	}
+
+	public ArrayList<Card> getAllCardsCanPlay() {
+		ArrayList<Card> CardsCanPlay = new ArrayList<>();
+		for (Card c : cardsInHand) {
+			if (!IsCardTooExpensive(c)) {
+				CardsCanPlay.add(c);
+			}
+		}
+		return CardsCanPlay;
+	}
 }

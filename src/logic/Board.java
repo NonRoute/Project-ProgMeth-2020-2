@@ -5,8 +5,8 @@ import card.FighterCard;
 import card.TrickCard;
 
 public class Board {
-	private static final int NUMBER_OF_ROW = 5;
-	private static final int NUMBER_OF_COLUMN = 9;
+	public static final int NUMBER_OF_ROW = 5;
+	public static final int NUMBER_OF_COLUMN = 9;
 	private Cell[][] board;
 
 	public Board() {
@@ -62,4 +62,5 @@ public class Board {
 			return false;
 		}
 	}
+
 }

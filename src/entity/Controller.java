@@ -5,6 +5,7 @@ import java.util.Random;
 
 import card.Card;
 import deck.Deck;
+import logic.Board;
 import logic.Direction;
 import logic.GameController;
 
@@ -24,7 +25,7 @@ public abstract class Controller extends Entity {
 	}
 
 	public void drawCard(int number) {
-		//TODO if card exceed max; not draw
+		// TODO if card exceed max; not draw
 		for (int i = 0; i < number; i++) {
 			// random pick 1 card from deck
 			Random rand = new Random();
@@ -47,6 +48,25 @@ public abstract class Controller extends Entity {
 			cardsInHand.get(index).activateEffect();
 		}
 		cardsInHand.remove(index);
+	}
+
+	public ArrayList<Integer> getAllRowCanPlay() {
+		ArrayList<Integer> RowCanPlay = new ArrayList<>();
+		switch (playingSide) {
+		case LEFT:
+			for (int i = 0; i < Board.NUMBER_OF_ROW; i++) {
+				if (GameController.board.isEmpty(i, 0)) {
+					RowCanPlay.add(i);
+				}
+			}
+		case RIGHT:
+			for (int i = 0; i < Board.NUMBER_OF_ROW; i++) {
+				if (GameController.board.isEmpty(i, Board.NUMBER_OF_COLUMN - 1)) {
+					RowCanPlay.add(i);
+				}
+			}
+		}
+		return RowCanPlay;
 	}
 
 	public int getHeart() {

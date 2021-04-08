@@ -21,6 +21,7 @@ public class GameController {
 	public static Controller leftSideController;
 	public static Controller rightSideController;
 	public static Boolean isGameEnd;
+	public static Card selectCard;
 
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
