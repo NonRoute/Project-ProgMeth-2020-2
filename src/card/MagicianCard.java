@@ -1,9 +1,8 @@
 package card;
 
-import effect.Trick;
-import effect.NoEffect;
 import logic.Direction;
 import logic.GameController;
+import trick.Trick;
 
 public class MagicianCard extends Card implements Moveable, Trickable {
 	private int attackDamage;

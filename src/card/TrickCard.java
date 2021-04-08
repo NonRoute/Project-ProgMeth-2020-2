@@ -1,17 +1,16 @@
 package card;
 
-import effect.Trick;
-import effect.NoEffect;
+import trick.Trick;
 
 public class TrickCard extends Card implements Trickable {
-	private Trick effect;
+	private Trick trick;
 
-	public void activateEffect() {
-		effect.activate();
+	public void activateTrick() {
+		trick.activate();
 	}
 
-	public Trick getEffect() {
-		return effect;
+	public Trick getTrick() {
+		return trick;
 	}
 
 	public void setTrick(String trick, String trickParameter) {
