@@ -15,6 +15,10 @@ public abstract class Bot extends Controller {
 		super(heart, money, deck, initialNumberOfCardInHand, playingSide);
 	}
 
+	public abstract Card selectCard();
+	public abstract int selectRow();
+	public abstract void play();
+
 	public int randomRow() {
 		Random rand = new Random();
 		return rand.nextInt(Board.NUMBER_OF_ROW);
@@ -25,14 +29,14 @@ public abstract class Bot extends Controller {
 		return rand.nextInt(cardsInHand.size());
 	}
 
-	public boolean canPlay(Card card) {
+	public boolean isCardCanPlay(Card card) {
 		return card.getCost() > money;
 	}
 
 	public ArrayList<Card> getAllCardsCanPlay() {
 		ArrayList<Card> CardsCanPlay = new ArrayList<>();
 		for (Card c : cardsInHand) {
-			if (!canPlay(c)) {
+			if (!isCardCanPlay(c)) {
 				CardsCanPlay.add(c);
 			}
 		}
