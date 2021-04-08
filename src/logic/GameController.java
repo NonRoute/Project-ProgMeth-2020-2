@@ -1,11 +1,6 @@
 package logic;
 
-import java.util.ArrayList;
-
-import application.CSVParser;
 import card.Card;
-import card.MagicianCard;
-import card.TrickCard;
 import deck.Deck;
 import entity.BotEasy;
 import entity.BotHard;
@@ -28,14 +23,15 @@ public class GameController {
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
 	}
 
-	public static void selectGameMode(Deck leftSideDeck, Deck rightSideDeck, String difficulty, String gameMode) {
+	public static void selectGameMode(Deck leftSideDeck, Deck rightSideDeck, String difficulty, String difficulty2,
+			String gameMode) {
 		switch (gameMode) {
 		case "PvB":
 			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
 		case "PvP":
-			// WIP
+			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
 		case "BvB":
-			// WIP
+			initializeGameBvB(leftSideDeck, rightSideDeck, difficulty, difficulty2);
 		}
 	}
 
