@@ -1,18 +1,18 @@
 package card;
 
-import effect.Effect;
+import effect.Trick;
 import effect.NoEffect;
 import logic.Direction;
 import logic.GameController;
 
-public class MagicianCard extends Card implements Moveable, Activatable{
+public class MagicianCard extends Card implements Moveable, Trickable {
 	private int attackDamage;
 	private int attackRange;
 	private int heart;
 	private int speed;
 	private int row;
 	private int column;
-	private Effect effect;
+	private Trick trick;
 
 	public void setPosition(int row, int column) {
 		this.row = row;
@@ -52,20 +52,17 @@ public class MagicianCard extends Card implements Moveable, Activatable{
 			}
 		}
 	}
-	
+
 	public void activateEffect() {
-		effect.activate();
-	}
-	
-	public Effect getEffect() {
-		return effect;
+		trick.activate();
 	}
 
-	public void setEffect(String name, String type) {
-		switch (type) {
-		case (""):
-			this.effect = new NoEffect();
-		}
+	public Trick getEffect() {
+		return trick;
+	}
+
+	public void setEffect(Trick trick) {
+		switch (trick)
 	}
 
 	public int getAttackDamage() {

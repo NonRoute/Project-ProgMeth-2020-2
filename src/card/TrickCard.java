@@ -1,23 +1,20 @@
 package card;
 
-import effect.Effect;
+import effect.Trick;
 import effect.NoEffect;
 
-public class TrickCard extends Card implements Activatable{
-	private Effect effect;
-	
+public class TrickCard extends Card implements Trickable {
+	private Trick effect;
+
 	public void activateEffect() {
 		effect.activate();
 	}
-	
-	public Effect getEffect() {
+
+	public Trick getEffect() {
 		return effect;
 	}
 
-	public void setEffect(String name, String type) {
-		switch (type) {
-		case (""):
-			this.effect = new NoEffect();
-		}
+	public void setTrick(String trick, String trickParameter) {
+		switch (trick) {
 	}
 }

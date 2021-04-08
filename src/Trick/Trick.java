@@ -1,6 +1,6 @@
-package effect;
+package Trick;
 
-public abstract class Effect {
+public abstract class Trick {
 	private boolean isActivateWhenUseCard = false;
 
 	public boolean isActivateWhenUseCard() {

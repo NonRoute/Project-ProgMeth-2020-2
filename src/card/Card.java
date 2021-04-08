@@ -1,7 +1,7 @@
 package card;
 
-import effect.Effect;
-import effect.NoEffect;
+import Trick.NoEffect;
+import Trick.Trick;
 import entity.Entity;
 import logic.Direction;
 
@@ -50,10 +50,6 @@ public abstract class Card extends Entity implements Cloneable {
 
 	public void setInHand(boolean isInHand) {
 		this.isInHand = isInHand;
-	}
-
-	public void setEffect(Effect effect) {
-		this.effect = effect;
 	}
 
 	public Direction getPlayingSide() {
