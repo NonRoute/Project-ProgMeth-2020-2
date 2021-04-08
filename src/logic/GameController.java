@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import application.CSVParser;
 import card.Card;
-import card.FighterCard;
+import card.MagicianCard;
 import card.TrickCard;
 import deck.Deck;
 import entity.BotEasy;
