@@ -1,6 +1,6 @@
 package card;
 
-public interface Moveable {
+public interface Movable {
 
 	void move();
 }

@@ -3,7 +3,7 @@ package card;
 import logic.Direction;
 import logic.GameController;
 
-public class FighterCard extends Card implements Moveable {
+public class FighterCard extends Card implements Movable {
 	private int attackDamage;
 	private int attackRange;
 	private int heart;
