@@ -1,7 +1,8 @@
 package logic;
 
 import card.Card;
-import card.FighterCard;
+import card.MagicianCard;
+import card.Moveable;
 import card.TrickCard;
 
 public class Board {
@@ -31,14 +32,14 @@ public class Board {
 			switch (sideMoveFirst) {
 			case LEFT:
 				for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-					if (board[r][c].getCardOnCell() instanceof FighterCard) {
-						((FighterCard) board[r][c].getCardOnCell()).move();
+					if (board[r][c].getCardOnCell() instanceof Moveable) {
+						((MagicianCard) board[r][c].getCardOnCell()).move();
 					}
 				}
 			case RIGHT:
 				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
-					if (board[r][c].getCardOnCell() instanceof FighterCard) {
-						((FighterCard) board[r][c].getCardOnCell()).move();
+					if (board[r][c].getCardOnCell() instanceof Moveable) {
+						((MagicianCard) board[r][c].getCardOnCell()).move();
 					}
 				}
 			}
