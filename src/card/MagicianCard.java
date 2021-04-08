@@ -53,15 +53,15 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 		}
 	}
 
-	public void activateEffect() {
+	public void activateTrick() {
 		trick.activate();
 	}
 
-	public Trick getEffect() {
+	public Trick getTrick() {
 		return trick;
 	}
 
-	public void setEffect(Trick trick) {
+	public void setTrick(Trick trick) {
 		switch (trick)
 	}
 

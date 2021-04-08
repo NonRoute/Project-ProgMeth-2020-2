@@ -1,4 +1,4 @@
-package Trick;
+package trick;
 
 public abstract class Trick {
 	private boolean isActivateWhenUseCard = false;

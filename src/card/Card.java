@@ -1,9 +1,9 @@
 package card;
 
-import Trick.NoEffect;
-import Trick.Trick;
 import entity.Entity;
 import logic.Direction;
+import trick.NoEffect;
+import trick.Trick;
 
 public abstract class Card extends Entity implements Cloneable {
 	private String name;

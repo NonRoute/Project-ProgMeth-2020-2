@@ -3,12 +3,12 @@ package deck;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import Trick.NoEffect;
 import application.CSVParser;
 import card.Card;
 import card.FighterCard;
 import card.MagicianCard;
 import card.TrickCard;
+import trick.NoEffect;
 
 public class Deck {
 	private String Name;
