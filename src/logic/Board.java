@@ -1,8 +1,10 @@
 package logic;
 
+import java.util.ArrayList;
+
 import card.Card;
 import card.MagicianCard;
-import card.Moveable;
+import card.Movable;
 import card.TrickCard;
 
 public class Board {
@@ -20,11 +22,11 @@ public class Board {
 	}
 
 	public void setCardOnMap(Card card, int row, int column) {
-		board[row][column].setCardOnCell(card);
+		board[row][column].setCard(card);
 	}
 
 	public void removeCardOnMap(int row, int column) {
-		board[row][column].removeCardOnCell();
+		board[row][column].removeCard();
 	}
 
 	public void moveAllCard(Direction sideMoveFirst) {
@@ -32,14 +34,14 @@ public class Board {
 			switch (sideMoveFirst) {
 			case LEFT:
 				for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-					if (board[r][c].getCardOnCell() instanceof Moveable) {
-						((MagicianCard) board[r][c].getCardOnCell()).move();
+					if (board[r][c].getCard() instanceof Movable) {
+						((MagicianCard) board[r][c].getCard()).move();
 					}
 				}
 			case RIGHT:
 				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
-					if (board[r][c].getCardOnCell() instanceof Moveable) {
-						((MagicianCard) board[r][c].getCardOnCell()).move();
+					if (board[r][c].getCard() instanceof Movable) {
+						((MagicianCard) board[r][c].getCard()).move();
 					}
 				}
 			}
@@ -54,6 +56,13 @@ public class Board {
 		}
 	}
 
+	public boolean isEnemy(int row, int column, Direction playingSide) {
+		if (!isEmpty(row, column)) {
+			return board[row][column].getCard().getPlayingSide().equals(playingSide);
+		} else
+			return false;
+	}
+
 	public boolean isOutOfBoard(int row, int column) {
 		if (column < 0 || column >= NUMBER_OF_COLUMN) {
 			return true;
@@ -62,6 +71,57 @@ public class Board {
 		} else {
 			return false;
 		}
+	}
+
+	public int getNearestEnemyColumn(int row, Direction playingSide) { // return -1 if no enemy
+		switch (playingSide) {
+		case LEFT:
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				if (isEnemy(row, c, playingSide)) {
+					return c;
+				}
+			}
+			return -1;
+		case RIGHT:
+			for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
+				if (isEnemy(row, c, playingSide)) {
+					return c;
+				}
+			}
+			return -1;
+		}
+		return -1;
+	}
+
+	public int getnearestEnemyRow(Direction playingSide, ArrayList<Integer> excludedRow) { // return -1 if no enemy
+		switch (playingSide) {
+		case LEFT:
+			int column = NUMBER_OF_COLUMN;
+			int row = -1;
+			for (int r = 0; r < NUMBER_OF_ROW; r++) {
+				if (!excludedRow.contains(r)) {
+					if (getNearestEnemyColumn(r, playingSide) < column && getNearestEnemyColumn(r, playingSide) != -1) {
+						column = getNearestEnemyColumn(row, playingSide);
+						row = r;
+					}
+				}
+			}
+			return row;
+		case RIGHT:
+			int column1 = 0;
+			int row1 = -1;
+			for (int r = 0; r < NUMBER_OF_ROW; r++) {
+				if (!excludedRow.contains(r)) {
+					if (getNearestEnemyColumn(r, playingSide) > column1
+							&& getNearestEnemyColumn(r, playingSide) != -1) {
+						column1 = getNearestEnemyColumn(row1, playingSide);
+						row1 = r;
+					}
+				}
+			}
+			return row1;
+		}
+		return -1;
 	}
 
 }
