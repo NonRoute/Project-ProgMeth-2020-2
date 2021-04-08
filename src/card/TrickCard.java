@@ -3,7 +3,7 @@ package card;
 import effect.Effect;
 import effect.NoEffect;
 
-public class TrickCard extends Card{
+public class TrickCard extends Card implements Activatable{
 	private Effect effect;
 	
 	public void activateEffect() {

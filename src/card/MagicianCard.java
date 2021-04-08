@@ -5,7 +5,7 @@ import effect.NoEffect;
 import logic.Direction;
 import logic.GameController;
 
-public class MagicianCard extends Card implements Moveable{
+public class MagicianCard extends Card implements Moveable, Activatable{
 	private int attackDamage;
 	private int attackRange;
 	private int heart;
