@@ -24,14 +24,14 @@ public abstract class Bot extends Controller {
 		return rand.nextInt(cardsInHand.size());
 	}
 
-	public boolean IsCardTooExpensive(Card card) {
+	public boolean canPlay(Card card) {
 		return card.getCost() > money;
 	}
 
 	public ArrayList<Card> getAllCardsCanPlay() {
 		ArrayList<Card> CardsCanPlay = new ArrayList<>();
 		for (Card c : cardsInHand) {
-			if (!IsCardTooExpensive(c)) {
+			if (!canPlay(c)) {
 				CardsCanPlay.add(c);
 			}
 		}
