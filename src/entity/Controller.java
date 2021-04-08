@@ -23,6 +23,7 @@ public abstract class Controller extends Entity {
 		this.money = money;
 		this.deck = deck;
 		drawCard(initialNumberOfCardInHand);
+		this.cardsInHand = new ArrayList<>();
 		this.playingSide = playingSide;
 	}
 
@@ -48,9 +49,9 @@ public abstract class Controller extends Entity {
 	public void useCard(int index) {
 		money -= cardsInHand.get(index).getCost();
 		if (cardsInHand.get(index) instanceof Trickable)
-		if (((Trickable) cardsInHand.get(index)).getTrick().isActivateWhenUseCard()) {
-			((Trickable) cardsInHand.get(index)).activateTrick();
-		}
+			if (((Trickable) cardsInHand.get(index)).getTrick().isActivateWhenUseCard()) {
+				((Trickable) cardsInHand.get(index)).activateTrick();
+			}
 		cardsInHand.remove(index);
 	}
 

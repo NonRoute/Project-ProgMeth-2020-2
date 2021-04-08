@@ -8,14 +8,15 @@ import card.Card;
 import card.FighterCard;
 import card.MagicianCard;
 import card.Moveable;
+import deck.Deck;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import logic.GameController;
 
 public class BotEasy extends Bot {
 
-	public BotEasy(int heart, int money, int initialNumberOfCardInHand, Direction playingSide) {
-		super(heart, money, initialNumberOfCardInHand, playingSide);
+	public BotEasy(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
+		super(heart, money, deck, initialNumberOfCardInHand, playingSide);
 	}
 
 	public int getMaxCardCostCanDraw() {

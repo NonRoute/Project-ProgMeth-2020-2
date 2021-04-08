@@ -3,13 +3,14 @@ package entity;
 import java.util.Random;
 
 import card.Card;
+import deck.Deck;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import logic.GameController;
 
 public class Player extends Controller {
-	public Player(int heart, int money, int initialNumberOfCardInHand, Direction playingSide) {
-		super(heart, money, initialNumberOfCardInHand, playingSide);
+	public Player(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
+		super(heart, money, deck, initialNumberOfCardInHand, playingSide);
 	}
 
 	public int getMaxCardCostCanDraw() {
