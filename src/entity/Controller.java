@@ -56,22 +56,22 @@ public abstract class Controller extends Entity {
 	}
 
 	public ArrayList<Integer> getPlayableRow() {
-		ArrayList<Integer> RowCanPlay = new ArrayList<>();
+		ArrayList<Integer> rowCanPlay = new ArrayList<>();
 		switch (playingSide) {
 		case LEFT:
 			for (int i = 0; i < Board.NUMBER_OF_ROW; i++) {
 				if (GameController.board.isEmpty(i, 0)) {
-					RowCanPlay.add(i);
+					rowCanPlay.add(i);
 				}
 			}
 		case RIGHT:
 			for (int i = 0; i < Board.NUMBER_OF_ROW; i++) {
 				if (GameController.board.isEmpty(i, Board.NUMBER_OF_COLUMN - 1)) {
-					RowCanPlay.add(i);
+					rowCanPlay.add(i);
 				}
 			}
 		}
-		return RowCanPlay;
+		return rowCanPlay;
 	}
 
 	public int getPlayableColumn() {
