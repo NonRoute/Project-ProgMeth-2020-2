@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import card.Card;
+import card.Trickable;
 import deck.Deck;
+import logic.Board;
 import logic.Direction;
 import logic.GameController;
 
@@ -16,15 +18,17 @@ public abstract class Controller extends Entity {
 	protected ArrayList<Card> cardsInHand;
 	protected Direction playingSide;
 
-	public Controller(int heart, int money, int initialNumberOfCardInHand, Direction playingSide) {
+	public Controller(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
 		this.heart = Math.max(1, heart);
 		this.money = money;
+		this.deck = deck;
 		drawCard(initialNumberOfCardInHand);
+		this.cardsInHand = new ArrayList<>();
 		this.playingSide = playingSide;
 	}
 
 	public void drawCard(int number) {
-		//TODO if card exceed max; not draw
+		// TODO if card exceed max; not draw
 		for (int i = 0; i < number; i++) {
 			// random pick 1 card from deck
 			Random rand = new Random();
@@ -43,10 +47,41 @@ public abstract class Controller extends Entity {
 	public abstract int getMaxCardCostCanDraw();
 
 	public void useCard(int index) {
-		if (cardsInHand.get(index).getEffect().isActivateWhenUseCard()) {
-			cardsInHand.get(index).activateEffect();
-		}
+		money -= cardsInHand.get(index).getCost();
+		if (cardsInHand.get(index) instanceof Trickable)
+			if (((Trickable) cardsInHand.get(index)).getTrick().isActivateWhenUseCard()) {
+				((Trickable) cardsInHand.get(index)).activateTrick();
+			}
 		cardsInHand.remove(index);
+	}
+
+	public ArrayList<Integer> getPlayableRow() {
+		ArrayList<Integer> rowCanPlay = new ArrayList<>();
+		switch (playingSide) {
+		case LEFT:
+			for (int i = 0; i < Board.NUMBER_OF_ROW; i++) {
+				if (GameController.board.isEmpty(i, 0)) {
+					rowCanPlay.add(i);
+				}
+			}
+		case RIGHT:
+			for (int i = 0; i < Board.NUMBER_OF_ROW; i++) {
+				if (GameController.board.isEmpty(i, Board.NUMBER_OF_COLUMN - 1)) {
+					rowCanPlay.add(i);
+				}
+			}
+		}
+		return rowCanPlay;
+	}
+
+	public int getPlayableColumn() {
+		switch (playingSide) {
+		case LEFT:
+			return 0;
+		case RIGHT:
+			return (Board.NUMBER_OF_COLUMN - 1);
+		}
+		return -1;
 	}
 
 	public int getHeart() {

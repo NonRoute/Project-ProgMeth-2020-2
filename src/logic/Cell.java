@@ -6,14 +6,14 @@ public class Cell {
 	private Card cardOnCell;
 	private boolean isEmpty = true;
 
-	public void setCardOnCell(Card card) {
+	public void setCard(Card card) {
 		if (isEmpty) {
 			cardOnCell = card;
 			isEmpty = false;
 		}
 	}
 
-	public void removeCardOnCell() {
+	public void removeCard() {
 		cardOnCell = null;
 		isEmpty = true;
 
@@ -27,7 +27,7 @@ public class Cell {
 		this.isEmpty = isEmpty;
 	}
 
-	public Card getCardOnCell() {
+	public Card getCard() {
 		return cardOnCell;
 	}
 

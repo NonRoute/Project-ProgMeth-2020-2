@@ -2,14 +2,16 @@ package card;
 
 import logic.Direction;
 import logic.GameController;
+import trick.Trick;
 
-public class FighterCard extends Card implements Movable {
+public class MagicianCard extends Card implements Moveable, Trickable {
 	private int attackDamage;
 	private int attackRange;
 	private int heart;
 	private int speed;
 	private int row;
 	private int column;
+	private Trick trick;
 
 	public void setPosition(int row, int column) {
 		this.row = row;
@@ -48,6 +50,18 @@ public class FighterCard extends Card implements Movable {
 				}
 			}
 		}
+	}
+
+	public void activateTrick() {
+		trick.activate();
+	}
+
+	public Trick getTrick() {
+		return trick;
+	}
+
+	public void setTrick(Trick trick) {
+		switch (trick)
 	}
 
 	public int getAttackDamage() {
