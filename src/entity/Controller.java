@@ -44,13 +44,14 @@ public abstract class Controller extends Entity {
 	public abstract int getMaxCardCostCanDraw();
 
 	public void useCard(int index) {
+		money -= cardsInHand.get(index).getCost();
 		if (cardsInHand.get(index).getEffect().isActivateWhenUseCard()) {
 			cardsInHand.get(index).activateEffect();
 		}
 		cardsInHand.remove(index);
 	}
 
-	public ArrayList<Integer> getAllRowCanPlay() {
+	public ArrayList<Integer> getPlayableRow() {
 		ArrayList<Integer> RowCanPlay = new ArrayList<>();
 		switch (playingSide) {
 		case LEFT:
@@ -67,6 +68,16 @@ public abstract class Controller extends Entity {
 			}
 		}
 		return RowCanPlay;
+	}
+
+	public int getPlayableColumn() {
+		switch (playingSide) {
+		case LEFT:
+			return 0;
+		case RIGHT:
+			return (Board.NUMBER_OF_COLUMN - 1);
+		}
+		return -1;
 	}
 
 	public int getHeart() {
