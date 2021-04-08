@@ -9,7 +9,6 @@ public abstract class Card extends Entity implements Cloneable {
 	private String name;
 	private String description;
 	private int cost;
-	private Effect effect;
 	private boolean isInHand;
 	protected Direction playingSide;
 
@@ -19,10 +18,6 @@ public abstract class Card extends Entity implements Cloneable {
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
 		}
-	}
-
-	public void activateEffect() {
-		effect.activate();
 	}
 
 	public String getName() {
@@ -47,17 +42,6 @@ public abstract class Card extends Entity implements Cloneable {
 
 	public void setCost(int cost) {
 		this.cost = cost;
-	}
-
-	public Effect getEffect() {
-		return effect;
-	}
-
-	public void setEffect(String name, String type) {
-		switch (type) {
-		case (""):
-			this.effect = new NoEffect(name);
-		}
 	}
 
 	public boolean isInHand() {
