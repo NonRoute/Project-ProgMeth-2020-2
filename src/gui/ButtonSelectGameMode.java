@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import logic.GameController;
 
 public class ButtonSelectGameMode extends GridPane {
 	private Button exitButton;
@@ -53,7 +54,14 @@ public class ButtonSelectGameMode extends GridPane {
 		button.setTextFill(Color.WHITE);
 		button.setOnAction((ActionEvent e) -> {
 			switch (name) {
-
+			case "Player vs. Player":
+				GameController.gameMode = "PvP";
+			case "Player vs. Bot":
+				GameController.gameMode = "PvB";
+			case "Bot vs. Bot":
+				GameController.gameMode = "BvB";
+			case "How To Play":
+				//TODO:sTurn on how to play screen
 			}
 		});
 		button.setOnMouseMoved((MouseEvent e) -> {
