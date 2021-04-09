@@ -3,7 +3,7 @@
   realizations="true" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="sharedObject.RenderableHolder" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/sharedObject/RenderableHolder.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="250" x="1487" y="37"/>    
+    <position height="232" width="250" x="46" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="logic.Board" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/logic/Board.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="341" x="2047" y="37"/>    
+    <position height="286" width="341" x="2676" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <enumeration id="3" language="java" name="logic.Direction" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/logic/Direction.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="144" x="2428" y="37"/>    
+    <position height="124" width="144" x="1259" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </enumeration>  
   <class id="4" language="java" name="logic.Cell" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/logic/Cell.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="161" x="66" y="37"/>    
+    <position height="214" width="161" x="788" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="card.MagicianCard" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/MagicianCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="448" width="178" x="2017" y="868"/>    
+    <position height="448" width="178" x="3434" y="886"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="screen.GameScreen" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/screen/GameScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="154" x="2612" y="37"/>    
+    <position height="106" width="154" x="1809" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="card.TrickCard" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/TrickCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="178" x="2235" y="868"/>    
+    <position height="160" width="178" x="3216" y="886"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="logic.GameController" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/logic/GameController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="376" width="340" x="2806" y="37"/>    
+    <position height="394" width="340" x="2003" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="entity.BotEasy" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/BotEasy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="223" x="3147" y="1356"/>    
+    <position height="178" width="223" x="2196" y="1374"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="card.Card" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/Card.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="375" width="198" x="2453" y="453"/>    
+    <position height="375" width="198" x="3219" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="entity.Player" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="210" x="2671" y="868"/>    
+    <position height="106" width="210" x="2748" y="886"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="application.Main" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/application/Main.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="130" x="1317" y="37"/>    
+    <position height="124" width="130" x="3482" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="deck.Deck" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/deck/Deck.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="326" x="267" y="37"/>    
+    <position height="286" width="326" x="1443" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="entity.Controller" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="375" width="238" x="2908" y="453"/>    
+    <position height="375" width="238" x="2717" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="application.CSVParser" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/application/CSVParser.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="174" x="633" y="37"/>    
+    <position height="106" width="174" x="336" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <interface id="16" language="java" name="sharedObject.IRenderable" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/sharedObject/IRenderable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="184" x="3186" y="453"/>    
+    <position height="124" width="184" x="2995" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </interface>  
   <class id="17" language="java" name="logic.GameLogic" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/logic/GameLogic.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="230" x="1777" y="37"/>    
+    <position height="142" width="230" x="989" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="entity.BotHard" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/BotHard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="220" x="2613" y="1356"/>    
+    <position height="106" width="220" x="2733" y="1374"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,16 +165,16 @@
   </class>  
   <class id="19" language="java" name="entity.Entity" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="195" width="132" x="3186" y="37"/>    
+    <position height="195" width="132" x="3057" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="screen.StartScreen" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/screen/StartScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="137" x="1140" y="37"/>    
+  <class id="20" language="java" name="screen.SelectGameModeScreen" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/screen/SelectGameModeScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="213" x="3229" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </class>  
   <class id="21" language="java" name="entity.Bot" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/Bot.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="213" width="249" x="2921" y="868"/>    
+    <position height="213" width="249" x="2459" y="886"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="entity.BotNormal" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/BotNormal.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="234" x="2873" y="1356"/>    
+    <position height="160" width="234" x="2459" y="1374"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -201,7 +201,7 @@
   </class>  
   <class id="23" language="java" name="trick.Trick" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/trick/Trick.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="159" width="253" x="847" y="37"/>    
+    <position height="159" width="253" x="2383" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -210,7 +210,7 @@
   </class>  
   <interface id="24" language="java" name="card.Movable" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/Movable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="120" x="2453" y="1356"/>    
+    <position height="88" width="120" x="2998" y="1374"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -219,7 +219,7 @@
   </interface>  
   <class id="25" language="java" name="card.FighterCard" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/FighterCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="376" width="178" x="2453" y="868"/>    
+    <position height="376" width="178" x="2998" y="886"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,69 +228,78 @@
   </class>  
   <interface id="26" language="java" name="card.Trickable" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/Trickable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="178" x="2126" y="1356"/>    
+    <position height="124" width="178" x="3325" y="1374"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <generalization id="27">    
+  <class id="27" language="java" name="gui.ButtonSelectGameMode" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/gui/ButtonSelectGameMode.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="198" x="550" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="28">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="31">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="19"/>  
   </generalization>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="30">    
+  <generalization id="32">    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="21"/>  
   </generalization>  
-  <realization id="31">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <realization id="33">    
+  <generalization id="33">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="26"/>  
-  </realization>  
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
   <realization id="34">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="26"/>  
   </realization>  
   <generalization id="35">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <realization id="36">    
-    <end type="SOURCE" refId="25"/>    
-    <end type="TARGET" refId="24"/>  
-  </realization>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <generalization id="39">    
-    <end type="SOURCE" refId="25"/>    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <generalization id="40">    
+  <generalization id="36">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="37">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="19"/>  
   </generalization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <realization id="41">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
