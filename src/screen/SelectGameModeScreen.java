@@ -39,12 +39,11 @@ public class SelectGameModeScreen {
 
 		Scene scene = new Scene(root);
 
-		ImageView image = new ImageView("picture/Background.png");
+		ImageView image = new ImageView("picture/backgroundSelectGameMode.png");
 		image.setFitWidth(WIDTH);
 		image.setFitHeight(HIGHT);
 
 		root.setAlignment(Pos.TOP_RIGHT);
-
 		root.getChildren().addAll(image, new ButtonSelectGameMode(), getExitButton());
 		primaryStage.setTitle("Angel vs. Devil");
 		primaryStage.setScene(scene);
