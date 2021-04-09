@@ -1,8 +1,11 @@
 package gui;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -30,25 +33,40 @@ public class ButtonSelectGameMode extends GridPane {
 		this.setAlignment(Pos.BOTTOM_CENTER);
 		this.setPadding(new Insets(20));
 
-		this.pvpButton = new Button("Player vs. Player");
-		setUpButton(pvpButton);
+		this.pvpButton = setUpButton("Player vs. Player");
 		this.add(pvpButton, 0, 0);
-		this.pvbButton = new Button("Player vs. Bot");
-		setUpButton(pvbButton);
+		this.pvbButton = setUpButton("Player vs. Bot");
 		this.add(pvbButton, 1, 0);
-		this.bvbButton = new Button("Bot vs. Bot");
-		setUpButton(bvbButton);
+		this.bvbButton = setUpButton("Bot vs. Bot");
 		this.add(bvbButton, 2, 0);
-		this.howToPlay = new Button("How To Play");
-		setUpButton(howToPlay);
+		this.howToPlay = setUpButton("How To Play");
 		this.add(howToPlay, 1, 1);
 	}
 
-	public void setUpButton(Button button) {
+	public Button setUpButton(String name) {
+		Button button = new Button(name);
 		button.setPrefSize(300, 100);
 		button.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
+		button.setBorder(new Border(
+				new BorderStroke(Color.SADDLEBROWN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
 		button.setTextFill(Color.WHITE);
+		button.setOnAction((ActionEvent e) -> {
+			switch (name) {
+
+			}
+		});
+		button.setOnMouseMoved((MouseEvent e) -> {
+			if (e != null)
+				button.setBackground(
+						new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+		});
+
+		button.setOnMouseExited((MouseEvent e) -> {
+			if (e != null)
+				button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
+		});
+		return button;
 	}
 
 }
