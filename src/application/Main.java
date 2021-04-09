@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import logic.Board;
 import logic.GameController;
-import screen.StartScreen;
+import screen.SelectGameModeScreen;
 
 public class Main extends Application {
 	public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		StartScreen start = new StartScreen(primaryStage);
+		SelectGameModeScreen start = new SelectGameModeScreen(primaryStage);
         primaryStage.show();
 	}
 
