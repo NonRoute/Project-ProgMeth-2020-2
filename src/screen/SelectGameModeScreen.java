@@ -29,6 +29,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import logic.GameController;
 import sharedObject.AudioLoader;
+import sharedObject.RenderableHolder;
 
 public class SelectGameModeScreen {
 	private static final int WIDTH = 1280;
@@ -39,7 +40,7 @@ public class SelectGameModeScreen {
 
 		Scene scene = new Scene(root);
 
-		ImageView image = new ImageView("picture/backgroundSelectGameMode.png");
+		ImageView image = RenderableHolder.backgroundSelectGameMode;
 		image.setFitWidth(WIDTH);
 		image.setFitHeight(HIGHT);
 

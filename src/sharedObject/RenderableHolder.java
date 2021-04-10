@@ -5,12 +5,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
-	
+	public static ImageView backgroundSelectGameMode;
+
 	static {
 		loadResource();
 	}
@@ -27,9 +31,11 @@ public class RenderableHolder {
 	public static RenderableHolder getInstance() {
 		return instance;
 	}
-	
+
 	public static void loadResource() {
-		
+		String p = "picture/";
+		RenderableHolder.backgroundSelectGameMode = new ImageView(
+				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectGameMode.png").toString());
 	}
 
 	public void add(IRenderable entity) {
@@ -43,7 +49,7 @@ public class RenderableHolder {
 				entities.remove(i);
 		}
 	}
-	
+
 	public List<IRenderable> getEntities() {
 		return entities;
 	}
