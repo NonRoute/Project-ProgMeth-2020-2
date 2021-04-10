@@ -45,13 +45,16 @@ public class ChangeCardAbility extends Trick {
 		switch (activateArea) {
 		case 'R':
 			card = (Movable) GameController.board.getRandomEnemy(playingSide);
+			break;
 		default:
 			card = null;
+			break;
 		}
 
 		switch (conditionType) {
 		case 'A':
 			Update(card);
+			break;
 		}
 
 	}

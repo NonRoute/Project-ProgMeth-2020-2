@@ -24,20 +24,28 @@ public abstract class Trick {
 		switch (trickParameter.get(0)) {
 		case "P":
 			isActivateWhenPlayCard = true;
+			break;
 		case "A":
 			isActivateWhenCardAttack = true;
+			break;
 		case "G":
 			isActivateWhenCardGetDamage = true;
+			break;
 		case "M":
 			isActivateWhenCardMove = true;
+			break;
 		case "D":
 			isActivateWhenCardDestory = true;
+			break;
 		case "X":
 			isActivateWhenCardBeDestoryed = true;
+			break;
 		case "T":
 			isActivateWhenNewTurn = true;
+			break;
 		case "C":
 			isActivateWhenDrawACard = true;
+			break;
 		}
 	}
 

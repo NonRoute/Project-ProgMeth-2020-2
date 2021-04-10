@@ -56,10 +56,13 @@ public class ButtonSelectGameMode extends GridPane {
 			switch (name) {
 			case "Player vs. Player":
 				GameController.gameMode = "PvP";
+				break;
 			case "Player vs. Bot":
 				GameController.gameMode = "PvB";
+				break;
 			case "Bot vs. Bot":
 				GameController.gameMode = "BvB";
+				break;
 			case "How To Play":
 				// TODO:sTurn on how to play screen
 			}

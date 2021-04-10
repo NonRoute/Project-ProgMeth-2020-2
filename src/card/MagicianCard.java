@@ -37,6 +37,7 @@ public class MagicianCard extends Card implements Movable, Trickable {
 					break;
 				}
 			}
+			break;
 		case RIGHT:
 			for (int i = 1; i <= speed; i++) {
 				if (GameController.board.isEmpty(row, column - 1)) {
@@ -50,6 +51,7 @@ public class MagicianCard extends Card implements Movable, Trickable {
 					break;
 				}
 			}
+			break;
 		}
 	}
 

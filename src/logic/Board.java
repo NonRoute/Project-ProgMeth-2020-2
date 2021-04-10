@@ -39,12 +39,14 @@ public class Board {
 						((MagicianCard) board[r][c].getCard()).move();
 					}
 				}
+				break;
 			case RIGHT:
 				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
 					if (board[r][c].getCard() instanceof Movable) {
 						((MagicianCard) board[r][c].getCard()).move();
 					}
 				}
+				break;
 			}
 		}
 	}
