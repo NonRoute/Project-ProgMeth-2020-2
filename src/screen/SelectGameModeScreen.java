@@ -46,8 +46,6 @@ public class SelectGameModeScreen {
 		root.getChildren().addAll(image, new ButtonSelectGameMode(), getExitButton());
 		primaryStage.setTitle("Angel vs. Devil");
 		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.show();
 	}
 
 	public Button getExitButton() {
