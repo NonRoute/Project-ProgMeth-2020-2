@@ -1,3 +1,3 @@
 ﻿Devil,,,,,,,,,
 Type,Name String,Description,ATK int,heart int,COST int,SPEED int,ATK Range int,Effect type,"Effect parameter int,int,..."
-Fighter,test,test,1,2,3,4,5,,
+Fighter,test,test,1,2,3,4,5,n,n
