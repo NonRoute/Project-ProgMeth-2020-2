@@ -34,25 +34,35 @@ public class SelectDeckScreen {
 
 	public SelectDeckScreen() {
 		StackPane root = new StackPane();
-		
+
 		BorderPane borderPane = new BorderPane();
 		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
-	
+
 		Button goBackButton = getGoBackButton();
 		BorderPane.setAlignment(goBackButton, Pos.CENTER_RIGHT);
 		BorderPane.setMargin(goBackButton, new Insets(20));
 		borderPane.setTop(goBackButton);
-		
+
 		borderPane.setCenter(new ButtonSelectDeck());
-		
+
 		Button playButton = getPlayButton();
 		BorderPane.setAlignment(playButton, Pos.CENTER);
 		BorderPane.setMargin(playButton, new Insets(20));
 		borderPane.setBottom(playButton);
 
 		Scene scene = new Scene(root);
-
-		ImageView image = RenderableHolder.backgroundSelectDeck;
+		ImageView image;
+		switch (GameController.gameMode) {
+		case "PvB":
+			image = RenderableHolder.backgroundSelectDeckPvB;
+			break;
+		case "PvP":
+			image = RenderableHolder.backgroundSelectDeckPvP;
+			break;
+		default: //"BvB"
+			image = RenderableHolder.backgroundSelectDeckBvB;
+			break;
+		}
 		image.setFitWidth(GameController.SCREEN_WIDTH);
 		image.setFitHeight(GameController.SCREEN_HIGHT);
 
