@@ -52,6 +52,11 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 		}
 	}
 
+	public void setPlayingSide(Direction playingSide) {
+		this.playingSide = playingSide;
+		trick.setPlayingSide(playingSide);
+	}
+
 	public void activateTrick() {
 		trick.activate();
 	}

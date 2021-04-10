@@ -3,7 +3,10 @@ package trick;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import logic.Direction;
+
 public abstract class Trick {
+	protected Direction playingSide;
 	protected ArrayList<String> trickParameter;
 	protected boolean isActivateWhenPlayCard = false;
 	protected boolean isActivateWhenCardAttack = false;
@@ -108,6 +111,14 @@ public abstract class Trick {
 
 	public void setActivateWhenDrawACard(boolean isActivateWhenDrawACard) {
 		this.isActivateWhenDrawACard = isActivateWhenDrawACard;
+	}
+
+	public Direction getPlayingSide() {
+		return playingSide;
+	}
+
+	public void setPlayingSide(Direction playingSide) {
+		this.playingSide = playingSide;
 	}
 
 }
