@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import card.Card;
 import card.MagicianCard;
@@ -61,6 +62,33 @@ public class Board {
 			return board[row][column].getCard().getPlayingSide().equals(playingSide);
 		} else
 			return false;
+	}
+
+	public boolean haveEnemy(Direction playingSide) {
+		return getEnemy(playingSide).size() != 0;
+	}
+
+	public ArrayList<Card> getEnemy(Direction playingSide) {
+		ArrayList<Card> enemy = new ArrayList<>();
+		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				if (isEnemy(r, c, playingSide)) {
+					enemy.add(board[r][c].getCard());
+				}
+			}
+		}
+		return enemy;
+	}
+
+	public Card getRandomEnemy(Direction playingSide) {
+		Random rand = new Random();
+		ArrayList<Card> enemy = getEnemy(playingSide);
+		if (enemy.size() == 0) {
+			return null;
+		} else {
+			int index = rand.nextInt(enemy.size());
+			return enemy.get(index);
+		}
 	}
 
 	public boolean isOutOfBoard(int row, int column) {
