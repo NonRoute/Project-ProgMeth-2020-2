@@ -61,18 +61,15 @@ public class ButtonSelectGameMode extends GridPane {
 			case "Bot vs. Bot":
 				GameController.gameMode = "BvB";
 			case "How To Play":
-				//TODO:sTurn on how to play screen
+				// TODO:sTurn on how to play screen
 			}
 		});
-		button.setOnMouseMoved((MouseEvent e) -> {
-			if (e != null)
-				button.setBackground(
-						new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+		button.setOnMouseEntered((MouseEvent e) -> {
+			button.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
 		});
 
 		button.setOnMouseExited((MouseEvent e) -> {
-			if (e != null)
-				button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
+			button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
 		});
 		return button;
 	}
