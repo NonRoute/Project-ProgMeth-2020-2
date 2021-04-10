@@ -124,4 +124,20 @@ public class Board {
 		return -1;
 	}
 
+	public Cell[] getBoardAtRow(int row) {
+		return board[row];
+	}
+
+	public Cell[] getBoardAtColumn(int column) {
+		Cell[] boardAtColumn = new Cell[NUMBER_OF_COLUMN];
+		for (int i = 0; i < NUMBER_OF_ROW; i++) {
+			boardAtColumn[i] = board[i][column];
+		}
+		return boardAtColumn;
+	}
+
+	public Cell[][] getBoard() {
+		return board;
+	}
+
 }
