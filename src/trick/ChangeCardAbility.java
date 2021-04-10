@@ -41,19 +41,28 @@ public class ChangeCardAbility extends Trick {
 
 	@Override
 	public void activate() {
+		Movable card;
 		switch (activateArea) {
 		case 'R':
-			Movable card = (Movable) GameController.board.getRandomEnemy(playingSide);
+			card = (Movable) GameController.board.getRandomEnemy(playingSide);
+		default:
+			card = null;
+		}
+
+		switch (conditionType) {
+		case 'A':
 			Update(card);
 		}
 
 	}
 
 	public void Update(Movable card) {
-		card.setCost(card.getCost() + cost);
-		card.setAttackDamage(card.getAttackDamage() + attackDamage);
-		card.setAttackRange(card.getAttackRange() + attackRange);
-		card.setHeart(card.getHeart() + heart);
-		card.setSpeed(card.getSpeed() + speed);
+		if (card != null) {
+			card.setCost(card.getCost() + cost);
+			card.setAttackDamage(card.getAttackDamage() + attackDamage);
+			card.setAttackRange(card.getAttackRange() + attackRange);
+			card.setHeart(card.getHeart() + heart);
+			card.setSpeed(card.getSpeed() + speed);
+		}
 	}
 }
