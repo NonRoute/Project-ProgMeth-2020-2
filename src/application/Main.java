@@ -16,8 +16,8 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		SelectGameModeScreen start = new SelectGameModeScreen(primaryStage);
-//		SelectDeckScreen start = new SelectDeckScreen(primaryStage); //for test
+		GameController.primaryStage = primaryStage;
+		new SelectGameModeScreen();
 		primaryStage.setResizable(false);
         primaryStage.show();
 	}

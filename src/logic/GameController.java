@@ -9,10 +9,12 @@ import entity.BotHard;
 import entity.BotNormal;
 import entity.Controller;
 import entity.Player;
+import javafx.stage.Stage;
 
 public class GameController {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
+	public static Stage primaryStage;
 	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
 	private static Deck devilDeck;

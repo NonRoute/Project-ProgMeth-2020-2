@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import logic.GameController;
+import screen.SelectDeckScreen;
 
 public class ButtonSelectGameMode extends GridPane {
 	private Button exitButton;
@@ -29,8 +30,8 @@ public class ButtonSelectGameMode extends GridPane {
 	public ButtonSelectGameMode() {
 		this.setHgap(100);
 		this.setVgap(60);
-		this.setPrefWidth(1000.0);
-		this.setPrefHeight(150.0);
+		this.setPrefWidth(1000);
+		this.setPrefHeight(150);
 		this.setAlignment(Pos.BOTTOM_CENTER);
 		this.setPadding(new Insets(20));
 
@@ -56,12 +57,15 @@ public class ButtonSelectGameMode extends GridPane {
 			switch (name) {
 			case "Player vs. Player":
 				GameController.gameMode = "PvP";
+				new SelectDeckScreen();
 				break;
 			case "Player vs. Bot":
 				GameController.gameMode = "PvB";
+				new SelectDeckScreen();
 				break;
 			case "Bot vs. Bot":
 				GameController.gameMode = "BvB";
+				new SelectDeckScreen();
 				break;
 			case "How To Play":
 				// TODO:sTurn on how to play screen

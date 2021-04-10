@@ -29,7 +29,7 @@ public class Deck {
 		ArrayList<Card> deck = new ArrayList<Card>();
 		String[][] deckData = CSVParser.readCSV(filename);
 		for (int i = 2; i < deckData.length; i++) { // each row = each cards
-			System.out.println(Arrays.toString(deckData[i]));
+//			System.out.println(Arrays.toString(deckData[i]));
 			switch (deckData[i][0]) {
 			case "Fighter":
 				FighterCard fighterCard = new FighterCard();
