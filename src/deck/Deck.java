@@ -9,6 +9,7 @@ import card.FighterCard;
 import card.MagicianCard;
 import card.TrickCard;
 import logic.GameController;
+import trick.ChangeCardAbility;
 import trick.NoEffect;
 
 public class Deck {
@@ -49,8 +50,8 @@ public class Deck {
 				magicianCard.setSpeed(Integer.parseInt(deckData[i][6]));
 				magicianCard.setAttackRange(Integer.parseInt(deckData[i][7]));
 				switch (deckData[i][8]) {
-				case ("NoEffect"):
-					magicianCard.setEffect(new NoEffect()); //TODO
+				case ("ChangeCardAbility"):
+					magicianCard.setTrick(new ChangeCardAbility(deckData[i][9])); //TODO
 				}
 				deck.add(magicianCard);
 			case "Trick":
@@ -59,8 +60,8 @@ public class Deck {
 				trickCard.setDescription(deckData[i][2]);
 				trickCard.setCost(Integer.parseInt(deckData[i][5]));
 				switch (deckData[i][8]) {
-				case ("NoEffect"):
-					trickCard.setEffect(new NoEffect()); //TODO
+				case ("ChangeCardAbility"):
+					trickCard.setTrick(new ChangeCardAbility(deckData[i][9])); //TODO
 				}
 				deck.add(trickCard);
 			}
