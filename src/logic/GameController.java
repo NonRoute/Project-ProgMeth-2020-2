@@ -35,7 +35,7 @@ public class GameController {
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
 	}
 
-	public static void selectGameMode(Deck leftSideDeck, Deck rightSideDeck, String difficultyLeft,
+	public static void playGame(Deck leftSideDeck, Deck rightSideDeck, String difficultyLeft,
 			String difficultyRight, String gameMode) {
 		switch (gameMode) {
 		case "PvB":
