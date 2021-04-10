@@ -56,23 +56,23 @@ public class ButtonSelectGameMode extends GridPane {
 			switch (name) {
 			case "Player vs. Player":
 				GameController.gameMode = "PvP";
+				break;
 			case "Player vs. Bot":
 				GameController.gameMode = "PvB";
+				break;
 			case "Bot vs. Bot":
 				GameController.gameMode = "BvB";
+				break;
 			case "How To Play":
-				//TODO:sTurn on how to play screen
+				// TODO:sTurn on how to play screen
 			}
 		});
-		button.setOnMouseMoved((MouseEvent e) -> {
-			if (e != null)
-				button.setBackground(
-						new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+		button.setOnMouseEntered((MouseEvent e) -> {
+			button.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
 		});
 
 		button.setOnMouseExited((MouseEvent e) -> {
-			if (e != null)
-				button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
+			button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
 		});
 		return button;
 	}

@@ -1,10 +1,11 @@
 package card;
 
+import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import logic.GameController;
 import trick.Trick;
 
-public class MagicianCard extends Card implements Moveable, Trickable {
+public class MagicianCard extends Card implements Movable, Trickable {
 	private int attackDamage;
 	private int attackRange;
 	private int heart;
@@ -36,6 +37,7 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 					break;
 				}
 			}
+			break;
 		case RIGHT:
 			for (int i = 1; i <= speed; i++) {
 				if (GameController.board.isEmpty(row, column - 1)) {
@@ -49,7 +51,13 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 					break;
 				}
 			}
+			break;
 		}
+	}
+
+	public void setPlayingSide(Direction playingSide) {
+		this.playingSide = playingSide;
+		trick.setPlayingSide(playingSide);
 	}
 
 	public void activateTrick() {
@@ -61,7 +69,7 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 	}
 
 	public void setTrick(Trick trick) {
-		switch (trick)
+		this.trick = trick;
 	}
 
 	public int getAttackDamage() {
@@ -95,5 +103,11 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+	}
+	
 
 }

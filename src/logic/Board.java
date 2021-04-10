@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import card.Card;
 import card.MagicianCard;
@@ -38,12 +39,14 @@ public class Board {
 						((MagicianCard) board[r][c].getCard()).move();
 					}
 				}
+				break;
 			case RIGHT:
 				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
 					if (board[r][c].getCard() instanceof Movable) {
 						((MagicianCard) board[r][c].getCard()).move();
 					}
 				}
+				break;
 			}
 		}
 	}
@@ -61,6 +64,33 @@ public class Board {
 			return board[row][column].getCard().getPlayingSide().equals(playingSide);
 		} else
 			return false;
+	}
+
+	public boolean haveEnemy(Direction playingSide) {
+		return getEnemy(playingSide).size() != 0;
+	}
+
+	public ArrayList<Card> getEnemy(Direction playingSide) {
+		ArrayList<Card> enemy = new ArrayList<>();
+		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				if (isEnemy(r, c, playingSide)) {
+					enemy.add(board[r][c].getCard());
+				}
+			}
+		}
+		return enemy;
+	}
+
+	public Card getRandomEnemy(Direction playingSide) {
+		Random rand = new Random();
+		ArrayList<Card> enemy = getEnemy(playingSide);
+		if (enemy.size() == 0) {
+			return null;
+		} else {
+			int index = rand.nextInt(enemy.size());
+			return enemy.get(index);
+		}
 	}
 
 	public boolean isOutOfBoard(int row, int column) {
@@ -122,6 +152,22 @@ public class Board {
 			return row1;
 		}
 		return -1;
+	}
+
+	public Cell[] getBoardAtRow(int row) {
+		return board[row];
+	}
+
+	public Cell[] getBoardAtColumn(int column) {
+		Cell[] boardAtColumn = new Cell[NUMBER_OF_COLUMN];
+		for (int i = 0; i < NUMBER_OF_ROW; i++) {
+			boardAtColumn[i] = board[i][column];
+		}
+		return boardAtColumn;
+	}
+
+	public Cell[][] getBoard() {
+		return board;
 	}
 
 }

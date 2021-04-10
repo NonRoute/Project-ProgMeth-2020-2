@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.ArrayList;
+
 import card.Card;
 import deck.Deck;
 import entity.BotEasy;
@@ -9,6 +11,9 @@ import entity.Controller;
 import entity.Player;
 
 public class GameController {
+	public static final int SCREEN_WIDTH = 1280;
+	public static final int SCREEN_HIGHT = 720;
+	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
 	private static Deck devilDeck;
 	public static Board board;
@@ -29,10 +34,13 @@ public class GameController {
 		switch (gameMode) {
 		case "PvB":
 			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
+			break;
 		case "PvP":
 			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
+			break;
 		case "BvB":
 			initializeGameBvB(leftSideDeck, rightSideDeck, difficulty, difficulty2);
+			break;
 		}
 	}
 
@@ -41,12 +49,15 @@ public class GameController {
 		case "Easy":
 			leftSideController = new Player(30, 1, leftSideDeck, 4, Direction.LEFT);
 			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			break;
 		case "Normal":
 			leftSideController = new Player(20, 1, leftSideDeck, 4, Direction.LEFT);
 			rightSideController = new BotNormal(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			break;
 		case "Hard":
 			leftSideController = new Player(20, 1, leftSideDeck, 4, Direction.LEFT);
 			rightSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.RIGHT);
+			break;
 		}
 		startGame();
 	}
@@ -62,18 +73,24 @@ public class GameController {
 		switch (leftDifficulty) {
 		case "Easy":
 			leftSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.LEFT);
+			break;
 		case "Normal":
 			leftSideController = new BotNormal(20, 1, rightSideDeck, 4, Direction.LEFT);
+			break;
 		case "Hard":
 			leftSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.LEFT);
+			break;
 		}
 		switch (rightDifficulty) {
 		case "Easy":
 			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			break;
 		case "Normal":
 			rightSideController = new BotNormal(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			break;
 		case "Hard":
 			rightSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.RIGHT);
+			break;
 		}
 		startGame();
 	}

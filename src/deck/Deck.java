@@ -1,6 +1,7 @@
 package deck;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import application.CSVParser;
@@ -8,6 +9,8 @@ import card.Card;
 import card.FighterCard;
 import card.MagicianCard;
 import card.TrickCard;
+import logic.GameController;
+import trick.ChangeCardAbility;
 import trick.NoEffect;
 
 public class Deck {
@@ -19,13 +22,14 @@ public class Deck {
 		this.Name = Name;
 		this.cards = importDeck(fileName);
 		this.numberOfCardsEachCost = countNumberOfCardsEachCost();
+		GameController.Decks.add(this);
 	}
 
 	public static ArrayList<Card> importDeck(String filename) {
 		ArrayList<Card> deck = new ArrayList<Card>();
 		String[][] deckData = CSVParser.readCSV(filename);
-
-		for (int i = 2; i < deckData.length; i++) { // each row = each card
+		for (int i = 2; i < deckData.length; i++) { // each row = each cards
+			System.out.println(Arrays.toString(deckData[i]));
 			switch (deckData[i][0]) {
 			case "Fighter":
 				FighterCard fighterCard = new FighterCard();
@@ -37,6 +41,7 @@ public class Deck {
 				fighterCard.setSpeed(Integer.parseInt(deckData[i][6]));
 				fighterCard.setAttackRange(Integer.parseInt(deckData[i][7]));
 				deck.add(fighterCard);
+				break;
 			case "Magician":
 				MagicianCard magicianCard = new MagicianCard();
 				magicianCard.setName(deckData[i][1]);
@@ -47,20 +52,22 @@ public class Deck {
 				magicianCard.setSpeed(Integer.parseInt(deckData[i][6]));
 				magicianCard.setAttackRange(Integer.parseInt(deckData[i][7]));
 				switch (deckData[i][8]) {
-				case ("NoEffect"):
-					magicianCard.setEffect(new NoEffect()); //TODO
+				case ("ChangeCardAbility"):
+					magicianCard.setTrick(new ChangeCardAbility(deckData[i][9])); //TODO
 				}
 				deck.add(magicianCard);
+				break;
 			case "Trick":
 				TrickCard trickCard = new TrickCard();
 				trickCard.setName(deckData[i][1]);
 				trickCard.setDescription(deckData[i][2]);
 				trickCard.setCost(Integer.parseInt(deckData[i][5]));
 				switch (deckData[i][8]) {
-				case ("NoEffect"):
-					trickCard.setEffect(new NoEffect()); //TODO
+				case ("ChangeCardAbility"):
+					trickCard.setTrick(new ChangeCardAbility(deckData[i][9])); //TODO
 				}
 				deck.add(trickCard);
+				break;
 			}
 		}
 		return deck;
