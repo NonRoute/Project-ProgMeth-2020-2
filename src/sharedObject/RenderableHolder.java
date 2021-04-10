@@ -14,6 +14,7 @@ public class RenderableHolder {
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
 	public static ImageView backgroundSelectGameMode;
+	public static ImageView backgroundSelectDeck;
 
 	static {
 		loadResource();
@@ -36,6 +37,8 @@ public class RenderableHolder {
 		String p = "picture/";
 		RenderableHolder.backgroundSelectGameMode = new ImageView(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectGameMode.png").toString());
+		RenderableHolder.backgroundSelectDeck = new ImageView(
+				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeck.png").toString());
 	}
 
 	public void add(IRenderable entity) {
