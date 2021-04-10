@@ -32,13 +32,16 @@ import sharedObject.AudioLoader;
 import sharedObject.RenderableHolder;
 
 public class SelectGameModeScreen {
+	StackPane root;
+	Scene scene;
+	ImageView image;
 
 	public SelectGameModeScreen() {
-		StackPane root = new StackPane();
+		root = new StackPane();
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 
-		ImageView image = RenderableHolder.backgroundSelectGameMode;
+		image = RenderableHolder.backgroundSelectGameMode;
 		image.setFitWidth(GameController.SCREEN_WIDTH);
 		image.setFitHeight(GameController.SCREEN_HIGHT);
 
