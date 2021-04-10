@@ -22,9 +22,9 @@ public abstract class Controller extends Entity {
 		this.heart = Math.max(1, heart);
 		this.money = money;
 		this.deck = deck;
-		drawCard(initialNumberOfCardInHand);
 		this.cardsInHand = new ArrayList<>();
 		this.playingSide = playingSide;
+		drawCard(initialNumberOfCardInHand);
 	}
 
 	public void drawCard(int number) {
@@ -41,7 +41,7 @@ public abstract class Controller extends Entity {
 						.nextInt(Math.min(getMaxCardCostCanDraw() + 1, getDeck().getNumberOfCardsEachCost().size()));
 				// random select index of card that have this cost
 				numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
-//				System.out.println(costOfCard);
+				System.out.println(costOfCard);
 			} while (numberOfCard == 0); //random again if no card with this cost
 			int indexOfCard = rand.nextInt(numberOfCard);
 			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();

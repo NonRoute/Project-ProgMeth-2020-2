@@ -109,7 +109,6 @@ public class GameController {
 		isGameEnd = false;
 		turn = 0;
 		// while game not end
-
 		while (!isGameEnd) {
 			startTurn();
 		}
