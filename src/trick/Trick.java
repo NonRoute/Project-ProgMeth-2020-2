@@ -1,17 +1,43 @@
 package trick;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public abstract class Trick {
-	private boolean isActivateWhenPlayCard = false;
-	private boolean isActivateWhenCardAttack = false;
-	private boolean isActivateWhenCardGetDamage = false;
-	private boolean isActivateWhenCardMove = false;
-	private boolean isActivateWhenCardDestory = false;
-	private boolean isActivateWhenCardBeDestoryed = false;
-	private boolean isActivateWhenNewTurn = false;
-	private boolean isActivateWhenDrawACard = false;
+	protected ArrayList<String> trickParameter;
+	protected boolean isActivateWhenPlayCard = false;
+	protected boolean isActivateWhenCardAttack = false;
+	protected boolean isActivateWhenCardGetDamage = false;
+	protected boolean isActivateWhenCardMove = false;
+	protected boolean isActivateWhenCardDestory = false;
+	protected boolean isActivateWhenCardBeDestoryed = false;
+	protected boolean isActivateWhenNewTurn = false;
+	protected boolean isActivateWhenDrawACard = false;
 
 	public abstract void activate();
-	
+
+	public Trick(String trickparameter) {
+		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameter.split(".")));
+		switch (trickParameter.get(0)) {
+		case "P":
+			isActivateWhenPlayCard = true;
+		case "A":
+			isActivateWhenCardAttack = true;
+		case "G":
+			isActivateWhenCardGetDamage = true;
+		case "M":
+			isActivateWhenCardMove = true;
+		case "D":
+			isActivateWhenCardDestory = true;
+		case "X":
+			isActivateWhenCardBeDestoryed = true;
+		case "T":
+			isActivateWhenNewTurn = true;
+		case "C":
+			isActivateWhenDrawACard = true;
+		}
+	}
+
 	public boolean isActivateWhenUseCard() {
 		return isActivateWhenPlayCard;
 	}
