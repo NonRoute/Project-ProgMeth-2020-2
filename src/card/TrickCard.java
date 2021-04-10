@@ -1,5 +1,6 @@
 package card;
 
+import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import trick.Trick;
 
@@ -21,5 +22,11 @@ public class TrickCard extends Card implements Trickable {
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
 		trick.setPlayingSide(playingSide);
+	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		
 	}
 }
