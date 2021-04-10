@@ -13,7 +13,7 @@ public class TrickCard extends Card implements Trickable {
 		return trick;
 	}
 
-	public void setTrick(String trick, String trickParameter) {
-		switch (trick) {
+	public void setTrick(Trick trick) {
+		this.trick = trick;
 	}
 }

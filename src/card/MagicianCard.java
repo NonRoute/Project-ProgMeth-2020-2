@@ -61,7 +61,7 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 	}
 
 	public void setTrick(Trick trick) {
-		switch (trick)
+		this.trick = trick;
 	}
 
 	public int getAttackDamage() {
