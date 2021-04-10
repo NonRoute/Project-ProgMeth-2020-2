@@ -1,10 +1,11 @@
 package card;
 
+import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import logic.GameController;
 import trick.Trick;
 
-public class MagicianCard extends Card implements Moveable, Trickable {
+public class MagicianCard extends Card implements Movable, Trickable {
 	private int attackDamage;
 	private int attackRange;
 	private int heart;
@@ -100,5 +101,11 @@ public class MagicianCard extends Card implements Moveable, Trickable {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+	}
+	
 
 }
