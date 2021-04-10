@@ -25,29 +25,33 @@ public class GameController {
 	public static Boolean isGameEnd;
 	public static Card selectCard;
 	public static String gameMode;
+	public static Deck leftSideDeck;
+	public static Deck rightSideDeck;
+	public static String difficultyLeft;
+	public static String difficultyRight;
 
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
 	}
 
-	public static void selectGameMode(Deck leftSideDeck, Deck rightSideDeck, String difficulty, String difficulty2,
-			String gameMode) {
+	public static void selectGameMode(Deck leftSideDeck, Deck rightSideDeck, String difficultyLeft,
+			String difficultyRight, String gameMode) {
 		switch (gameMode) {
 		case "PvB":
-			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
+			initializeGamePvB(leftSideDeck, rightSideDeck, difficultyRight);
 			break;
 		case "PvP":
-			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
+			initializeGamePvP(leftSideDeck, rightSideDeck);
 			break;
 		case "BvB":
-			initializeGameBvB(leftSideDeck, rightSideDeck, difficulty, difficulty2);
+			initializeGameBvB(leftSideDeck, rightSideDeck, difficultyLeft, difficultyRight);
 			break;
 		}
 	}
 
-	public static void initializeGamePvB(Deck leftSideDeck, Deck rightSideDeck, String difficulty) {
-		switch (difficulty) {
+	public static void initializeGamePvB(Deck leftSideDeck, Deck rightSideDeck, String difficultyRight) {
+		switch (difficultyRight) {
 		case "Easy":
 			leftSideController = new Player(30, 1, leftSideDeck, 4, Direction.LEFT);
 			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
@@ -70,9 +74,9 @@ public class GameController {
 		startGame();
 	}
 
-	public static void initializeGameBvB(Deck leftSideDeck, Deck rightSideDeck, String leftDifficulty,
-			String rightDifficulty) {
-		switch (leftDifficulty) {
+	public static void initializeGameBvB(Deck leftSideDeck, Deck rightSideDeck, String difficultyLeft,
+			String difficultyRight) {
+		switch (difficultyLeft) {
 		case "Easy":
 			leftSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.LEFT);
 			break;
@@ -83,7 +87,7 @@ public class GameController {
 			leftSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.LEFT);
 			break;
 		}
-		switch (rightDifficulty) {
+		switch (difficultyRight) {
 		case "Easy":
 			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
 			break;
