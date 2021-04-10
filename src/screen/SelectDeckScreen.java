@@ -21,37 +21,52 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.Direction;
 import logic.GameController;
 import sharedObject.RenderableHolder;
 
 public class SelectDeckScreen {
+	Pane root;
+	BorderPane borderPane;
+	Button goBackButton;
+	Button playButton;
+	ImageView image;
+	Text warningText;
 
 	public SelectDeckScreen() {
-		StackPane root = new StackPane();
+		root = new Pane();
 
-		BorderPane borderPane = new BorderPane();
+		borderPane = new BorderPane();
 		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
 
-		Button goBackButton = getGoBackButton();
+		goBackButton = getGoBackButton();
 		BorderPane.setAlignment(goBackButton, Pos.CENTER_RIGHT);
 		BorderPane.setMargin(goBackButton, new Insets(20));
 		borderPane.setTop(goBackButton);
 
 		borderPane.setCenter(new ButtonSelectDeck());
 
-		Button playButton = getPlayButton();
+		playButton = getPlayButton();
 		BorderPane.setAlignment(playButton, Pos.CENTER);
 		BorderPane.setMargin(playButton, new Insets(20));
 		borderPane.setBottom(playButton);
+		
+		warningText = new Text("Please fill all required fields");
+		warningText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		warningText.setFill(Color.RED);
+		warningText.setX(508);
+		warningText.setY(550);
+		warningText.setVisible(false);
+		
 
 		Scene scene = new Scene(root);
-		ImageView image;
 		switch (GameController.gameMode) {
 		case "PvB":
 			image = RenderableHolder.backgroundSelectDeckPvB;
@@ -59,14 +74,14 @@ public class SelectDeckScreen {
 		case "PvP":
 			image = RenderableHolder.backgroundSelectDeckPvP;
 			break;
-		default: //"BvB"
+		default: // "BvB"
 			image = RenderableHolder.backgroundSelectDeckBvB;
 			break;
 		}
 		image.setFitWidth(GameController.SCREEN_WIDTH);
 		image.setFitHeight(GameController.SCREEN_HIGHT);
 
-		root.getChildren().addAll(image, borderPane);
+		root.getChildren().addAll(image, borderPane, warningText);
 		GameController.primaryStage.setScene(scene);
 	}
 
@@ -105,7 +120,37 @@ public class SelectDeckScreen {
 				new CornerRadii(5), new BorderWidths(10))));
 		StackPane.setMargin(playButton, new Insets(20));
 		playButton.setOnMouseClicked((MouseEvent e) -> {
-			new GameScreen();
+			switch (GameController.gameMode) {
+			case "PvB":
+				if (GameController.leftSideDeck == null || GameController.rightSideDeck == null
+						|| GameController.difficultyRight == null) {
+					warningText.setVisible(true);
+				} else {
+					warningText.setVisible(false);
+					GameController.playGame();
+					new GameScreen();
+				}
+				break;
+			case "PvP":
+				if (GameController.leftSideDeck == null || GameController.rightSideDeck == null) {
+					warningText.setVisible(true);
+				} else {
+					warningText.setVisible(false);
+					GameController.playGame();
+					new GameScreen();
+				}
+				break;
+			case "BvB":
+				if (GameController.leftSideDeck == null || GameController.rightSideDeck == null
+						|| GameController.difficultyLeft == null || GameController.difficultyRight == null) {
+					warningText.setVisible(true);
+				} else {
+					warningText.setVisible(false);
+					GameController.playGame();
+					new GameScreen();
+				}
+				break;
+			}
 		});
 		playButton.setOnMouseEntered((MouseEvent e) -> {
 			playButton.setBackground(
