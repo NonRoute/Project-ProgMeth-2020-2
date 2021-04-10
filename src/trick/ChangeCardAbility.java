@@ -3,6 +3,10 @@ package trick;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import card.Card;
+import card.Movable;
+import logic.GameController;
+
 public class ChangeCardAbility extends Trick {
 	private char activateArea;
 	private char conditionType;
@@ -37,7 +41,19 @@ public class ChangeCardAbility extends Trick {
 
 	@Override
 	public void activate() {
-		// TODO Auto-generated method stub
-		
+		switch (activateArea) {
+		case 'R':
+			Movable card = (Movable) GameController.board.getRandomEnemy(playingSide);
+			Update(card);
+		}
+
+	}
+
+	public void Update(Movable card) {
+		card.setCost(card.getCost() + cost);
+		card.setAttackDamage(card.getAttackDamage() + attackDamage);
+		card.setAttackRange(card.getAttackRange() + attackRange);
+		card.setHeart(card.getHeart() + heart);
+		card.setSpeed(card.getSpeed() + speed);
 	}
 }
