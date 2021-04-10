@@ -8,6 +8,7 @@ import card.Card;
 import card.FighterCard;
 import card.MagicianCard;
 import card.TrickCard;
+import logic.GameController;
 import trick.NoEffect;
 
 public class Deck {
@@ -19,6 +20,7 @@ public class Deck {
 		this.Name = Name;
 		this.cards = importDeck(fileName);
 		this.numberOfCardsEachCost = countNumberOfCardsEachCost();
+		GameController.Decks.add(this);
 	}
 
 	public static ArrayList<Card> importDeck(String filename) {

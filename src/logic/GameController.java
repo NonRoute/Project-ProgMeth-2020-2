@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.ArrayList;
+
 import card.Card;
 import deck.Deck;
 import entity.BotEasy;
@@ -11,6 +13,7 @@ import entity.Player;
 public class GameController {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
+	public static ArrayList<Deck> Decks;
 	private static Deck angelDeck;
 	private static Deck devilDeck;
 	public static Board board;
