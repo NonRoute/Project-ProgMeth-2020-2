@@ -14,7 +14,9 @@ public class RenderableHolder {
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
 	public static ImageView backgroundSelectGameMode;
-	public static ImageView backgroundSelectDeck;
+	public static ImageView backgroundSelectDeckPvB;
+	public static ImageView backgroundSelectDeckPvP;
+	public static ImageView backgroundSelectDeckBvB;
 
 	static {
 		loadResource();
@@ -37,8 +39,12 @@ public class RenderableHolder {
 		String p = "picture/";
 		RenderableHolder.backgroundSelectGameMode = new ImageView(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectGameMode.png").toString());
-		RenderableHolder.backgroundSelectDeck = new ImageView(
-				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeck.png").toString());
+		RenderableHolder.backgroundSelectDeckPvB = new ImageView(
+				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckPvB.png").toString());
+		RenderableHolder.backgroundSelectDeckPvP = new ImageView(
+				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckPvP.png").toString());
+		RenderableHolder.backgroundSelectDeckBvB = new ImageView(
+				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckBvB.png").toString());
 	}
 
 	public void add(IRenderable entity) {

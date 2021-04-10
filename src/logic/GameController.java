@@ -9,43 +9,53 @@ import entity.BotHard;
 import entity.BotNormal;
 import entity.Controller;
 import entity.Player;
+import javafx.stage.Stage;
 
 public class GameController {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
+	public static Stage primaryStage;
+
 	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
 	private static Deck devilDeck;
+
 	public static Board board;
 	public static int turn;
+
 	public static Controller leftSideController;
 	public static Controller rightSideController;
+
 	public static Boolean isGameEnd;
 	public static Card selectCard;
+
 	public static String gameMode;
+	public static Deck leftSideDeck;
+	public static Deck rightSideDeck;
+	public static String difficultyLeft;
+	public static String difficultyRight;
 
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
 	}
 
-	public static void selectGameMode(Deck leftSideDeck, Deck rightSideDeck, String difficulty, String difficulty2,
-			String gameMode) {
+	public static void playGame() {
 		switch (gameMode) {
 		case "PvB":
-			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
+			initializeGamePvB();
 			break;
 		case "PvP":
-			initializeGamePvB(leftSideDeck, rightSideDeck, difficulty);
+			initializeGamePvP();
 			break;
 		case "BvB":
-			initializeGameBvB(leftSideDeck, rightSideDeck, difficulty, difficulty2);
+			initializeGameBvB();
 			break;
 		}
 	}
 
-	public static void initializeGamePvB(Deck leftSideDeck, Deck rightSideDeck, String difficulty) {
-		switch (difficulty) {
+	public static void initializeGamePvB() {
+		switch (difficultyRight) {
 		case "Easy":
 			leftSideController = new Player(30, 1, leftSideDeck, 4, Direction.LEFT);
 			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
@@ -62,15 +72,14 @@ public class GameController {
 		startGame();
 	}
 
-	public static void initializeGamePvP(Deck leftSideDeck, Deck rightSideDeck) {
+	public static void initializeGamePvP() {
 		leftSideController = new Player(20, 1, leftSideDeck, 4, Direction.LEFT);
 		rightSideController = new Player(20, 1, rightSideDeck, 4, Direction.RIGHT);
 		startGame();
 	}
 
-	public static void initializeGameBvB(Deck leftSideDeck, Deck rightSideDeck, String leftDifficulty,
-			String rightDifficulty) {
-		switch (leftDifficulty) {
+	public static void initializeGameBvB() {
+		switch (difficultyLeft) {
 		case "Easy":
 			leftSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.LEFT);
 			break;
@@ -81,7 +90,7 @@ public class GameController {
 			leftSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.LEFT);
 			break;
 		}
-		switch (rightDifficulty) {
+		switch (difficultyRight) {
 		case "Easy":
 			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
 			break;
@@ -100,7 +109,6 @@ public class GameController {
 		isGameEnd = false;
 		turn = 0;
 		// while game not end
-
 		while (!isGameEnd) {
 			startTurn();
 		}
