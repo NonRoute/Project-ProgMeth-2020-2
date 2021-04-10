@@ -9,6 +9,8 @@ import entity.Controller;
 import entity.Player;
 
 public class GameController {
+	public static final int SCREEN_WIDTH = 1280;
+	public static final int SCREEN_HIGHT = 720;
 	private static Deck angelDeck;
 	private static Deck devilDeck;
 	public static Board board;

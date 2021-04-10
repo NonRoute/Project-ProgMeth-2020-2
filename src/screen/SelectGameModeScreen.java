@@ -32,8 +32,6 @@ import sharedObject.AudioLoader;
 import sharedObject.RenderableHolder;
 
 public class SelectGameModeScreen {
-	private static final int WIDTH = 1280;
-	private static final int HIGHT = 720;
 
 	public SelectGameModeScreen(Stage primaryStage) {
 		StackPane root = new StackPane();
@@ -41,8 +39,8 @@ public class SelectGameModeScreen {
 		Scene scene = new Scene(root);
 
 		ImageView image = RenderableHolder.backgroundSelectGameMode;
-		image.setFitWidth(WIDTH);
-		image.setFitHeight(HIGHT);
+		image.setFitWidth(GameController.SCREEN_WIDTH);
+		image.setFitHeight(GameController.SCREEN_HIGHT);
 
 		root.setAlignment(Pos.TOP_RIGHT);
 		root.getChildren().addAll(image, new ButtonSelectGameMode(), getExitButton());
@@ -58,20 +56,19 @@ public class SelectGameModeScreen {
 		exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, CornerRadii.EMPTY, Insets.EMPTY)));
 		exitButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		exitButton.setTextFill(Color.MAROON);
-		exitButton.setBorder(new Border(new BorderStroke(Color.MAROON, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
-				new BorderWidths(5))));
+		exitButton.setBorder(new Border(
+				new BorderStroke(Color.MAROON, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(5))));
 		StackPane.setMargin(exitButton, new Insets(20));
-		exitButton.setOnAction((ActionEvent e) -> {
+		exitButton.setOnMouseClicked((MouseEvent e) -> {
 			Platform.exit();
 		});
-		exitButton.setOnMouseMoved((MouseEvent e) -> {
-			if (e != null)
-				exitButton.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+		exitButton.setOnMouseEntered((MouseEvent e) -> {
+			exitButton.setBackground(
+					new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
 		});
-		
+
 		exitButton.setOnMouseExited((MouseEvent e) -> {
-			if (e != null)
-				exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, CornerRadii.EMPTY, Insets.EMPTY)));
+			exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, CornerRadii.EMPTY, Insets.EMPTY)));
 		});
 		return exitButton;
 	}
