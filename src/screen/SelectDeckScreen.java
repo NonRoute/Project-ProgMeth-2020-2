@@ -1,8 +1,6 @@
 package screen;
 
 import deck.Deck;
-import gui.ButtonSelectDeck;
-import gui.ButtonSelectGameMode;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

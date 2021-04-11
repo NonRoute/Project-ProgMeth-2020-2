@@ -1,4 +1,4 @@
-package gui;
+package screen;
 
 import deck.Deck;
 import javafx.event.ActionEvent;

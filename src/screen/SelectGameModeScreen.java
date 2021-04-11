@@ -2,7 +2,6 @@ package screen;
 
 import com.sun.prism.paint.Paint;
 
-import gui.ButtonSelectGameMode;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

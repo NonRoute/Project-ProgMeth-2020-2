@@ -1,4 +1,4 @@
-package gui;
+package screen;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import logic.GameController;
-import screen.SelectDeckScreen;
 
 public class ButtonSelectGameMode extends GridPane {
 	private Button exitButton;
