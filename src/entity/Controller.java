@@ -36,13 +36,14 @@ public abstract class Controller extends Entity {
 			// random select cost of card
 			int costOfCard;
 			int numberOfCard;
+
 			do {
 				costOfCard = rand
-						.nextInt(Math.min(getMaxCardCostCanDraw() + 1, getDeck().getNumberOfCardsEachCost().size()));
+						.nextInt(Math.min((getMaxCardCostCanDraw() + 1), getDeck().getNumberOfCardsEachCost().size()));
 				// random select index of card that have this cost
 				numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
 				System.out.println(costOfCard);
-			} while (numberOfCard == 0); //random again if no card with this cost
+			} while (numberOfCard == 0); // random again if no card with this cost
 			int indexOfCard = rand.nextInt(numberOfCard);
 			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 			card.setPlayingSide(playingSide);

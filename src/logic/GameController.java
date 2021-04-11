@@ -22,7 +22,7 @@ public class GameController {
 	private static Deck testDeck; //TODO Remove this when geme finish
 
 	public static Board board;
-	public static int turn;
+	public static int turn = 1;
 
 	public static Controller leftSideController;
 	public static Controller rightSideController;
@@ -109,11 +109,10 @@ public class GameController {
 	public static void startGame() {
 		board = new Board();
 		isGameEnd = false;
-		turn = 0;
 		// while game not end
-		while (!isGameEnd) {
-			startTurn();
-		}
+//		while (!isGameEnd) {
+//			startTurn();
+//		}
 		// TODO play end screen
 	}
 
