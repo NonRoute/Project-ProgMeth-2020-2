@@ -17,6 +17,7 @@ public class CardsInHand extends VBox {
 		this.setPrefSize(150, GameController.SCREEN_HIGHT-40);
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
+		this.setPadding(new Insets(10));
 		this.setBackground(new Background(new BackgroundFill(Color.BROWN, new CornerRadii(5), Insets.EMPTY)));
 	}
 
