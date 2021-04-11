@@ -17,6 +17,7 @@ public class RenderableHolder {
 	public static ImageView backgroundSelectDeckPvB;
 	public static ImageView backgroundSelectDeckPvP;
 	public static ImageView backgroundSelectDeckBvB;
+	public static Image backgroundGameScreen;
 
 	static {
 		loadResource();
@@ -45,6 +46,8 @@ public class RenderableHolder {
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckPvP.png").toString());
 		RenderableHolder.backgroundSelectDeckBvB = new ImageView(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckBvB.png").toString());
+		RenderableHolder.backgroundGameScreen = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundGameScreen.png").toString());
 	}
 
 	public void add(IRenderable entity) {
