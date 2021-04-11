@@ -20,6 +20,16 @@ public abstract class Card extends Entity implements Cloneable {
 		}
 	}
 
+	public String getType() {
+		if (this instanceof FighterCard) {
+			return "Fighter";
+		} else if (this instanceof MagicianCard) {
+			return "Magician";
+		} else {
+			return "Trick";
+		}
+	}
+
 	public String getName() {
 		return name;
 	}

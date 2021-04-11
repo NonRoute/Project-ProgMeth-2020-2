@@ -2,16 +2,20 @@ package screen;
 
 import com.sun.prism.paint.Paint;
 
-import gui.ButtonSelectGameMode;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Skin;
+import javafx.scene.control.Skinnable;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -55,6 +59,7 @@ public class SelectGameModeScreen {
 		Button exitButton = new Button("Exit");
 		exitButton.setPrefSize(80, 50);
 		exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), Insets.EMPTY)));
+
 		exitButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		exitButton.setTextFill(Color.MAROON);
 		exitButton.setBorder(new Border(
@@ -66,10 +71,13 @@ public class SelectGameModeScreen {
 		exitButton.setOnMouseEntered((MouseEvent e) -> {
 			exitButton.setBackground(
 					new Background(new BackgroundFill(Color.SANDYBROWN, new CornerRadii(5), Insets.EMPTY)));
+			exitButton.setEffect(new InnerShadow());
 		});
 
 		exitButton.setOnMouseExited((MouseEvent e) -> {
-			exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), Insets.EMPTY)));
+			exitButton
+					.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), Insets.EMPTY)));
+			exitButton.setEffect(null);
 		});
 		return exitButton;
 	}

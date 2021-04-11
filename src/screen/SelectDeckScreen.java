@@ -1,8 +1,6 @@
 package screen;
 
 import deck.Deck;
-import gui.ButtonSelectDeck;
-import gui.ButtonSelectGameMode;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,6 +9,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -57,14 +58,13 @@ public class SelectDeckScreen {
 		BorderPane.setAlignment(playButton, Pos.CENTER);
 		BorderPane.setMargin(playButton, new Insets(20));
 		borderPane.setBottom(playButton);
-		
+
 		warningText = new Text("Please fill all required fields");
 		warningText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		warningText.setFill(Color.RED);
 		warningText.setX(508);
 		warningText.setY(550);
 		warningText.setVisible(false);
-		
 
 		Scene scene = new Scene(root);
 		switch (GameController.gameMode) {
@@ -100,11 +100,13 @@ public class SelectDeckScreen {
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(
 					new Background(new BackgroundFill(Color.POWDERBLUE, new CornerRadii(5), Insets.EMPTY)));
+			goBackButton.setEffect(new InnerShadow());
 		});
 
 		goBackButton.setOnMouseExited((MouseEvent e) -> {
 			goBackButton
 					.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, new CornerRadii(5), Insets.EMPTY)));
+			goBackButton.setEffect(null);
 		});
 		return goBackButton;
 	}
@@ -128,7 +130,6 @@ public class SelectDeckScreen {
 				} else {
 					warningText.setVisible(false);
 					GameController.playGame();
-					new GameScreen();
 				}
 				break;
 			case "PvP":
@@ -137,7 +138,6 @@ public class SelectDeckScreen {
 				} else {
 					warningText.setVisible(false);
 					GameController.playGame();
-					new GameScreen();
 				}
 				break;
 			case "BvB":
@@ -147,7 +147,6 @@ public class SelectDeckScreen {
 				} else {
 					warningText.setVisible(false);
 					GameController.playGame();
-					new GameScreen();
 				}
 				break;
 			}
@@ -155,11 +154,13 @@ public class SelectDeckScreen {
 		playButton.setOnMouseEntered((MouseEvent e) -> {
 			playButton.setBackground(
 					new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), Insets.EMPTY)));
+			playButton.setEffect(new InnerShadow());
 		});
 
 		playButton.setOnMouseExited((MouseEvent e) -> {
 			playButton.setBackground(
 					new Background(new BackgroundFill(Color.LIGHTGREEN, new CornerRadii(5), Insets.EMPTY)));
+			playButton.setEffect(null);
 		});
 		return playButton;
 	}

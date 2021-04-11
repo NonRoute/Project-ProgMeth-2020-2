@@ -10,18 +10,21 @@ import entity.BotNormal;
 import entity.Controller;
 import entity.Player;
 import javafx.stage.Stage;
+import screen.GameScreen;
 
 public class GameController {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
 	public static Stage primaryStage;
+	public static GameScreen gameScreen;
 
 	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
 	private static Deck devilDeck;
+	private static Deck testDeck; //TODO Remove this when geme finish
 
 	public static Board board;
-	public static int turn;
+	public static int turn = 1;
 
 	public static Controller leftSideController;
 	public static Controller rightSideController;
@@ -38,9 +41,11 @@ public class GameController {
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
+		testDeck = new Deck("Test","TestDeck.csv"); //TODO Remove this when geme finish
 	}
 
 	public static void playGame() {
+		gameScreen = new GameScreen();
 		switch (gameMode) {
 		case "PvB":
 			initializeGamePvB();
@@ -107,11 +112,10 @@ public class GameController {
 	public static void startGame() {
 		board = new Board();
 		isGameEnd = false;
-		turn = 0;
 		// while game not end
-		while (!isGameEnd) {
-			startTurn();
-		}
+//		while (!isGameEnd) {
+//			startTurn();
+//		}
 		// TODO play end screen
 	}
 
