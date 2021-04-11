@@ -146,7 +146,7 @@
     </display>  
   </interface>  
   <class id="17" language="java" name="logic.GameLogic" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/logic/GameLogic.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/Project-ProgMeth-2020-2/res/picture/GameLogic.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="142" width="230" x="2907" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -281,65 +281,65 @@
     </display>  
   </class>  
   <generalization id="32">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <realization id="33">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <generalization id="34">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <realization id="34">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="26"/>  
-  </realization>  
   <generalization id="35">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <realization id="36">    
-    <end type="SOURCE" refId="25"/>    
-    <end type="TARGET" refId="24"/>  
-  </realization>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <generalization id="38">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="19"/>  
   </generalization>  
-  <realization id="39">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <generalization id="40">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <generalization id="41">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="19"/>  
-  </generalization>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <generalization id="44">    
+  <generalization id="36">    
     <end type="SOURCE" refId="30"/>    
     <end type="TARGET" refId="23"/>  
   </generalization>  
-  <realization id="45">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="26"/>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="16"/>  
   </realization>  
-  <generalization id="46">    
+  <generalization id="39">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <realization id="40">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="43">    
     <end type="SOURCE" refId="25"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <realization id="46">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

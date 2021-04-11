@@ -36,7 +36,6 @@ public abstract class Controller extends Entity {
 			// random select cost of card
 			int costOfCard;
 			int numberOfCard;
-
 			do {
 				costOfCard = rand
 						.nextInt(Math.min((getMaxCardCostCanDraw() + 1), getDeck().getNumberOfCardsEachCost().size()));
@@ -44,10 +43,12 @@ public abstract class Controller extends Entity {
 				numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
 				System.out.println(costOfCard);
 			} while (numberOfCard == 0); // random again if no card with this cost
+			
 			int indexOfCard = rand.nextInt(numberOfCard);
 			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 			card.setPlayingSide(playingSide);
 			cardsInHand.add(card);
+			GameController.gamescreen.addCardsInHands(deck.getName(), card.getType(), playingSide);
 			// TODO sleep()
 		}
 	}
@@ -61,6 +62,7 @@ public abstract class Controller extends Entity {
 				((Trickable) cardsInHand.get(index)).activateTrick();
 			}
 		cardsInHand.remove(index);
+		GameController.gamescreen.removeCardsInHands(index, playingSide);
 	}
 
 	public ArrayList<Integer> getPlayableRow() {

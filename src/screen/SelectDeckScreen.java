@@ -130,7 +130,6 @@ public class SelectDeckScreen {
 				} else {
 					warningText.setVisible(false);
 					GameController.playGame();
-					new GameScreen();
 				}
 				break;
 			case "PvP":
@@ -139,7 +138,6 @@ public class SelectDeckScreen {
 				} else {
 					warningText.setVisible(false);
 					GameController.playGame();
-					new GameScreen();
 				}
 				break;
 			case "BvB":
@@ -149,7 +147,6 @@ public class SelectDeckScreen {
 				} else {
 					warningText.setVisible(false);
 					GameController.playGame();
-					new GameScreen();
 				}
 				break;
 			}
