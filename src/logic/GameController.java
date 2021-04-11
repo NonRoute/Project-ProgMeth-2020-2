@@ -19,6 +19,7 @@ public class GameController {
 	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
 	private static Deck devilDeck;
+	private static Deck testDeck; //TODO Remove this when geme finish
 
 	public static Board board;
 	public static int turn;
@@ -38,6 +39,7 @@ public class GameController {
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
+		testDeck = new Deck("Test","TestDeck.csv"); //TODO Remove this when geme finish
 	}
 
 	public static void playGame() {
