@@ -1,5 +1,6 @@
 package screen;
 
+import card.Card;
 import gui.CardsInHand;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
@@ -44,7 +45,7 @@ public class GameScreen {
 
 		gc = canvas.getGraphicsContext2D();
 		logic = new GameLogic();
-		
+
 		root.getChildren().addAll(canvas, borderPane);
 
 		Scene scene = new Scene(root);
@@ -68,13 +69,13 @@ public class GameScreen {
 		}
 	}
 
-	public void addCardsInHands(String deckName, String cardtype, Direction playingSide) {
+	public void addCardsInHands(String deckName, String cardtype, Direction playingSide, Card card) {
 		switch (playingSide) {
 		case LEFT:
-			((CardsInHand) leftCardsInHand).addCard(deckName, cardtype, playingSide);
+			((CardsInHand) leftCardsInHand).addCard(deckName, cardtype, playingSide, card);
 			break;
 		case RIGHT:
-			((CardsInHand) rightCardsInHand).addCard(deckName, cardtype, playingSide);
+			((CardsInHand) rightCardsInHand).addCard(deckName, cardtype, playingSide, card);
 			break;
 		}
 	}
@@ -88,6 +89,14 @@ public class GameScreen {
 			((CardsInHand) rightCardsInHand).removeCard(index);
 			break;
 		}
+	}
+
+	public VBox getLeftCardsInHand() {
+		return leftCardsInHand;
+	}
+
+	public VBox getRightCardsInHand() {
+		return rightCardsInHand;
 	}
 
 }

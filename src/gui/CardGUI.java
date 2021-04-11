@@ -1,11 +1,15 @@
 package gui;
 
+import card.Card;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -18,13 +22,29 @@ import logic.GameController;
 import sharedObject.RenderableHolder;
 
 public class CardGUI extends GridPane {
+	private CardGUI cardGUI = this;
 	private int cardWidth = 130;
 	private int cardHight = 58;
 
-	public CardGUI(String deckName, String cardtype, Direction playingSide) {
+	public CardGUI(String deckName, String cardtype, Direction playingSide, Card card) {
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent arg0) { //TODO can't select if not your turn
+				switch (playingSide) {
+				case LEFT:
+					((CardsInHand) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardGUI, card);
+					break;
+				case RIGHT:
+					((CardsInHand) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardGUI, card);
+					break;
+				}
+			}
+
+		});
+
 		System.out.println("DRAW");
 		switch (deckName) {
 //		case "Angel":
@@ -114,4 +134,11 @@ public class CardGUI extends GridPane {
 		}
 	}
 
+	public void highlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+	}
+
+	public void unhighlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+	}
 }

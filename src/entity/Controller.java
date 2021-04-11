@@ -48,8 +48,7 @@ public abstract class Controller extends Entity {
 			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 			card.setPlayingSide(playingSide);
 			cardsInHand.add(card);
-			GameController.gameScreen.addCardsInHands(deck.getName(), card.getType(), playingSide);
-			// TODO sleep()
+			GameController.gameScreen.addCardsInHands(deck.getName(), card.getType(), playingSide, card);
 		}
 	}
 
