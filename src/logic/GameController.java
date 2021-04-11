@@ -16,7 +16,7 @@ public class GameController {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
 	public static Stage primaryStage;
-	public static GameScreen gamescreen;
+	public static GameScreen gameScreen;
 
 	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
@@ -45,6 +45,7 @@ public class GameController {
 	}
 
 	public static void playGame() {
+		gameScreen = new GameScreen();
 		switch (gameMode) {
 		case "PvB":
 			initializeGamePvB();
@@ -56,7 +57,6 @@ public class GameController {
 			initializeGameBvB();
 			break;
 		}
-		gamescreen = new GameScreen();
 	}
 
 	public static void initializeGamePvB() {

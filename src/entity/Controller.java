@@ -48,7 +48,7 @@ public abstract class Controller extends Entity {
 			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 			card.setPlayingSide(playingSide);
 			cardsInHand.add(card);
-			GameController.gamescreen.addCardsInHands(deck.getName(), card.getType(), playingSide);
+			GameController.gameScreen.addCardsInHands(deck.getName(), card.getType(), playingSide);
 			// TODO sleep()
 		}
 	}
@@ -62,7 +62,7 @@ public abstract class Controller extends Entity {
 				((Trickable) cardsInHand.get(index)).activateTrick();
 			}
 		cardsInHand.remove(index);
-		GameController.gamescreen.removeCardsInHands(index, playingSide);
+		GameController.gameScreen.removeCardsInHands(index, playingSide);
 	}
 
 	public ArrayList<Integer> getPlayableRow() {

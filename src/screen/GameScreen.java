@@ -7,6 +7,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -41,7 +44,7 @@ public class GameScreen {
 
 		gc = canvas.getGraphicsContext2D();
 		logic = new GameLogic();
-
+		
 		root.getChildren().addAll(canvas, borderPane);
 
 		Scene scene = new Scene(root);
