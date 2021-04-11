@@ -5,6 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -51,7 +54,7 @@ public class ButtonSelectGameMode extends GridPane {
 		button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
 		button.setBorder(new Border(
 				new BorderStroke(Color.SADDLEBROWN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
-		button.setTextFill(Color.WHITE);
+		button.setTextFill(Color.SEASHELL);
 		button.setOnAction((ActionEvent e) -> {
 			switch (name) {
 			case "Player vs. Player":
@@ -72,10 +75,12 @@ public class ButtonSelectGameMode extends GridPane {
 		});
 		button.setOnMouseEntered((MouseEvent e) -> {
 			button.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, CornerRadii.EMPTY, Insets.EMPTY)));
+			button.setEffect(new InnerShadow());
 		});
 
 		button.setOnMouseExited((MouseEvent e) -> {
 			button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
+			button.setEffect(null);
 		});
 		return button;
 	}
