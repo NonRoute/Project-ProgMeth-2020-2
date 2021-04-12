@@ -1,6 +1,7 @@
 package screen;
 
 import card.Card;
+import gui.BoardPane;
 import gui.CardsInHandPane;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
@@ -46,7 +47,7 @@ public class GameScreen {
 		gc = canvas.getGraphicsContext2D();
 		logic = new GameLogic();
 
-		root.getChildren().addAll(canvas, borderPane);
+		root.getChildren().addAll(canvas, new BoardPane(), borderPane);
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
