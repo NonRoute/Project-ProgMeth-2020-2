@@ -37,10 +37,11 @@ public class CardsInHandPane extends VBox {
 		this.getChildren().remove(index);
 	}
 	
-	public void setSelectedCard(GridPane selectedCardGUI, Card selectedCard) {
+	public void setSelectedCard(GridPane selectedCardPane, Card selectedCard) {
 		GameController.selectCard = selectedCard;
+		GameController.selectedCardPane = (CardPane) selectedCardPane;
 		resetButtonsBackGroundColor();
-		((CardPane) selectedCardGUI).highlight();
+		((CardPane) selectedCardPane).highlight();
 		GameController.board.highlightCellCanPlay();
 	}
 

@@ -10,6 +10,7 @@ import entity.BotHard;
 import entity.BotNormal;
 import entity.Controller;
 import entity.Player;
+import gui.CardPane;
 import javafx.stage.Stage;
 import screen.GameScreen;
 
@@ -33,6 +34,7 @@ public class GameController {
 
 	public static Boolean isGameEnd;
 	public static Card selectCard;
+	public static CardPane selectedCardPane;
 
 	public static String gameMode;
 	public static Deck leftSideDeck;

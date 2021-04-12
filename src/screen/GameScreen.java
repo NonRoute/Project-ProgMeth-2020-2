@@ -62,7 +62,7 @@ public class GameScreen {
 
 		Board board = new Board();
 		GameController.board = board;
-		root.getChildren().addAll(canvas, board, borderPane, getNextTurnButton());
+		root.getChildren().addAll(canvas, borderPane, getNextTurnButton(), board);
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
