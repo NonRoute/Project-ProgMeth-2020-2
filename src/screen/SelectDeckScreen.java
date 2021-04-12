@@ -69,13 +69,13 @@ public class SelectDeckScreen {
 		Scene scene = new Scene(root);
 		switch (GameController.gameMode) {
 		case "PvB":
-			image = RenderableHolder.backgroundSelectDeckPvB;
+			image = new ImageView(RenderableHolder.backgroundSelectDeckPvB);
 			break;
 		case "PvP":
-			image = RenderableHolder.backgroundSelectDeckPvP;
+			image = new ImageView(RenderableHolder.backgroundSelectDeckPvP);
 			break;
 		default: // "BvB"
-			image = RenderableHolder.backgroundSelectDeckBvB;
+			image = new ImageView(RenderableHolder.backgroundSelectDeckBvB);
 			break;
 		}
 		image.setFitWidth(GameController.SCREEN_WIDTH);

@@ -32,7 +32,7 @@ public class CardGUI extends GridPane {
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent arg0) { //TODO can't select if not your turn
+			public void handle(MouseEvent arg0) { // TODO can't select if not your turn
 				switch (playingSide) {
 				case LEFT:
 					((CardsInHand) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardGUI, card);
@@ -116,13 +116,13 @@ public class CardGUI extends GridPane {
 //				break;
 			default:
 				if (playingSide == Direction.LEFT) {
-					ImageView imageView = new ImageView("picture/TestDeckNameLeft.png");
+					ImageView imageView = new ImageView(RenderableHolder.testDeckNameLeft);
 					imageView.setPreserveRatio(true);
 					imageView.setFitWidth(cardWidth);
 					imageView.setFitHeight(cardHight);
 					this.add(imageView, 0, 0);
 				} else {
-					ImageView imageView = new ImageView("picture/TestDeckNameRight.png");
+					ImageView imageView = new ImageView(RenderableHolder.testDeckNameRight);
 					imageView.setPreserveRatio(true);
 					imageView.setFitWidth(cardWidth);
 					imageView.setFitHeight(cardHight);

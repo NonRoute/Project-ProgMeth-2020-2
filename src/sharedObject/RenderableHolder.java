@@ -13,11 +13,14 @@ public class RenderableHolder {
 
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
-	public static ImageView backgroundSelectGameMode;
-	public static ImageView backgroundSelectDeckPvB;
-	public static ImageView backgroundSelectDeckPvP;
-	public static ImageView backgroundSelectDeckBvB;
+	public static Image backgroundSelectGameMode;
+	public static Image backgroundSelectDeckPvB;
+	public static Image backgroundSelectDeckPvP;
+	public static Image backgroundSelectDeckBvB;
 	public static Image backgroundGameScreen;
+	
+	public static Image testDeckNameLeft;
+	public static Image testDeckNameRight;
 
 	static {
 		loadResource();
@@ -38,16 +41,20 @@ public class RenderableHolder {
 
 	public static void loadResource() {
 		String p = "picture/";
-		RenderableHolder.backgroundSelectGameMode = new ImageView(
+		RenderableHolder.backgroundSelectGameMode = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectGameMode.png").toString());
-		RenderableHolder.backgroundSelectDeckPvB = new ImageView(
+		RenderableHolder.backgroundSelectDeckPvB = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckPvB.png").toString());
-		RenderableHolder.backgroundSelectDeckPvP = new ImageView(
+		RenderableHolder.backgroundSelectDeckPvP = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckPvP.png").toString());
-		RenderableHolder.backgroundSelectDeckBvB = new ImageView(
+		RenderableHolder.backgroundSelectDeckBvB = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckBvB.png").toString());
 		RenderableHolder.backgroundGameScreen = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundGameScreen.png").toString());
+		RenderableHolder.testDeckNameLeft = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameLeft.png").toString());
+		RenderableHolder.testDeckNameRight = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameRight.png").toString());
 	}
 
 	public void add(IRenderable entity) {

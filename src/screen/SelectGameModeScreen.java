@@ -44,7 +44,7 @@ public class SelectGameModeScreen {
 
 		scene = new Scene(root);
 
-		image = RenderableHolder.backgroundSelectGameMode;
+		image = new ImageView(RenderableHolder.backgroundSelectGameMode);
 		image.setFitWidth(GameController.SCREEN_WIDTH);
 		image.setFitHeight(GameController.SCREEN_HIGHT);
 
