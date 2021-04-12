@@ -32,41 +32,31 @@ public class Deck {
 //			System.out.println(Arrays.toString(deckData[i]));
 			switch (deckData[i][0]) {
 			case "Fighter":
-				FighterCard fighterCard = new FighterCard();
-				fighterCard.setName(deckData[i][1]);
-				fighterCard.setDescription(deckData[i][2]);
-				fighterCard.setAttackDamage(Integer.parseInt(deckData[i][3]));
-				fighterCard.setHeart(Integer.parseInt(deckData[i][4]));
-				fighterCard.setCost(Integer.parseInt(deckData[i][5]));
-				fighterCard.setSpeed(Integer.parseInt(deckData[i][6]));
-				fighterCard.setAttackRange(Integer.parseInt(deckData[i][7]));
+				FighterCard fighterCard = new FighterCard(deckData[i][1], deckData[i][2],
+						Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
+						Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
+						Integer.parseInt(deckData[i][7]));
 				deck.add(fighterCard);
 				break;
 			case "Magician":
-				MagicianCard magicianCard = new MagicianCard();
-				magicianCard.setName(deckData[i][1]);
-				magicianCard.setDescription(deckData[i][2]);
-				magicianCard.setAttackDamage(Integer.parseInt(deckData[i][3]));
-				magicianCard.setHeart(Integer.parseInt(deckData[i][4]));
-				magicianCard.setCost(Integer.parseInt(deckData[i][5]));
-				magicianCard.setSpeed(Integer.parseInt(deckData[i][6]));
-				magicianCard.setAttackRange(Integer.parseInt(deckData[i][7]));
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
-					magicianCard.setTrick(new ChangeCardAbility(deckData[i][9])); //TODO
+					MagicianCard magicianCard = new MagicianCard(deckData[i][1], deckData[i][2],
+							Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
+							Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
+							Integer.parseInt(deckData[i][7]), new ChangeCardAbility(deckData[i][9])); // TODO
+					deck.add(magicianCard);
+					break;
 				}
-				deck.add(magicianCard);
 				break;
 			case "Trick":
-				TrickCard trickCard = new TrickCard();
-				trickCard.setName(deckData[i][1]);
-				trickCard.setDescription(deckData[i][2]);
-				trickCard.setCost(Integer.parseInt(deckData[i][5]));
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
-					trickCard.setTrick(new ChangeCardAbility(deckData[i][9])); //TODO
+					TrickCard trickCard = new TrickCard(deckData[i][1], deckData[i][2],
+							Integer.parseInt(deckData[i][3]), new ChangeCardAbility(deckData[i][9])); // TODO
+					deck.add(trickCard);
+					break;
 				}
-				deck.add(trickCard);
 				break;
 			}
 		}

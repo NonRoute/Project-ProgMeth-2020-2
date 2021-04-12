@@ -7,6 +7,11 @@ import trick.Trick;
 public class TrickCard extends Card implements Trickable {
 	private Trick trick;
 
+	public TrickCard(String name, String description, int cost, Trick trick) {
+		super(name, description, cost);
+		this.trick = trick;
+	}
+
 	public void activateTrick() {
 		trick.activate();
 	}

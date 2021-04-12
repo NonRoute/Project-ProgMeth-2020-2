@@ -35,7 +35,6 @@ public abstract class Controller extends Entity {
 		}
 		Thread thread = new Thread(() -> {
 			try {
-				System.out.println("DRAW CARD");
 				for (int i = 0; i < number; i++) {
 					Platform.runLater(new Runnable() {
 						public void run() {
@@ -53,6 +52,7 @@ public abstract class Controller extends Entity {
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
+							
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide);
 							cardsInHand.add(card);

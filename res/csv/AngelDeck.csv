@@ -1,3 +1,3 @@
 ﻿Angel,,,,,,,,,
-Type,Name String,Description,ATK int,heart int,COST int,SPEED int,ATK Range int,Effect type,"Effect parameter String,int,..."
-Fighter,test,test,1,2,1,4,5,,
+Type,Name,Description,Cost,Attack Damage,Attack Range,Heart,Speed,Effect type,Effect parameter
+Fighter,test,test,1,2,3,4,5,,

@@ -14,6 +14,16 @@ public class MagicianCard extends Card implements Movable, Trickable {
 	private int column;
 	private Trick trick;
 
+	public MagicianCard(String name, String description, int cost, int attackDamage, int attackRange, int heart,
+			int speed, Trick trick) {
+		super(name, description, cost);
+		this.attackDamage = attackDamage;
+		this.attackRange = attackRange;
+		this.heart = heart;
+		this.speed = speed;
+		this.trick = trick;
+	}
+
 	public void setPosition(int row, int column) {
 		this.row = row;
 		this.column = column;
