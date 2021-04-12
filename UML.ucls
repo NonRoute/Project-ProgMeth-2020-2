@@ -271,16 +271,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="31" language="java" name="gui.CardPane" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/gui/CardPane.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="268" width="282" x="3311" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="32" language="java" name="gui.CardsInHandPane" project="Project-ProgMeth-2020-2" 
+  <class id="31" language="java" name="gui.CardsInHandPane" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/gui/CardsInHandPane.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="178" width="242" x="1372" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -289,7 +280,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="33" language="java" name="card.MagicianCard" project="Project-ProgMeth-2020-2" 
+  <class id="32" language="java" name="card.MagicianCard" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/MagicianCard.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="484" width="307" x="4127" y="1155"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -298,7 +289,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="34" language="java" name="gui.BoardPane" project="Project-ProgMeth-2020-2" 
+  <class id="33" language="java" name="gui.BoardPane" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/gui/BoardPane.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="104" x="3167" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -307,8 +298,12 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <realization id="34">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
   <generalization id="35">    
-    <end type="SOURCE" refId="9"/>    
+    <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="18"/>  
   </generalization>  
   <realization id="36">    
@@ -320,57 +315,49 @@
     <end type="TARGET" refId="13"/>  
   </generalization>  
   <generalization id="38">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="18"/>  
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="20"/>  
   </generalization>  
   <generalization id="39">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="40">    
     <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="13"/>  
   </generalization>  
-  <realization id="40">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="23"/>  
-  </realization>  
   <realization id="41">    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="15"/>  
   </realization>  
-  <realization id="42">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="25"/>  
-  </realization>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="20"/>  
-  </generalization>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="24"/>    
+  <generalization id="42">    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <generalization id="45">    
+  <realization id="43">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <generalization id="44">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="20"/>  
   </generalization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
   <generalization id="46">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="20"/>  
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="9"/>  
   </generalization>  
   <generalization id="47">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="22"/>  
   </generalization>  
   <realization id="48">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="25"/>  
   </realization>  
-  <generalization id="49">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="22"/>  
-  </generalization>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

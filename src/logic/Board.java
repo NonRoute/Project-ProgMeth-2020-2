@@ -64,7 +64,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void unHighlightCellCanPlay() { //called when click next turn and play card
+	public void unHighlightAllCells() { //called when click next turn and play card
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				boardCells.get(r).get(c).unhighlight();
@@ -74,7 +74,7 @@ public class Board extends GridPane {
 
 	public void setCardOnMap(Card card, int row, int column) {
 		boardCells.get(row).get(column).setCard(card);
-		unHighlightCellCanPlay();
+		unHighlightAllCells();
 	}
 
 	public void removeCardOnMap(int row, int column) {

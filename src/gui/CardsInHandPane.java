@@ -20,7 +20,7 @@ public class CardsInHandPane extends VBox {
 	private ObservableList<GridPane> cardsList = FXCollections.observableArrayList();
 
 	public CardsInHandPane() {
-		this.setPrefSize(140, GameController.SCREEN_HIGHT-40);
+		this.setPrefSize(140, GameController.SCREEN_HIGHT - 40);
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
 		this.setPadding(new Insets(10));
@@ -28,15 +28,21 @@ public class CardsInHandPane extends VBox {
 	}
 
 	public void addCard(String deckName, Card card) {
-		CardPane cardGUI = new CardPane(deckName, card);
-		this.getChildren().add(cardGUI);
-		cardsList.add(cardGUI);
+		CardPane cardPane = new CardPane(deckName, card);
+		this.getChildren().add(cardPane);
+		cardsList.add(cardPane);
 	}
-	
+
 	public void removeCard(int index) {
+		System.out.println("Remove");
+		cardsList.remove(index);
 		this.getChildren().remove(index);
 	}
-	
+
+	public int getIndex(CardPane cardPane) {
+		return cardsList.indexOf(cardPane);
+	}
+
 	public void setSelectedCard(GridPane selectedCardPane, Card selectedCard) {
 		GameController.selectCard = selectedCard;
 		GameController.selectedCardPane = (CardPane) selectedCardPane;

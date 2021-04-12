@@ -2,6 +2,7 @@ package screen;
 
 import card.Card;
 import gui.BoardPane;
+import gui.CardPane;
 import gui.CardsInHandPane;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
@@ -41,8 +42,8 @@ public class GameScreen {
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private GameLogic logic;
-	private VBox leftCardsInHand;
-	private VBox rightCardsInHand;
+	private CardsInHandPane leftCardsInHand;
+	private CardsInHandPane rightCardsInHand;
 
 	public GameScreen() {
 		root = new Pane();
@@ -91,7 +92,7 @@ public class GameScreen {
 				new CornerRadii(5), new BorderWidths(5))));
 		nextTurn.setOnMouseClicked((MouseEvent e) -> {
 			GameController.startTurn();
-			GameController.board.unHighlightCellCanPlay();
+			GameController.board.unHighlightAllCells();
 		});
 		nextTurn.setOnMouseEntered((MouseEvent e) -> {
 			nextTurn.setBackground(
@@ -116,13 +117,23 @@ public class GameScreen {
 		}
 	}
 
+	public int getIndexOfCardsInHands(CardPane cardPane, Direction playingSide) {
+		switch (playingSide) {
+		case LEFT:
+			return leftCardsInHand.getIndex(cardPane);
+		case RIGHT:
+			return rightCardsInHand.getIndex(cardPane);
+		}
+		return -1;
+	}
+
 	public void addCardsInHands(String deckName, Card card) {
 		switch (card.getPlayingSide()) {
 		case LEFT:
-			((CardsInHandPane) leftCardsInHand).addCard(deckName, card);
+			leftCardsInHand.addCard(deckName, card);
 			break;
 		case RIGHT:
-			((CardsInHandPane) rightCardsInHand).addCard(deckName, card);
+			rightCardsInHand.addCard(deckName, card);
 			break;
 		}
 	}
@@ -130,10 +141,10 @@ public class GameScreen {
 	public void removeCardsInHands(int index, Direction playingSide) {
 		switch (playingSide) {
 		case LEFT:
-			((CardsInHandPane) leftCardsInHand).removeCard(index);
+			leftCardsInHand.removeCard(index);
 			break;
 		case RIGHT:
-			((CardsInHandPane) rightCardsInHand).removeCard(index);
+			rightCardsInHand.removeCard(index);
 			break;
 		}
 	}
