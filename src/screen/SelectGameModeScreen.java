@@ -32,7 +32,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import logic.GameController;
-import sharedObject.AudioLoader;
 import sharedObject.RenderableHolder;
 
 public class SelectGameModeScreen {

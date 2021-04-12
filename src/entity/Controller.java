@@ -6,6 +6,7 @@ import java.util.Random;
 import card.Card;
 import card.Trickable;
 import deck.Deck;
+import javafx.application.Platform;
 import logic.Board;
 import logic.Direction;
 import logic.GameController;
@@ -29,27 +30,42 @@ public abstract class Controller extends Entity {
 
 	public void drawCard(int number) {
 		// TODO if card exceed max; not draw
-		for (int i = 0; i < number; i++) {
-			// random pick 1 card from deck
-			Random rand = new Random();
-			// .nextInt(int) will random value from 0 to int-1
-			// random select cost of card
-			int costOfCard;
-			int numberOfCard;
-			do {
-				costOfCard = rand
-						.nextInt(Math.min((getMaxCardCostCanDraw() + 1), getDeck().getNumberOfCardsEachCost().size()));
-				// random select index of card that have this cost
-				numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
-				System.out.println(costOfCard);
-			} while (numberOfCard == 0); // random again if no card with this cost
-			
-			int indexOfCard = rand.nextInt(numberOfCard);
-			Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
-			card.setPlayingSide(playingSide);
-			cardsInHand.add(card);
-			GameController.gameScreen.addCardsInHands(deck.getName(), card.getType(), playingSide, card);
-		}
+		Thread thread = new Thread(() -> {
+			try {
+				System.out.println("DRAW");
+				for (int i = 0; i < number; i++) {
+					Thread.sleep(1000);
+					Platform.runLater(new Runnable() {
+						public void run() {
+							// random pick 1 card from deck
+							Random rand = new Random();
+							// .nextInt(int) will random value from 0 to int-1
+							// random select cost of card
+							int costOfCard;
+							int numberOfCard;
+							do {
+								costOfCard = rand.nextInt(Math.min((getMaxCardCostCanDraw() + 1),
+										getDeck().getNumberOfCardsEachCost().size()));
+								// random select index of card that have this cost
+								numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
+//									System.out.println(costOfCard);
+							} while (numberOfCard == 0); // random again if no card with this cost
+
+							int indexOfCard = rand.nextInt(numberOfCard);
+							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
+							card.setPlayingSide(playingSide);
+							cardsInHand.add(card);
+							GameController.gameScreen.addCardsInHands(deck.getName(), card.getType(), playingSide,
+									card);
+						}
+					});
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		thread.start();
 	}
 
 	public abstract int getMaxCardCostCanDraw();
