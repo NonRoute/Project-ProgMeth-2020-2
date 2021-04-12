@@ -18,8 +18,13 @@ public class RenderableHolder {
 	public static Image backgroundSelectDeckPvP;
 	public static Image backgroundSelectDeckBvB;
 	public static Image backgroundGameScreen;
+	public static Image cost;
+	public static Image attackDamage;
+	public static Image attackRange;
+	public static Image heart;
+	public static Image speed;
 	
-	public static Image testDeckNameLeft;
+	public static Image testDeckNameLeft; //TODO Remove
 	public static Image testDeckNameRight;
 
 	static {
@@ -55,6 +60,16 @@ public class RenderableHolder {
 				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameLeft.png").toString());
 		RenderableHolder.testDeckNameRight = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameRight.png").toString());
+		RenderableHolder.cost = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "cost.png").toString());
+		RenderableHolder.attackDamage = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "attackDamage.png").toString());
+		RenderableHolder.attackRange = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "attackRange.png").toString());
+		RenderableHolder.heart = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "heart.png").toString());
+		RenderableHolder.speed = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "speed.png").toString());
 	}
 
 	public void add(IRenderable entity) {
