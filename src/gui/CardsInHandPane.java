@@ -45,7 +45,6 @@ public class CardsInHandPane extends VBox {
 	}
 
 	public void resetButtonsBackGroundColor() {
-		//unhighlight each button in itemButtonList
 		for (GridPane e : cardsList) {
 			((CardPane) e).unhighlight();
 		}

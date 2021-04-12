@@ -61,6 +61,7 @@ public class CardPane extends GridPane {
 		setCardImage(deckName, card);
 		setCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
+
 	}
 
 	public void setCardImage(String deckName, Card card) {
