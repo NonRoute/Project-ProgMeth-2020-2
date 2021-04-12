@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import card.Card;
 import deck.Deck;
@@ -21,7 +22,7 @@ public class GameController {
 	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
 	private static Deck devilDeck;
-	private static Deck testDeck; //TODO Remove this when game finish
+	private static Deck testDeck; // TODO Remove this when game finish
 
 	public static Board board;
 	public static int turn = 1;
@@ -41,7 +42,7 @@ public class GameController {
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
-		testDeck = new Deck("Test","TestDeck.csv"); //TODO Remove this when game finish
+		testDeck = new Deck("Test", "TestDeck.csv"); // TODO Remove this when game finish
 	}
 
 	public static void playGame() {
@@ -123,6 +124,10 @@ public class GameController {
 		turn++;
 		// TODO
 		// Random side play first
+		Random rand = new Random();
+		if (rand.nextInt(2) == 1) {
+			
+		}
 		// side play first; select card , place card
 		// side play after; select card , place card
 		// gamemap moveall, side play first move first
