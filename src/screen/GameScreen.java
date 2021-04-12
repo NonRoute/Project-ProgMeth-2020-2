@@ -69,13 +69,13 @@ public class GameScreen {
 		}
 	}
 
-	public void addCardsInHands(String deckName, String cardtype, Direction playingSide, Card card) {
-		switch (playingSide) {
+	public void addCardsInHands(String deckName, Card card) {
+		switch (card.getPlayingSide()) {
 		case LEFT:
-			((CardsInHandPane) leftCardsInHand).addCard(deckName, cardtype, playingSide, card);
+			((CardsInHandPane) leftCardsInHand).addCard(deckName, card);
 			break;
 		case RIGHT:
-			((CardsInHandPane) rightCardsInHand).addCard(deckName, cardtype, playingSide, card);
+			((CardsInHandPane) rightCardsInHand).addCard(deckName, card);
 			break;
 		}
 	}

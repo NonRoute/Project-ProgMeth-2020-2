@@ -27,8 +27,8 @@ public class CardsInHandPane extends VBox {
 		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
 	}
 
-	public void addCard(String deckName, String cardtype, Direction playingSide, Card card) {
-		CardPane cardGUI = new CardPane(deckName, cardtype, playingSide, card);
+	public void addCard(String deckName, Card card) {
+		CardPane cardGUI = new CardPane(deckName, card);
 		this.getChildren().add(cardGUI);
 		cardsList.add(cardGUI);
 	}
