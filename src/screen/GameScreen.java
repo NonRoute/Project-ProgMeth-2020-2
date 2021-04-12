@@ -1,7 +1,7 @@
 package screen;
 
 import card.Card;
-import gui.CardsInHand;
+import gui.CardsInHandPane;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
@@ -36,8 +36,8 @@ public class GameScreen {
 
 		borderPane = new BorderPane();
 		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
-		leftCardsInHand = new CardsInHand();
-		rightCardsInHand = new CardsInHand();
+		leftCardsInHand = new CardsInHandPane();
+		rightCardsInHand = new CardsInHandPane();
 		BorderPane.setMargin(leftCardsInHand, new Insets(20));
 		BorderPane.setMargin(rightCardsInHand, new Insets(20));
 		borderPane.setLeft(leftCardsInHand);
@@ -72,10 +72,10 @@ public class GameScreen {
 	public void addCardsInHands(String deckName, String cardtype, Direction playingSide, Card card) {
 		switch (playingSide) {
 		case LEFT:
-			((CardsInHand) leftCardsInHand).addCard(deckName, cardtype, playingSide, card);
+			((CardsInHandPane) leftCardsInHand).addCard(deckName, cardtype, playingSide, card);
 			break;
 		case RIGHT:
-			((CardsInHand) rightCardsInHand).addCard(deckName, cardtype, playingSide, card);
+			((CardsInHandPane) rightCardsInHand).addCard(deckName, cardtype, playingSide, card);
 			break;
 		}
 	}
@@ -83,10 +83,10 @@ public class GameScreen {
 	public void removeCardsInHands(int index, Direction playingSide) {
 		switch (playingSide) {
 		case LEFT:
-			((CardsInHand) leftCardsInHand).removeCard(index);
+			((CardsInHandPane) leftCardsInHand).removeCard(index);
 			break;
 		case RIGHT:
-			((CardsInHand) rightCardsInHand).removeCard(index);
+			((CardsInHandPane) rightCardsInHand).removeCard(index);
 			break;
 		}
 	}

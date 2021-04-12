@@ -16,10 +16,10 @@ import javafx.scene.paint.Color;
 import logic.Direction;
 import logic.GameController;
 
-public class CardsInHand extends VBox {
+public class CardsInHandPane extends VBox {
 	private ObservableList<GridPane> cardsList = FXCollections.observableArrayList();
 
-	public CardsInHand() {
+	public CardsInHandPane() {
 		this.setPrefSize(150, GameController.SCREEN_HIGHT-40);
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
@@ -28,7 +28,7 @@ public class CardsInHand extends VBox {
 	}
 
 	public void addCard(String deckName, String cardtype, Direction playingSide, Card card) {
-		CardGUI cardGUI = new CardGUI(deckName, cardtype, playingSide, card);
+		CardPane cardGUI = new CardPane(deckName, cardtype, playingSide, card);
 		this.getChildren().add(cardGUI);
 		cardsList.add(cardGUI);
 	}
@@ -40,13 +40,13 @@ public class CardsInHand extends VBox {
 	public void setSelectedCard(GridPane selectedCardGUI, Card selectedCard) {
 		GameController.selectCard = selectedCard;
 		resetButtonsBackGroundColor();
-		((CardGUI) selectedCardGUI).highlight();
+		((CardPane) selectedCardGUI).highlight();
 	}
 
 	public void resetButtonsBackGroundColor() {
 		//unhighlight each button in itemButtonList
 		for (GridPane e : cardsList) {
-			((CardGUI) e).unhighlight();
+			((CardPane) e).unhighlight();
 		}
 	}
 }

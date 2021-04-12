@@ -21,12 +21,12 @@ import logic.Direction;
 import logic.GameController;
 import sharedObject.RenderableHolder;
 
-public class CardGUI extends GridPane {
-	private CardGUI cardGUI = this;
+public class CardPane extends GridPane {
+	private CardPane cardGUI = this;
 	private int cardWidth = 130;
 	private int cardHight = 58;
 
-	public CardGUI(String deckName, String cardtype, Direction playingSide, Card card) {
+	public CardPane(String deckName, String cardtype, Direction playingSide, Card card) {
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -35,10 +35,10 @@ public class CardGUI extends GridPane {
 			public void handle(MouseEvent arg0) { // TODO can't select if not your turn
 				switch (playingSide) {
 				case LEFT:
-					((CardsInHand) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardGUI, card);
+					((CardsInHandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardGUI, card);
 					break;
 				case RIGHT:
-					((CardsInHand) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardGUI, card);
+					((CardsInHandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardGUI, card);
 					break;
 				}
 			}
