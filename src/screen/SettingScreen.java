@@ -88,7 +88,7 @@ public class SettingScreen {
 	public Button getGoBackButton() {
 		Button goBackButton = new Button("Go back");
 		goBackButton.setPrefSize(120, 50);
-		goBackButton.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, new CornerRadii(5), Insets.EMPTY)));
+		goBackButton.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, new CornerRadii(5), new Insets(2))));
 		goBackButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		goBackButton.setTextFill(Color.NAVY);
 		goBackButton.setBorder(new Border(
@@ -99,13 +99,13 @@ public class SettingScreen {
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(
-					new Background(new BackgroundFill(Color.POWDERBLUE, new CornerRadii(5), Insets.EMPTY)));
+					new Background(new BackgroundFill(Color.POWDERBLUE, new CornerRadii(5), new Insets(2))));
 			goBackButton.setEffect(new InnerShadow());
 		});
 
 		goBackButton.setOnMouseExited((MouseEvent e) -> {
 			goBackButton
-					.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, new CornerRadii(5), Insets.EMPTY)));
+					.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, new CornerRadii(5), new Insets(2))));
 			goBackButton.setEffect(null);
 		});
 		return goBackButton;
@@ -115,7 +115,7 @@ public class SettingScreen {
 		Button playButton = new Button("Play!");
 		playButton.setPrefSize(250, 100);
 		playButton
-				.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, new CornerRadii(5), Insets.EMPTY)));
+				.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, new CornerRadii(5), new Insets(5))));
 		playButton.setFont(Font.font("Arial", FontWeight.BOLD, 50));
 		playButton.setTextFill(Color.MEDIUMSEAGREEN);
 		playButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
@@ -153,13 +153,13 @@ public class SettingScreen {
 		});
 		playButton.setOnMouseEntered((MouseEvent e) -> {
 			playButton.setBackground(
-					new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), Insets.EMPTY)));
+					new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), new Insets(5))));
 			playButton.setEffect(new InnerShadow());
 		});
 
 		playButton.setOnMouseExited((MouseEvent e) -> {
 			playButton.setBackground(
-					new Background(new BackgroundFill(Color.LIGHTGREEN, new CornerRadii(5), Insets.EMPTY)));
+					new Background(new BackgroundFill(Color.LIGHTGREEN, new CornerRadii(5), new Insets(5))));
 			playButton.setEffect(null);
 		});
 		return playButton;

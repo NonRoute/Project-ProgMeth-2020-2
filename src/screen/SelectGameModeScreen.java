@@ -57,7 +57,7 @@ public class SelectGameModeScreen {
 	public Button getExitButton() {
 		Button exitButton = new Button("Exit");
 		exitButton.setPrefSize(80, 50);
-		exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), Insets.EMPTY)));
+		exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), new Insets(2))));
 
 		exitButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		exitButton.setTextFill(Color.MAROON);
@@ -69,13 +69,13 @@ public class SelectGameModeScreen {
 		});
 		exitButton.setOnMouseEntered((MouseEvent e) -> {
 			exitButton.setBackground(
-					new Background(new BackgroundFill(Color.SANDYBROWN, new CornerRadii(5), Insets.EMPTY)));
+					new Background(new BackgroundFill(Color.SANDYBROWN, new CornerRadii(5), new Insets(2))));
 			exitButton.setEffect(new InnerShadow());
 		});
 
 		exitButton.setOnMouseExited((MouseEvent e) -> {
 			exitButton
-					.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), Insets.EMPTY)));
+					.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), new Insets(2))));
 			exitButton.setEffect(null);
 		});
 		return exitButton;

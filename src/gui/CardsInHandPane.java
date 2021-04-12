@@ -24,7 +24,7 @@ public class CardsInHandPane extends VBox {
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
 		this.setPadding(new Insets(10));
-		this.setBackground(new Background(new BackgroundFill(Color.BROWN, new CornerRadii(5), Insets.EMPTY)));
+		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
 	}
 
 	public void addCard(String deckName, String cardtype, Direction playingSide, Card card) {
