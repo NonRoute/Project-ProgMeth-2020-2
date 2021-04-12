@@ -20,7 +20,7 @@ public class CardsInHandPane extends VBox {
 	private ObservableList<GridPane> cardsList = FXCollections.observableArrayList();
 
 	public CardsInHandPane() {
-		this.setPrefSize(150, GameController.SCREEN_HIGHT-40);
+		this.setPrefSize(140, GameController.SCREEN_HIGHT-40);
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
 		this.setPadding(new Insets(10));

@@ -34,12 +34,14 @@ import sharedObject.RenderableHolder;
 
 public class CardPane extends GridPane {
 	private CardPane cardGUI = this;
-	private int cardWidth = 130;
+	private int cardWidth = 120;
 	private int cardHight = 58;
+	private int insets = 2;
 
 	public CardPane(String deckName, Card card) {
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
+		this.setPadding(new Insets(insets));
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
 		this.setBorder(new Border(
 				new BorderStroke(Color.PERU, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(3))));
@@ -58,8 +60,7 @@ public class CardPane extends GridPane {
 		});
 		setCardImage(deckName, card);
 		setCardAbility(card);
-		this.setGridLinesVisible(true);
-		this.getRowConstraints().add(new RowConstraints(cardHight/3));
+		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
 	}
 
 	public void setCardImage(String deckName, Card card) {
@@ -145,44 +146,38 @@ public class CardPane extends GridPane {
 	public void addCardImage(Image image) {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
-//		imageView.setFitWidth(cardWidth);
-		imageView.setFitHeight(cardHight);
+		imageView.setFitWidth(cardWidth - 2 * insets);
+		imageView.setFitHeight(cardHight - 2 * insets);
 		this.add(imageView, 0, 0, 3, 3);
+		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
 
 	public void setCardAbility(Card card) {
-		Text cost = new Text();
-		cost.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-		cost.setText("C:"+card.getCost());
-		cost.setFill(Color.BLACK);
-		this.add(cost, 3, 0, 2, 1);
-		GridPane.setHalignment(cost, HPos.CENTER);
+		addCardAbility(RenderableHolder.cost, card, 3, 0, 2);
+
 		if (card instanceof Movable) {
-			Text attackDamage = new Text();
-			attackDamage.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-			attackDamage.setText("A:"+((Movable) card).getAttackDamage());
-			attackDamage.setFill(Color.BLACK);
-			this.add(attackDamage, 3, 1);
-			GridPane.setHalignment(attackDamage, HPos.CENTER);
-			Text attackRange = new Text();
-			attackRange.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-			attackRange.setText("R:"+((Movable) card).getAttackRange());
-			attackRange.setFill(Color.BLACK);
-			this.add(attackRange, 4, 1);
-			GridPane.setHalignment(attackRange, HPos.CENTER);
-			Text heart = new Text();
-			heart.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-			heart.setText("H:"+((Movable) card).getHeart());
-			heart.setFill(Color.BLACK);
-			this.add(heart, 3, 2);
-			GridPane.setHalignment(heart, HPos.CENTER);
-			Text speed = new Text();
-			speed.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-			speed.setText("S:"+((Movable) card).getSpeed());
-			speed.setFill(Color.BLACK);
-			this.add(speed, 4, 2);
-			GridPane.setHalignment(speed, HPos.CENTER);
+			addCardAbility(RenderableHolder.attackDamage, card, 3, 1, 1);
+			addCardAbility(RenderableHolder.attackRange, card, 4, 1, 1);
+			addCardAbility(RenderableHolder.heart, card, 3, 2, 1);
+			addCardAbility(RenderableHolder.speed, card, 4, 2, 1);
 		}
+	}
+
+	public void addCardAbility(Image image, Card card, int x, int y, int columnSpan) {
+		StackPane stackPane = new StackPane();
+		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHight - 2 * insets) / 3);
+		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
+		ImageView imageView = new ImageView(image);
+		imageView.setPreserveRatio(true);
+		imageView.setFitWidth((cardWidth - 2 * insets) / 5);
+		imageView.setFitHeight((cardHight - 2 * insets) / 3);
+		Text text = new Text();
+		text.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		text.setText("" + card.getCost());
+		text.setFill(Color.BLACK);
+		stackPane.getChildren().addAll(imageView, text);
+		this.add(stackPane, x, y, columnSpan, 1);
+		GridPane.setHalignment(stackPane, HPos.CENTER);
 	}
 
 	public void highlight() {
