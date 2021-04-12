@@ -29,12 +29,14 @@ public abstract class Controller extends Entity {
 	}
 
 	public void drawCard(int number) {
-		// TODO if card exceed max; not draw
+		// if card exceed max; not draw
+		if (cardsInHand.size() >= 10) {
+			return;
+		}
 		Thread thread = new Thread(() -> {
 			try {
-				System.out.println("DRAW");
+				System.out.println("DRAW CARD");
 				for (int i = 0; i < number; i++) {
-					Thread.sleep(1000);
 					Platform.runLater(new Runnable() {
 						public void run() {
 							// random pick 1 card from deck
@@ -48,7 +50,6 @@ public abstract class Controller extends Entity {
 										getDeck().getNumberOfCardsEachCost().size()));
 								// random select index of card that have this cost
 								numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
-//									System.out.println(costOfCard);
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
@@ -59,9 +60,9 @@ public abstract class Controller extends Entity {
 									card);
 						}
 					});
+					Thread.sleep(500); //Delay 0.5 second
 				}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
