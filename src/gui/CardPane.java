@@ -153,17 +153,17 @@ public class CardPane extends GridPane {
 	}
 
 	public void setCardAbility(Card card) {
-		addCardAbility(RenderableHolder.cost, card, 3, 0, 2);
+		addCardAbility(RenderableHolder.cost, card, card.getCost(), 3, 0, 2);
 
 		if (card instanceof Movable) {
-			addCardAbility(RenderableHolder.attackDamage, card, 3, 1, 1);
-			addCardAbility(RenderableHolder.attackRange, card, 4, 1, 1);
-			addCardAbility(RenderableHolder.heart, card, 3, 2, 1);
-			addCardAbility(RenderableHolder.speed, card, 4, 2, 1);
+			addCardAbility(RenderableHolder.attackDamage, card, ((Movable) card).getAttackDamage(), 3, 1, 1);
+			addCardAbility(RenderableHolder.attackRange, card, ((Movable) card).getAttackRange(), 4, 1, 1);
+			addCardAbility(RenderableHolder.heart, card, ((Movable) card).getHeart(), 3, 2, 1);
+			addCardAbility(RenderableHolder.speed, card, ((Movable) card).getSpeed(), 4, 2, 1);
 		}
 	}
 
-	public void addCardAbility(Image image, Card card, int x, int y, int columnSpan) {
+	public void addCardAbility(Image image, Card card, int text, int x, int y, int columnSpan) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHight - 2 * insets) / 3);
 		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -171,11 +171,11 @@ public class CardPane extends GridPane {
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth((cardWidth - 2 * insets) / 5);
 		imageView.setFitHeight((cardHight - 2 * insets) / 3);
-		Text text = new Text();
-		text.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-		text.setText("" + card.getCost());
-		text.setFill(Color.BLACK);
-		stackPane.getChildren().addAll(imageView, text);
+		Text text1 = new Text();
+		text1.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		text1.setText("" + text);
+		text1.setFill(Color.BLACK);
+		stackPane.getChildren().addAll(imageView, text1);
 		this.add(stackPane, x, y, columnSpan, 1);
 		GridPane.setHalignment(stackPane, HPos.CENTER);
 	}
