@@ -49,7 +49,7 @@ public class SelectGameModeScreen {
 		image.setFitHeight(GameController.SCREEN_HIGHT);
 
 		root.setAlignment(Pos.TOP_RIGHT);
-		root.getChildren().addAll(image, new ButtonSelectGameMode(), getExitButton());
+		root.getChildren().addAll(image, new SelectGameModeButton(), getExitButton());
 		GameController.primaryStage.setTitle("Angel vs. Devil");
 		GameController.primaryStage.setScene(scene);
 	}

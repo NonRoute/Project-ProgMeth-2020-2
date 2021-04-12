@@ -22,14 +22,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import logic.GameController;
 
-public class ButtonSelectGameMode extends GridPane {
+public class SelectGameModeButton extends GridPane {
 	private Button exitButton;
 	private Button pvpButton;
 	private Button pvbButton;
 	private Button bvbButton;
 	private Button howToPlay;
 
-	public ButtonSelectGameMode() {
+	public SelectGameModeButton() {
 		this.setHgap(100);
 		this.setVgap(60);
 		this.setPrefWidth(1000);
@@ -59,15 +59,15 @@ public class ButtonSelectGameMode extends GridPane {
 			switch (name) {
 			case "Player vs. Player":
 				GameController.gameMode = "PvP";
-				new SelectDeckScreen();
+				new SettingScreen();
 				break;
 			case "Player vs. Bot":
 				GameController.gameMode = "PvB";
-				new SelectDeckScreen();
+				new SettingScreen();
 				break;
 			case "Bot vs. Bot":
 				GameController.gameMode = "BvB";
-				new SelectDeckScreen();
+				new SettingScreen();
 				break;
 			case "How To Play":
 				// TODO:sTurn on how to play screen

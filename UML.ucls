@@ -235,8 +235,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="27" language="java" name="screen.ButtonSelectGameMode" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/screen/ButtonSelectGameMode.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="27" language="java" name="screen.SelectGameModeButton" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/screen/SelectGameModeButton.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="196" width="198" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -244,8 +244,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="screen.SelectDeckScreen" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/screen/SelectDeckScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="28" language="java" name="screen.SettingScreen" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/screen/SettingScreen.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="232" width="179" x="1005" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -253,8 +253,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="screen.ButtonSelectDeck" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/screen/ButtonSelectDeck.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="29" language="java" name="screen.SettingButton" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/screen/SettingButton.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="196" width="314" x="4168" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

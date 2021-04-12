@@ -33,7 +33,7 @@ import logic.Direction;
 import logic.GameController;
 import sharedObject.RenderableHolder;
 
-public class SelectDeckScreen {
+public class SettingScreen {
 	Pane root;
 	BorderPane borderPane;
 	Button goBackButton;
@@ -41,7 +41,7 @@ public class SelectDeckScreen {
 	ImageView image;
 	Text warningText;
 
-	public SelectDeckScreen() {
+	public SettingScreen() {
 		root = new Pane();
 
 		borderPane = new BorderPane();
@@ -52,7 +52,7 @@ public class SelectDeckScreen {
 		BorderPane.setMargin(goBackButton, new Insets(20));
 		borderPane.setTop(goBackButton);
 
-		borderPane.setCenter(new ButtonSelectDeck());
+		borderPane.setCenter(new SettingButton());
 
 		playButton = getPlayButton();
 		BorderPane.setAlignment(playButton, Pos.CENTER);

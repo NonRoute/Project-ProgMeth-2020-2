@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import logic.Board;
 import logic.GameController;
-import screen.SelectDeckScreen;
+import screen.SettingScreen;
 import screen.SelectGameModeScreen;
 
 public class Main extends Application {
