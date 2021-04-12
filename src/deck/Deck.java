@@ -29,9 +29,9 @@ public class Deck {
 		ArrayList<Card> deck = new ArrayList<Card>();
 		String[][] deckData = CSVParser.readCSV(filename);
 		for (int i = 2; i < deckData.length; i++) { // each row = each cards
-//			System.out.println(Arrays.toString(deckData[i]));
 			switch (deckData[i][0]) {
 			case "Fighter":
+				System.out.println("Import a Fighter");
 				FighterCard fighterCard = new FighterCard(deckData[i][1], deckData[i][2],
 						Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
 						Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
@@ -39,6 +39,7 @@ public class Deck {
 				deck.add(fighterCard);
 				break;
 			case "Magician":
+				System.out.println("Import a Magician");
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
 					MagicianCard magicianCard = new MagicianCard(deckData[i][1], deckData[i][2],
@@ -50,6 +51,7 @@ public class Deck {
 				}
 				break;
 			case "Trick":
+				System.out.println("Import a Trick");
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
 					TrickCard trickCard = new TrickCard(deckData[i][1], deckData[i][2],

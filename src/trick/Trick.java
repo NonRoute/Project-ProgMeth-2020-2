@@ -19,8 +19,8 @@ public abstract class Trick {
 
 	public abstract void activate();
 
-	public Trick(String trickparameter) {
-		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameter.split(".")));
+	public Trick(String trickparameterInput) {
+		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameterInput.split("\\.")));
 		switch (trickParameter.get(0)) {
 		case "P":
 			isActivateWhenPlayCard = true;
