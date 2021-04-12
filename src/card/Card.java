@@ -12,6 +12,12 @@ public abstract class Card extends Entity implements Cloneable {
 	private boolean isInHand;
 	protected Direction playingSide;
 
+	public Card(String name, String description, int cost) {
+		this.name = name;
+		this.description = description;
+		this.cost = cost;
+	}
+
 	public Object clone() {
 		try {
 			return super.clone();

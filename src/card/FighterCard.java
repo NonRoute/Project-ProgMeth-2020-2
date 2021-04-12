@@ -11,6 +11,15 @@ public class FighterCard extends Card implements Movable {
 	private int row;
 	private int column;
 
+	public FighterCard(String name, String description, int cost, int attackDamage, int attackRange, int heart,
+			int speed) {
+		super(name, description, cost);
+		this.attackDamage = attackDamage;
+		this.attackRange = attackRange;
+		this.heart = heart;
+		this.speed = speed;
+	}
+
 	public void setPosition(int row, int column) {
 		this.row = row;
 		this.column = column;

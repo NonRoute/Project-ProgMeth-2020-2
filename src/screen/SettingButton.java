@@ -14,13 +14,13 @@ import javafx.scene.text.FontWeight;
 import logic.Direction;
 import logic.GameController;
 
-public class ButtonSelectDeck extends GridPane {
+public class SettingButton extends GridPane {
 	private MenuButton LeftSideDeck;
 	private MenuButton RightSideDeck;
 	private MenuButton LeftSideDifficulty;
 	private MenuButton RightSideDifficulty;
 
-	public ButtonSelectDeck() {
+	public SettingButton() {
 		this.setHgap(200);
 		this.setVgap(200);
 		this.setPrefWidth(1000);
@@ -28,27 +28,27 @@ public class ButtonSelectDeck extends GridPane {
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(20));
 
-		LeftSideDeck = getSelectDeckMenuButton(Direction.LEFT);
+		LeftSideDeck = getSelectDeckButton(Direction.LEFT);
 		this.add(LeftSideDeck, 0, 0);
-		RightSideDeck = getSelectDeckMenuButton(Direction.RIGHT);
+		RightSideDeck = getSelectDeckButton(Direction.RIGHT);
 		this.add(RightSideDeck, 1, 0);
 		switch (GameController.gameMode) {
 		case "PvB":
-			RightSideDifficulty = getSelectDifficulty(Direction.RIGHT);
+			RightSideDifficulty = getSelectDifficultyButton(Direction.RIGHT);
 			this.add(RightSideDifficulty, 1, 1);
 			break;
 		case "PvP":
 			break;
 		case "BvB":
-			LeftSideDifficulty = getSelectDifficulty(Direction.LEFT);
+			LeftSideDifficulty = getSelectDifficultyButton(Direction.LEFT);
 			this.add(LeftSideDifficulty, 0, 1);
-			RightSideDifficulty = getSelectDifficulty(Direction.RIGHT);
+			RightSideDifficulty = getSelectDifficultyButton(Direction.RIGHT);
 			this.add(RightSideDifficulty, 1, 1);
 			break;
 		}
 	}
 
-	public MenuButton getSelectDeckMenuButton(Direction direction) {
+	public MenuButton getSelectDeckButton(Direction direction) {
 		MenuButton menuButton = new MenuButton("Select " + direction.toString().toLowerCase() + " side deck");
 		for (Deck e : GameController.Decks) { // Add decks to menuButton
 			MenuItem menuItem = new MenuItem(e.getName());
@@ -73,7 +73,7 @@ public class ButtonSelectDeck extends GridPane {
 		return menuButton;
 	}
 
-	public MenuButton getSelectDifficulty(Direction direction) {
+	public MenuButton getSelectDifficultyButton(Direction direction) {
 		MenuButton menuButton = new MenuButton("Select " + direction.toString().toLowerCase() + " side bot difficulty");
 		menuButton.setPrefSize(400, 40);
 		MenuItem menuItem1 = new MenuItem("Easy");

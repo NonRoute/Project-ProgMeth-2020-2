@@ -1,3 +1,5 @@
 ﻿Test,,,,,,,,,
-Type,Name String,Description,ATK int,heart int,COST int,SPEED int,ATK Range int,Effect type,"Effect parameter String,int,..."
-Fighter,test,test,1,2,1,4,5,,
+Type,Name,Description,Cost,Attack Damage,Attack Range,Heart,Speed,Effect type,Effect parameter
+Magician,m,m,1,9,8,7,6,ChangeCardAbility,P.R.A.0.0.0.0.0.0.0.0.0.0
+Trick,t,t,1,,,,,ChangeCardAbility,P.R.A.0.0.0.0.0.0.0.0.0.0
+Fighter,f,f,1,12,12,12,12,,
