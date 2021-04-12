@@ -2,7 +2,15 @@ package logic;
 
 import card.Card;
 import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class Cell extends GridPane {
 	private Card cardOnCell;
@@ -15,6 +23,15 @@ public class Cell extends GridPane {
 		this.setPrefWidth(cardWidth);
 		this.setPrefHeight(cardHight);
 		this.setPadding(new Insets(insets));
+		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
+	}
+
+	public void highlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.PALEGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+	}
+
+	public void unhighlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
 	}
 
 	public void setCard(Card card) {
@@ -27,7 +44,6 @@ public class Cell extends GridPane {
 	public void removeCard() {
 		cardOnCell = null;
 		isEmpty = true;
-
 	}
 
 	public boolean isEmpty() {

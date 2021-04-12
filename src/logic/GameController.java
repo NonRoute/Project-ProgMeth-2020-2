@@ -26,6 +26,7 @@ public class GameController {
 
 	public static Board board;
 	public static int turn = 1;
+	public static Direction currentPlayingSide;
 
 	public static Controller leftSideController;
 	public static Controller rightSideController;
@@ -111,23 +112,31 @@ public class GameController {
 	}
 
 	public static void startGame() {
-		board = new Board();
 		isGameEnd = false;
-		// while game not end
-//		while (!isGameEnd) {
-//			startTurn();
-//		}
-		// TODO play end screen
-	}
-
-	public static void startTurn() {
-		turn++;
-		// TODO
 		// Random side play first
 		Random rand = new Random();
 		if (rand.nextInt(2) == 1) {
-			
+			currentPlayingSide = Direction.LEFT;
+			System.out.println("RIGHT PLAY FIRST");
+		} else {
+			currentPlayingSide = Direction.RIGHT;
+			System.out.println("LEFT PLAY FIRST");
 		}
+		startTurn();
+		// Animation Timer check isGameEnd
+		// TODO play end screen
+	}
+
+	public static void startTurn() { // called when click next turn button
+		turn++;
+		// switch side
+		System.out.println("NEXT TURN");
+		if (currentPlayingSide == Direction.LEFT) {
+			currentPlayingSide = Direction.RIGHT;
+		} else {
+			currentPlayingSide = Direction.LEFT;
+		}
+		// TODO
 		// side play first; select card , place card
 		// side play after; select card , place card
 		// gamemap moveall, side play first move first

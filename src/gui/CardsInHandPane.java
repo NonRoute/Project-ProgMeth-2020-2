@@ -41,6 +41,7 @@ public class CardsInHandPane extends VBox {
 		GameController.selectCard = selectedCard;
 		resetButtonsBackGroundColor();
 		((CardPane) selectedCardGUI).highlight();
+		GameController.board.highlightCellCanPlay();
 	}
 
 	public void resetButtonsBackGroundColor() {

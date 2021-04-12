@@ -28,6 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import logic.Board;
 import logic.Direction;
 import logic.GameController;
 import logic.GameLogic;
@@ -59,7 +60,9 @@ public class GameScreen {
 		gc = canvas.getGraphicsContext2D();
 		logic = new GameLogic();
 
-		root.getChildren().addAll(canvas, new BoardPane(), borderPane, getNextTurnButton());
+		Board board = new Board();
+		GameController.board = board;
+		root.getChildren().addAll(canvas, board, borderPane, getNextTurnButton());
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
@@ -80,14 +83,15 @@ public class GameScreen {
 		imageView.setFitWidth(40);
 		imageView.setFitHeight(40);
 		nextTurn.setGraphic(imageView);
-		nextTurn.setLayoutX(600);
+		nextTurn.setLayoutX(607);
 		nextTurn.setLayoutY(20);
 		nextTurn.setPrefSize(40, 40);
 		nextTurn.setBackground(new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
 		nextTurn.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(5))));
 		nextTurn.setOnMouseClicked((MouseEvent e) -> {
-
+			GameController.startTurn();
+			GameController.board.unHighlightCellCanPlay();
 		});
 		nextTurn.setOnMouseEntered((MouseEvent e) -> {
 			nextTurn.setBackground(

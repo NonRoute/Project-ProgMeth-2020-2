@@ -25,26 +25,56 @@ import javafx.scene.paint.Color;
 public class Board extends GridPane {
 	public static final int NUMBER_OF_ROW = 5;
 	public static final int NUMBER_OF_COLUMN = 9;
-	private ObservableList<ObservableList<Cell>> boardCells;
+	private ObservableList<ObservableList<Cell>> boardCells = FXCollections.observableArrayList();
 
 	public Board() {
 		this.setPrefWidth(840);
 		this.setPrefHeight(610);
 		this.setAlignment(Pos.CENTER);
+		this.setLayoutX(220);
+		this.setLayoutY(90);
 		this.setVgap(5);
 		this.setHgap(5);
 		this.setPadding(new Insets(5));
-		this.setBorder(new Border(
-				new BorderStroke(Color.PEACHPUFF, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
-		for (int i = 0; i < NUMBER_OF_ROW; i++) {
+		this.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			boardCells.add(FXCollections.observableArrayList());
-			boardCells.get(i).add(new Cell());
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				Cell cell = new Cell();
+				boardCells.get(r).add(cell);
+				this.add(cell, c, r);
+			}
+		}
+	}
+
+	public void highlightCellCanPlay() {
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			switch (GameController.currentPlayingSide) {
+			case LEFT:
+				if (isEmpty(r, 0)) {
+					boardCells.get(r).get(0).highlight();
+				}
+				break;
+			case RIGHT:
+				if (isEmpty(r, NUMBER_OF_COLUMN - 1)) {
+					boardCells.get(r).get(NUMBER_OF_COLUMN - 1).highlight();
+				}
+				break;
+			}
+		}
+	}
+
+	public void unHighlightCellCanPlay() { //called when click next turn and play card
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				boardCells.get(r).get(c).unhighlight();
+			}
 		}
 	}
 
 	public void setCardOnMap(Card card, int row, int column) {
 		boardCells.get(row).get(column).setCard(card);
+		unHighlightCellCanPlay();
 	}
 
 	public void removeCardOnMap(int row, int column) {
