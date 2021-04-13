@@ -6,6 +6,7 @@ import card.Card;
 import card.FighterCard;
 import deck.Deck;
 import gui.CardInHandPane;
+import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import logic.GameController;
@@ -38,13 +39,30 @@ public class BotEasy extends Bot {
 
 	public void play() {
 		// BotEasy will play card until can't play
-		while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can play
-			CardInHandPane selectCard = selectCard();
-			useCard(cardsInHandPane.indexOf(selectCard));
-			if (selectCard.getCard() instanceof FighterCard) {
-				GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+		System.out.println("Bot play");
+		Thread thread = new Thread(() -> {
+			try {
+				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
+					Platform.runLater(new Runnable() {
+						public void run() { // play
+							CardInHandPane selectCard = selectCard();
+							useCard(cardsInHandPane.indexOf(selectCard));
+							if (selectCard.getCard() instanceof FighterCard) {
+								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+							}
+						}
+					});
+					Thread.sleep(1000);
+				}
+				Platform.runLater(new Runnable() {
+					public void run() {
+						GameController.switchPlayingSide();
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		}
-		GameController.switchPlayingSide();
+		});
+		thread.start();
 	}
 }
