@@ -16,7 +16,9 @@ public abstract class Bot extends Controller {
 	}
 
 	public abstract Card selectCard();
+
 	public abstract int selectRow();
+
 	public abstract void play();
 
 	public int randomRow() {
@@ -26,7 +28,7 @@ public abstract class Bot extends Controller {
 
 	public int randomIndexCardInHand() {
 		Random rand = new Random();
-		return rand.nextInt(cardsInHand.size());
+		return rand.nextInt(cardsInHandPane.getSize());
 	}
 
 	public boolean isCardCanPlay(Card card) {
@@ -35,7 +37,7 @@ public abstract class Bot extends Controller {
 
 	public ArrayList<Card> getAllCardsCanPlay() {
 		ArrayList<Card> CardsCanPlay = new ArrayList<>();
-		for (Card c : cardsInHand) {
+		for (Card c : cardsInHandPane.getCardsList()) {
 			if (!isCardCanPlay(c)) {
 				CardsCanPlay.add(c);
 			}

@@ -33,12 +33,14 @@ import logic.GameController;
 import sharedObject.RenderableHolder;
 
 public class CardPane extends GridPane {
-	private CardPane cardGUI = this;
+	private CardPane cardPane = this;
+	private Card card;
 	private int cardWidth = 120;
 	private int cardHight = 58;
 	private int insets = 2;
 
 	public CardPane(String deckName, Card card) {
+		this.card = card;
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
@@ -50,10 +52,10 @@ public class CardPane extends GridPane {
 			public void handle(MouseEvent arg0) { // TODO can't select if not your turn
 				switch (card.getPlayingSide()) {
 				case LEFT:
-					((CardsInHandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardGUI, card);
+					((CardsInHandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane, card);
 					break;
 				case RIGHT:
-					((CardsInHandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardGUI, card);
+					((CardsInHandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane, card);
 					break;
 				}
 			}
@@ -62,6 +64,10 @@ public class CardPane extends GridPane {
 		setCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
 
+	}
+
+	public Card getCard() {
+		return card;
 	}
 
 	public void setCardImage(String deckName, Card card) {

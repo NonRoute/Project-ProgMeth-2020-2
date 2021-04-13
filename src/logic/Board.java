@@ -7,7 +7,6 @@ import card.Card;
 import card.MagicianCard;
 import card.Movable;
 import card.TrickCard;
-import gui.FieldCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

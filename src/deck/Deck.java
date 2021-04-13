@@ -11,7 +11,6 @@ import card.MagicianCard;
 import card.TrickCard;
 import logic.GameController;
 import trick.ChangeCardAbility;
-import trick.NoEffect;
 
 public class Deck {
 	private String Name;

@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.ArrayList;
+
 import card.Card;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +19,7 @@ import logic.Direction;
 import logic.GameController;
 
 public class CardsInHandPane extends VBox {
-	private ObservableList<GridPane> cardsList = FXCollections.observableArrayList();
+	private ObservableList<CardPane> cardsList = FXCollections.observableArrayList();
 
 	public CardsInHandPane() {
 		this.setPrefSize(140, GameController.SCREEN_HIGHT - 40);
@@ -27,19 +29,44 @@ public class CardsInHandPane extends VBox {
 		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
 	}
 
-	public void addCard(String deckName, Card card) {
+	public int getSize() {
+		return cardsList.size();
+	}
+
+	public Card get(int index) {
+		return cardsList.get(index).getCard();
+	}
+
+	public ArrayList<Card> getCardsList() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		for (CardPane e : cardsList) {
+			cards.add(e.getCard());
+		}
+		return cards;
+	}
+
+	public void add(String deckName, Card card) {
 		CardPane cardPane = new CardPane(deckName, card);
 		this.getChildren().add(cardPane);
 		cardsList.add(cardPane);
 	}
 
-	public void removeCard(int index) {
+	public void remove(int index) {
 		System.out.println("Remove");
 		cardsList.remove(index);
 		this.getChildren().remove(index);
 	}
 
-	public int getIndex(CardPane cardPane) {
+	public int indexOf(Card card) {
+		for (int i = 0; i < cardsList.size(); i++) {
+			if (cardsList.get(i).getCard().equals(card)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public int indexOf(CardPane cardPane) {
 		return cardsList.indexOf(cardPane);
 	}
 

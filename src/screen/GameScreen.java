@@ -1,7 +1,6 @@
 package screen;
 
 import card.Card;
-import gui.BoardPane;
 import gui.CardPane;
 import gui.CardsInHandPane;
 import input.InputUtility;
@@ -51,8 +50,8 @@ public class GameScreen {
 
 		borderPane = new BorderPane();
 		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
-		leftCardsInHand = new CardsInHandPane();
-		rightCardsInHand = new CardsInHandPane();
+		leftCardsInHand = GameController.leftSideController.getCardsInHandPane();
+		rightCardsInHand = GameController.rightSideController.getCardsInHandPane();
 		BorderPane.setMargin(leftCardsInHand, new Insets(20));
 		BorderPane.setMargin(rightCardsInHand, new Insets(20));
 		borderPane.setLeft(leftCardsInHand);
@@ -120,9 +119,9 @@ public class GameScreen {
 	public int getIndexOfCardsInHands(CardPane cardPane, Direction playingSide) {
 		switch (playingSide) {
 		case LEFT:
-			return leftCardsInHand.getIndex(cardPane);
+			return leftCardsInHand.indexOf(cardPane);
 		case RIGHT:
-			return rightCardsInHand.getIndex(cardPane);
+			return rightCardsInHand.indexOf(cardPane);
 		}
 		return -1;
 	}
@@ -130,10 +129,10 @@ public class GameScreen {
 	public void addCardsInHands(String deckName, Card card) {
 		switch (card.getPlayingSide()) {
 		case LEFT:
-			leftCardsInHand.addCard(deckName, card);
+			leftCardsInHand.add(deckName, card);
 			break;
 		case RIGHT:
-			rightCardsInHand.addCard(deckName, card);
+			rightCardsInHand.add(deckName, card);
 			break;
 		}
 	}
@@ -141,10 +140,10 @@ public class GameScreen {
 	public void removeCardsInHands(int index, Direction playingSide) {
 		switch (playingSide) {
 		case LEFT:
-			leftCardsInHand.removeCard(index);
+			leftCardsInHand.remove(index);
 			break;
 		case RIGHT:
-			rightCardsInHand.removeCard(index);
+			rightCardsInHand.remove(index);
 			break;
 		}
 	}
