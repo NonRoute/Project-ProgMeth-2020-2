@@ -49,7 +49,7 @@ public class Board extends GridPane {
 
 	public void highlightCellCanPlay() {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			switch (GameController.currentPlayingSide) {
+			switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 			case LEFT:
 				if (isEmpty(r, 0)) {
 					boardCells.get(r).get(0).highlight();
@@ -82,7 +82,6 @@ public class Board extends GridPane {
 	}
 
 	public void moveAllCard(Direction playingsideMoveFirst) {
-		System.out.println("moveAllCard" + playingsideMoveFirst + "First");
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			switch (playingsideMoveFirst) {
 			case LEFT: // move card left playing side first

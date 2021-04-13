@@ -150,15 +150,6 @@ public class GameController {
 	}
 
 	public static void switchPlayingSide() {
-		if (currentPlayingSide == Direction.LEFT) {
-			currentPlayingSide = Direction.RIGHT;
-			gameScreen.unHighlightHandPane();
-			gameScreen.highlightHandPane(Direction.RIGHT);
-		} else {
-			currentPlayingSide = Direction.LEFT;
-			gameScreen.unHighlightHandPane();
-			gameScreen.highlightHandPane(Direction.LEFT);
-		}
 		if (isFirstControllerPlayed == true) { // two controller have played
 			startTurn();
 			switch (currentPlayingSide) { //controller play first each turn, move card after
@@ -170,6 +161,15 @@ public class GameController {
 				break;
 			}
 		} else {
+			if (currentPlayingSide == Direction.LEFT) {
+				currentPlayingSide = Direction.RIGHT;
+				gameScreen.unHighlightHandPane();
+				gameScreen.highlightHandPane(Direction.RIGHT);
+			} else {
+				currentPlayingSide = Direction.LEFT;
+				gameScreen.unHighlightHandPane();
+				gameScreen.highlightHandPane(Direction.LEFT);
+			}
 			isFirstControllerPlayed = true;
 		}
 	}

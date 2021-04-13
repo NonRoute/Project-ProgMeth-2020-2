@@ -43,15 +43,16 @@ public class CardInHandPane extends CardPane {
 				new BorderStroke(Color.PERU, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(3))));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent arg0) { // TODO can't select if not your turn
-				switch (card.getPlayingSide()) {
-				case LEFT:
-					((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane, card);
-					break;
-				case RIGHT:
-					((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane, card);
-					break;
-				}
+			public void handle(MouseEvent arg0) {
+				if (GameController.currentPlayingSide.equals(card.getPlayingSide()))// can't select if not your turn
+					switch (card.getPlayingSide()) {
+					case LEFT:
+						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane, card);
+						break;
+					case RIGHT:
+						((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane, card);
+						break;
+					}
 			}
 		});
 		addCardImage(card.getImage());
