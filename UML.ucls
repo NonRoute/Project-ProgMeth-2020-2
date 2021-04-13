@@ -272,54 +272,54 @@
     </display>  
   </class>  
   <generalization id="31">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="13"/>  
   </generalization>  
   <generalization id="32">    
     <end type="SOURCE" refId="27"/>    
     <end type="TARGET" refId="22"/>  
   </generalization>  
   <generalization id="33">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="13"/>  
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="30"/>  
   </generalization>  
   <generalization id="34">    
     <end type="SOURCE" refId="30"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <generalization id="35">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="30"/>  
-  </generalization>  
-  <realization id="36">    
+  <realization id="35">    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="15"/>  
   </realization>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <realization id="38">    
+  <realization id="36">    
+    <bendpoint x="4352" y="1192"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="37">    
     <end type="SOURCE" refId="29"/>    
     <end type="TARGET" refId="23"/>  
   </realization>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
   <generalization id="39">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="20"/>  
   </generalization>  
   <generalization id="40">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="20"/>  
-  </generalization>  
-  <generalization id="41">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="20"/>  
   </generalization>  
-  <realization id="42">    
-    <bendpoint x="4352" y="1192"/>    
+  <generalization id="41">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="42">    
     <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="23"/>  
-  </realization>  
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

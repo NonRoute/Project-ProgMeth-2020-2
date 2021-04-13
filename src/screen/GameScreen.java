@@ -60,14 +60,14 @@ public class GameScreen {
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
-//		AnimationTimer animation = new AnimationTimer() {
-//			public void handle(long now) {
-//				paintComponent();
-//				logic.logicUpdate();
-//				RenderableHolder.getInstance().update();
-//			}
-//		};
-//		animation.start();
+		AnimationTimer animation = new AnimationTimer() {
+			public void handle(long now) {
+				paintComponent();
+				logic.logicUpdate();
+				RenderableHolder.getInstance().update();
+			}
+		};
+		animation.start();
 	}
 
 	public Button getChangePlayingSideButton() {

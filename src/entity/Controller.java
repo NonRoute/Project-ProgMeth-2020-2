@@ -8,11 +8,17 @@ import card.Trickable;
 import deck.Deck;
 import gui.HandPane;
 import javafx.application.Platform;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import logic.Board;
 import logic.Direction;
 import logic.GameController;
+import screen.EndGame;
+import sharedObject.RenderableHolder;
 
-public abstract class Controller {
+public abstract class Controller extends Entity {
 
 	protected int heart;
 	protected int money;
@@ -26,6 +32,17 @@ public abstract class Controller {
 		this.deck = deck;
 		this.cardsInHandPane = new HandPane();
 		this.playingSide = playingSide;
+		switch (playingSide) {
+		case LEFT:
+			setX(200);
+			setY(20);
+			break;
+		case RIGHT:
+			setX(970);
+			setY(20);
+			break;
+		}
+		RenderableHolder.getInstance().add(this);
 	}
 
 	public void drawCard(int number) {
@@ -116,7 +133,16 @@ public abstract class Controller {
 
 	public void reduceHeart(int number) {
 		if (heart - number <= 0) {
-			GameController.isGameEnd = true;
+			heart = 0;
+			switch (playingSide) {
+			case LEFT:
+				GameController.winner = Direction.RIGHT;
+				break;
+			case RIGHT:
+				GameController.winner = Direction.LEFT;
+				break;
+			}
+			new EndGame();
 		} else {
 			heart -= number;
 		}
@@ -140,5 +166,15 @@ public abstract class Controller {
 
 	public Direction getPlayingSide() {
 		return playingSide;
+	}
+
+	public void draw(GraphicsContext gc) {
+		gc.drawImage(RenderableHolder.heart, x, y, 50, 50);
+		gc.setFont(Font.font("Arial", FontWeight.BOLD, 25));
+		gc.setFill(Color.DARKRED);
+		gc.fillText("" + heart, x + 12, y + 33);
+		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
+		gc.setFill(Color.DARKGOLDENROD);
+		gc.fillText("" + money, x + 72, y + 33);
 	}
 }

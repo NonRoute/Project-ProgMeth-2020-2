@@ -72,7 +72,6 @@ public class CardOnBoardPane extends CardPane {
 			}
 			break;
 		}
-
 	}
 
 	public void attack() {

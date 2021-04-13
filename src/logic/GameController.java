@@ -32,7 +32,7 @@ public class GameController {
 	public static Controller leftSideController;
 	public static Controller rightSideController;
 
-	public static Boolean isGameEnd;
+	public static Direction winner;
 	public static CardInHandPane selectedCardPane;
 
 	public static String gameMode;
@@ -114,7 +114,6 @@ public class GameController {
 	public static void startGame() {
 		gameScreen = new GameScreen();
 		turn = 0;
-		isGameEnd = false;
 		// Random side play first
 		Random rand = new Random();
 		if (rand.nextInt(2) == 1) {
@@ -157,7 +156,7 @@ public class GameController {
 			}
 			board.allCardAttack();
 			board.removeDeadCards();
-			board.updateCard();
+			board.update();
 		} else {
 			if (currentPlayingSide == Direction.LEFT) {
 				currentPlayingSide = Direction.RIGHT;
