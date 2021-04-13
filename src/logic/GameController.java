@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import screen.GameScreen;
 
 public class GameController {
+	public static Thread threadHolder;
+	
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
 	public static Stage primaryStage;

@@ -50,7 +50,7 @@ public class Board extends GridPane {
 	}
 
 	public void highlightCellCanPlay(CardInHandPane selectedCardPane) {
-		if (!(selectedCardPane.getCard() instanceof TrickCard)) //if not trickCard
+		if (!(selectedCardPane.getCard() instanceof TrickCard)) // if not trickCard
 			for (int r = 0; r < NUMBER_OF_ROW; r++) {
 				switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 				case LEFT:
@@ -65,7 +65,7 @@ public class Board extends GridPane {
 					break;
 				}
 			}
-		//TODO if trick card?
+		// TODO if trick card?
 	}
 
 	public void unHighlightAllCells() { // called when click next turn and play card
@@ -86,46 +86,57 @@ public class Board extends GridPane {
 	}
 
 	public void moveAllCard(Direction playingsideMoveFirst) {
-		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			switch (playingsideMoveFirst) {
-			case LEFT: // move card left playing side first
-				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
-					if (!isEmpty(r, c)) {
-						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-								.getPlayingSide() == Direction.LEFT) {
-							boardCells.get(r).get(c).getCardOnBoardPane().move();
+		Thread thread = new Thread(() -> {
+			try {
+				for (int r = 0; r < NUMBER_OF_ROW; r++) {
+					switch (playingsideMoveFirst) {
+					case LEFT: // move card left playing side first
+						for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
+							if (!isEmpty(r, c)) {
+								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+										.getPlayingSide() == Direction.LEFT) {
+									boardCells.get(r).get(c).getCardOnBoardPane().move();
+									GameController.threadHolder.join();
+								}
+							}
 						}
+						for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
+							if (!isEmpty(r, c)) {
+								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+										.getPlayingSide() == Direction.RIGHT) {
+									boardCells.get(r).get(c).getCardOnBoardPane().move();
+									GameController.threadHolder.join();
+								}
+							}
+						}
+						break;
+					case RIGHT:
+						for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
+							if (!isEmpty(r, c)) {
+								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+										.getPlayingSide() == Direction.RIGHT) {
+									boardCells.get(r).get(c).getCardOnBoardPane().move();
+									GameController.threadHolder.join();
+								}
+							}
+						}
+						for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
+							if (!isEmpty(r, c)) {
+								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+										.getPlayingSide() == Direction.LEFT) {
+									boardCells.get(r).get(c).getCardOnBoardPane().move();
+									GameController.threadHolder.join();
+								}
+							}
+						}
+						break;
 					}
 				}
-				for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
-					if (!isEmpty(r, c)) {
-						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-								.getPlayingSide() == Direction.RIGHT) {
-							boardCells.get(r).get(c).getCardOnBoardPane().move();
-						}
-					}
-				}
-				break;
-			case RIGHT:
-				for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
-					if (!isEmpty(r, c)) {
-						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-								.getPlayingSide() == Direction.RIGHT) {
-							boardCells.get(r).get(c).getCardOnBoardPane().move();
-						}
-					}
-				}
-				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
-					if (!isEmpty(r, c)) {
-						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-								.getPlayingSide() == Direction.LEFT) {
-							boardCells.get(r).get(c).getCardOnBoardPane().move();
-						}
-					}
-				}
-				break;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		}
+		});
+		thread.start();
 	}
 
 	public void allCardAttack() {
