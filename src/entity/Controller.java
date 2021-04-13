@@ -27,6 +27,7 @@ public abstract class Controller extends Entity {
 	protected Direction playingSide;
 
 	public Controller(int heart, int money, Deck deck, Direction playingSide) {
+		this.setVisible(true);
 		this.heart = Math.max(1, heart);
 		this.money = money;
 		this.deck = deck;
@@ -171,10 +172,18 @@ public abstract class Controller extends Entity {
 	public void draw(GraphicsContext gc) {
 		gc.drawImage(RenderableHolder.heart, x, y, 50, 50);
 		gc.setFont(Font.font("Arial", FontWeight.BOLD, 25));
-		gc.setFill(Color.DARKRED);
-		gc.fillText("" + heart, x + 12, y + 33);
 		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
+		gc.setFill(Color.DARKRED);
+		if (heart >= 10) {
+			gc.fillText("" + heart, x + 11, y + 33);
+		} else {
+			gc.fillText("" + heart, x + 17, y + 33);
+		}
 		gc.setFill(Color.DARKGOLDENROD);
-		gc.fillText("" + money, x + 72, y + 33);
+		if (money >= 10) {
+			gc.fillText("" + money, x + 71, y + 33);
+		} else {
+			gc.fillText("" + money, x + 77, y + 33);
+		}
 	}
 }

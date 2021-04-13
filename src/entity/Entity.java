@@ -9,12 +9,16 @@ public abstract class Entity implements IRenderable {
 
 	@Override
 	public boolean isVisible() {
-		return true;
+		return visible;
 	}
 
 	@Override
 	public int getZ() {
 		return 0;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 	public int getX() {

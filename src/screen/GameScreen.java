@@ -24,7 +24,6 @@ import javafx.scene.paint.Color;
 import logic.Board;
 import logic.Direction;
 import logic.GameController;
-import logic.GameLogic;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
@@ -33,7 +32,7 @@ public class GameScreen {
 	private BorderPane borderPane;
 	private Canvas canvas;
 	private GraphicsContext gc;
-	private GameLogic logic;
+//	private GameLogic logic;
 	private HandPane leftCardsInHand;
 	private HandPane rightCardsInHand;
 
@@ -52,7 +51,7 @@ public class GameScreen {
 
 		gc = canvas.getGraphicsContext2D();
 		gc.drawImage(RenderableHolder.backgroundGameScreen, 0, 0, 1280, 720);
-		logic = new GameLogic();
+//		logic = new GameLogic();
 
 		Board board = new Board();
 		GameController.board = board;
@@ -63,7 +62,7 @@ public class GameScreen {
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
 				paintComponent();
-				logic.logicUpdate();
+//				logic.logicUpdate();
 				RenderableHolder.getInstance().update();
 			}
 		};

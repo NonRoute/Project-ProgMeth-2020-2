@@ -113,6 +113,7 @@ public class GameController {
 
 	public static void startGame() {
 		gameScreen = new GameScreen();
+		winner = null;
 		turn = 0;
 		// Random side play first
 		Random rand = new Random();
@@ -124,8 +125,6 @@ public class GameController {
 			gameScreen.highlightHandPane(Direction.RIGHT);
 		}
 		startTurn();
-		// Animation Timer check isGameEnd
-		// TODO play end screen
 	}
 
 	public static void startTurn() { // called when click next turn button
@@ -140,7 +139,6 @@ public class GameController {
 			leftSideController.drawCard(1);
 			rightSideController.drawCard(1);
 		}
-		System.out.println("NEXT TURN");
 	}
 
 	public static void switchPlayingSide() {

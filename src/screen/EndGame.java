@@ -27,6 +27,9 @@ import sharedObject.RenderableHolder;
 public class EndGame extends StackPane {
 
 	public EndGame() {
+		GameController.leftSideController.setVisible(false);
+		GameController.rightSideController.setVisible(false);
+		
 		this.setAlignment(Pos.CENTER);
 
 		ImageView image = new ImageView(RenderableHolder.backgroundEndGame);
