@@ -1,14 +1,15 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-import card.Card;
 import deck.Deck;
 import entity.BotEasy;
 import entity.BotHard;
 import entity.BotNormal;
 import entity.Controller;
 import entity.Player;
+import gui.CardInHandPane;
 import javafx.stage.Stage;
 import screen.GameScreen;
 
@@ -21,16 +22,17 @@ public class GameController {
 	public static ArrayList<Deck> Decks = new ArrayList<>();
 	private static Deck angelDeck;
 	private static Deck devilDeck;
-	private static Deck testDeck; //TODO Remove this when game finish
+	private static Deck testDeck; // TODO Remove this when game finish
 
 	public static Board board;
 	public static int turn = 1;
+	public static Direction currentPlayingSide;
 
 	public static Controller leftSideController;
 	public static Controller rightSideController;
 
 	public static Boolean isGameEnd;
-	public static Card selectCard;
+	public static CardInHandPane selectedCardPane;
 
 	public static String gameMode;
 	public static Deck leftSideDeck;
@@ -41,11 +43,10 @@ public class GameController {
 	static {
 		angelDeck = new Deck("Angel", "AngelDeck.csv");
 		devilDeck = new Deck("Devil", "DevilDeck.csv");
-		testDeck = new Deck("Test","TestDeck.csv"); //TODO Remove this when game finish
+		testDeck = new Deck("Test", "TestDeck.csv"); // TODO Remove this when game finish
 	}
 
 	public static void playGame() {
-		gameScreen = new GameScreen();
 		switch (gameMode) {
 		case "PvB":
 			initializeGamePvB();
@@ -57,6 +58,7 @@ public class GameController {
 			initializeGameBvB();
 			break;
 		}
+		gameScreen = new GameScreen();
 	}
 
 	public static void initializeGamePvB() {
@@ -110,19 +112,31 @@ public class GameController {
 	}
 
 	public static void startGame() {
-		board = new Board();
 		isGameEnd = false;
-		// while game not end
-//		while (!isGameEnd) {
-//			startTurn();
-//		}
+		// Random side play first
+		Random rand = new Random();
+		if (rand.nextInt(2) == 1) {
+			currentPlayingSide = Direction.LEFT;
+			System.out.println("RIGHT PLAY FIRST");
+		} else {
+			currentPlayingSide = Direction.RIGHT;
+			System.out.println("LEFT PLAY FIRST");
+		}
+		startTurn();
+		// Animation Timer check isGameEnd
 		// TODO play end screen
 	}
 
-	public static void startTurn() {
+	public static void startTurn() { // called when click next turn button
 		turn++;
+		// switch side
+		System.out.println("NEXT TURN");
+		if (currentPlayingSide == Direction.LEFT) {
+			currentPlayingSide = Direction.RIGHT;
+		} else {
+			currentPlayingSide = Direction.LEFT;
+		}
 		// TODO
-		// Random side play first
 		// side play first; select card , place card
 		// side play after; select card , place card
 		// gamemap moveall, side play first move first
@@ -130,12 +144,6 @@ public class GameController {
 		// draw card += turn
 	}
 
-	public static Deck getAngelDeck() {
-		return angelDeck;
-	}
 
-	public static Deck getDevilDeck() {
-		return devilDeck;
-	}
 
 }

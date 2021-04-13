@@ -6,6 +6,7 @@ import java.util.Random;
 import card.Card;
 import card.Trickable;
 import deck.Deck;
+import gui.HandPane;
 import javafx.application.Platform;
 import logic.Board;
 import logic.Direction;
@@ -16,21 +17,21 @@ public abstract class Controller extends Entity {
 	protected int heart;
 	protected int money;
 	private Deck deck;
-	protected ArrayList<Card> cardsInHand;
+	protected HandPane cardsInHandPane;
 	protected Direction playingSide;
 
 	public Controller(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
 		this.heart = Math.max(1, heart);
 		this.money = money;
 		this.deck = deck;
-		this.cardsInHand = new ArrayList<>();
+		this.cardsInHandPane = new HandPane();
 		this.playingSide = playingSide;
 		drawCard(initialNumberOfCardInHand);
 	}
 
 	public void drawCard(int number) {
 		// if card exceed max; not draw
-		if (cardsInHand.size() >= 10) {
+		if (cardsInHandPane.getSize() >= 10) {
 			return;
 		}
 		Thread thread = new Thread(() -> {
@@ -52,11 +53,11 @@ public abstract class Controller extends Entity {
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
-							
+
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide);
-							cardsInHand.add(card);
-							GameController.gameScreen.addCardsInHands(deck.getName(), card);
+							cardsInHandPane.add(deck.getName(), card);
+							//GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
 					});
 					Thread.sleep(500); // Delay 0.5 second
@@ -71,13 +72,12 @@ public abstract class Controller extends Entity {
 	public abstract int getMaxCardCostCanDraw();
 
 	public void useCard(int index) {
-		money -= cardsInHand.get(index).getCost();
-		if (cardsInHand.get(index) instanceof Trickable)
-			if (((Trickable) cardsInHand.get(index)).getTrick().isActivateWhenUseCard()) {
-				((Trickable) cardsInHand.get(index)).activateTrick();
+		money -= cardsInHandPane.get(index).getCost();
+		if (cardsInHandPane.get(index) instanceof Trickable)
+			if (((Trickable) cardsInHandPane.get(index)).getTrick().isActivateWhenUseCard()) {
+				((Trickable) cardsInHandPane.get(index)).activateTrick();
 			}
-		cardsInHand.remove(index);
-		GameController.gameScreen.removeCardsInHands(index, playingSide);
+		cardsInHandPane.remove(index);
 	}
 
 	public ArrayList<Integer> getPlayableRow() {
@@ -129,8 +129,8 @@ public abstract class Controller extends Entity {
 		return deck;
 	}
 
-	public ArrayList<Card> getCardsInHand() {
-		return cardsInHand;
+	public HandPane getCardsInHandPane() {
+		return cardsInHandPane;
 	}
 
 	public Direction getPlayingSide() {

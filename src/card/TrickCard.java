@@ -7,8 +7,8 @@ import trick.Trick;
 public class TrickCard extends Card implements Trickable {
 	private Trick trick;
 
-	public TrickCard(String name, String description, int cost, Trick trick) {
-		super(name, description, cost);
+	public TrickCard(String deckName, String name, String description, int cost, Trick trick) {
+		super(deckName, name, description, cost);
 		this.trick = trick;
 	}
 
@@ -32,6 +32,6 @@ public class TrickCard extends Card implements Trickable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

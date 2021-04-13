@@ -7,27 +7,78 @@ import card.Card;
 import card.MagicianCard;
 import card.Movable;
 import card.TrickCard;
+import gui.CardPane;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
-public class Board {
+public class Board extends GridPane {
 	public static final int NUMBER_OF_ROW = 5;
 	public static final int NUMBER_OF_COLUMN = 9;
-	private Cell[][] board;
+	private ObservableList<ObservableList<Cell>> boardCells = FXCollections.observableArrayList();
 
 	public Board() {
-		board = new Cell[NUMBER_OF_ROW][NUMBER_OF_COLUMN];
-		for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-			for (int r = 0; r < NUMBER_OF_ROW; r++) {
-				board[r][c] = new Cell();
+		this.setPrefWidth(840);
+		this.setPrefHeight(610);
+		this.setAlignment(Pos.CENTER);
+		this.setLayoutX(220);
+		this.setLayoutY(90);
+		this.setVgap(5);
+		this.setHgap(5);
+		this.setPadding(new Insets(5));
+		this.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			boardCells.add(FXCollections.observableArrayList());
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				Cell cell = new Cell();
+				boardCells.get(r).add(cell);
+				this.add(cell, c, r);
 			}
 		}
 	}
 
-	public void setCardOnMap(Card card, int row, int column) {
-		board[row][column].setCard(card);
+	public void highlightCellCanPlay() {
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			switch (GameController.currentPlayingSide) {
+			case LEFT:
+				if (isEmpty(r, 0)) {
+					boardCells.get(r).get(0).highlight();
+				}
+				break;
+			case RIGHT:
+				if (isEmpty(r, NUMBER_OF_COLUMN - 1)) {
+					boardCells.get(r).get(NUMBER_OF_COLUMN - 1).highlight();
+				}
+				break;
+			}
+		}
+	}
+
+	public void unHighlightAllCells() { //called when click next turn and play card
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				boardCells.get(r).get(c).unhighlight();
+			}
+		}
+	}
+
+	public void setCardOnMap(CardPane cardPane, int row, int column) {
+		boardCells.get(row).get(column).setCard(cardPane);
+		unHighlightAllCells();
 	}
 
 	public void removeCardOnMap(int row, int column) {
-		board[row][column].removeCard();
+		boardCells.get(row).get(column).removeCard();
 	}
 
 	public void moveAllCard(Direction sideMoveFirst) {
@@ -35,15 +86,15 @@ public class Board {
 			switch (sideMoveFirst) {
 			case LEFT:
 				for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-					if (board[r][c].getCard() instanceof Movable) {
-						((MagicianCard) board[r][c].getCard()).move();
+					if (boardCells.get(r).get(c).getCard() instanceof Movable) {
+						((MagicianCard) boardCells.get(r).get(c).getCard()).move();
 					}
 				}
 				break;
 			case RIGHT:
 				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
-					if (board[r][c].getCard() instanceof Movable) {
-						((MagicianCard) board[r][c].getCard()).move();
+					if (boardCells.get(r).get(c).getCard() instanceof Movable) {
+						((MagicianCard) boardCells.get(r).get(c).getCard()).move();
 					}
 				}
 				break;
@@ -53,7 +104,7 @@ public class Board {
 
 	public boolean isEmpty(int row, int column) {
 		if (!isOutOfBoard(row, column)) {
-			return board[row][column].isEmpty();
+			return boardCells.get(row).get(column).isEmpty();
 		} else {
 			return false;
 		}
@@ -61,7 +112,7 @@ public class Board {
 
 	public boolean isEnemy(int row, int column, Direction playingSide) {
 		if (!isEmpty(row, column)) {
-			return board[row][column].getCard().getPlayingSide().equals(playingSide);
+			return boardCells.get(row).get(column).getCard().getPlayingSide().equals(playingSide);
 		} else
 			return false;
 	}
@@ -75,7 +126,7 @@ public class Board {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isEnemy(r, c, playingSide)) {
-					enemy.add(board[r][c].getCard());
+					enemy.add(boardCells.get(r).get(c).getCard());
 				}
 			}
 		}
@@ -154,20 +205,20 @@ public class Board {
 		return -1;
 	}
 
-	public Cell[] getBoardAtRow(int row) {
-		return board[row];
+	public ObservableList<Cell> getBoardAtRow(int row) {
+		return boardCells.get(row);
 	}
 
-	public Cell[] getBoardAtColumn(int column) {
-		Cell[] boardAtColumn = new Cell[NUMBER_OF_COLUMN];
-		for (int i = 0; i < NUMBER_OF_ROW; i++) {
-			boardAtColumn[i] = board[i][column];
+	public ObservableList<Cell> getBoardAtColumn(int column) {
+		ObservableList<Cell> boardAtColumn = FXCollections.observableArrayList();
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			boardAtColumn.add(boardCells.get(r).get(column));
 		}
 		return boardAtColumn;
 	}
 
-	public Cell[][] getBoard() {
-		return board;
+	public ObservableList<ObservableList<Cell>> getBoard() {
+		return boardCells;
 	}
 
 }

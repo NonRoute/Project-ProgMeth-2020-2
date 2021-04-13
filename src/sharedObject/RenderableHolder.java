@@ -23,6 +23,7 @@ public class RenderableHolder {
 	public static Image attackRange;
 	public static Image heart;
 	public static Image speed;
+	public static Image nextTurn;
 	
 	public static Image testDeckNameLeft; //TODO Remove
 	public static Image testDeckNameRight;
@@ -70,6 +71,8 @@ public class RenderableHolder {
 				ClassLoader.getSystemResource(String.valueOf(p) + "heart.png").toString());
 		RenderableHolder.speed = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "speed.png").toString());
+		RenderableHolder.nextTurn = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "nextTurn.png").toString());
 	}
 
 	public void add(IRenderable entity) {

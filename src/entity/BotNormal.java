@@ -58,7 +58,7 @@ public class BotNormal extends Bot {
 		// BotNormal will play card until can't play
 		while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can play
 			Card selectCard = selectCard();
-			useCard(cardsInHand.indexOf(selectCard));
+			useCard(cardsInHandPane.indexOf(selectCard));
 			if (selectCard instanceof Movable) {
 				GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
 			}

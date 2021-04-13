@@ -14,9 +14,9 @@ public class MagicianCard extends Card implements Movable, Trickable {
 	private int column;
 	private Trick trick;
 
-	public MagicianCard(String name, String description, int cost, int attackDamage, int attackRange, int heart,
-			int speed, Trick trick) {
-		super(name, description, cost);
+	public MagicianCard(String deckName, String name, String description, int cost, int attackDamage, int attackRange,
+			int heart, int speed, Trick trick) {
+		super(deckName, name, description, cost);
 		this.attackDamage = attackDamage;
 		this.attackRange = attackRange;
 		this.heart = heart;
@@ -118,6 +118,5 @@ public class MagicianCard extends Card implements Movable, Trickable {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 	}
-	
 
 }
