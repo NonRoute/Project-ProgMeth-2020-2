@@ -1,7 +1,7 @@
 package gui;
 
 import card.Card;
-import card.Movable;
+import card.FighterCard;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,13 +22,13 @@ import sharedObject.RenderableHolder;
 
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
-	private Movable card;
+	private FighterCard card;
 	private int cardWidth = 88;
 	private int cardHight = 116;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {
-		this.card = (Movable) card;
+		this.card = (FighterCard) card;
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
@@ -84,7 +84,7 @@ public class CardOnBoardPane extends CardPane {
 
 	}
 
-	public Movable getCard() {
+	public FighterCard getCard() {
 		return card;
 	}
 
@@ -98,11 +98,11 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public void setUpCardAbility(Card card) {
-		if (card instanceof Movable) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((Movable) card).getAttackDamage(), 0, 2);
-			addCardAbility(RenderableHolder.attackRange, card, ((Movable) card).getAttackRange(), 1, 2);
-			addCardAbility(RenderableHolder.heart, card, ((Movable) card).getHeart(), 0, 3);
-			addCardAbility(RenderableHolder.speed, card, ((Movable) card).getSpeed(), 1, 3);
+		if (card instanceof FighterCard) {
+			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(), 0, 2);
+			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(), 1, 2);
+			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(), 0, 3);
+			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(), 1, 3);
 		}
 	}
 

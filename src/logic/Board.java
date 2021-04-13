@@ -122,9 +122,15 @@ public class Board extends GridPane {
 				break;
 			}
 		}
+		System.out.println("Moving all cards done :D");
+
+	}
+	
+	public void attackCard(int row, int column, int attackDamage) {
+		boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
 	}
 
-	public boolean isEmpty(int row, int column) { //also return false if out of board
+	public boolean isEmpty(int row, int column) { // also return false if out of board
 		if (!isOutOfBoard(row, column)) {
 			return boardCells.get(row).get(column).isEmpty();
 		} else {

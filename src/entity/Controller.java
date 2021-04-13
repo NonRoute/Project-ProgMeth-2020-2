@@ -12,7 +12,7 @@ import logic.Board;
 import logic.Direction;
 import logic.GameController;
 
-public abstract class Controller extends Entity {
+public abstract class Controller {
 
 	protected int heart;
 	protected int money;

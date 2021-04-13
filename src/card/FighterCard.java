@@ -2,14 +2,15 @@ package card;
 
 import logic.Direction;
 import logic.GameController;
+import trick.Trick;
 
-public class FighterCard extends Card implements Movable {
-	private int attackDamage;
-	private int attackRange;
-	private int heart;
-	private int speed;
-	private int row;
-	private int column;
+public class FighterCard extends Card {
+	protected int attackDamage;
+	protected int attackRange;
+	protected int heart;
+	protected int speed;
+	protected int row;
+	protected int column;
 
 	public FighterCard(String deckName, String name, String description, int cost, int attackDamage, int attackRange,
 			int heart, int speed) {
@@ -20,44 +21,9 @@ public class FighterCard extends Card implements Movable {
 		this.speed = speed;
 	}
 
-	public void setPosition(int row, int column) {
-		this.row = row;
-		this.column = column;
+	public void reduceHeart(int amount) {
+		heart -= amount;
 	}
-
-//	public void move() {
-//		switch (playingSide) {
-//		case LEFT:
-//			for (int i = 1; i <= speed; i++) {
-//				if (GameController.board.isEmpty(row, column + 1)) {
-//					// can move to next cell
-//					GameController.board.removeCardOnMap(row, column);
-//					column++;
-//					GameController.board.setCardOnMap(this, row, column);
-//				} else if (GameController.board.isOutOfBoard(row, column + 1)) {
-//					// can attack controller
-//					GameController.rightSideController.reduceHeart(attackDamage);
-//					GameController.board.removeCardOnMap(row, column);
-//				} else {
-//					// stop moving
-//					break;
-//				}
-//			}
-//		case RIGHT:
-//			for (int i = 1; i <= speed; i++) {
-//				if (GameController.board.isEmpty(row, column - 1)) {
-//					GameController.board.removeCardOnMap(row, column);
-//					column--;
-//					GameController.board.setCardOnMap(this, row, column);
-//				} else if (GameController.board.isOutOfBoard(row, column - 1)) {
-//					GameController.leftSideController.reduceHeart(attackDamage);
-//					GameController.board.removeCardOnMap(row, column);
-//				} else {
-//					break;
-//				}
-//			}
-//		}
-//	}
 
 	public int getAttackDamage() {
 		return attackDamage;

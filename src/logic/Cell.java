@@ -1,7 +1,7 @@
 package logic;
 
 import card.Card;
-import card.Movable;
+import card.FighterCard;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
@@ -96,7 +96,7 @@ public class Cell extends StackPane {
 		return cardOnBoardPane;
 	}
 
-	public Movable getCard() {
+	public FighterCard getCard() {
 		return cardOnBoardPane.getCard();
 	}
 

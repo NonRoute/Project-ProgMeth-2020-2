@@ -1,7 +1,7 @@
 package gui;
 
 import card.Card;
-import card.Movable;
+import card.FighterCard;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -93,11 +93,11 @@ public class CardInHandPane extends CardPane {
 	public void setUpCardAbility(Card card) {
 		addCardAbility(RenderableHolder.cost, card, card.getCost(), 3, 0, 2);
 
-		if (card instanceof Movable) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((Movable) card).getAttackDamage(), 3, 1, 1);
-			addCardAbility(RenderableHolder.attackRange, card, ((Movable) card).getAttackRange(), 4, 1, 1);
-			addCardAbility(RenderableHolder.heart, card, ((Movable) card).getHeart(), 3, 2, 1);
-			addCardAbility(RenderableHolder.speed, card, ((Movable) card).getSpeed(), 4, 2, 1);
+		if (card instanceof FighterCard) {
+			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(), 3, 1, 1);
+			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(), 4, 1, 1);
+			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(), 3, 2, 1);
+			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(), 4, 2, 1);
 		}
 	}
 

@@ -40,7 +40,7 @@ public class BotEasy extends Bot {
 		while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can play
 			Card selectCard = selectCard();
 			useCard(cardsInHandPane.indexOf(selectCard));
-			if (selectCard instanceof Movable) {
+			if (selectCard instanceof FighterCard) {
 				GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
 			}
 		}
