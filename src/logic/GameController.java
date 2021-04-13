@@ -26,6 +26,7 @@ public class GameController {
 
 	public static Board board;
 	public static int turn;
+	public static boolean isFirstControllerPlayed;
 	public static Direction currentPlayingSide;
 
 	public static Controller leftSideController;
@@ -131,6 +132,7 @@ public class GameController {
 	}
 
 	public static void startTurn() { // called when click next turn button
+		isFirstControllerPlayed = false;
 		turn++;
 		if (turn == 1) { // first turn each side have 4 cards
 			leftSideController.drawCard(4);
@@ -159,6 +161,11 @@ public class GameController {
 			currentPlayingSide = Direction.LEFT;
 			gameScreen.unHighlightHandPane();
 			gameScreen.highlightHandPane(Direction.LEFT);
+		}
+		if (isFirstControllerPlayed == true) {
+			startTurn();
+		} else {
+			isFirstControllerPlayed = true;
 		}
 	}
 
