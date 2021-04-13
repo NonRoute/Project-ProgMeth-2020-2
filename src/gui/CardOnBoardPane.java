@@ -35,7 +35,6 @@ public class CardOnBoardPane extends CardPane {
 		addCardImage(card.getImage());
 		setUpCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 4) - 2 * insets));
-
 	}
 
 	public void move() {
@@ -45,10 +44,8 @@ public class CardOnBoardPane extends CardPane {
 				if (GameController.board.isEmpty(card.getRow(), card.getColumn() + 1)) {
 					// can move to next cell
 					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-					System.out.println("L move from " + card.getRow() + " " + card.getColumn());
 					card.setColumn(card.getColumn() + 1);
 					GameController.board.setCardOnMap(this, card.getRow(), card.getColumn());
-					System.out.println("move to" + card.getRow() + " " + card.getColumn());
 				} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() + 1)) {
 					// can attack controller
 					GameController.rightSideController.reduceHeart(card.getAttackDamage());
@@ -63,10 +60,8 @@ public class CardOnBoardPane extends CardPane {
 			for (int i = 0; i < card.getSpeed(); i++) {
 				if (GameController.board.isEmpty(card.getRow(), card.getColumn() - 1)) {
 					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-					System.out.println("R move from " + card.getRow() + " " + card.getColumn());
 					card.setColumn(card.getColumn() - 1);
 					GameController.board.setCardOnMap(this, card.getRow(), card.getColumn());
-					System.out.println("move to" + card.getRow() + " " + card.getColumn());
 				} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
 					GameController.leftSideController.reduceHeart(card.getAttackDamage());
 					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());

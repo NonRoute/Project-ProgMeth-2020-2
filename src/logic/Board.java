@@ -6,6 +6,7 @@ import java.util.Random;
 import card.Card;
 import card.MagicianCard;
 import card.TrickCard;
+import gui.CardOnBoardPane;
 import gui.CardPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,7 +122,6 @@ public class Board extends GridPane {
 				break;
 			}
 		}
-		System.out.println("Moving all cards done :D");
 	}
 
 	public void allCardAttack() {
@@ -141,6 +141,18 @@ public class Board extends GridPane {
 					if (boardCells.get(r).get(c).getCard().getHeart() <= 0) {
 						removeCardOnMap(r, c);
 					}
+				}
+			}
+		}
+	}
+
+	public void updateCard() {
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				if (!isEmpty(r, c)) {
+					CardOnBoardPane cardPane = new CardOnBoardPane(boardCells.get(r).get(c).getCard());
+					removeCardOnMap(r, c);
+					setCardOnMap(cardPane, r, c);
 				}
 			}
 		}

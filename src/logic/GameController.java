@@ -119,11 +119,9 @@ public class GameController {
 		Random rand = new Random();
 		if (rand.nextInt(2) == 1) {
 			currentPlayingSide = Direction.LEFT;
-			System.out.println("LEFT PLAY FIRST");
 			gameScreen.highlightHandPane(Direction.LEFT);
 		} else {
 			currentPlayingSide = Direction.RIGHT;
-			System.out.println("RIGHT PLAY FIRST");
 			gameScreen.highlightHandPane(Direction.RIGHT);
 		}
 		startTurn();
@@ -159,6 +157,7 @@ public class GameController {
 			}
 			board.allCardAttack();
 			board.removeDeadCards();
+			board.updateCard();
 		} else {
 			if (currentPlayingSide == Direction.LEFT) {
 				currentPlayingSide = Direction.RIGHT;

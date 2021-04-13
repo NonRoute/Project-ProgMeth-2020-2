@@ -70,7 +70,6 @@ public class HandPane extends VBox {
 	}
 
 	public void remove(int index) {
-		System.out.println("Remove");
 		cardsList.remove(index);
 		this.getChildren().remove(index);
 	}

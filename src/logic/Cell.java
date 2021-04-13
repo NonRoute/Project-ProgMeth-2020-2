@@ -34,19 +34,16 @@ public class Cell extends StackPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (isHighLight) {
-					System.out.println("PLACE CARD");
 					switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 					case LEFT:
 						int index = GameController.leftSideController.getCardsInHandPane()
 								.indexOf(GameController.selectedCardPane);
 						GameController.leftSideController.useCard(index);
-						System.out.println("index" + index);
 						break;
 					case RIGHT:
 						int index2 = GameController.rightSideController.getCardsInHandPane()
 								.indexOf(GameController.selectedCardPane);
 						GameController.rightSideController.useCard(index2);
-						System.out.println("index" + index2);
 						break;
 					}
 					setCard(GameController.selectedCardPane);
