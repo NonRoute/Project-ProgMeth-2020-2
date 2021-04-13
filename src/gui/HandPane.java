@@ -18,10 +18,10 @@ import javafx.scene.paint.Color;
 import logic.Direction;
 import logic.GameController;
 
-public class CardsInHandPane extends VBox {
-	private ObservableList<CardPane> cardsList = FXCollections.observableArrayList();
+public class HandPane extends VBox {
+	private ObservableList<CardInHandPane> cardsList = FXCollections.observableArrayList();
 
-	public CardsInHandPane() {
+	public HandPane() {
 		this.setPrefSize(140, GameController.SCREEN_HIGHT - 40);
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
@@ -39,14 +39,14 @@ public class CardsInHandPane extends VBox {
 
 	public ArrayList<Card> getCardsList() {
 		ArrayList<Card> cards = new ArrayList<Card>();
-		for (CardPane e : cardsList) {
+		for (CardInHandPane e : cardsList) {
 			cards.add(e.getCard());
 		}
 		return cards;
 	}
 
 	public void add(String deckName, Card card) {
-		CardPane cardPane = new CardPane(deckName, card);
+		CardInHandPane cardPane = new CardInHandPane(card);
 		this.getChildren().add(cardPane);
 		cardsList.add(cardPane);
 	}
@@ -66,21 +66,20 @@ public class CardsInHandPane extends VBox {
 		return -1;
 	}
 
-	public int indexOf(CardPane cardPane) {
+	public int indexOf(CardInHandPane cardPane) {
 		return cardsList.indexOf(cardPane);
 	}
 
 	public void setSelectedCard(GridPane selectedCardPane, Card selectedCard) {
-		GameController.selectCard = selectedCard;
-		GameController.selectedCardPane = (CardPane) selectedCardPane;
+		GameController.selectedCardPane = (CardInHandPane) selectedCardPane;
 		resetButtonsBackGroundColor();
-		((CardPane) selectedCardPane).highlight();
+		((CardInHandPane) selectedCardPane).highlight();
 		GameController.board.highlightCellCanPlay();
 	}
 
 	public void resetButtonsBackGroundColor() {
 		for (GridPane e : cardsList) {
-			((CardPane) e).unhighlight();
+			((CardInHandPane) e).unhighlight();
 		}
 	}
 }

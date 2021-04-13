@@ -6,7 +6,7 @@ import java.util.Random;
 import card.Card;
 import card.Trickable;
 import deck.Deck;
-import gui.CardsInHandPane;
+import gui.HandPane;
 import javafx.application.Platform;
 import logic.Board;
 import logic.Direction;
@@ -17,14 +17,14 @@ public abstract class Controller extends Entity {
 	protected int heart;
 	protected int money;
 	private Deck deck;
-	protected CardsInHandPane cardsInHandPane;
+	protected HandPane cardsInHandPane;
 	protected Direction playingSide;
 
 	public Controller(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
 		this.heart = Math.max(1, heart);
 		this.money = money;
 		this.deck = deck;
-		this.cardsInHandPane = new CardsInHandPane();
+		this.cardsInHandPane = new HandPane();
 		this.playingSide = playingSide;
 		drawCard(initialNumberOfCardInHand);
 	}
@@ -129,7 +129,7 @@ public abstract class Controller extends Entity {
 		return deck;
 	}
 
-	public CardsInHandPane getCardsInHandPane() {
+	public HandPane getCardsInHandPane() {
 		return cardsInHandPane;
 	}
 

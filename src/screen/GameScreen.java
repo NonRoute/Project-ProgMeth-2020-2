@@ -1,8 +1,8 @@
 package screen;
 
 import card.Card;
-import gui.CardPane;
-import gui.CardsInHandPane;
+import gui.CardInHandPane;
+import gui.HandPane;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
@@ -41,8 +41,8 @@ public class GameScreen {
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private GameLogic logic;
-	private CardsInHandPane leftCardsInHand;
-	private CardsInHandPane rightCardsInHand;
+	private HandPane leftCardsInHand;
+	private HandPane rightCardsInHand;
 
 	public GameScreen() {
 		root = new Pane();

@@ -13,25 +13,25 @@ import logic.GameController;
 import trick.ChangeCardAbility;
 
 public class Deck {
-	private String Name;
+	private String name;
 	private ArrayList<Card> cards;
 	private ArrayList<Integer> numberOfCardsEachCost; // index = cost
 
 	public Deck(String Name, String fileName) {
-		this.Name = Name;
+		this.name = Name;
 		this.cards = importDeck(fileName);
 		this.numberOfCardsEachCost = countNumberOfCardsEachCost();
 		GameController.Decks.add(this);
 	}
 
-	public static ArrayList<Card> importDeck(String filename) {
+	public ArrayList<Card> importDeck(String filename) {
 		ArrayList<Card> deck = new ArrayList<Card>();
 		String[][] deckData = CSVParser.readCSV(filename);
 		for (int i = 2; i < deckData.length; i++) { // each row = each cards
 			switch (deckData[i][0]) {
 			case "Fighter":
 				System.out.println("Import a Fighter");
-				FighterCard fighterCard = new FighterCard(deckData[i][1], deckData[i][2],
+				FighterCard fighterCard = new FighterCard(name, deckData[i][1], deckData[i][2],
 						Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
 						Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
 						Integer.parseInt(deckData[i][7]));
@@ -41,7 +41,7 @@ public class Deck {
 				System.out.println("Import a Magician");
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
-					MagicianCard magicianCard = new MagicianCard(deckData[i][1], deckData[i][2],
+					MagicianCard magicianCard = new MagicianCard(name, deckData[i][1], deckData[i][2],
 							Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
 							Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
 							Integer.parseInt(deckData[i][7]), new ChangeCardAbility(deckData[i][9])); // TODO
@@ -53,7 +53,7 @@ public class Deck {
 				System.out.println("Import a Trick");
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
-					TrickCard trickCard = new TrickCard(deckData[i][1], deckData[i][2],
+					TrickCard trickCard = new TrickCard(name, deckData[i][1], deckData[i][2],
 							Integer.parseInt(deckData[i][3]), new ChangeCardAbility(deckData[i][9])); // TODO
 					deck.add(trickCard);
 					break;
@@ -92,11 +92,11 @@ public class Deck {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		name = name;
 	}
 
 	public ArrayList<Card> getCards() {

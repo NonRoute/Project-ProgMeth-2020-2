@@ -2,6 +2,8 @@ package logic;
 
 import card.Card;
 import card.Movable;
+import gui.CardInHandPane;
+import gui.CardOnBoardPane;
 import gui.CardPane;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -26,18 +28,17 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import sharedObject.RenderableHolder;
 
-public class Cell extends GridPane {
-	private Card cardOnCell;
+public class Cell extends StackPane {
+	private CardOnBoardPane cardPane;
+//	private Card cardOnCell;
 	private boolean isEmpty = true;
 	private boolean isHighLight;
 	private int cardWidth = 88;
 	private int cardHight = 116;
-	private int insets = 2;
 
 	public Cell() {
 		this.setPrefWidth(cardWidth);
 		this.setPrefHeight(cardHight);
-		this.setPadding(new Insets(insets));
 		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -58,60 +59,10 @@ public class Cell extends GridPane {
 						System.out.println("index" + index2);
 						break;
 					}
-//					int index = GameController.gameScreen.getIndexOfCardsInHands(GameController.selectedCardPane, GameController.currentPlayingSide);
-//					switch (GameController.currentPlayingSide) {
-//					case LEFT:
-//						GameController.leftSideController.useCard(index);
-//						break;
-//					case RIGHT:
-//						GameController.rightSideController.useCard(index);
-//					}
-					setCard(GameController.selectCard); // TODO -> cardpane
+					setCard(GameController.selectedCardPane);
 				}
 			}
 		});
-	}
-
-	public void setUpCellPaneFromCardPane() {
-		CardPane selectedCardPane = GameController.selectedCardPane;
-		ImageView image = (ImageView) getNodeByRowColumnIndex(0, 0, selectedCardPane);
-		this.add(image, 0, 0, 2, 2);
-		setCardAbility(GameController.selectCard);
-	}
-
-	public void setCardAbility(Card card) {
-		if (card instanceof Movable) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((Movable) card).getAttackDamage(), 0, 2);
-			addCardAbility(RenderableHolder.attackRange, card, ((Movable) card).getAttackRange(), 1, 2);
-			addCardAbility(RenderableHolder.heart, card, ((Movable) card).getHeart(), 0, 3);
-			addCardAbility(RenderableHolder.speed, card, ((Movable) card).getSpeed(), 1, 3);
-		}
-	}
-
-	public void addCardAbility(Image image, Card card, int text, int x, int y) {
-		StackPane stackPane = new StackPane();
-		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHight - 2 * insets) / 4);
-		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
-		ImageView imageView = new ImageView(image);
-		imageView.setPreserveRatio(true);
-		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
-		imageView.setFitHeight((cardHight - 2 * insets) / 4);
-		Text text1 = new Text();
-		text1.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-		text1.setText("" + text);
-		text1.setFill(Color.BLACK);
-		stackPane.getChildren().addAll(imageView, text1);
-		this.add(stackPane, x, y);
-		GridPane.setHalignment(stackPane, HPos.CENTER);
-	}
-
-	public Node getNodeByRowColumnIndex(int row, int col, GridPane gridPane) {
-		for (Node node : gridPane.getChildren()) {
-			if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-				return node;
-			}
-		}
-		return null;
 	}
 
 	public void highlight() {
@@ -124,18 +75,21 @@ public class Cell extends GridPane {
 		isHighLight = false;
 	}
 
-	public void setCard(Card card) {
-		setUpCellPaneFromCardPane();// TODO ONLY first time
+	public void setCard(CardPane cardPane) {
 		if (isEmpty) {
+			if (cardPane instanceof CardInHandPane) {
+				cardPane = new CardOnBoardPane(cardPane.getCard());
+			}
+			this.cardPane = (CardOnBoardPane) cardPane;
 			GameController.board.unHighlightAllCells();
-			cardOnCell = card;
+			this.getChildren().add(cardPane);
 			isEmpty = false;
 			// TODO show gui
 		}
 	}
 
 	public void removeCard() {
-		cardOnCell = null;
+		this.getChildren().clear();
 		isEmpty = true;
 	}
 
@@ -148,7 +102,7 @@ public class Cell extends GridPane {
 	}
 
 	public Card getCard() {
-		return cardOnCell;
+		return cardPane.getCard();
 	}
 
 }

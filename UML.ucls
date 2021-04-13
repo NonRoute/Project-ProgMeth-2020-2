@@ -271,8 +271,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="31" language="java" name="gui.CardsInHandPane" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/gui/CardsInHandPane.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="31" language="java" name="gui.HandPane" project="Project-ProgMeth-2020-2" 
+    file="/Project-ProgMeth-2020-2/src/gui/HandPane.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="178" width="242" x="1372" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
