@@ -3,7 +3,6 @@ package logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-import card.Card;
 import deck.Deck;
 import entity.BotEasy;
 import entity.BotHard;
@@ -145,12 +144,6 @@ public class GameController {
 		// draw card += turn
 	}
 
-	public static Deck getAngelDeck() {
-		return angelDeck;
-	}
 
-	public static Deck getDevilDeck() {
-		return devilDeck;
-	}
 
 }

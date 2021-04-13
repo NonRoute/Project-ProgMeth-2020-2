@@ -7,6 +7,7 @@ import card.Card;
 import card.MagicianCard;
 import card.Movable;
 import card.TrickCard;
+import gui.CardPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -71,8 +72,8 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void setCardOnMap(Card card, int row, int column) {
-		boardCells.get(row).get(column).setCard(card);
+	public void setCardOnMap(CardPane cardPane, int row, int column) {
+		boardCells.get(row).get(column).setCard(cardPane);
 		unHighlightAllCells();
 	}
 

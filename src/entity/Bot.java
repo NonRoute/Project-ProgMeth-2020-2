@@ -7,7 +7,6 @@ import card.Card;
 import deck.Deck;
 import logic.Board;
 import logic.Direction;
-import logic.GameController;
 
 public abstract class Bot extends Controller {
 

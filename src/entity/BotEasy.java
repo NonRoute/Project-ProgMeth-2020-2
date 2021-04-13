@@ -2,11 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-
 import card.Card;
-import card.FighterCard;
-import card.MagicianCard;
 import card.Movable;
 import deck.Deck;
 import javafx.scene.canvas.GraphicsContext;

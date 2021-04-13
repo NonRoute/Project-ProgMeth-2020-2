@@ -1,32 +1,17 @@
 package logic;
 
 import card.Card;
-import card.Movable;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import sharedObject.RenderableHolder;
 
 public class Cell extends StackPane {
 	private CardOnBoardPane cardPane;
@@ -84,7 +69,6 @@ public class Cell extends StackPane {
 			GameController.board.unHighlightAllCells();
 			this.getChildren().add(cardPane);
 			isEmpty = false;
-			// TODO show gui
 		}
 	}
 

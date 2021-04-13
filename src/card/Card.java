@@ -4,10 +4,8 @@ import entity.Entity;
 import javafx.scene.image.Image;
 import logic.Direction;
 import sharedObject.RenderableHolder;
-import trick.Trick;
 
 public abstract class Card extends Entity implements Cloneable {
-	private String deckName;
 	private String name;
 	private String description;
 	private int cost;
@@ -17,7 +15,6 @@ public abstract class Card extends Entity implements Cloneable {
 	private Image rightPlayingSideImage;
 
 	public Card(String deckName, String name, String description, int cost) {
-		this.deckName = deckName;
 		this.name = name;
 		this.description = description;
 		this.cost = cost;
