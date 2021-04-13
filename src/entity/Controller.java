@@ -30,7 +30,7 @@ public abstract class Controller extends Entity {
 
 	public void drawCard(int number) {
 		// if card exceed max; not draw
-		if (cardsInHandPane.getSize() >= 10) {
+		if (cardsInHandPane.getSize() >= 9) {
 			return;
 		}
 		Thread thread = new Thread(() -> {
