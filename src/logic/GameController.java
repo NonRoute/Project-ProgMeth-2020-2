@@ -137,7 +137,9 @@ public class GameController {
 		if (turn == 1) { // For first turn each side have 4 cards
 			leftSideController.drawCard(4);
 			rightSideController.drawCard(4);
-		} else { // each side draw 1 card
+		} else { // each side draw 1 card, money += turn
+			leftSideController.setMoney(leftSideController.getMoney() + turn);
+			rightSideController.setMoney(rightSideController.getMoney() + turn);
 			leftSideController.drawCard(1);
 			rightSideController.drawCard(1);
 		}
@@ -152,8 +154,8 @@ public class GameController {
 	public static void switchPlayingSide() {
 		if (isFirstControllerPlayed == true) { // two controller have played
 			startTurn();
-			switch (currentPlayingSide) { //controller play first each turn, move card after
-			case LEFT: 
+			switch (currentPlayingSide) { // controller play first each turn, move card after
+			case LEFT:
 				board.moveAllCard(Direction.RIGHT);
 				break;
 			case RIGHT:

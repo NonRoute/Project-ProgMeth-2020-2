@@ -54,7 +54,7 @@ public abstract class Controller extends Entity {
 							int indexOfCard = rand.nextInt(numberOfCard);
 
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
-							card.setPlayingSide(playingSide);
+							card.setPlayingSide(playingSide); // set playing side to card
 							cardsInHandPane.add(deck.getName(), card);
 							// GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
@@ -124,6 +124,10 @@ public abstract class Controller extends Entity {
 
 	public int getMoney() {
 		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	public Deck getDeck() {

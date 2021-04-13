@@ -45,13 +45,19 @@ public class CardInHandPane extends CardPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (GameController.currentPlayingSide.equals(card.getPlayingSide()))// can't select if not your turn
-					switch (card.getPlayingSide()) {
-					case LEFT:
-						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane, card);
-						break;
-					case RIGHT:
-						((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane, card);
-						break;
+					if (!isCardTooExpensive()) { // can select if card not too expensive
+						switch (card.getPlayingSide()) {
+						case LEFT:
+							((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane, card);
+							break;
+						case RIGHT:
+							((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane,
+									card);
+							break;
+						}
+					}
+					else {
+						System.out.println("CARD TOO EXPENSIVE!!");
 					}
 			}
 		});
@@ -59,6 +65,16 @@ public class CardInHandPane extends CardPane {
 		setUpCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
 
+	}
+
+	public boolean isCardTooExpensive() {
+		switch (card.getPlayingSide()) {
+		case LEFT:
+			return card.getCost() > GameController.leftSideController.getMoney();
+		case RIGHT:
+			return card.getCost() > GameController.rightSideController.getMoney();
+		}
+		return true;
 	}
 
 	public Card getCard() {

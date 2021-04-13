@@ -20,6 +20,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import logic.Direction;
 import logic.GameController;
 
 public class HandPane extends VBox {
