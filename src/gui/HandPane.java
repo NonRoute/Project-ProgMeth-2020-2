@@ -7,6 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -24,6 +27,16 @@ public class HandPane extends VBox {
 		this.setSpacing(10);
 		this.setPadding(new Insets(10));
 		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
+	}
+	
+	public void highlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, new CornerRadii(5), Insets.EMPTY)));
+		this.setEffect(new DropShadow());
+	}
+	
+	public void unHighlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
+		this.setEffect(null);
 	}
 
 	public int getSize() {

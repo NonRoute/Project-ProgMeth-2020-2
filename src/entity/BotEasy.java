@@ -11,12 +11,8 @@ import logic.GameController;
 
 public class BotEasy extends Bot {
 
-	public BotEasy(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
-		super(heart, money, deck, initialNumberOfCardInHand, playingSide);
-	}
-
-	public int getMaxCardCostCanDraw() {
-		return GameController.turn;
+	public BotEasy(int heart, int money, Deck deck, Direction playingSide) {
+		super(heart, money, deck, playingSide);
 	}
 
 	public Card selectCard() { // select by random

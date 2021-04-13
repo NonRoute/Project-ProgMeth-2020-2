@@ -25,7 +25,7 @@ public class GameController {
 	private static Deck testDeck; // TODO Remove this when game finish
 
 	public static Board board;
-	public static int turn = 1;
+	public static int turn;
 	public static Direction currentPlayingSide;
 
 	public static Controller leftSideController;
@@ -58,69 +58,72 @@ public class GameController {
 			initializeGameBvB();
 			break;
 		}
-		gameScreen = new GameScreen();
 	}
 
 	public static void initializeGamePvB() {
 		switch (difficultyRight) {
 		case "Easy":
-			leftSideController = new Player(30, 1, leftSideDeck, 4, Direction.LEFT);
-			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			leftSideController = new Player(30, 1, leftSideDeck, Direction.LEFT);
+			rightSideController = new BotEasy(20, 1, rightSideDeck, Direction.RIGHT);
 			break;
 		case "Normal":
-			leftSideController = new Player(20, 1, leftSideDeck, 4, Direction.LEFT);
-			rightSideController = new BotNormal(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
+			rightSideController = new BotNormal(20, 1, rightSideDeck, Direction.RIGHT);
 			break;
 		case "Hard":
-			leftSideController = new Player(20, 1, leftSideDeck, 4, Direction.LEFT);
-			rightSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.RIGHT);
+			leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
+			rightSideController = new BotHard(30, 1, rightSideDeck, Direction.RIGHT);
 			break;
 		}
 		startGame();
 	}
 
 	public static void initializeGamePvP() {
-		leftSideController = new Player(20, 1, leftSideDeck, 4, Direction.LEFT);
-		rightSideController = new Player(20, 1, rightSideDeck, 4, Direction.RIGHT);
+		leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
+		rightSideController = new Player(20, 1, rightSideDeck, Direction.RIGHT);
 		startGame();
 	}
 
 	public static void initializeGameBvB() {
 		switch (difficultyLeft) {
 		case "Easy":
-			leftSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.LEFT);
+			leftSideController = new BotEasy(20, 1, rightSideDeck, Direction.LEFT);
 			break;
 		case "Normal":
-			leftSideController = new BotNormal(20, 1, rightSideDeck, 4, Direction.LEFT);
+			leftSideController = new BotNormal(20, 1, rightSideDeck, Direction.LEFT);
 			break;
 		case "Hard":
-			leftSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.LEFT);
+			leftSideController = new BotHard(30, 1, rightSideDeck, Direction.LEFT);
 			break;
 		}
 		switch (difficultyRight) {
 		case "Easy":
-			rightSideController = new BotEasy(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			rightSideController = new BotEasy(20, 1, rightSideDeck, Direction.RIGHT);
 			break;
 		case "Normal":
-			rightSideController = new BotNormal(20, 1, rightSideDeck, 4, Direction.RIGHT);
+			rightSideController = new BotNormal(20, 1, rightSideDeck, Direction.RIGHT);
 			break;
 		case "Hard":
-			rightSideController = new BotHard(30, 1, rightSideDeck, 4, Direction.RIGHT);
+			rightSideController = new BotHard(30, 1, rightSideDeck, Direction.RIGHT);
 			break;
 		}
 		startGame();
 	}
 
 	public static void startGame() {
+		gameScreen = new GameScreen();
+		turn = 0;
 		isGameEnd = false;
 		// Random side play first
 		Random rand = new Random();
 		if (rand.nextInt(2) == 1) {
 			currentPlayingSide = Direction.LEFT;
-			System.out.println("RIGHT PLAY FIRST");
+			System.out.println("LEFT PLAY FIRST");
+			gameScreen.highlightHandPane(Direction.LEFT);
 		} else {
 			currentPlayingSide = Direction.RIGHT;
-			System.out.println("LEFT PLAY FIRST");
+			System.out.println("RIGHT PLAY FIRST");
+			gameScreen.highlightHandPane(Direction.RIGHT);
 		}
 		startTurn();
 		// Animation Timer check isGameEnd
@@ -129,13 +132,16 @@ public class GameController {
 
 	public static void startTurn() { // called when click next turn button
 		turn++;
+		if (turn == 1) { // first turn each side have 4 cards
+			leftSideController.drawCard(4);
+			rightSideController.drawCard(4);
+		} else {
+			leftSideController.drawCard(1);
+			rightSideController.drawCard(1);
+		}
 		// switch side
 		System.out.println("NEXT TURN");
-		if (currentPlayingSide == Direction.LEFT) {
-			currentPlayingSide = Direction.RIGHT;
-		} else {
-			currentPlayingSide = Direction.LEFT;
-		}
+		// each side draw 1 card
 		// TODO
 		// side play first; select card , place card
 		// side play after; select card , place card
@@ -144,6 +150,16 @@ public class GameController {
 		// draw card += turn
 	}
 
-
+	public static void changePlayingSide() {
+		if (currentPlayingSide == Direction.LEFT) {
+			currentPlayingSide = Direction.RIGHT;
+			gameScreen.unHighlightHandPane();
+			gameScreen.highlightHandPane(Direction.RIGHT);
+		} else {
+			currentPlayingSide = Direction.LEFT;
+			gameScreen.unHighlightHandPane();
+			gameScreen.highlightHandPane(Direction.LEFT);
+		}
+	}
 
 }

@@ -20,13 +20,12 @@ public abstract class Controller extends Entity {
 	protected HandPane cardsInHandPane;
 	protected Direction playingSide;
 
-	public Controller(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
+	public Controller(int heart, int money, Deck deck, Direction playingSide) {
 		this.heart = Math.max(1, heart);
 		this.money = money;
 		this.deck = deck;
 		this.cardsInHandPane = new HandPane();
 		this.playingSide = playingSide;
-		drawCard(initialNumberOfCardInHand);
 	}
 
 	public void drawCard(int number) {
@@ -57,7 +56,7 @@ public abstract class Controller extends Entity {
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide);
 							cardsInHandPane.add(deck.getName(), card);
-							//GameController.gameScreen.addCardsInHands(deck.getName(), card);
+							// GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
 					});
 					Thread.sleep(500); // Delay 0.5 second
@@ -69,7 +68,9 @@ public abstract class Controller extends Entity {
 		thread.start();
 	}
 
-	public abstract int getMaxCardCostCanDraw();
+	public int getMaxCardCostCanDraw() {
+		return GameController.turn + 2;
+	}
 
 	public void useCard(int index) {
 		money -= cardsInHandPane.get(index).getCost();

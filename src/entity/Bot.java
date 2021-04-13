@@ -10,8 +10,8 @@ import logic.Direction;
 
 public abstract class Bot extends Controller {
 
-	public Bot(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
-		super(heart, money, deck, initialNumberOfCardInHand, playingSide);
+	public Bot(int heart, int money, Deck deck, Direction playingSide) {
+		super(heart, money, deck, playingSide);
 	}
 
 	public abstract Card selectCard();
