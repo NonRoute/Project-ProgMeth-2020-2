@@ -40,7 +40,7 @@ public class Board extends GridPane {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			boardCells.add(FXCollections.observableArrayList());
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				Cell cell = new Cell();
+				Cell cell = new Cell(r, c);
 				boardCells.get(r).add(cell);
 				this.add(cell, c, r);
 			}
@@ -64,7 +64,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void unHighlightAllCells() { //called when click next turn and play card
+	public void unHighlightAllCells() { // called when click next turn and play card
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				boardCells.get(r).get(c).unhighlight();
@@ -81,20 +81,43 @@ public class Board extends GridPane {
 		boardCells.get(row).get(column).removeCard();
 	}
 
-	public void moveAllCard(Direction sideMoveFirst) {
+	public void moveAllCard(Direction playingsideMoveFirst) {
+		System.out.println("moveAllCard" + playingsideMoveFirst + "First");
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			switch (sideMoveFirst) {
-			case LEFT:
-				for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-					if (boardCells.get(r).get(c).getCard() instanceof Movable) {
-						((MagicianCard) boardCells.get(r).get(c).getCard()).move();
+			switch (playingsideMoveFirst) {
+			case LEFT: // move card left playing side first
+				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
+					if (!isEmpty(r, c)) {
+						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+								.getPlayingSide() == Direction.LEFT) {
+							boardCells.get(r).get(c).getCardOnBoardPane().move();
+						}
+					}
+				}
+				for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
+					if (!isEmpty(r, c)) {
+						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+								.getPlayingSide() == Direction.RIGHT) {
+							boardCells.get(r).get(c).getCardOnBoardPane().move();
+						}
 					}
 				}
 				break;
 			case RIGHT:
-				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) {
-					if (boardCells.get(r).get(c).getCard() instanceof Movable) {
-						((MagicianCard) boardCells.get(r).get(c).getCard()).move();
+				for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
+					if (!isEmpty(r, c)) {
+						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+								.getPlayingSide() == Direction.RIGHT) {
+							boardCells.get(r).get(c).getCardOnBoardPane().move();
+						}
+					}
+				}
+				for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
+					if (!isEmpty(r, c)) {
+						if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
+								.getPlayingSide() == Direction.LEFT) {
+							boardCells.get(r).get(c).getCardOnBoardPane().move();
+						}
 					}
 				}
 				break;
@@ -126,7 +149,7 @@ public class Board extends GridPane {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isEnemy(r, c, playingSide)) {
-					enemy.add(boardCells.get(r).get(c).getCard());
+					enemy.add((Card) boardCells.get(r).get(c).getCard());
 				}
 			}
 		}

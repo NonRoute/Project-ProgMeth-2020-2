@@ -1,6 +1,7 @@
 package logic;
 
 import card.Card;
+import card.Movable;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
@@ -14,14 +15,18 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class Cell extends StackPane {
-	private CardOnBoardPane cardPane;
+	private CardOnBoardPane cardOnBoardPane;
 //	private Card cardOnCell;
+	private int row;
+	private int column;
 	private boolean isEmpty = true;
 	private boolean isHighLight;
 	private int cardWidth = 88;
 	private int cardHight = 116;
 
-	public Cell() {
+	public Cell(int row, int column) {
+		this.row = row;
+		this.column = column;
 		this.setPrefWidth(cardWidth);
 		this.setPrefHeight(cardHight);
 		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -62,10 +67,12 @@ public class Cell extends StackPane {
 
 	public void setCard(CardPane cardPane) {
 		if (isEmpty) {
-			if (cardPane instanceof CardInHandPane) {
-				cardPane = new CardOnBoardPane(cardPane.getCard());
+			if (cardPane instanceof CardInHandPane) { //change gui to OnBoard
+				cardPane = new CardOnBoardPane(((CardInHandPane) cardPane).getCard());
 			}
-			this.cardPane = (CardOnBoardPane) cardPane;
+			this.cardOnBoardPane = (CardOnBoardPane) cardPane;
+			this.cardOnBoardPane.getCard().setRow(row); //update row to card
+			this.cardOnBoardPane.getCard().setColumn(column);
 			GameController.board.unHighlightAllCells();
 			this.getChildren().add(cardPane);
 			isEmpty = false;
@@ -85,8 +92,12 @@ public class Cell extends StackPane {
 		this.isEmpty = isEmpty;
 	}
 
-	public Card getCard() {
-		return cardPane.getCard();
+	public CardOnBoardPane getCardOnBoardPane() {
+		return cardOnBoardPane;
+	}
+
+	public Movable getCard() {
+		return cardOnBoardPane.getCard();
 	}
 
 }

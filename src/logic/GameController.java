@@ -134,17 +134,14 @@ public class GameController {
 	public static void startTurn() { // called when click next turn button
 		isFirstControllerPlayed = false;
 		turn++;
-		if (turn == 1) { // first turn each side have 4 cards
+		if (turn == 1) { // For first turn each side have 4 cards
 			leftSideController.drawCard(4);
 			rightSideController.drawCard(4);
-		} else {
+		} else { // each side draw 1 card
 			leftSideController.drawCard(1);
 			rightSideController.drawCard(1);
 		}
-		// switch side
 		System.out.println("NEXT TURN");
-		// each side draw 1 card
-		// TODO
 		// side play first; select card , place card
 		// side play after; select card , place card
 		// gamemap moveall, side play first move first
@@ -152,7 +149,7 @@ public class GameController {
 		// draw card += turn
 	}
 
-	public static void changePlayingSide() {
+	public static void switchPlayingSide() {
 		if (currentPlayingSide == Direction.LEFT) {
 			currentPlayingSide = Direction.RIGHT;
 			gameScreen.unHighlightHandPane();
@@ -162,8 +159,16 @@ public class GameController {
 			gameScreen.unHighlightHandPane();
 			gameScreen.highlightHandPane(Direction.LEFT);
 		}
-		if (isFirstControllerPlayed == true) {
+		if (isFirstControllerPlayed == true) { // two controller have played
 			startTurn();
+			switch (currentPlayingSide) { //controller play first each turn, move card after
+			case LEFT: 
+				board.moveAllCard(Direction.RIGHT);
+				break;
+			case RIGHT:
+				board.moveAllCard(Direction.LEFT);
+				break;
+			}
 		} else {
 			isFirstControllerPlayed = true;
 		}

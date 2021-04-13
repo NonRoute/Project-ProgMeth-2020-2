@@ -17,17 +17,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import logic.GameController;
 import sharedObject.RenderableHolder;
 
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
-	private Card card;
+	private Movable card;
 	private int cardWidth = 88;
 	private int cardHight = 116;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {
-		this.card = card;
+		this.card = (Movable) card;
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
@@ -37,7 +38,47 @@ public class CardOnBoardPane extends CardPane {
 
 	}
 
-	public Card getCard() {
+	public void move() {
+		switch (card.getPlayingSide()) {
+		case LEFT:
+			for (int i = 0; i < card.getSpeed(); i++) {
+				if (GameController.board.isEmpty(card.getRow(), card.getColumn() + 1)) {
+					// can move to next cell
+					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+					System.out.println("L move from " + card.getRow() + " " + card.getColumn());
+					card.setColumn(card.getColumn() + 1);
+					GameController.board.setCardOnMap(this, card.getRow(), card.getColumn());
+					System.out.println("move to" + card.getRow() + " " + card.getColumn());
+				} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() + 1)) {
+					// can attack controller
+					GameController.rightSideController.reduceHeart(card.getAttackDamage());
+					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+				} else {
+					// stop moving
+					break;
+				}
+			}
+			break;
+		case RIGHT:
+			for (int i = 0; i < card.getSpeed(); i++) {
+				if (GameController.board.isEmpty(card.getRow(), card.getColumn() - 1)) {
+					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+					System.out.println("R move from " + card.getRow() + " " + card.getColumn());
+					card.setColumn(card.getColumn() - 1);
+					GameController.board.setCardOnMap(this, card.getRow(), card.getColumn());
+					System.out.println("move to" + card.getRow() + " " + card.getColumn());
+				} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
+					GameController.leftSideController.reduceHeart(card.getAttackDamage());
+					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+				} else {
+					break;
+				}
+			}
+			break;
+		}
+	}
+
+	public Movable getCard() {
 		return card;
 	}
 
