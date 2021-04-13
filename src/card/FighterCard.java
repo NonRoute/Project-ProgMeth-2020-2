@@ -21,8 +21,8 @@ public class FighterCard extends Card {
 		this.speed = speed;
 	}
 
-	public void reduceHeart(int amount) {
-		heart -= amount;
+	public void reduceHeart(int attackCard) {
+		heart -= attackCard;
 	}
 
 	public int getAttackDamage() {

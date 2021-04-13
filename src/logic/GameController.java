@@ -149,7 +149,7 @@ public class GameController {
 	public static void switchPlayingSide() {
 		if (isFirstControllerPlayed == true) { // two controller have played
 			startTurn();
-			switch (currentPlayingSide) { // controller play first each turn, move card after
+			switch (currentPlayingSide) { // controller play first each turn, move card after, attack after
 			case LEFT:
 				board.moveAllCard(Direction.RIGHT);
 				break;
@@ -157,6 +157,8 @@ public class GameController {
 				board.moveAllCard(Direction.LEFT);
 				break;
 			}
+			board.allCardAttack();
+			board.removeDeadCards();
 		} else {
 			if (currentPlayingSide == Direction.LEFT) {
 				currentPlayingSide = Direction.RIGHT;

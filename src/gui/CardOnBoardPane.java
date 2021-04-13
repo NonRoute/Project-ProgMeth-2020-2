@@ -53,8 +53,6 @@ public class CardOnBoardPane extends CardPane {
 					// can attack controller
 					GameController.rightSideController.reduceHeart(card.getAttackDamage());
 					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-				} else if (GameController.board.isEnemy(card.getRow(), card.getColumn() + 1, card.getPlayingSide())) {
-					// TODO can attack enemy
 				} else {
 					// can't moving
 					break;
@@ -72,8 +70,6 @@ public class CardOnBoardPane extends CardPane {
 				} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
 					GameController.leftSideController.reduceHeart(card.getAttackDamage());
 					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-				} else if (GameController.board.isEnemy(card.getRow(), card.getColumn() - 1, card.getPlayingSide())) {
-					// TODO can attack enemy
 				} else {
 					// can't moving
 					break;
@@ -82,6 +78,25 @@ public class CardOnBoardPane extends CardPane {
 			break;
 		}
 
+	}
+
+	public void attack() {
+		switch (card.getPlayingSide()) {
+		case LEFT:
+			for (int i = 1; i <= card.getAttackRange(); i++) {
+				if (GameController.board.isEnemy(card.getRow(), card.getColumn() + i, card.getPlayingSide())) {
+					GameController.board.attackCard(card.getRow(), card.getColumn() + i, card.getAttackDamage());
+				}
+			}
+			break;
+		case RIGHT:
+			for (int i = 1; i <= card.getAttackRange(); i++) {
+				if (GameController.board.isEnemy(card.getRow(), card.getColumn() - i, card.getPlayingSide())) {
+					GameController.board.attackCard(card.getRow(), card.getColumn() - i, card.getAttackDamage());
+				}
+			}
+			break;
+		}
 	}
 
 	public FighterCard getCard() {
