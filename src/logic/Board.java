@@ -6,6 +6,8 @@ import java.util.Random;
 import card.Card;
 import card.MagicianCard;
 import card.TrickCard;
+import card.Trickable;
+import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
 import javafx.collections.FXCollections;
@@ -47,21 +49,23 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void highlightCellCanPlay() {
-		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
-			case LEFT:
-				if (isEmpty(r, 0)) {
-					boardCells.get(r).get(0).highlight();
+	public void highlightCellCanPlay(CardInHandPane selectedCardPane) {
+		if (!(selectedCardPane.getCard() instanceof TrickCard)) //if not trickCard
+			for (int r = 0; r < NUMBER_OF_ROW; r++) {
+				switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
+				case LEFT:
+					if (isEmpty(r, 0)) {
+						boardCells.get(r).get(0).highlight();
+					}
+					break;
+				case RIGHT:
+					if (isEmpty(r, NUMBER_OF_COLUMN - 1)) {
+						boardCells.get(r).get(NUMBER_OF_COLUMN - 1).highlight();
+					}
+					break;
 				}
-				break;
-			case RIGHT:
-				if (isEmpty(r, NUMBER_OF_COLUMN - 1)) {
-					boardCells.get(r).get(NUMBER_OF_COLUMN - 1).highlight();
-				}
-				break;
 			}
-		}
+		//TODO if trick card?
 	}
 
 	public void unHighlightAllCells() { // called when click next turn and play card

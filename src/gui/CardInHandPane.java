@@ -28,7 +28,6 @@ import sharedObject.RenderableHolder;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
-	private Card card;
 	private int cardWidth = 120;
 	private int cardHight = 58;
 	private int insets = 2;
@@ -48,15 +47,13 @@ public class CardInHandPane extends CardPane {
 					if (!isCardTooExpensive()) { // can select if card not too expensive
 						switch (card.getPlayingSide()) {
 						case LEFT:
-							((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane, card);
+							((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
 							break;
 						case RIGHT:
-							((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane,
-									card);
+							((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane);
 							break;
 						}
-					}
-					else {
+					} else {
 						System.out.println("CARD TOO EXPENSIVE!!");
 					}
 			}
@@ -75,10 +72,6 @@ public class CardInHandPane extends CardPane {
 			return card.getCost() > GameController.rightSideController.getMoney();
 		}
 		return true;
-	}
-
-	public Card getCard() {
-		return card;
 	}
 
 	public void addCardImage(Image image) {

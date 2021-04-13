@@ -87,11 +87,11 @@ public class HandPane extends VBox {
 		return cardsList.indexOf(cardPane);
 	}
 
-	public void setSelectedCard(GridPane selectedCardPane, Card selectedCard) {
-		GameController.selectedCardPane = (CardInHandPane) selectedCardPane;
+	public void setSelectedCard(CardInHandPane selectedCardPane) {
+		GameController.selectedCardPane = selectedCardPane;
 		resetButtonsBackGroundColor();
-		((CardInHandPane) selectedCardPane).highlight();
-		GameController.board.highlightCellCanPlay();
+		(selectedCardPane).highlight();
+		GameController.board.highlightCellCanPlay(selectedCardPane);
 	}
 
 	public void resetButtonsBackGroundColor() {
