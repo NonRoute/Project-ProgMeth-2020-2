@@ -95,7 +95,7 @@ public class CardOnBoardPane extends CardPane {
 				e.printStackTrace();
 			}
 		});
-		GameController.threadHolder = thread;
+		GameController.threadCardMove = thread;
 		thread.start();
 
 	}

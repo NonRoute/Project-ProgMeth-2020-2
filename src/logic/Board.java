@@ -96,7 +96,7 @@ public class Board extends GridPane {
 								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
 										.getPlayingSide() == Direction.LEFT) {
 									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadHolder.join();
+									GameController.threadCardMove.join();
 								}
 							}
 						}
@@ -105,7 +105,7 @@ public class Board extends GridPane {
 								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
 										.getPlayingSide() == Direction.RIGHT) {
 									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadHolder.join();
+									GameController.threadCardMove.join();
 								}
 							}
 						}
@@ -116,7 +116,7 @@ public class Board extends GridPane {
 								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
 										.getPlayingSide() == Direction.RIGHT) {
 									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadHolder.join();
+									GameController.threadCardMove.join();
 								}
 							}
 						}
@@ -125,7 +125,7 @@ public class Board extends GridPane {
 								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
 										.getPlayingSide() == Direction.LEFT) {
 									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadHolder.join();
+									GameController.threadCardMove.join();
 								}
 							}
 						}
@@ -136,6 +136,7 @@ public class Board extends GridPane {
 				e.printStackTrace();
 			}
 		});
+		GameController.threadAllCardMove = thread;
 		thread.start();
 	}
 

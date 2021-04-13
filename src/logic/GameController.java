@@ -11,12 +11,14 @@ import entity.BotNormal;
 import entity.Controller;
 import entity.Player;
 import gui.CardInHandPane;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import screen.GameScreen;
 
 public class GameController {
-	public static Thread threadHolder;
-	
+	public static Thread threadCardMove;
+	public static Thread threadAllCardMove;
+
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
 	public static Stage primaryStage;
@@ -160,9 +162,24 @@ public class GameController {
 				board.moveAllCard(Direction.LEFT);
 				break;
 			}
-			board.allCardAttack();
-			board.removeDeadCards();
-			board.update();
+			Thread thread = new Thread(() -> {
+				try {
+					System.out.println("1");
+					threadAllCardMove.join(); // wait all card move finish
+					System.out.println("2");
+					Platform.runLater(new Runnable() {
+						public void run() {
+							board.allCardAttack();
+							board.removeDeadCards();
+							board.update();
+						}
+					});
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			});
+			thread.start();
+
 		} else { // one controller have played
 			if (currentPlayingSide == Direction.LEFT) {
 				currentPlayingSide = Direction.RIGHT;
