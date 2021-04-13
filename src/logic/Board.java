@@ -124,7 +124,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public boolean isEmpty(int row, int column) {
+	public boolean isEmpty(int row, int column) { //also return false if out of board
 		if (!isOutOfBoard(row, column)) {
 			return boardCells.get(row).get(column).isEmpty();
 		} else {

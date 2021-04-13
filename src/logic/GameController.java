@@ -144,11 +144,6 @@ public class GameController {
 			rightSideController.drawCard(1);
 		}
 		System.out.println("NEXT TURN");
-		// side play first; select card , place card
-		// side play after; select card , place card
-		// gamemap moveall, side play first move first
-		// change side play first
-		// draw card += turn
 	}
 
 	public static void switchPlayingSide() {

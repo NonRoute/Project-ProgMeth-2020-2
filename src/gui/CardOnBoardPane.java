@@ -53,8 +53,10 @@ public class CardOnBoardPane extends CardPane {
 					// can attack controller
 					GameController.rightSideController.reduceHeart(card.getAttackDamage());
 					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+				} else if (GameController.board.isEnemy(card.getRow(), card.getColumn() + 1, card.getPlayingSide())) {
+					// TODO can attack enemy
 				} else {
-					// stop moving
+					// can't moving
 					break;
 				}
 			}
@@ -70,12 +72,16 @@ public class CardOnBoardPane extends CardPane {
 				} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
 					GameController.leftSideController.reduceHeart(card.getAttackDamage());
 					GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+				} else if (GameController.board.isEnemy(card.getRow(), card.getColumn() - 1, card.getPlayingSide())) {
+					// TODO can attack enemy
 				} else {
+					// can't moving
 					break;
 				}
 			}
 			break;
 		}
+
 	}
 
 	public Movable getCard() {
