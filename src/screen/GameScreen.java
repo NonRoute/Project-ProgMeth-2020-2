@@ -116,38 +116,6 @@ public class GameScreen {
 		}
 	}
 
-	public int getIndexOfCardsInHands(CardPane cardPane, Direction playingSide) {
-		switch (playingSide) {
-		case LEFT:
-			return leftCardsInHand.indexOf(cardPane);
-		case RIGHT:
-			return rightCardsInHand.indexOf(cardPane);
-		}
-		return -1;
-	}
-
-	public void addCardsInHands(String deckName, Card card) {
-		switch (card.getPlayingSide()) {
-		case LEFT:
-			leftCardsInHand.add(deckName, card);
-			break;
-		case RIGHT:
-			rightCardsInHand.add(deckName, card);
-			break;
-		}
-	}
-
-	public void removeCardsInHands(int index, Direction playingSide) {
-		switch (playingSide) {
-		case LEFT:
-			leftCardsInHand.remove(index);
-			break;
-		case RIGHT:
-			rightCardsInHand.remove(index);
-			break;
-		}
-	}
-
 	public VBox getLeftCardsInHand() {
 		return leftCardsInHand;
 	}

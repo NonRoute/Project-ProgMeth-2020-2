@@ -57,7 +57,7 @@ public abstract class Controller extends Entity {
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide);
 							cardsInHandPane.add(deck.getName(), card);
-							GameController.gameScreen.addCardsInHands(deck.getName(), card);
+							//GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
 					});
 					Thread.sleep(500); // Delay 0.5 second
@@ -78,7 +78,6 @@ public abstract class Controller extends Entity {
 				((Trickable) cardsInHandPane.get(index)).activateTrick();
 			}
 		cardsInHandPane.remove(index);
-		GameController.gameScreen.removeCardsInHands(index, playingSide);
 	}
 
 	public ArrayList<Integer> getPlayableRow() {

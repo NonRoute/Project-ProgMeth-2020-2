@@ -44,16 +44,29 @@ public class Cell extends GridPane {
 			public void handle(MouseEvent arg0) {
 				if (isHighLight) {
 					System.out.println("PLACE CARD");
-					int index = GameController.gameScreen.getIndexOfCardsInHands(GameController.selectedCardPane, GameController.currentPlayingSide);
-					System.out.println("index"+index);
-					switch(GameController.currentPlayingSide) {
+					switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 					case LEFT:
+						int index = GameController.leftSideController.getCardsInHandPane()
+								.indexOf(GameController.selectedCardPane);
 						GameController.leftSideController.useCard(index);
+						System.out.println("index" + index);
 						break;
 					case RIGHT:
-						GameController.rightSideController.useCard(index);
+						int index2 = GameController.rightSideController.getCardsInHandPane()
+								.indexOf(GameController.selectedCardPane);
+						GameController.rightSideController.useCard(index2);
+						System.out.println("index" + index2);
+						break;
 					}
-					setCard(GameController.selectCard);
+//					int index = GameController.gameScreen.getIndexOfCardsInHands(GameController.selectedCardPane, GameController.currentPlayingSide);
+//					switch (GameController.currentPlayingSide) {
+//					case LEFT:
+//						GameController.leftSideController.useCard(index);
+//						break;
+//					case RIGHT:
+//						GameController.rightSideController.useCard(index);
+//					}
+					setCard(GameController.selectCard); // TODO -> cardpane
 				}
 			}
 		});

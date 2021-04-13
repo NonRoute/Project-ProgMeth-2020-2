@@ -49,7 +49,6 @@ public class GameController {
 	}
 
 	public static void playGame() {
-		gameScreen = new GameScreen();
 		switch (gameMode) {
 		case "PvB":
 			initializeGamePvB();
@@ -61,6 +60,7 @@ public class GameController {
 			initializeGameBvB();
 			break;
 		}
+		gameScreen = new GameScreen();
 	}
 
 	public static void initializeGamePvB() {
