@@ -55,12 +55,8 @@ public class HandPane extends VBox {
 		return cardsList.get(index).getCard();
 	}
 
-	public ArrayList<Card> getCardsList() {
-		ArrayList<Card> cards = new ArrayList<Card>();
-		for (CardInHandPane e : cardsList) {
-			cards.add(e.getCard());
-		}
-		return cards;
+	public ObservableList<CardInHandPane> getCardsList() {
+		return cardsList;
 	}
 
 	public void add(String deckName, Card card) {

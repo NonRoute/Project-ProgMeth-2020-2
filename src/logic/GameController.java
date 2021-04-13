@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import deck.Deck;
+import entity.Bot;
 import entity.BotEasy;
 import entity.BotHard;
 import entity.BotNormal;
@@ -133,6 +134,11 @@ public class GameController {
 		if (turn == 1) { // For first turn each side have 4 cards
 			leftSideController.drawCard(4);
 			rightSideController.drawCard(4);
+//			if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
+//				((Bot) leftSideController).play();
+//			} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
+//				((Bot) rightSideController).play();
+//			}
 		} else { // each side draw 1 card, money += turn
 			leftSideController.setMoney(leftSideController.getMoney() + turn);
 			rightSideController.setMoney(rightSideController.getMoney() + turn);
@@ -155,7 +161,7 @@ public class GameController {
 			board.allCardAttack();
 			board.removeDeadCards();
 			board.update();
-		} else {
+		} else { // one controller have played
 			if (currentPlayingSide == Direction.LEFT) {
 				currentPlayingSide = Direction.RIGHT;
 				gameScreen.unHighlightHandPane();
@@ -166,6 +172,12 @@ public class GameController {
 				gameScreen.highlightHandPane(Direction.LEFT);
 			}
 			isFirstControllerPlayed = true;
+		}
+		// if it is bot turn, call .play()
+		if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
+			((Bot) leftSideController).play();
+		} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
+			((Bot) rightSideController).play();
 		}
 	}
 
