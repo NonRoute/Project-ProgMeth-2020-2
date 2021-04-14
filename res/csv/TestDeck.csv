@@ -1,7 +1,6 @@
 ﻿Test,,,,,,,,,
 Type,Name,Description,Cost,Attack Damage,Attack Range,Heart,Speed,Effect type,Effect parameter
-Magician,m,m,1,9,8,7,1,ChangeCardAbility,P.R.A.0.0.0.0.0.0.0.0.0.0
-Trick,t,t,1,,,,,ChangeCardAbility,P.R.A.0.0.0.0.0.0.0.0.0.0
-Fighter,f,f,1,12,12,12,1,,
-Fighter,f2,f2,1,120,120,120,2,,
-Fighter,f3,f3,1,120,120,120,3,,
+Trick,t,enemy,1,,,,,ChangeCardAbility,D.1.2.3.4.5
+Trick,t,friendly,1,,,,,ChangeCardAbility,C.1.2.3.4.5
+Fighter,f,F,1,1,1,4,4,,
+Fighter,f2,F,1,1,1,4,4,,

@@ -97,10 +97,9 @@ public abstract class Controller extends Entity {
 
 	public void useCard(int index) {
 		money -= cardsInHandPane.get(index).getCost();
-		if (cardsInHandPane.get(index) instanceof Trickable)
-			if (((Trickable) cardsInHandPane.get(index)).getTrick().isActivateWhenUseCard()) {
-				((Trickable) cardsInHandPane.get(index)).activateTrick();
-			}
+		if (cardsInHandPane.get(index) instanceof Trickable) {
+			((Trickable) cardsInHandPane.get(index)).activateTrick();
+		}
 		cardsInHandPane.remove(index);
 	}
 

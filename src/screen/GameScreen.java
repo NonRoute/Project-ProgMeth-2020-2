@@ -69,6 +69,7 @@ public class GameScreen {
 				paintComponent();
 //				logic.logicUpdate();
 				updateStartNextPhaseButton();
+//				GameController.board.update();
 				RenderableHolder.getInstance().update();
 			}
 		};

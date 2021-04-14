@@ -5,17 +5,10 @@ import java.util.Arrays;
 
 import card.Card;
 import card.FighterCard;
-import card.Movable;
 import logic.GameController;
 
 public class ChangeCardAbility extends Trick {
-	private char activateArea;
-	private char conditionType;
-	private int conditionCost;
-	private int conditionAttackDamage;
-	private int conditionAttackRange;
-	private int conditionHeart;
-	private int conditionSpeed;
+	private char activateType;
 	private int cost;
 	private int attackDamage;
 	private int attackRange;
@@ -24,40 +17,37 @@ public class ChangeCardAbility extends Trick {
 
 	public ChangeCardAbility(String trickparameter) {
 		super(trickparameter);
-		activateArea = (trickParameter.get(1)).charAt(0);
-		conditionType = trickParameter.get(2).charAt(0);
-		if (conditionType != 'A') {
-			conditionCost = Integer.parseInt(trickParameter.get(3));
-			conditionAttackDamage = Integer.parseInt(trickParameter.get(4));
-			conditionAttackRange = Integer.parseInt(trickParameter.get(5));
-			conditionHeart = Integer.parseInt(trickParameter.get(6));
-			conditionSpeed = Integer.parseInt(trickParameter.get(7));
-		}
-		cost = Integer.parseInt(trickParameter.get(8));
-		attackDamage = Integer.parseInt(trickParameter.get(9));
-		attackRange = Integer.parseInt(trickParameter.get(10));
-		heart = Integer.parseInt(trickParameter.get(11));
-		speed = Integer.parseInt(trickParameter.get(12));
+		activateType = (trickParameter.get(0)).charAt(0);
+		cost = Integer.parseInt(trickParameter.get(1));
+		attackDamage = Integer.parseInt(trickParameter.get(2));
+		attackRange = Integer.parseInt(trickParameter.get(3));
+		heart = Integer.parseInt(trickParameter.get(4));
+		speed = Integer.parseInt(trickParameter.get(5));
 	}
 
 	@Override
 	public void activate() {
+		System.out.println("ACTIVATE");
 		FighterCard card;
-		switch (activateArea) {
-		case 'R':
-			card = (FighterCard) GameController.board.getRandomEnemy(playingSide);
+		switch (activateType) {
+		case 'A':
+			card = GameController.board.getRandomEnemy(playingSide);
+			break;
+		case 'B':
+			card = GameController.board.getRandomFriendly(playingSide);
+			break;
+		case 'C':
+			card = GameController.targetCard;
+			break;
+		case 'D':
+			card = GameController.targetCard;
 			break;
 		default:
 			card = null;
 			break;
 		}
-
-		switch (conditionType) {
-		case 'A':
-			Update(card);
-			break;
-		}
-
+		Update(card);
+		GameController.board.update();
 	}
 
 	public void Update(FighterCard card) {

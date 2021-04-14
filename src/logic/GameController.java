@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.Random;
 
+import card.FighterCard;
 import deck.Deck;
 import entity.Bot;
 import entity.BotEasy;
@@ -42,6 +43,7 @@ public class GameController {
 
 	public static Direction winner;
 	public static CardInHandPane selectedCardPane;
+	public static FighterCard targetCard;
 
 	public static String gameMode;
 	public static Deck leftSideDeck;
