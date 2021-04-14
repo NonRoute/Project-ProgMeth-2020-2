@@ -150,7 +150,6 @@ public class CardOnBoardPane extends CardPane {
 	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHight - 2 * insets) / 4);
-		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
@@ -162,7 +161,7 @@ public class CardOnBoardPane extends CardPane {
 		dropShadow.setColor(Color.WHITE);
 		text.setEffect(dropShadow);
 		if (value > defultValue) {
-			text.setFill(Color.SPRINGGREEN);
+			text.setFill(Color.GREEN);
 		} else if (value == defultValue) {
 			text.setFill(Color.BLACK);
 		} else {

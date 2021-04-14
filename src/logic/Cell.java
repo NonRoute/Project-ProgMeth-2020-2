@@ -41,7 +41,15 @@ public class Cell extends StackPane {
 					}
 					if (GameController.selectedCardPane.getCard() instanceof Trickable) {
 						// set target card
-						GameController.targetCard = cardOnBoardPane.getCard();
+						switch (((Trickable) GameController.selectedCardPane.getCard()).getTrick()
+								.getFirstParameter()) {
+						case 'C': //not random
+							GameController.targetCard = cardOnBoardPane.getCard();
+							break;
+						case 'D': //not random
+							GameController.targetCard = cardOnBoardPane.getCard();
+							break;
+						}
 					}
 					// use card
 					switch (GameController.selectedCardPane.getCard().getPlayingSide()) {

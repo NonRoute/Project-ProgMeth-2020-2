@@ -129,8 +129,8 @@ public class GameController {
 				Platform.runLater(new Runnable() {
 					public void run() {
 						board.allCardAttack();
-						board.removeDeadCards();
 						board.update();
+						board.removeDeadCards();
 					}
 				});
 			} catch (InterruptedException e) {
@@ -191,7 +191,6 @@ public class GameController {
 				}
 				Platform.runLater(new Runnable() {
 					public void run() {
-						System.out.println("Start next phase");
 						if (isPhaseOneEnd == true) { // two controller have played
 							startMoveCard();
 							startAttackCard();

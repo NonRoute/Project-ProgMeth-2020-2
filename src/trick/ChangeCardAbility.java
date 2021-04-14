@@ -28,13 +28,13 @@ public class ChangeCardAbility extends Trick {
 	@Override
 	public void activate() {
 		System.out.println("ACTIVATE");
-		FighterCard card;
+		FighterCard card = null;
 		switch (activateType) {
 		case 'A':
-			card = GameController.board.getRandomEnemy(playingSide);
+			card = GameController.board.getRandomFriendly(playingSide);
 			break;
 		case 'B':
-			card = GameController.board.getRandomFriendly(playingSide);
+			card = GameController.board.getRandomEnemy(playingSide);
 			break;
 		case 'C':
 			card = GameController.targetCard;
@@ -42,12 +42,10 @@ public class ChangeCardAbility extends Trick {
 		case 'D':
 			card = GameController.targetCard;
 			break;
-		default:
-			card = null;
-			break;
 		}
 		Update(card);
 		GameController.board.update();
+		GameController.board.removeDeadCards();
 	}
 
 	public void Update(FighterCard card) {

@@ -208,10 +208,14 @@ public class Board extends GridPane {
 		return getEnemy(playingSide).size() != 0;
 	}
 
+	public boolean haveFriendly(Direction playingSide) {
+		return getFriendly(playingSide).size() != 0;
+	}
+
 	public void highlightAllCell() {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				boardCells.get(r).get(0).highlight();
+				boardCells.get(r).get(c).highlight();
 			}
 		}
 	}
@@ -235,14 +239,21 @@ public class Board extends GridPane {
 			// TODO magician card highlight after click
 		} else {
 			switch (((TrickCard) selectedCardPane.getCard()).getTrick().getFirstParameter()) {
-			case 'C':
+			case 'A': // random friendly
+				if (haveFriendly(selectedCardPane.getCard().getPlayingSide())) {
+					highlightAllCell();
+				}
+				break;
+			case 'B': // random enemy
+				if (haveEnemy(selectedCardPane.getCard().getPlayingSide())) {
+					highlightAllCell();
+				}
+				break;
+			case 'C': // select friendly
 				hightlightFriendly(selectedCardPane.getCard().getPlayingSide());
 				break;
-			case 'D':
+			case 'D': // select enemy
 				hightlightEnemy(selectedCardPane.getCard().getPlayingSide());
-				break;
-			default:
-				highlightAllCell();
 				break;
 			}
 		}
