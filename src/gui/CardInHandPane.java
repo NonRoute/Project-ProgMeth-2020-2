@@ -45,7 +45,7 @@ public class CardInHandPane extends CardPane {
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
-				if (isCanSelect()) {
+				if (canSelectCard()) {
 					switch (card.getPlayingSide()) {
 					case LEFT:
 						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
@@ -65,7 +65,7 @@ public class CardInHandPane extends CardPane {
 
 	}
 
-	public boolean isCanSelect() {
+	public boolean canSelectCard() {
 		// can't select it is bot card
 		if (card.getPlayingSide() == Direction.LEFT && GameController.leftSideController instanceof Bot) {
 			return false;
@@ -78,6 +78,31 @@ public class CardInHandPane extends CardPane {
 		}
 		if (isCardTooExpensive()) { // can't select if card too expensive
 			return false;
+		}
+		if (GameController.threadDrawCard != null) {
+			if (GameController.threadDrawCard.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAllCardMove != null) {
+			if (GameController.threadAllCardMove.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadBotPlay != null) {
+			if (GameController.threadBotPlay.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAllCardMove != null) {
+			if (GameController.threadAllCardMove.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAttackCard != null) {
+			if (GameController.threadAttackCard.isAlive()) {
+				return false;
+			}
 		}
 		return true;
 	}

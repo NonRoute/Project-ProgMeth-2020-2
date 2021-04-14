@@ -56,7 +56,6 @@ public abstract class Controller extends Entity {
 				if (GameController.threadAttackCard != null) {
 					GameController.threadAttackCard.join();
 				}
-				System.out.println("Start Draw Card");
 				for (int i = 0; i < number; i++) {
 					Platform.runLater(new Runnable() {
 						public void run() {
@@ -83,7 +82,6 @@ public abstract class Controller extends Entity {
 					});
 					Thread.sleep(500); // Delay 0.5 second
 				}
-				System.out.println("End Draw Card");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

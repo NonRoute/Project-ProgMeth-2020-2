@@ -1,5 +1,6 @@
 package screen;
 
+import entity.Bot;
 import gui.HandPane;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
@@ -32,6 +33,7 @@ public class GameScreen {
 	private BorderPane borderPane;
 	private Canvas canvas;
 	private GraphicsContext gc;
+	private Button nextPhaseButton;
 //	private GameLogic logic;
 	private HandPane leftCardsInHand;
 	private HandPane rightCardsInHand;
@@ -39,7 +41,7 @@ public class GameScreen {
 	public GameScreen() {
 		root = new Pane();
 		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
-
+		nextPhaseButton = getStartNextPhaseButton();
 		borderPane = new BorderPane();
 		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
 		leftCardsInHand = GameController.leftSideController.getCardsInHandPane();
@@ -55,7 +57,7 @@ public class GameScreen {
 
 		Board board = new Board();
 		GameController.board = board;
-		root.getChildren().addAll(canvas, borderPane, getChangePlayingSideButton(), board);
+		root.getChildren().addAll(canvas, borderPane, nextPhaseButton, board);
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
@@ -63,41 +65,87 @@ public class GameScreen {
 			public void handle(long now) {
 				paintComponent();
 //				logic.logicUpdate();
+//				updateStartNextPhaseButton();
 				RenderableHolder.getInstance().update();
 			}
 		};
 		animation.start();
 	}
 
-	public Button getChangePlayingSideButton() {
-		Button nextTurn = new Button();
+	public Button getStartNextPhaseButton() {
+		Button nextPhaseButton = new Button();
 		ImageView imageView = new ImageView(RenderableHolder.nextTurn);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(40);
 		imageView.setFitHeight(40);
-		nextTurn.setGraphic(imageView);
-		nextTurn.setLayoutX(607);
-		nextTurn.setLayoutY(20);
-		nextTurn.setPrefSize(40, 40);
-		nextTurn.setBackground(new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
-		nextTurn.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
+		nextPhaseButton.setGraphic(imageView);
+		nextPhaseButton.setLayoutX(607);
+		nextPhaseButton.setLayoutY(20);
+		nextPhaseButton.setPrefSize(40, 40);
+		nextPhaseButton
+				.setBackground(new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
+		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(5))));
-		nextTurn.setOnMouseClicked((MouseEvent e) -> {
-			GameController.startNextPhase();
-			GameController.board.unHighlightAllCells();
+		
+		nextPhaseButton.setOnMouseClicked((MouseEvent e) -> {
+			if (canClickStartNextPhaseButton()) {
+				System.out.println("CLICK");
+				GameController.startNextPhase();
+				GameController.board.unHighlightAllCells();
+			}
 		});
-		nextTurn.setOnMouseEntered((MouseEvent e) -> {
-			nextTurn.setBackground(
-					new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), new Insets(2))));
-			nextTurn.setEffect(new InnerShadow());
+		nextPhaseButton.setOnMouseMoved((MouseEvent e) -> {
+			if (canClickStartNextPhaseButton()) {
+				nextPhaseButton.setBackground(
+						new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), new Insets(2))));
+				nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
+						new CornerRadii(5), new BorderWidths(5))));
+				nextPhaseButton.setEffect(new InnerShadow());
+			}
 		});
-
-		nextTurn.setOnMouseExited((MouseEvent e) -> {
-			nextTurn.setBackground(
+		nextPhaseButton.setOnMouseExited((MouseEvent e) -> {
+			nextPhaseButton.setBackground(
 					new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
-			nextTurn.setEffect(null);
+			nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
+					new CornerRadii(5), new BorderWidths(5))));
+			nextPhaseButton.setEffect(null);
 		});
-		return nextTurn;
+		return nextPhaseButton;
+	}
+
+	public boolean canClickStartNextPhaseButton() {
+		if (GameController.currentPlayingSide == Direction.LEFT && GameController.leftSideController instanceof Bot) {
+			return false;
+		}
+		if (GameController.currentPlayingSide == Direction.RIGHT && GameController.rightSideController instanceof Bot) {
+			return false;
+		}
+		if (GameController.threadDrawCard != null) {
+			if (GameController.threadDrawCard.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAllCardMove != null) {
+			if (GameController.threadAllCardMove.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadBotPlay != null) {
+			if (GameController.threadBotPlay.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAllCardMove != null) {
+			if (GameController.threadAllCardMove.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAttackCard != null) {
+			if (GameController.threadAttackCard.isAlive()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void paintComponent() {
