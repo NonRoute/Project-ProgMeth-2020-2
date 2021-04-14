@@ -166,7 +166,7 @@ public class CardOnBoardPane extends CardPane {
 		} else if (value == defultValue) {
 			text.setFill(Color.BLACK);
 		} else {
-			text.setFill(Color.BROWN);
+			text.setFill(Color.MAROON);
 		}
 		stackPane.getChildren().addAll(imageView, text);
 		this.add(stackPane, x, y);
