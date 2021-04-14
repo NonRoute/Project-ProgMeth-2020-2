@@ -124,7 +124,6 @@ public class GameController {
 			try {
 				threadAllCardMove.join(); // wait all card move finish
 				Thread.sleep(1000);
-				System.out.println("Start Attack Card");
 				Platform.runLater(new Runnable() {
 					public void run() {
 						board.allCardAttack();
@@ -132,7 +131,6 @@ public class GameController {
 						board.update();
 					}
 				});
-				System.out.println("End Attack card");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -172,7 +170,6 @@ public class GameController {
 	}
 
 	public static void startMoveCard() {
-		System.out.println("Start Move Card");
 		switch (currentPlayingSide) { // controller play first each turn, move card after, attack after
 		case LEFT:
 			board.moveAllCard(Direction.RIGHT);
@@ -181,7 +178,6 @@ public class GameController {
 			board.moveAllCard(Direction.LEFT);
 			break;
 		}
-		System.out.println("End Move Card");
 	}
 
 	public static void startNextPhase() {
@@ -203,10 +199,8 @@ public class GameController {
 						}
 						// if it is bot turn, bot will play
 						if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
-							System.out.println("call bot play");
 							((Bot) leftSideController).play();
 						} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
-							System.out.println("call bot play");
 							((Bot) rightSideController).play();
 						}
 					}
