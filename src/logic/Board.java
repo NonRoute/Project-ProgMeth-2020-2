@@ -90,45 +90,13 @@ public class Board extends GridPane {
 			try {
 				for (int r = 0; r < NUMBER_OF_ROW; r++) {
 					switch (playingsideMoveFirst) {
-					case LEFT: // move card left playing side first
-						for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
-							if (!isEmpty(r, c)) {
-								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-										.getPlayingSide() == Direction.LEFT) {
-									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadCardMove.join();
-								}
-							}
-						}
-						for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
-							if (!isEmpty(r, c)) {
-								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-										.getPlayingSide() == Direction.RIGHT) {
-									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadCardMove.join();
-								}
-							}
-						}
+					case LEFT: // each row, move card left playing side first
+						moveLeftPlayingSideCard(r);
+						moveRightPlayingSideCard(r);
 						break;
-					case RIGHT:
-						for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
-							if (!isEmpty(r, c)) {
-								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-										.getPlayingSide() == Direction.RIGHT) {
-									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadCardMove.join();
-								}
-							}
-						}
-						for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move from right to left
-							if (!isEmpty(r, c)) {
-								if (boardCells.get(r).get(c).getCardOnBoardPane().getCard()
-										.getPlayingSide() == Direction.LEFT) {
-									boardCells.get(r).get(c).getCardOnBoardPane().move();
-									GameController.threadCardMove.join();
-								}
-							}
-						}
+					case RIGHT: // each row, move card right playing side first
+						moveRightPlayingSideCard(r);
+						moveLeftPlayingSideCard(r);
 						break;
 					}
 				}
@@ -138,6 +106,28 @@ public class Board extends GridPane {
 		});
 		GameController.threadAllCardMove = thread;
 		thread.start();
+	}
+
+	public void moveLeftPlayingSideCard(int r) throws InterruptedException {
+		for (int c = NUMBER_OF_COLUMN - 1; c >= 0; c--) { // move card left playing side, move from right to left
+			if (!isEmpty(r, c)) {
+				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.LEFT) {
+					boardCells.get(r).get(c).getCardOnBoardPane().move();
+					GameController.threadCardMove.join();
+				}
+			}
+		}
+	}
+
+	public void moveRightPlayingSideCard(int r) throws InterruptedException {
+		for (int c = 0; c < NUMBER_OF_COLUMN; c++) { // move card right playing side, from left to right
+			if (!isEmpty(r, c)) {
+				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.RIGHT) {
+					boardCells.get(r).get(c).getCardOnBoardPane().move();
+					GameController.threadCardMove.join();
+				}
+			}
+		}
 	}
 
 	public void allCardAttack() {
