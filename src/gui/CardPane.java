@@ -21,7 +21,7 @@ public abstract class CardPane extends GridPane {
 	public void setToolTip() {
 		Tooltip tooltip = new Tooltip();
 		tooltip.setFont(FontHolder.getInstance().font12);
-		tooltip.setText(card.getName() + "\n" + card.getDescription());
+		tooltip.setText(card.getType() + "\n" + card.getDescription());
 		this.setOnMouseMoved((MouseEvent e) -> {
 			tooltip.show(this, e.getScreenX(), e.getScreenY() + 10);
 		});

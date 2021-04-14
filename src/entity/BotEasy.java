@@ -42,7 +42,6 @@ public class BotEasy extends Bot {
 		Thread thread = new Thread(() -> {
 			try {
 				GameController.threadDrawCard.join(); // wait for draw card finish
-				System.out.println("Bot start play");
 				Thread.sleep(1000);
 				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
 					Platform.runLater(new Runnable() {
@@ -56,9 +55,7 @@ public class BotEasy extends Bot {
 					});
 					Thread.sleep(1000);
 				}
-				System.out.println("Bot finish play");
 				GameController.startNextPhase();
-				System.out.println("Bot press change phase");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
