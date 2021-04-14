@@ -189,7 +189,7 @@ public class GameController {
 			try {
 				if (threadBotPlay != null) {
 					threadBotPlay.join(); // wait for bot finish play
-					Thread.sleep(1000);
+//					Thread.sleep(1000);
 				}
 				Platform.runLater(new Runnable() {
 					public void run() {
