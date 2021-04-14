@@ -25,22 +25,23 @@ import sharedObject.RenderableHolder;
 
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
-	private FighterCard card;
 	private int cardWidth = 88;
 	private int cardHight = 116;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {
-		this.card = (FighterCard) card;
+		this.card = card;
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
 		addCardImage(card.getImage());
-		setUpCardAbility(card);
+		setCardAbility(card);
+		setToolTip();
 		this.getRowConstraints().add(new RowConstraints((cardHight / 4) - 2 * insets));
 	}
 
 	public void move() {
+		FighterCard card = (FighterCard) this.card;
 		Thread thread = new Thread(() -> {
 			try {
 				switch (card.getPlayingSide()) {
@@ -101,6 +102,7 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public void attack() {
+		FighterCard card = (FighterCard) this.card;
 		switch (card.getPlayingSide()) {
 		case LEFT:
 			for (int i = 1; i <= card.getAttackRange(); i++) {
@@ -120,7 +122,7 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public FighterCard getCard() {
-		return card;
+		return (FighterCard) card;
 	}
 
 	public void addCardImage(Image image) {
@@ -132,7 +134,7 @@ public class CardOnBoardPane extends CardPane {
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
 
-	public void setUpCardAbility(Card card) {
+	public void setCardAbility(Card card) {
 		if (card instanceof FighterCard) {
 			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(),
 					((FighterCard) card).getDefaultAttackDamage(), 0, 2);

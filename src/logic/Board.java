@@ -112,7 +112,7 @@ public class Board extends GridPane {
 		return -1;
 	}
 
-	public int getnearestEnemyRow(Direction playingSide, ArrayList<Integer> excludedRow) { // return -1 if no enemy
+	public int getNearestEnemyRow(Direction playingSide, ArrayList<Integer> excludedRow) { // return -1 if no enemy
 		//find a row that enemy is nearest
 		switch (playingSide) {
 		case LEFT:
@@ -177,6 +177,9 @@ public class Board extends GridPane {
 				}
 			}
 		// TODO if trick card?
+		else {
+			
+		}
 	}
 
 	public boolean isEmpty(int row, int column) { // also return false if out of board

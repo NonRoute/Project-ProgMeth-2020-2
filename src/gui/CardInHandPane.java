@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -43,6 +44,7 @@ public class CardInHandPane extends CardPane {
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
 		this.setBorder(new Border(
 				new BorderStroke(Color.PERU, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(3))));
+		setToolTip();
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -61,7 +63,7 @@ public class CardInHandPane extends CardPane {
 			}
 		});
 		addCardImage(card.getImage());
-		setUpCardAbility(card);
+		setCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
 
 	}
@@ -127,7 +129,7 @@ public class CardInHandPane extends CardPane {
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
 
-	public void setUpCardAbility(Card card) {
+	public void setCardAbility(Card card) {
 		addCardAbility(RenderableHolder.cost, card, card.getCost(), 3, 0, 2);
 
 		if (card instanceof FighterCard) {
