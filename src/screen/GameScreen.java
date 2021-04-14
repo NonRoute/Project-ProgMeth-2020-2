@@ -72,6 +72,49 @@ public class GameScreen {
 		animation.start();
 	}
 
+	public boolean canClickStartNextPhaseButton() {
+		if (GameController.currentPlayingSide == Direction.LEFT && GameController.leftSideController instanceof Bot) {
+			return false;
+		}
+		if (GameController.currentPlayingSide == Direction.RIGHT && GameController.rightSideController instanceof Bot) {
+			return false;
+		}
+		if (GameController.threadDrawCard != null) {
+			if (GameController.threadDrawCard.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAllCardMove != null) {
+			if (GameController.threadAllCardMove.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadBotPlay != null) {
+			if (GameController.threadBotPlay.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAllCardMove != null) {
+			if (GameController.threadAllCardMove.isAlive()) {
+				return false;
+			}
+		}
+		if (GameController.threadAttackCard != null) {
+			if (GameController.threadAttackCard.isAlive()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public VBox getLeftCardsInHand() {
+		return leftCardsInHand;
+	}
+
+	public VBox getRightCardsInHand() {
+		return rightCardsInHand;
+	}
+
 	public Button getStartNextPhaseButton() {
 		Button nextPhaseButton = new Button();
 		ImageView imageView = new ImageView(RenderableHolder.nextTurn);
@@ -113,58 +156,6 @@ public class GameScreen {
 		return nextPhaseButton;
 	}
 
-	public void updateStartNextPhaseButton() {
-		if (!canClickStartNextPhaseButton()) {
-			nextPhaseButton.setVisible(false);
-		} else {
-			nextPhaseButton.setVisible(true);
-		}
-	}
-
-	public boolean canClickStartNextPhaseButton() {
-		if (GameController.currentPlayingSide == Direction.LEFT && GameController.leftSideController instanceof Bot) {
-			return false;
-		}
-		if (GameController.currentPlayingSide == Direction.RIGHT && GameController.rightSideController instanceof Bot) {
-			return false;
-		}
-		if (GameController.threadDrawCard != null) {
-			if (GameController.threadDrawCard.isAlive()) {
-				return false;
-			}
-		}
-		if (GameController.threadAllCardMove != null) {
-			if (GameController.threadAllCardMove.isAlive()) {
-				return false;
-			}
-		}
-		if (GameController.threadBotPlay != null) {
-			if (GameController.threadBotPlay.isAlive()) {
-				return false;
-			}
-		}
-		if (GameController.threadAllCardMove != null) {
-			if (GameController.threadAllCardMove.isAlive()) {
-				return false;
-			}
-		}
-		if (GameController.threadAttackCard != null) {
-			if (GameController.threadAttackCard.isAlive()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public void paintComponent() {
-		gc.drawImage(RenderableHolder.backgroundGameScreen, 0, 0, 1280, 720);
-		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
-			if (entity.isVisible()) {
-				entity.draw(gc);
-			}
-		}
-	}
-
 	public void highlightHandPane(Direction direction) {
 		switch (direction) {
 		case LEFT:
@@ -176,17 +167,26 @@ public class GameScreen {
 		}
 	}
 
+	public void paintComponent() {
+		gc.drawImage(RenderableHolder.backgroundGameScreen, 0, 0, 1280, 720);
+		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
+			if (entity.isVisible()) {
+				entity.draw(gc);
+			}
+		}
+	}
+
 	public void unHighlightHandPane() {
 		leftCardsInHand.unHighlight();
 		rightCardsInHand.unHighlight();
 	}
 
-	public VBox getLeftCardsInHand() {
-		return leftCardsInHand;
-	}
-
-	public VBox getRightCardsInHand() {
-		return rightCardsInHand;
+	public void updateStartNextPhaseButton() {
+		if (!canClickStartNextPhaseButton()) {
+			nextPhaseButton.setVisible(false);
+		} else {
+			nextPhaseButton.setVisible(true);
+		}
 	}
 
 }
