@@ -2,6 +2,7 @@ package screen;
 
 import entity.Bot;
 import gui.HandPane;
+import gui.TurnText;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -33,6 +34,7 @@ public class GameScreen {
 	private BorderPane borderPane;
 	private Canvas canvas;
 	private GraphicsContext gc;
+	private TurnText turnText;
 	private Button nextPhaseButton;
 //	private GameLogic logic;
 	private HandPane leftCardsInHand;
@@ -43,6 +45,7 @@ public class GameScreen {
 		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
 		nextPhaseButton = getStartNextPhaseButton();
 		borderPane = new BorderPane();
+		turnText = new TurnText();
 		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
 		leftCardsInHand = GameController.leftSideController.getCardsInHandPane();
 		rightCardsInHand = GameController.rightSideController.getCardsInHandPane();

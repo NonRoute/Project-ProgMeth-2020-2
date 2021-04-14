@@ -1,5 +1,6 @@
 package screen;
 
+import entity.Entity;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,14 +24,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.GameController;
 import sharedObject.FontHolder;
+import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class EndGame extends StackPane {
 
 	public EndGame() {
-		GameController.leftSideController.setVisible(false);
-		GameController.rightSideController.setVisible(false);
-		
+		clearEntity();
 		this.setAlignment(Pos.CENTER);
 
 		ImageView image = new ImageView(RenderableHolder.backgroundEndGame);
@@ -40,6 +40,12 @@ public class EndGame extends StackPane {
 		this.getChildren().addAll(image, getVBox());
 		Scene scene = new Scene(this);
 		GameController.primaryStage.setScene(scene);
+	}
+
+	public void clearEntity() {
+		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
+			((Entity) e).setVisible(false);
+		}
 	}
 
 	public VBox getVBox() {
