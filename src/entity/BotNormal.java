@@ -60,6 +60,6 @@ public class BotNormal extends Bot {
 				GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
 			}
 		}
-		GameController.switchPlayingSide();
+		GameController.startNextPhase();
 	}
 }

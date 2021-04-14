@@ -16,8 +16,11 @@ import javafx.stage.Stage;
 import screen.GameScreen;
 
 public class GameController {
+	public static Thread threadDrawCard;
+	public static Thread threadBotPlay;
 	public static Thread threadCardMove;
 	public static Thread threadAllCardMove;
+	public static Thread threadAttackCard;
 
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
@@ -31,7 +34,7 @@ public class GameController {
 
 	public static Board board;
 	public static int turn;
-	public static boolean isFirstControllerPlayed;
+	public static boolean isPhaseOneEnd;
 	public static Direction currentPlayingSide;
 
 	public static Controller leftSideController;
@@ -133,7 +136,7 @@ public class GameController {
 	}
 
 	public static void startTurn() { // called when click next turn button
-		isFirstControllerPlayed = false;
+		isPhaseOneEnd = false;
 		turn++;
 		if (turn == 1) { // For first turn each side have 4 cards
 			leftSideController.drawCard(4);
@@ -151,53 +154,85 @@ public class GameController {
 		}
 	}
 
-	public static void switchPlayingSide() {
-		if (isFirstControllerPlayed == true) { // two controller have played
-			startTurn();
-			switch (currentPlayingSide) { // controller play first each turn, move card after, attack after
-			case LEFT:
-				board.moveAllCard(Direction.RIGHT);
-				break;
-			case RIGHT:
-				board.moveAllCard(Direction.LEFT);
-				break;
-			}
-			Thread thread = new Thread(() -> {
-				try {
-					System.out.println("1");
-					threadAllCardMove.join(); // wait all card move finish
-					System.out.println("2");
-					Platform.runLater(new Runnable() {
-						public void run() {
-							board.allCardAttack();
-							board.removeDeadCards();
-							board.update();
-						}
-					});
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+	public static void startNextPhase() {
+		Thread thread = new Thread(() -> {
+			try {
+				if (threadBotPlay != null) {
+					threadBotPlay.join(); // wait for bot press change side
+					Thread.sleep(1000);
 				}
-			});
-			thread.start();
-
-		} else { // one controller have played
-			if (currentPlayingSide == Direction.LEFT) {
-				currentPlayingSide = Direction.RIGHT;
-				gameScreen.unHighlightHandPane();
-				gameScreen.highlightHandPane(Direction.RIGHT);
-			} else {
-				currentPlayingSide = Direction.LEFT;
-				gameScreen.unHighlightHandPane();
-				gameScreen.highlightHandPane(Direction.LEFT);
+				Platform.runLater(new Runnable() {
+					public void run() {
+						System.out.println("Start next phase");
+						if (isPhaseOneEnd == true) { // two controller have played
+							startMoveCard();
+							startAttackCard();
+							startTurn();
+						} else { // one controller have played
+							switchPlayingSide();
+						}
+						// if it is bot turn, call .play()
+						if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
+							System.out.println("call bot play");
+							((Bot) leftSideController).play();
+						} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
+							System.out.println("call bot play");
+							((Bot) rightSideController).play();
+						}
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			isFirstControllerPlayed = true;
-		}
-		// if it is bot turn, call .play()
-		if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
-			((Bot) leftSideController).play();
-		} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
-			((Bot) rightSideController).play();
-		}
+		});
+		thread.start();
 	}
 
+	public static void switchPlayingSide() {
+		if (currentPlayingSide == Direction.LEFT) {
+			currentPlayingSide = Direction.RIGHT;
+			gameScreen.unHighlightHandPane();
+			gameScreen.highlightHandPane(Direction.RIGHT);
+		} else {
+			currentPlayingSide = Direction.LEFT;
+			gameScreen.unHighlightHandPane();
+			gameScreen.highlightHandPane(Direction.LEFT);
+		}
+		isPhaseOneEnd = true;
+	}
+
+	public static void startMoveCard() {
+		System.out.println("Start Move Card");
+		switch (currentPlayingSide) { // controller play first each turn, move card after, attack after
+		case LEFT:
+			board.moveAllCard(Direction.RIGHT);
+			break;
+		case RIGHT:
+			board.moveAllCard(Direction.LEFT);
+			break;
+		}
+		System.out.println("End Move Card");
+	}
+
+	public static void startAttackCard() {
+		Thread thread = new Thread(() -> {
+			try {
+				threadAllCardMove.join(); // wait all card move finish
+				System.out.println("Start Attack Card");
+				Platform.runLater(new Runnable() {
+					public void run() {
+						board.allCardAttack();
+						board.removeDeadCards();
+						board.update();
+						System.out.println("End Attack card");
+					}
+				});
+				System.out.println("End Attack card!?");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		thread.start();
+		threadAttackCard = thread;
+	}
 }

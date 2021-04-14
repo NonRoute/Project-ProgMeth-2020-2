@@ -83,7 +83,7 @@ public class GameScreen {
 		nextTurn.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(5))));
 		nextTurn.setOnMouseClicked((MouseEvent e) -> {
-			GameController.switchPlayingSide();
+			GameController.startNextPhase();
 			GameController.board.unHighlightAllCells();
 		});
 		nextTurn.setOnMouseEntered((MouseEvent e) -> {

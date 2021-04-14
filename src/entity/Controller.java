@@ -53,6 +53,12 @@ public abstract class Controller extends Entity {
 		}
 		Thread thread = new Thread(() -> {
 			try {
+				if (GameController.threadAttackCard != null) {
+					System.out.println("..wait for attack finish");
+					GameController.threadAttackCard.join();
+					System.out.println("..now attack finish");
+				}
+				System.out.println("Start Draw Card");
 				for (int i = 0; i < number; i++) {
 					Platform.runLater(new Runnable() {
 						public void run() {
@@ -79,11 +85,13 @@ public abstract class Controller extends Entity {
 					});
 					Thread.sleep(500); // Delay 0.5 second
 				}
+				System.out.println("End Draw Card");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		});
 		thread.start();
+		GameController.threadDrawCard = thread;
 	}
 
 	public int getMaxCardCostCanDraw() {

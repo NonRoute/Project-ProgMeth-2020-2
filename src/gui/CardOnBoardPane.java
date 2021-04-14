@@ -90,7 +90,6 @@ public class CardOnBoardPane extends CardPane {
 					break;
 				}
 			} catch (
-
 			InterruptedException e) {
 				e.printStackTrace();
 			}

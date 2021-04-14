@@ -39,9 +39,10 @@ public class BotEasy extends Bot {
 
 	public void play() {
 		// BotEasy will play card until can't play
-		System.out.println("Bot play");
 		Thread thread = new Thread(() -> {
 			try {
+				GameController.threadDrawCard.join(); // wait for draw card finish
+				System.out.println("Bot start play");
 				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
 					Platform.runLater(new Runnable() {
 						public void run() { // play
@@ -54,15 +55,26 @@ public class BotEasy extends Bot {
 					});
 					Thread.sleep(1000);
 				}
-				Platform.runLater(new Runnable() {
-					public void run() {
-						GameController.switchPlayingSide();
-					}
-				});
+				System.out.println("Bot finish play");
+				GameController.startNextPhase();
+				System.out.println("Bot press change phase");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		});
 		thread.start();
+		GameController.threadBotPlay = thread;
+//		Thread thread1 = new Thread(() -> {
+//			try {
+//				thread.join();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			GameController.startNextPhase();
+//			System.out.println("Bot press change side");
+//		});
+//		thread1.start();
+//		GameController.threadBotPlay = thread1;
 	}
 }
