@@ -176,7 +176,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public boolean isEnemy(int row, int column, Direction playingSide) {
+	public boolean isEnemy(int row, int column, Direction playingSide) { //if OutOfBoard return false
 		if (!isEmpty(row, column) && !isOutOfBoard(row, column)) {
 			return !boardCells.get(row).get(column).getCard().getPlayingSide().equals(playingSide);
 		} else
@@ -221,6 +221,7 @@ public class Board extends GridPane {
 	}
 
 	public int getNearestEnemyColumn(int row, Direction playingSide) { // return -1 if no enemy
+		//find the first column that is enemy
 		switch (playingSide) {
 		case LEFT:
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
@@ -241,6 +242,7 @@ public class Board extends GridPane {
 	}
 
 	public int getnearestEnemyRow(Direction playingSide, ArrayList<Integer> excludedRow) { // return -1 if no enemy
+		//find a row that enemy is nearest
 		switch (playingSide) {
 		case LEFT:
 			int column = NUMBER_OF_COLUMN;
@@ -248,7 +250,8 @@ public class Board extends GridPane {
 			for (int r = 0; r < NUMBER_OF_ROW; r++) {
 				if (!excludedRow.contains(r)) {
 					if (getNearestEnemyColumn(r, playingSide) < column && getNearestEnemyColumn(r, playingSide) != -1) {
-						column = getNearestEnemyColumn(row, playingSide);
+						//find nearer row
+						column = getNearestEnemyColumn(r, playingSide);
 						row = r;
 					}
 				}
@@ -261,7 +264,7 @@ public class Board extends GridPane {
 				if (!excludedRow.contains(r)) {
 					if (getNearestEnemyColumn(r, playingSide) > column1
 							&& getNearestEnemyColumn(r, playingSide) != -1) {
-						column1 = getNearestEnemyColumn(row1, playingSide);
+						column1 = getNearestEnemyColumn(r, playingSide);
 						row1 = r;
 					}
 				}
