@@ -65,17 +65,5 @@ public class BotEasy extends Bot {
 		});
 		thread.start();
 		GameController.threadBotPlay = thread;
-//		Thread thread1 = new Thread(() -> {
-//			try {
-//				thread.join();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			GameController.startNextPhase();
-//			System.out.println("Bot press change side");
-//		});
-//		thread1.start();
-//		GameController.threadBotPlay = thread1;
 	}
 }

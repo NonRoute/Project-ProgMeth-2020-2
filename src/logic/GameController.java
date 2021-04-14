@@ -55,44 +55,6 @@ public class GameController {
 		testDeck = new Deck("Test", "TestDeck.csv"); // TODO Remove this when game finish
 	}
 
-	public static void playGame() {
-		switch (gameMode) {
-		case "PvB":
-			initializeGamePvB();
-			break;
-		case "PvP":
-			initializeGamePvP();
-			break;
-		case "BvB":
-			initializeGameBvB();
-			break;
-		}
-	}
-
-	public static void initializeGamePvB() {
-		switch (difficultyRight) {
-		case "Easy":
-			leftSideController = new Player(30, 1, leftSideDeck, Direction.LEFT);
-			rightSideController = new BotEasy(20, 1, rightSideDeck, Direction.RIGHT);
-			break;
-		case "Normal":
-			leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
-			rightSideController = new BotNormal(20, 1, rightSideDeck, Direction.RIGHT);
-			break;
-		case "Hard":
-			leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
-			rightSideController = new BotHard(30, 1, rightSideDeck, Direction.RIGHT);
-			break;
-		}
-		startGame();
-	}
-
-	public static void initializeGamePvP() {
-		leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
-		rightSideController = new Player(20, 1, rightSideDeck, Direction.RIGHT);
-		startGame();
-	}
-
 	public static void initializeGameBvB() {
 		switch (difficultyLeft) {
 		case "Easy":
@@ -119,99 +81,42 @@ public class GameController {
 		startGame();
 	}
 
-	public static void startGame() {
-		gameScreen = new GameScreen();
-		winner = null;
-		turn = 0;
-		// Random side play first
-		Random rand = new Random();
-		if (rand.nextInt(2) == 1) {
-			currentPlayingSide = Direction.LEFT;
-			gameScreen.highlightHandPane(Direction.LEFT);
-		} else {
-			currentPlayingSide = Direction.RIGHT;
-			gameScreen.highlightHandPane(Direction.RIGHT);
-		}
-		startTurn();
-	}
-
-	public static void startTurn() { // called when click next turn button
-		isPhaseOneEnd = false;
-		turn++;
-		if (turn == 1) { // For first turn each side have 4 cards
-			leftSideController.drawCard(4);
-			rightSideController.drawCard(4);
-//			if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
-//				((Bot) leftSideController).play();
-//			} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
-//				((Bot) rightSideController).play();
-//			}
-		} else { // each side draw 2 card, money += turn
-			leftSideController.setMoney(leftSideController.getMoney() + turn);
-			rightSideController.setMoney(rightSideController.getMoney() + turn);
-			leftSideController.drawCard(2);
-			rightSideController.drawCard(2);
-		}
-	}
-
-	public static void startNextPhase() {
-		Thread thread = new Thread(() -> {
-			try {
-				if (threadBotPlay != null) {
-					threadBotPlay.join(); // wait for bot press change side
-					Thread.sleep(1000);
-				}
-				Platform.runLater(new Runnable() {
-					public void run() {
-						System.out.println("Start next phase");
-						if (isPhaseOneEnd == true) { // two controller have played
-							startMoveCard();
-							startAttackCard();
-							startTurn();
-						} else { // one controller have played
-							switchPlayingSide();
-						}
-						// if it is bot turn, call .play()
-						if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
-							System.out.println("call bot play");
-							((Bot) leftSideController).play();
-						} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
-							System.out.println("call bot play");
-							((Bot) rightSideController).play();
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-		thread.start();
-	}
-
-	public static void switchPlayingSide() {
-		if (currentPlayingSide == Direction.LEFT) {
-			currentPlayingSide = Direction.RIGHT;
-			gameScreen.unHighlightHandPane();
-			gameScreen.highlightHandPane(Direction.RIGHT);
-		} else {
-			currentPlayingSide = Direction.LEFT;
-			gameScreen.unHighlightHandPane();
-			gameScreen.highlightHandPane(Direction.LEFT);
-		}
-		isPhaseOneEnd = true;
-	}
-
-	public static void startMoveCard() {
-		System.out.println("Start Move Card");
-		switch (currentPlayingSide) { // controller play first each turn, move card after, attack after
-		case LEFT:
-			board.moveAllCard(Direction.RIGHT);
+	public static void initializeGamePvB() {
+		switch (difficultyRight) {
+		case "Easy":
+			leftSideController = new Player(30, 1, leftSideDeck, Direction.LEFT);
+			rightSideController = new BotEasy(20, 1, rightSideDeck, Direction.RIGHT);
 			break;
-		case RIGHT:
-			board.moveAllCard(Direction.LEFT);
+		case "Normal":
+			leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
+			rightSideController = new BotNormal(20, 1, rightSideDeck, Direction.RIGHT);
+			break;
+		case "Hard":
+			leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
+			rightSideController = new BotHard(30, 1, rightSideDeck, Direction.RIGHT);
 			break;
 		}
-		System.out.println("End Move Card");
+		startGame();
+	}
+
+	public static void initializeGamePvP() {
+		leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
+		rightSideController = new Player(20, 1, rightSideDeck, Direction.RIGHT);
+		startGame();
+	}
+
+	public static void playGame() {
+		switch (gameMode) {
+		case "PvB":
+			initializeGamePvB();
+			break;
+		case "PvP":
+			initializeGamePvP();
+			break;
+		case "BvB":
+			initializeGameBvB();
+			break;
+		}
 	}
 
 	public static void startAttackCard() {
@@ -234,5 +139,105 @@ public class GameController {
 		});
 		thread.start();
 		threadAttackCard = thread;
+	}
+
+	public static void startFirstTurn() {
+		isPhaseOneEnd = false;
+		turn++;
+		// first turn each side have 4 cards
+		leftSideController.drawCard(4);
+		rightSideController.drawCard(4);
+		// if it is bot turn, bot will play
+		if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
+			((Bot) leftSideController).play();
+		} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
+			((Bot) rightSideController).play();
+		}
+	}
+
+	public static void startGame() {
+		gameScreen = new GameScreen();
+		winner = null;
+		turn = 0;
+		// Random side play first
+		Random rand = new Random();
+		if (rand.nextInt(2) == 1) {
+			currentPlayingSide = Direction.LEFT;
+			gameScreen.highlightHandPane(Direction.LEFT);
+		} else {
+			currentPlayingSide = Direction.RIGHT;
+			gameScreen.highlightHandPane(Direction.RIGHT);
+		}
+		startFirstTurn();
+	}
+
+	public static void startMoveCard() {
+		System.out.println("Start Move Card");
+		switch (currentPlayingSide) { // controller play first each turn, move card after, attack after
+		case LEFT:
+			board.moveAllCard(Direction.RIGHT);
+			break;
+		case RIGHT:
+			board.moveAllCard(Direction.LEFT);
+			break;
+		}
+		System.out.println("End Move Card");
+	}
+
+	public static void startNextPhase() {
+		Thread thread = new Thread(() -> {
+			try {
+				if (threadBotPlay != null) {
+					threadBotPlay.join(); // wait for bot finish play
+					Thread.sleep(1000);
+				}
+				Platform.runLater(new Runnable() {
+					public void run() {
+						System.out.println("Start next phase");
+						if (isPhaseOneEnd == true) { // two controller have played
+							startMoveCard();
+							startAttackCard();
+							startTurn();
+						} else { // one controller have played
+							switchPlayingSide();
+						}
+						// if it is bot turn, bot will play
+						if ((currentPlayingSide == Direction.LEFT) && (leftSideController instanceof Bot)) {
+							System.out.println("call bot play");
+							((Bot) leftSideController).play();
+						} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
+							System.out.println("call bot play");
+							((Bot) rightSideController).play();
+						}
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		thread.start();
+	}
+
+	public static void startTurn() { // called when click next turn button
+		isPhaseOneEnd = false;
+		turn++;
+		// each side draw 2 card, money += turn
+		leftSideController.setMoney(leftSideController.getMoney() + turn);
+		rightSideController.setMoney(rightSideController.getMoney() + turn);
+		leftSideController.drawCard(2);
+		rightSideController.drawCard(2);
+	}
+
+	public static void switchPlayingSide() {
+		if (currentPlayingSide == Direction.LEFT) {
+			currentPlayingSide = Direction.RIGHT;
+			gameScreen.unHighlightHandPane();
+			gameScreen.highlightHandPane(Direction.RIGHT);
+		} else {
+			currentPlayingSide = Direction.LEFT;
+			gameScreen.unHighlightHandPane();
+			gameScreen.highlightHandPane(Direction.LEFT);
+		}
+		isPhaseOneEnd = true;
 	}
 }

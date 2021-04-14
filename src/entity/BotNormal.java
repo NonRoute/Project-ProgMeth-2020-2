@@ -5,8 +5,10 @@ import java.util.Collections;
 
 import card.Card;
 import card.FighterCard;
+import card.Trickable;
 import deck.Deck;
 import gui.CardInHandPane;
+import javafx.application.Platform;
 import logic.Direction;
 import logic.GameController;
 
@@ -16,16 +18,16 @@ public class BotNormal extends Bot {
 		super(heart, money, deck, playingSide);
 	}
 
-	public CardInHandPane selectCard() { // select movable card first
+	public CardInHandPane selectCard() { // select Trickable card first
 		ArrayList<CardInHandPane> cardsCanPlay = getAllCardsCanPlay();
 		if (cardsCanPlay.size() > 0) {
 			Collections.shuffle(cardsCanPlay);
 			for (CardInHandPane e : cardsCanPlay) {
-				if (e.getCard() instanceof FighterCard) {
+				if (e.getCard() instanceof Trickable) {
 					return e;
 				}
 			}
-			return cardsCanPlay.get(0); // no movable card, select any card
+			return cardsCanPlay.get(0); // no Trickable card, select any card
 		} else {
 			return null; // can't play any card
 		}
@@ -53,13 +55,29 @@ public class BotNormal extends Bot {
 
 	public void play() {
 		// BotNormal will play card until can't play
-		while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can play
-			CardInHandPane selectCard = selectCard();
-			useCard(cardsInHandPane.indexOf(selectCard));
-			if (selectCard.getCard() instanceof FighterCard) {
-				GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+		Thread thread = new Thread(() -> {
+			try {
+				GameController.threadDrawCard.join();
+				Thread.sleep(1000);
+				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) {
+					// have card can play and have row can play
+					Platform.runLater(new Runnable() {
+						public void run() {
+							CardInHandPane selectCard = selectCard();
+							useCard(cardsInHandPane.indexOf(selectCard));
+							if (selectCard.getCard() instanceof FighterCard) {
+								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+							}
+						}
+					});
+					Thread.sleep(1000);
+				}
+				GameController.startNextPhase();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		}
-		GameController.startNextPhase();
+		});
+		thread.start();
+		GameController.threadBotPlay = thread;
 	}
 }

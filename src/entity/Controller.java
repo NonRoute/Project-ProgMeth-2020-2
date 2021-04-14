@@ -114,12 +114,14 @@ public abstract class Controller extends Entity {
 					rowCanPlay.add(i);
 				}
 			}
+			break;
 		case RIGHT:
 			for (int i = 0; i < Board.NUMBER_OF_ROW; i++) {
 				if (GameController.board.isEmpty(i, Board.NUMBER_OF_COLUMN - 1)) {
 					rowCanPlay.add(i);
 				}
 			}
+			break;
 		}
 		return rowCanPlay;
 	}
