@@ -43,6 +43,7 @@ public class BotEasy extends Bot {
 			try {
 				GameController.threadDrawCard.join(); // wait for draw card finish
 				System.out.println("Bot start play");
+				Thread.sleep(1000);
 				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
 					Platform.runLater(new Runnable() {
 						public void run() { // play

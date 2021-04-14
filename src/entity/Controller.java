@@ -54,9 +54,7 @@ public abstract class Controller extends Entity {
 		Thread thread = new Thread(() -> {
 			try {
 				if (GameController.threadAttackCard != null) {
-					System.out.println("..wait for attack finish");
 					GameController.threadAttackCard.join();
-					System.out.println("..now attack finish");
 				}
 				System.out.println("Start Draw Card");
 				for (int i = 0; i < number; i++) {

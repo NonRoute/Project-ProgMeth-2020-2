@@ -218,16 +218,16 @@ public class GameController {
 		Thread thread = new Thread(() -> {
 			try {
 				threadAllCardMove.join(); // wait all card move finish
+				Thread.sleep(1000);
 				System.out.println("Start Attack Card");
 				Platform.runLater(new Runnable() {
 					public void run() {
 						board.allCardAttack();
 						board.removeDeadCards();
 						board.update();
-						System.out.println("End Attack card");
 					}
 				});
-				System.out.println("End Attack card!?");
+				System.out.println("End Attack card");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
