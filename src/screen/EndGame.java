@@ -22,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.GameController;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class EndGame extends StackPane {
@@ -46,7 +47,7 @@ public class EndGame extends StackPane {
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setSpacing(50);
 		Text text = new Text("The winner is " + GameController.winner + " side!!");
-		text.setFont(Font.font("Arial", FontWeight.BOLD, 50));
+		text.setFont(FontHolder.getInstance().font48);
 		vBox.getChildren().addAll(text, getGoBackButton());
 		return vBox;
 	}
@@ -57,7 +58,7 @@ public class EndGame extends StackPane {
 		goBackButton.setPrefSize(300, 100);
 		goBackButton
 				.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, new CornerRadii(5), new Insets(2))));
-		goBackButton.setFont(Font.font("Arial", FontWeight.BOLD, 40));
+		goBackButton.setFont(FontHolder.getInstance().font36);
 		goBackButton.setTextFill(Color.NAVY);
 		goBackButton.setBorder(new Border(
 				new BorderStroke(Color.NAVY, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(5))));

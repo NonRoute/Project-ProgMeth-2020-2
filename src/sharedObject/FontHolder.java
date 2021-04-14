@@ -9,6 +9,7 @@ public class FontHolder {
 	public Font font18;
 	public Font font24;
 	public Font font28;
+	public Font font32;
 	public Font font36;
 	public Font font48;
 	public Font font64;
@@ -26,6 +27,7 @@ public class FontHolder {
 		this.font18 = this.loadFont("EvilEmpire-4BBVK", "ttf", 18.0);
 		this.font24 = this.loadFont("EvilEmpire-4BBVK", "ttf", 24.0);
 		this.font28 = this.loadFont("EvilEmpire-4BBVK", "ttf", 28.0);
+		this.font32 = this.loadFont("EvilEmpire-4BBVK", "ttf", 32.0);
 		this.font36 = this.loadFont("EvilEmpire-4BBVK", "ttf", 36.0);
 		this.font48 = this.loadFont("EvilEmpire-4BBVK", "ttf", 48.0);
 		this.font64 = this.loadFont("EvilEmpire-4BBVK", "ttf", 64.0);

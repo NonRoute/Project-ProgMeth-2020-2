@@ -26,6 +26,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class CardInHandPane extends CardPane {
@@ -146,7 +147,7 @@ public class CardInHandPane extends CardPane {
 		imageView.setFitWidth((cardWidth - 2 * insets) / 5);
 		imageView.setFitHeight((cardHight - 2 * insets) / 3);
 		Text text1 = new Text();
-		text1.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		text1.setFont(FontHolder.getInstance().font12);
 		text1.setText("" + text);
 		text1.setFill(Color.BLACK);
 		stackPane.getChildren().addAll(imageView, text1);

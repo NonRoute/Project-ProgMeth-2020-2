@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.GameController;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class CardOnBoardPane extends CardPane {
@@ -149,7 +150,7 @@ public class CardOnBoardPane extends CardPane {
 		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
 		imageView.setFitHeight((cardHight - 2 * insets) / 4);
 		Text text1 = new Text();
-		text1.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		text1.setFont(FontHolder.getInstance().font18);
 		text1.setText("" + text);
 		text1.setFill(Color.BLACK);
 		stackPane.getChildren().addAll(imageView, text1);

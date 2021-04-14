@@ -16,6 +16,7 @@ import logic.Board;
 import logic.Direction;
 import logic.GameController;
 import screen.EndGame;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public abstract class Controller extends Entity {
@@ -177,7 +178,7 @@ public abstract class Controller extends Entity {
 
 	public void draw(GraphicsContext gc) {
 		gc.drawImage(RenderableHolder.heart, x, y, 50, 50);
-		gc.setFont(Font.font("Arial", FontWeight.BOLD, 25));
+		gc.setFont(FontHolder.getInstance().font24);
 		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
 		gc.setFill(Color.DARKRED);
 		if (heart >= 10) {
