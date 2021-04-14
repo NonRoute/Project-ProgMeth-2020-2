@@ -62,7 +62,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(1000);
+							break;
 						}
 					}
 					break;
@@ -84,7 +84,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(1000);
+							break;
 						}
 					}
 					break;
