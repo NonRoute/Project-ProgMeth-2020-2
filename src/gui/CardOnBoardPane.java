@@ -54,7 +54,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(500);
+							Thread.sleep(250);
 						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() + 1)) {
 							// can attack controller
 							Platform.runLater(new Runnable() {
@@ -77,7 +77,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(500);
+							Thread.sleep(250);
 						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
 							Platform.runLater(new Runnable() {
 								public void run() {

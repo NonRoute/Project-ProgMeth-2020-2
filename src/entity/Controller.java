@@ -48,16 +48,16 @@ public abstract class Controller extends Entity {
 	}
 
 	public void drawCard(int number) {
-		// if card exceed max; not draw
-		if (cardsInHandPane.getSize() >= 9) {
-			return;
-		}
 		Thread thread = new Thread(() -> {
 			try {
 				if (GameController.threadAttackCard != null) {
 					GameController.threadAttackCard.join();
 				}
+				// if card exceed max; not draw
 				for (int i = 0; i < number; i++) {
+					if (cardsInHandPane.getSize() >= 9) {
+						break;
+					}
 					Platform.runLater(new Runnable() {
 						public void run() {
 							// random pick 1 card from deck
@@ -178,19 +178,21 @@ public abstract class Controller extends Entity {
 
 	public void draw(GraphicsContext gc) {
 		gc.drawImage(RenderableHolder.heart, x, y, 50, 50);
-		gc.setFont(FontHolder.getInstance().font24);
+		gc.setFont(FontHolder.getInstance().font28);
 		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
 		gc.setFill(Color.DARKRED);
 		if (heart >= 10) {
-			gc.fillText("" + heart, x + 11, y + 33);
+			gc.fillText("" + heart, x + 14, y + 33);
 		} else {
-			gc.fillText("" + heart, x + 17, y + 33);
+			gc.fillText("" + heart, x + 18, y + 33);
 		}
 		gc.setFill(Color.DARKGOLDENROD);
-		if (money >= 10) {
-			gc.fillText("" + money, x + 71, y + 33);
+		if (money >= 100) {
+			gc.fillText("" + money, x + 66, y + 33);
+		} else if (money >= 10) {
+			gc.fillText("" + money, x + 73, y + 33);
 		} else {
-			gc.fillText("" + money, x + 77, y + 33);
+			gc.fillText("" + money, x + 80, y + 33);
 		}
 	}
 }
