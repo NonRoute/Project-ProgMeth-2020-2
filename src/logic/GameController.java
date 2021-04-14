@@ -225,13 +225,14 @@ public class GameController {
 	}
 
 	public static void switchPlayingSide() {
+		gameScreen.getLeftCardsInHand().unHightlightAllCardInHandPane();
+		gameScreen.getRightCardsInHand().unHightlightAllCardInHandPane();
+		gameScreen.unHighlightHandPane();
 		if (currentPlayingSide == Direction.LEFT) {
 			currentPlayingSide = Direction.RIGHT;
-			gameScreen.unHighlightHandPane();
 			gameScreen.highlightHandPane(Direction.RIGHT);
 		} else {
 			currentPlayingSide = Direction.LEFT;
-			gameScreen.unHighlightHandPane();
 			gameScreen.highlightHandPane(Direction.LEFT);
 		}
 		isPhaseOneEnd = true;

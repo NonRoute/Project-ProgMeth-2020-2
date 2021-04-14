@@ -111,11 +111,11 @@ public class GameScreen {
 		return true;
 	}
 
-	public VBox getLeftCardsInHand() {
+	public HandPane getLeftCardsInHand() {
 		return leftCardsInHand;
 	}
 
-	public VBox getRightCardsInHand() {
+	public HandPane getRightCardsInHand() {
 		return rightCardsInHand;
 	}
 

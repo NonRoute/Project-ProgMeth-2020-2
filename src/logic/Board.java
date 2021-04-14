@@ -81,15 +81,10 @@ public class Board extends GridPane {
 	}
 
 	public ArrayList<FighterCard> getFriendly(Direction playingSide) {
-		if (playingSide == Direction.LEFT) {
-			playingSide = Direction.RIGHT;
-		} else {
-			playingSide = Direction.LEFT;
-		}
 		ArrayList<FighterCard> friendly = new ArrayList<>();
 		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				if (isEnemy(r, c, playingSide)) {
+				if (isFriendly(r, c, playingSide)) {
 					friendly.add(boardCells.get(r).get(c).getCard());
 				}
 			}
@@ -222,14 +217,11 @@ public class Board extends GridPane {
 	}
 
 	public void highlightCellCanPlay(CardInHandPane selectedCardPane) {
-		System.out.println("WWW");
 		if (!(selectedCardPane.getCard() instanceof TrickCard)) {// if not trickCard
-			System.out.println("SSS");
 			for (int r = 0; r < NUMBER_OF_ROW; r++) {
 				switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 				case LEFT:
 					if (isEmpty(r, 0)) {
-						System.out.println("GGGG" + r);
 						boardCells.get(r).get(0).highlight();
 					}
 					break;
