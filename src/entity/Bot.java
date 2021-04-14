@@ -5,16 +5,17 @@ import java.util.Random;
 
 import card.Card;
 import deck.Deck;
+import gui.CardInHandPane;
 import logic.Board;
 import logic.Direction;
 
 public abstract class Bot extends Controller {
 
-	public Bot(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
-		super(heart, money, deck, initialNumberOfCardInHand, playingSide);
+	public Bot(int heart, int money, Deck deck, Direction playingSide) {
+		super(heart, money, deck, playingSide);
 	}
 
-	public abstract Card selectCard();
+	public abstract CardInHandPane selectCard();
 
 	public abstract int selectRow();
 
@@ -30,13 +31,13 @@ public abstract class Bot extends Controller {
 		return rand.nextInt(cardsInHandPane.getSize());
 	}
 
-	public boolean isCardCanPlay(Card card) {
-		return card.getCost() > money;
+	public boolean isCardCanPlay(CardInHandPane cardPane) {
+		return cardPane.getCard().getCost() > money;
 	}
 
-	public ArrayList<Card> getAllCardsCanPlay() {
-		ArrayList<Card> CardsCanPlay = new ArrayList<>();
-		for (Card c : cardsInHandPane.getCardsList()) {
+	public ArrayList<CardInHandPane> getAllCardsCanPlay() {
+		ArrayList<CardInHandPane> CardsCanPlay = new ArrayList<>();
+		for (CardInHandPane c : cardsInHandPane.getCardsList()) {
 			if (!isCardCanPlay(c)) {
 				CardsCanPlay.add(c);
 			}

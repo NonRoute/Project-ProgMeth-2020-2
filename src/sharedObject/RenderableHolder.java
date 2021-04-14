@@ -18,6 +18,7 @@ public class RenderableHolder {
 	public static Image backgroundSelectDeckPvP;
 	public static Image backgroundSelectDeckBvB;
 	public static Image backgroundGameScreen;
+	public static Image backgroundEndGame;
 	public static Image cost;
 	public static Image attackDamage;
 	public static Image attackRange;
@@ -57,10 +58,14 @@ public class RenderableHolder {
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckBvB.png").toString());
 		RenderableHolder.backgroundGameScreen = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundGameScreen.png").toString());
+		RenderableHolder.backgroundEndGame = new Image(
+				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundEndGame.png").toString());
+		
 		RenderableHolder.testDeckNameLeft = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameLeft.png").toString());
 		RenderableHolder.testDeckNameRight = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameRight.png").toString());
+		
 		RenderableHolder.cost = new Image(
 				ClassLoader.getSystemResource(String.valueOf(p) + "cost.png").toString());
 		RenderableHolder.attackDamage = new Image(

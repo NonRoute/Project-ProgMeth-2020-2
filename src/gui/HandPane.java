@@ -7,12 +7,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import logic.Direction;
 import logic.GameController;
 
 public class HandPane extends VBox {
@@ -25,6 +33,19 @@ public class HandPane extends VBox {
 		this.setPadding(new Insets(10));
 		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
 	}
+	
+	public void highlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.SANDYBROWN, new CornerRadii(5), Insets.EMPTY)));
+		this.setBorder(new Border(
+				new BorderStroke(Color.GOLD, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(3))));
+		this.setEffect(new DropShadow());
+	}
+	
+	public void unHighlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
+		this.setBorder(null);
+		this.setEffect(null);
+	}
 
 	public int getSize() {
 		return cardsList.size();
@@ -34,12 +55,8 @@ public class HandPane extends VBox {
 		return cardsList.get(index).getCard();
 	}
 
-	public ArrayList<Card> getCardsList() {
-		ArrayList<Card> cards = new ArrayList<Card>();
-		for (CardInHandPane e : cardsList) {
-			cards.add(e.getCard());
-		}
-		return cards;
+	public ObservableList<CardInHandPane> getCardsList() {
+		return cardsList;
 	}
 
 	public void add(String deckName, Card card) {
@@ -49,7 +66,6 @@ public class HandPane extends VBox {
 	}
 
 	public void remove(int index) {
-		System.out.println("Remove");
 		cardsList.remove(index);
 		this.getChildren().remove(index);
 	}
@@ -67,11 +83,11 @@ public class HandPane extends VBox {
 		return cardsList.indexOf(cardPane);
 	}
 
-	public void setSelectedCard(GridPane selectedCardPane, Card selectedCard) {
-		GameController.selectedCardPane = (CardInHandPane) selectedCardPane;
+	public void setSelectedCard(CardInHandPane selectedCardPane) {
+		GameController.selectedCardPane = selectedCardPane;
 		resetButtonsBackGroundColor();
-		((CardInHandPane) selectedCardPane).highlight();
-		GameController.board.highlightCellCanPlay();
+		(selectedCardPane).highlight();
+		GameController.board.highlightCellCanPlay(selectedCardPane);
 	}
 
 	public void resetButtonsBackGroundColor() {

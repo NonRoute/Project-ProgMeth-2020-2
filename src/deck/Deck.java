@@ -29,7 +29,6 @@ public class Deck {
 		for (int i = 2; i < deckData.length; i++) { // each row = each cards
 			switch (deckData[i][0]) {
 			case "Fighter":
-				System.out.println("Import a Fighter");
 				FighterCard fighterCard = new FighterCard(name, deckData[i][1], deckData[i][2],
 						Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
 						Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
@@ -37,7 +36,6 @@ public class Deck {
 				deck.add(fighterCard);
 				break;
 			case "Magician":
-				System.out.println("Import a Magician");
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
 					MagicianCard magicianCard = new MagicianCard(name, deckData[i][1], deckData[i][2],
@@ -49,7 +47,6 @@ public class Deck {
 				}
 				break;
 			case "Trick":
-				System.out.println("Import a Trick");
 				switch (deckData[i][8]) {
 				case ("ChangeCardAbility"):
 					TrickCard trickCard = new TrickCard(name, deckData[i][1], deckData[i][2],

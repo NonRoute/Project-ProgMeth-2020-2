@@ -1,7 +1,8 @@
 package gui;
 
 import card.Card;
-import card.Movable;
+import card.FighterCard;
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,27 +18,107 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import logic.GameController;
 import sharedObject.RenderableHolder;
 
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
-	private Card card;
+	private FighterCard card;
 	private int cardWidth = 88;
 	private int cardHight = 116;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {
-		this.card = card;
+		this.card = (FighterCard) card;
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
 		addCardImage(card.getImage());
 		setUpCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 4) - 2 * insets));
+	}
+
+	public void move() {
+		Thread thread = new Thread(() -> {
+			try {
+				switch (card.getPlayingSide()) {
+				case LEFT:
+					for (int i = 0; i < card.getSpeed(); i++) {
+						if (GameController.board.isEmpty(card.getRow(), card.getColumn() + 1)) {
+							Platform.runLater(new Runnable() {
+								public void run() {
+									// can move to next cell
+									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+									card.setColumn(card.getColumn() + 1);
+									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
+								}
+							});
+							Thread.sleep(500);
+						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() + 1)) {
+							// can attack controller
+							Platform.runLater(new Runnable() {
+								public void run() {
+									GameController.rightSideController.reduceHeart(card.getAttackDamage());
+									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+								}
+							});
+							break;
+						}
+					}
+					break;
+				case RIGHT:
+					for (int i = 0; i < card.getSpeed(); i++) {
+						if (GameController.board.isEmpty(card.getRow(), card.getColumn() - 1)) {
+							Platform.runLater(new Runnable() {
+								public void run() {
+									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+									card.setColumn(card.getColumn() - 1);
+									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
+								}
+							});
+							Thread.sleep(500);
+						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
+							Platform.runLater(new Runnable() {
+								public void run() {
+									GameController.leftSideController.reduceHeart(card.getAttackDamage());
+									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+								}
+							});
+							break;
+						}
+					}
+					break;
+				}
+			} catch (
+			InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		GameController.threadCardMove = thread;
+		thread.start();
 
 	}
 
-	public Card getCard() {
+	public void attack() {
+		switch (card.getPlayingSide()) {
+		case LEFT:
+			for (int i = 1; i <= card.getAttackRange(); i++) {
+				if (GameController.board.isEnemy(card.getRow(), card.getColumn() + i, card.getPlayingSide())) {
+					GameController.board.attackCard(card.getRow(), card.getColumn() + i, card.getAttackDamage());
+				}
+			}
+			break;
+		case RIGHT:
+			for (int i = 1; i <= card.getAttackRange(); i++) {
+				if (GameController.board.isEnemy(card.getRow(), card.getColumn() - i, card.getPlayingSide())) {
+					GameController.board.attackCard(card.getRow(), card.getColumn() - i, card.getAttackDamage());
+				}
+			}
+			break;
+		}
+	}
+
+	public FighterCard getCard() {
 		return card;
 	}
 
@@ -51,11 +132,11 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public void setUpCardAbility(Card card) {
-		if (card instanceof Movable) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((Movable) card).getAttackDamage(), 0, 2);
-			addCardAbility(RenderableHolder.attackRange, card, ((Movable) card).getAttackRange(), 1, 2);
-			addCardAbility(RenderableHolder.heart, card, ((Movable) card).getHeart(), 0, 3);
-			addCardAbility(RenderableHolder.speed, card, ((Movable) card).getSpeed(), 1, 3);
+		if (card instanceof FighterCard) {
+			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(), 0, 2);
+			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(), 1, 2);
+			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(), 0, 3);
+			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(), 1, 3);
 		}
 	}
 

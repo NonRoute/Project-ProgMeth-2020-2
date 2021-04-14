@@ -1,7 +1,8 @@
 package gui;
 
 import card.Card;
-import card.Movable;
+import card.FighterCard;
+import entity.Bot;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -23,12 +24,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import logic.Direction;
 import logic.GameController;
 import sharedObject.RenderableHolder;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
-	private Card card;
 	private int cardWidth = 120;
 	private int cardHight = 58;
 	private int insets = 2;
@@ -43,14 +44,18 @@ public class CardInHandPane extends CardPane {
 				new BorderStroke(Color.PERU, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(3))));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent arg0) { // TODO can't select if not your turn
-				switch (card.getPlayingSide()) {
-				case LEFT:
-					((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane, card);
-					break;
-				case RIGHT:
-					((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane, card);
-					break;
+			public void handle(MouseEvent arg0) {
+				if (isCanSelect()) {
+					switch (card.getPlayingSide()) {
+					case LEFT:
+						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
+						break;
+					case RIGHT:
+						((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane);
+						break;
+					}
+				} else {
+					System.out.println("YOU CAN'T TOUCH THIS!!");
 				}
 			}
 		});
@@ -60,8 +65,31 @@ public class CardInHandPane extends CardPane {
 
 	}
 
-	public Card getCard() {
-		return card;
+	public boolean isCanSelect() {
+		// can't select it is bot card
+		if (card.getPlayingSide() == Direction.LEFT && GameController.leftSideController instanceof Bot) {
+			return false;
+		}
+		if (card.getPlayingSide() == Direction.RIGHT && GameController.rightSideController instanceof Bot) {
+			return false;
+		}
+		if (!GameController.currentPlayingSide.equals(card.getPlayingSide())) { // can't select if not your turn
+			return false;
+		}
+		if (isCardTooExpensive()) { // can't select if card too expensive
+			return false;
+		}
+		return true;
+	}
+
+	public boolean isCardTooExpensive() {
+		switch (card.getPlayingSide()) {
+		case LEFT:
+			return card.getCost() > GameController.leftSideController.getMoney();
+		case RIGHT:
+			return card.getCost() > GameController.rightSideController.getMoney();
+		}
+		return true;
 	}
 
 	public void addCardImage(Image image) {
@@ -76,11 +104,11 @@ public class CardInHandPane extends CardPane {
 	public void setUpCardAbility(Card card) {
 		addCardAbility(RenderableHolder.cost, card, card.getCost(), 3, 0, 2);
 
-		if (card instanceof Movable) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((Movable) card).getAttackDamage(), 3, 1, 1);
-			addCardAbility(RenderableHolder.attackRange, card, ((Movable) card).getAttackRange(), 4, 1, 1);
-			addCardAbility(RenderableHolder.heart, card, ((Movable) card).getHeart(), 3, 2, 1);
-			addCardAbility(RenderableHolder.speed, card, ((Movable) card).getSpeed(), 4, 2, 1);
+		if (card instanceof FighterCard) {
+			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(), 3, 1, 1);
+			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(), 4, 1, 1);
+			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(), 3, 2, 1);
+			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(), 4, 2, 1);
 		}
 	}
 

@@ -4,31 +4,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import card.Card;
-import card.Movable;
+import card.FighterCard;
+import card.Trickable;
 import deck.Deck;
+import gui.CardInHandPane;
+import javafx.application.Platform;
 import logic.Direction;
 import logic.GameController;
 
 public class BotNormal extends Bot {
 
-	public BotNormal(int heart, int money, Deck deck, int initialNumberOfCardInHand, Direction playingSide) {
-		super(heart, money, deck, initialNumberOfCardInHand, playingSide);
+	public BotNormal(int heart, int money, Deck deck, Direction playingSide) {
+		super(heart, money, deck, playingSide);
 	}
 
-	public int getMaxCardCostCanDraw() {
-		return GameController.turn + 2;
-	}
-
-	public Card selectCard() { // select movable card first
-		ArrayList<Card> cardsCanPlay = getAllCardsCanPlay();
+	public CardInHandPane selectCard() { // select Trickable card first
+		ArrayList<CardInHandPane> cardsCanPlay = getAllCardsCanPlay();
 		if (cardsCanPlay.size() > 0) {
 			Collections.shuffle(cardsCanPlay);
-			for (Card e : cardsCanPlay) {
-				if (e instanceof Movable) {
+			for (CardInHandPane e : cardsCanPlay) {
+				if (e.getCard() instanceof Trickable) {
 					return e;
 				}
 			}
-			return cardsCanPlay.get(0); // no movable card, select any card
+			return cardsCanPlay.get(0); // no Trickable card, select any card
 		} else {
 			return null; // can't play any card
 		}
@@ -56,12 +55,29 @@ public class BotNormal extends Bot {
 
 	public void play() {
 		// BotNormal will play card until can't play
-		while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can play
-			Card selectCard = selectCard();
-			useCard(cardsInHandPane.indexOf(selectCard));
-			if (selectCard instanceof Movable) {
-				GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+		Thread thread = new Thread(() -> {
+			try {
+				GameController.threadDrawCard.join();
+				Thread.sleep(1000);
+				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) {
+					// have card can play and have row can play
+					Platform.runLater(new Runnable() {
+						public void run() {
+							CardInHandPane selectCard = selectCard();
+							useCard(cardsInHandPane.indexOf(selectCard));
+							if (selectCard.getCard() instanceof FighterCard) {
+								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+							}
+						}
+					});
+					Thread.sleep(1000);
+				}
+				GameController.startNextPhase();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		}
+		});
+		thread.start();
+		GameController.threadBotPlay = thread;
 	}
 }

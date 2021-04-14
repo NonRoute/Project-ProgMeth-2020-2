@@ -22,8 +22,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import logic.Board;
+import logic.Direction;
 import logic.GameController;
-import logic.GameLogic;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
@@ -32,7 +32,7 @@ public class GameScreen {
 	private BorderPane borderPane;
 	private Canvas canvas;
 	private GraphicsContext gc;
-	private GameLogic logic;
+//	private GameLogic logic;
 	private HandPane leftCardsInHand;
 	private HandPane rightCardsInHand;
 
@@ -50,25 +50,26 @@ public class GameScreen {
 		borderPane.setRight(rightCardsInHand);
 
 		gc = canvas.getGraphicsContext2D();
-		logic = new GameLogic();
+		gc.drawImage(RenderableHolder.backgroundGameScreen, 0, 0, 1280, 720);
+//		logic = new GameLogic();
 
 		Board board = new Board();
 		GameController.board = board;
-		root.getChildren().addAll(canvas, borderPane, getNextTurnButton(), board);
+		root.getChildren().addAll(canvas, borderPane, getChangePlayingSideButton(), board);
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
 				paintComponent();
-				logic.logicUpdate();
+//				logic.logicUpdate();
 				RenderableHolder.getInstance().update();
 			}
 		};
 		animation.start();
 	}
 
-	public Button getNextTurnButton() {
+	public Button getChangePlayingSideButton() {
 		Button nextTurn = new Button();
 		ImageView imageView = new ImageView(RenderableHolder.nextTurn);
 		imageView.setPreserveRatio(true);
@@ -82,7 +83,7 @@ public class GameScreen {
 		nextTurn.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(5))));
 		nextTurn.setOnMouseClicked((MouseEvent e) -> {
-			GameController.startTurn();
+			GameController.startNextPhase();
 			GameController.board.unHighlightAllCells();
 		});
 		nextTurn.setOnMouseEntered((MouseEvent e) -> {
@@ -106,6 +107,22 @@ public class GameScreen {
 				entity.draw(gc);
 			}
 		}
+	}
+
+	public void highlightHandPane(Direction direction) {
+		switch (direction) {
+		case LEFT:
+			leftCardsInHand.highlight();
+			break;
+		case RIGHT:
+			rightCardsInHand.highlight();
+			break;
+		}
+	}
+
+	public void unHighlightHandPane() {
+		leftCardsInHand.unHighlight();
+		rightCardsInHand.unHighlight();
 	}
 
 	public VBox getLeftCardsInHand() {

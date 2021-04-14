@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import logic.Direction;
 import sharedObject.RenderableHolder;
 
-public abstract class Card extends Entity implements Cloneable {
+public abstract class Card implements Cloneable {
 	private String name;
 	private String description;
 	private int cost;

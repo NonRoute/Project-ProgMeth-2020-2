@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import card.Card;
+import card.FighterCard;
 import card.Movable;
 import logic.GameController;
 
@@ -41,10 +42,10 @@ public class ChangeCardAbility extends Trick {
 
 	@Override
 	public void activate() {
-		Movable card;
+		FighterCard card;
 		switch (activateArea) {
 		case 'R':
-			card = (Movable) GameController.board.getRandomEnemy(playingSide);
+			card = (FighterCard) GameController.board.getRandomEnemy(playingSide);
 			break;
 		default:
 			card = null;
@@ -59,7 +60,7 @@ public class ChangeCardAbility extends Trick {
 
 	}
 
-	public void Update(Movable card) {
+	public void Update(FighterCard card) {
 		if (card != null) {
 			card.setCost(card.getCost() + cost);
 			card.setAttackDamage(card.getAttackDamage() + attackDamage);
