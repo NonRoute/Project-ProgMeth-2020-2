@@ -146,11 +146,11 @@ public class GameController {
 //			} else if ((currentPlayingSide == Direction.RIGHT) && (rightSideController instanceof Bot)) {
 //				((Bot) rightSideController).play();
 //			}
-		} else { // each side draw 1 card, money += turn
+		} else { // each side draw 2 card, money += turn
 			leftSideController.setMoney(leftSideController.getMoney() + turn);
 			rightSideController.setMoney(rightSideController.getMoney() + turn);
-			leftSideController.drawCard(1);
-			rightSideController.drawCard(1);
+			leftSideController.drawCard(2);
+			rightSideController.drawCard(2);
 		}
 	}
 

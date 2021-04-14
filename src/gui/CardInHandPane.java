@@ -2,6 +2,7 @@ package gui;
 
 import card.Card;
 import card.FighterCard;
+import entity.Bot;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -23,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import logic.Direction;
 import logic.GameController;
 import sharedObject.RenderableHolder;
 
@@ -43,25 +45,41 @@ public class CardInHandPane extends CardPane {
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
-				if (GameController.currentPlayingSide.equals(card.getPlayingSide()))// can't select if not your turn
-					if (!isCardTooExpensive()) { // can select if card not too expensive
-						switch (card.getPlayingSide()) {
-						case LEFT:
-							((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
-							break;
-						case RIGHT:
-							((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane);
-							break;
-						}
-					} else {
-						System.out.println("CARD TOO EXPENSIVE!!");
+				if (isCanSelect()) {
+					switch (card.getPlayingSide()) {
+					case LEFT:
+						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
+						break;
+					case RIGHT:
+						((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane);
+						break;
 					}
+				} else {
+					System.out.println("YOU CAN'T TOUCH THIS!!");
+				}
 			}
 		});
 		addCardImage(card.getImage());
 		setUpCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
 
+	}
+
+	public boolean isCanSelect() {
+		// can't select it is bot card
+		if (card.getPlayingSide() == Direction.LEFT && GameController.leftSideController instanceof Bot) {
+			return false;
+		}
+		if (card.getPlayingSide() == Direction.RIGHT && GameController.rightSideController instanceof Bot) {
+			return false;
+		}
+		if (!GameController.currentPlayingSide.equals(card.getPlayingSide())) { // can't select if not your turn
+			return false;
+		}
+		if (isCardTooExpensive()) { // can't select if card too expensive
+			return false;
+		}
+		return true;
 	}
 
 	public boolean isCardTooExpensive() {
