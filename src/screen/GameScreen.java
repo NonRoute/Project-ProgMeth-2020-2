@@ -65,7 +65,7 @@ public class GameScreen {
 			public void handle(long now) {
 				paintComponent();
 //				logic.logicUpdate();
-//				updateStartNextPhaseButton();
+				updateStartNextPhaseButton();
 				RenderableHolder.getInstance().update();
 			}
 		};
@@ -86,7 +86,7 @@ public class GameScreen {
 				.setBackground(new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
 		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(5))));
-		
+
 		nextPhaseButton.setOnMouseClicked((MouseEvent e) -> {
 			if (canClickStartNextPhaseButton()) {
 				System.out.println("CLICK");
@@ -111,6 +111,14 @@ public class GameScreen {
 			nextPhaseButton.setEffect(null);
 		});
 		return nextPhaseButton;
+	}
+
+	public void updateStartNextPhaseButton() {
+		if (!canClickStartNextPhaseButton()) {
+			nextPhaseButton.setVisible(false);
+		} else {
+			nextPhaseButton.setVisible(true);
+		}
 	}
 
 	public boolean canClickStartNextPhaseButton() {
