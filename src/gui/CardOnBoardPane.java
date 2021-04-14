@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -90,8 +91,7 @@ public class CardOnBoardPane extends CardPane {
 					}
 					break;
 				}
-			} catch (
-			InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		});
@@ -134,14 +134,18 @@ public class CardOnBoardPane extends CardPane {
 
 	public void setUpCardAbility(Card card) {
 		if (card instanceof FighterCard) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(), 0, 2);
-			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(), 1, 2);
-			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(), 0, 3);
-			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(), 1, 3);
+			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(),
+					((FighterCard) card).getDefaultAttackDamage(), 0, 2);
+			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(),
+					((FighterCard) card).getDefaultAttackRange(), 1, 2);
+			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(),
+					((FighterCard) card).getDefaultHeart(), 0, 3);
+			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(),
+					((FighterCard) card).getDefaultSpeed(), 1, 3);
 		}
 	}
 
-	public void addCardAbility(Image image, Card card, int text, int x, int y) {
+	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHight - 2 * insets) / 4);
 		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -149,11 +153,20 @@ public class CardOnBoardPane extends CardPane {
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
 		imageView.setFitHeight((cardHight - 2 * insets) / 4);
-		Text text1 = new Text();
-		text1.setFont(FontHolder.getInstance().font18);
-		text1.setText("" + text);
-		text1.setFill(Color.BLACK);
-		stackPane.getChildren().addAll(imageView, text1);
+		Text text = new Text();
+		text.setFont(FontHolder.getInstance().font18);
+		text.setText("" + value);
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setColor(Color.WHITE);
+		text.setEffect(dropShadow);
+		if (value > defultValue) {
+			text.setFill(Color.SPRINGGREEN);
+		} else if (value == defultValue) {
+			text.setFill(Color.BLACK);
+		} else {
+			text.setFill(Color.BROWN);
+		}
+		stackPane.getChildren().addAll(imageView, text);
 		this.add(stackPane, x, y);
 		GridPane.setHalignment(stackPane, HPos.CENTER);
 	}

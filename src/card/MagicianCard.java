@@ -32,4 +32,8 @@ public class MagicianCard extends FighterCard implements Trickable {
 		return trick;
 	}
 
+	public void setTrick(Trick trick) {
+		this.trick = trick;	
+	}
+
 }
