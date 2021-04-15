@@ -54,16 +54,6 @@ public class ChangeCardAbility extends Trick {
 		GameController.board.removeDeadCards();
 	}
 
-	public FighterCard getBotSelectTargetCard() {
-		switch (playingSide) {
-		case LEFT:
-			return ((Bot) GameController.leftSideController).getTargetCard(this);
-		case RIGHT:
-			return ((Bot) GameController.rightSideController).getTargetCard(this);
-		}
-		return null;
-	}
-
 	public void Update(FighterCard card) {
 		if (card != null) {
 			card.setAttackDamage(card.getAttackDamage() + attackDamage);

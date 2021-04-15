@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import card.Card;
+import card.FighterCard;
 import card.TrickCard;
+import entity.Bot;
 import logic.Direction;
+import logic.GameController;
 
 public abstract class Trick implements Cloneable {
 	protected Direction playingSide;
@@ -22,8 +25,18 @@ public abstract class Trick implements Cloneable {
 		}
 	}
 	
-	public Trick(String trickparameterInput) {
-		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameterInput.split("\\.")));
+	public Trick(String trickparameter) {
+		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameter.split("\\.")));
+	}
+	
+	public FighterCard getBotSelectTargetCard() {
+		switch (playingSide) {
+		case LEFT:
+			return ((Bot) GameController.leftSideController).getTargetCard(this);
+		case RIGHT:
+			return ((Bot) GameController.rightSideController).getTargetCard(this);
+		}
+		return null;
 	}
 
 	public Direction getPlayingSide() {

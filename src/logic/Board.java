@@ -383,7 +383,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void update() {
+	public void update() { //update gui of card if card ability change
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (!isEmpty(r, c)) {
