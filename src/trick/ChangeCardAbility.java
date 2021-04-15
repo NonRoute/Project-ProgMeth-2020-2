@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import card.Card;
 import card.FighterCard;
+import entity.Bot;
 import logic.GameController;
 
 public class ChangeCardAbility extends Trick {
@@ -35,14 +36,14 @@ public class ChangeCardAbility extends Trick {
 			break;
 		case 'C':// Select Friendly
 			if (GameController.isBotSide(playingSide)) { // if bot play this card
-				card = GameController.board.getRandomFriendly(playingSide);
-			} else { //use player selected target card
+				card = getBotSelectTargetCard();
+			} else { // use player selected target card
 				card = GameController.targetCard;
 			}
 			break;
 		case 'D':// Select Enemy
 			if (GameController.isBotSide(playingSide)) { // if bot play this card
-				card = GameController.board.getRandomEnemy(playingSide);
+				card = getBotSelectTargetCard();
 			} else {
 				card = GameController.targetCard;
 			}
@@ -51,6 +52,16 @@ public class ChangeCardAbility extends Trick {
 		Update(card);
 		GameController.board.update();
 		GameController.board.removeDeadCards();
+	}
+
+	public FighterCard getBotSelectTargetCard() {
+		switch (playingSide) {
+		case LEFT:
+			return ((Bot) GameController.leftSideController).getTargetCard(this);
+		case RIGHT:
+			return ((Bot) GameController.rightSideController).getTargetCard(this);
+		}
+		return null;
 	}
 
 	public void Update(FighterCard card) {
