@@ -136,17 +136,21 @@ public class CardInHandPane extends CardPane {
 	}
 
 	public void setCardAbility(Card card) {
-		addCardAbility(RenderableHolder.cost, card, card.getCost(), 3, 0, 2);
+		addCardAbility(RenderableHolder.cost, card, card.getCost(), card.getCost(), 3, 0, 2);
 
 		if (card instanceof FighterCard) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(), 3, 1, 1);
-			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(), 4, 1, 1);
-			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(), 3, 2, 1);
-			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(), 4, 2, 1);
+			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(),
+					((FighterCard) card).getDefaultAttackDamage(), 3, 1, 1);
+			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(),
+					((FighterCard) card).getDefaultAttackRange(), 4, 1, 1);
+			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(),
+					((FighterCard) card).getDefaultHeart(), 3, 2, 1);
+			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(),
+					((FighterCard) card).getDefaultSpeed(), 4, 2, 1);
 		}
 	}
 
-	public void addCardAbility(Image image, Card card, int value, int x, int y, int columnSpan) {
+	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y, int columnSpan) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHight - 2 * insets) / 3);
 		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -157,7 +161,13 @@ public class CardInHandPane extends CardPane {
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font12);
 		text.setText("" + value);
-		text.setFill(Color.BLACK);
+		if (value > defultValue) {
+			text.setFill(Color.GREEN);
+		} else if (value == defultValue) {
+			text.setFill(Color.BLACK);
+		} else {
+			text.setFill(Color.MAROON);
+		}
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setColor(Color.WHITE);
 		text.setEffect(dropShadow);

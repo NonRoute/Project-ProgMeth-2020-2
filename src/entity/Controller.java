@@ -23,7 +23,7 @@ public abstract class Controller extends Entity {
 
 	protected int heart;
 	protected int money;
-	private Deck deck;
+	protected Deck deck;
 	protected HandPane cardsInHandPane;
 	protected Direction playingSide;
 
