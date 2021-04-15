@@ -10,6 +10,7 @@ import sharedObject.FontHolder;
 
 public abstract class CardPane extends GridPane {
 	protected Card card;
+	protected Tooltip tooltip;
 
 	public Card getCard() {
 		return card;
@@ -20,10 +21,13 @@ public abstract class CardPane extends GridPane {
 	public abstract void setCardAbility(Card card);
 
 	public void setToolTip() {
-		Tooltip tooltip = new Tooltip();
+		this.tooltip = new Tooltip();
 		tooltip.setFont(FontHolder.getInstance().font12);
 		tooltip.setText(card.getType() + "\n" + card.getDescription());
+		setMouseEvent();
+	}
 
+	public void setMouseEvent() {
 		this.setOnMouseMoved((MouseEvent e) -> {
 			tooltip.show(this, e.getScreenX(), e.getScreenY() + 10);
 		});

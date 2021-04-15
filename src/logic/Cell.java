@@ -81,7 +81,7 @@ public class Cell extends StackPane {
 
 	public void setCard(CardPane cardPane) {
 		if (isEmpty) {
-			if (cardPane instanceof CardInHandPane) { // change gui to OnBoard
+			if (cardPane instanceof CardInHandPane) { // change GUI from cardOnHand to cardOnBoard
 				cardPane = new CardOnBoardPane(((CardInHandPane) cardPane).getCard());
 			}
 			this.cardOnBoardPane = (CardOnBoardPane) cardPane;

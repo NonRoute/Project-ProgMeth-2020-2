@@ -33,7 +33,9 @@ public class Draw extends Trick {
 		case 'S':// both side
 			GameController.leftSideController.drawCard(number);
 			GameController.rightSideController.drawCard(number);
+			break;
 		}
+		GameController.board.unHighlightAllCells();
 	}
 
 }

@@ -391,10 +391,11 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void update() { //update gui of card if card ability change
+	public void update() { // update GUI of card if card ability change
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (!isEmpty(r, c)) {
+					// recreate cardOnBoardPane
 					CardOnBoardPane cardPane = new CardOnBoardPane(boardCells.get(r).get(c).getCard());
 					removeCardOnMap(r, c);
 					setCardOnMap(cardPane, r, c);

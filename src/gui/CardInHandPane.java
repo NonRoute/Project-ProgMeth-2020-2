@@ -47,6 +47,13 @@ public class CardInHandPane extends CardPane {
 		this.setBorder(new Border(
 				new BorderStroke(Color.PERU, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(3))));
 		setToolTip();
+		setMouseEvent();
+		addCardImage(card.getImage());
+		setCardAbility(card);
+		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
+	}
+
+	public void setMouseEvent() {
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -64,9 +71,24 @@ public class CardInHandPane extends CardPane {
 				}
 			}
 		});
-		addCardImage(card.getImage());
-		setCardAbility(card);
-		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
+		this.setOnMouseMoved((MouseEvent e) -> {
+			tooltip.show(this, e.getScreenX(), e.getScreenY() + 10);
+			if (canSelectCard()) {
+				cardPane.setBackground(new Background(
+						new BackgroundFill(Color.LIGHTGOLDENRODYELLOW, new CornerRadii(3), new Insets(3))));
+			}
+		});
+		this.setOnMouseExited((MouseEvent e) -> {
+			tooltip.hide();
+			if (!isSelect()) {
+				cardPane.setBackground(
+						new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
+			}
+		});
+	}
+
+	public boolean isSelect() {
+		return GameController.selectedCardPane == this;
 	}
 
 	public boolean canSelectCard() {
@@ -154,8 +176,8 @@ public class CardInHandPane extends CardPane {
 		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHight - 2 * insets) / 3);
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(((cardWidth - 2 * insets) / 5) + 2);
-		imageView.setFitHeight(((cardHight - 2 * insets) / 3) + 2);
+		imageView.setFitWidth(((cardWidth - 2 * insets) / 5) + 1);
+		imageView.setFitHeight(((cardHight - 2 * insets) / 3) + 1);
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font15);
 		text.setText("" + value);

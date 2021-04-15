@@ -50,6 +50,7 @@ public class ChangeCardAbility extends Trick {
 			break;
 		}
 		Update(card);
+		GameController.board.unHighlightAllCells();
 		GameController.board.update();
 		GameController.board.removeDeadCards();
 	}
