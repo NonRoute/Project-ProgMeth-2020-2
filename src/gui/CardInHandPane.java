@@ -62,11 +62,6 @@ public class CardInHandPane extends CardPane {
 				} else {
 					System.out.println("YOU CAN'T TOUCH THIS!!");
 				}
-				System.out.println("CARD PLAYING SIDE" + card.getPlayingSide());
-				if (card instanceof TrickCard) {
-					System.out.println(((TrickCard) card).getTrick());
-					System.out.println("TRICK PLAYING SIDE" + ((TrickCard) card).getTrick().getPlayingSide());
-				}
 			}
 		});
 		addCardImage(card.getImage());

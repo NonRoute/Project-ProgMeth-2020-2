@@ -136,7 +136,6 @@ public class GameScreen {
 
 		nextPhaseButton.setOnMouseClicked((MouseEvent e) -> {
 			if (canClickStartNextPhaseButton()) {
-				System.out.println("CLICK");
 				GameController.startNextPhase();
 				GameController.board.unHighlightAllCells();
 			}

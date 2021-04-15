@@ -31,7 +31,6 @@ public abstract class Trick implements Cloneable {
 	}
 
 	public void setPlayingSide(Direction playingSide) {
-		System.out.println("set playing side of trick"+playingSide);
 		this.playingSide = playingSide;
 	}
 

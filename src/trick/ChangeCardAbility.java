@@ -9,7 +9,6 @@ import logic.GameController;
 
 public class ChangeCardAbility extends Trick {
 	private char activateType;
-	private int cost;
 	private int attackDamage;
 	private int attackRange;
 	private int heart;
@@ -18,27 +17,20 @@ public class ChangeCardAbility extends Trick {
 	public ChangeCardAbility(String trickparameter) {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
-		cost = Integer.parseInt(trickParameter.get(1));
-		attackDamage = Integer.parseInt(trickParameter.get(2));
-		attackRange = Integer.parseInt(trickParameter.get(3));
-		heart = Integer.parseInt(trickParameter.get(4));
-		speed = Integer.parseInt(trickParameter.get(5));
+		attackDamage = Integer.parseInt(trickParameter.get(1));
+		attackRange = Integer.parseInt(trickParameter.get(2));
+		heart = Integer.parseInt(trickParameter.get(3));
+		speed = Integer.parseInt(trickParameter.get(4));
 	}
 
 	@Override
 	public void activate() {
-		System.out.println("ACTIVATE");
 		FighterCard card = null;
 		switch (activateType) {
 		case 'A':
-			System.out.println("A Friend");
-			System.out.println("GET"+getPlayingSide());
-			System.out.println(playingSide);
 			card = GameController.board.getRandomFriendly(playingSide);
 			break;
 		case 'B':
-			System.out.println("B Enemy");
-			System.out.println(playingSide);
 			card = GameController.board.getRandomEnemy(playingSide);
 			break;
 		case 'C':
@@ -48,7 +40,6 @@ public class ChangeCardAbility extends Trick {
 			card = GameController.targetCard;
 			break;
 		}
-		System.out.println("Activate at"+card.getRow()+" "+card.getColumn()+"");
 		Update(card);
 		GameController.board.update();
 		GameController.board.removeDeadCards();
@@ -56,7 +47,6 @@ public class ChangeCardAbility extends Trick {
 
 	public void Update(FighterCard card) {
 		if (card != null) {
-			card.setCost(card.getCost() + cost);
 			card.setAttackDamage(card.getAttackDamage() + attackDamage);
 			card.setAttackRange(card.getAttackRange() + attackRange);
 			card.setHeart(card.getHeart() + heart);

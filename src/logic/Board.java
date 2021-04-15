@@ -80,54 +80,28 @@ public class Board extends GridPane {
 		return boardCells.get(row);
 	}
 
-	public ArrayList<FighterCard> getFriendly(Direction playingSide) {
-		ArrayList<FighterCard> friendly = new ArrayList<>();
-		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
-			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				if (isFriendly(r, c, playingSide)) {
-					System.out.println("FRIENDLY"+r+c);
-					friendly.add(boardCells.get(r).get(c).getCard());
-				}
-			}
-		}
-		return friendly;
-	}
-
-	public void hightlightFriendly(Direction playingSide) {
-		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				if (isFriendly(r, c, playingSide)) {
-					highlight(r, c);
-				}
-			}
-		}
-	}
-
-	public void hightlightEnemy(Direction playingSide) {
-		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				if (isEnemy(r, c, playingSide)) {
-					highlight(r, c);
-				}
-			}
-		}
-	}
-
-	public void highlight(int row, int column) {
-		boardCells.get(row).get(column).highlight();
-	}
-
 	public ArrayList<FighterCard> getEnemy(Direction playingSide) {
 		ArrayList<FighterCard> enemy = new ArrayList<>();
 		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isEnemy(r, c, playingSide)) {
-					System.out.println("ENEMY"+r+c);
 					enemy.add(boardCells.get(r).get(c).getCard());
 				}
 			}
 		}
 		return enemy;
+	}
+
+	public ArrayList<FighterCard> getFriendly(Direction playingSide) {
+		ArrayList<FighterCard> friendly = new ArrayList<>();
+		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				if (isFriendly(r, c, playingSide)) {
+					friendly.add(boardCells.get(r).get(c).getCard());
+				}
+			}
+		}
+		return friendly;
 	}
 
 	public int getNearestEnemyColumn(int row, Direction playingSide) { // return -1 if no enemy
@@ -184,27 +158,25 @@ public class Board extends GridPane {
 		return -1;
 	}
 
-	public FighterCard getRandomFriendly(Direction playingSide) {
-		Random rand = new Random();
-		ArrayList<FighterCard> friendly = getFriendly(playingSide);
-		System.out.println("friendlyS"+friendly.size());
-		if (friendly.size() == 0) {
-			return null;
-		} else {
-			int index = rand.nextInt(friendly.size());
-			return friendly.get(index);
-		}
-	}
-
 	public FighterCard getRandomEnemy(Direction playingSide) {
 		Random rand = new Random();
 		ArrayList<FighterCard> enemy = getEnemy(playingSide);
-		System.out.println("EnemyS"+enemy.size());
 		if (enemy.size() == 0) {
 			return null;
 		} else {
 			int index = rand.nextInt(enemy.size());
 			return enemy.get(index);
+		}
+	}
+
+	public FighterCard getRandomFriendly(Direction playingSide) {
+		Random rand = new Random();
+		ArrayList<FighterCard> friendly = getFriendly(playingSide);
+		if (friendly.size() == 0) {
+			return null;
+		} else {
+			int index = rand.nextInt(friendly.size());
+			return friendly.get(index);
 		}
 	}
 
@@ -214,6 +186,10 @@ public class Board extends GridPane {
 
 	public boolean haveFriendly(Direction playingSide) {
 		return getFriendly(playingSide).size() != 0;
+	}
+
+	public void highlight(int row, int column) {
+		boardCells.get(row).get(column).highlight();
 	}
 
 	public void highlightAllCell() {
@@ -263,6 +239,26 @@ public class Board extends GridPane {
 		}
 	}
 
+	public void hightlightEnemy(Direction playingSide) {
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				if (isEnemy(r, c, playingSide)) {
+					highlight(r, c);
+				}
+			}
+		}
+	}
+
+	public void hightlightFriendly(Direction playingSide) {
+		for (int r = 0; r < NUMBER_OF_ROW; r++) {
+			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+				if (isFriendly(r, c, playingSide)) {
+					highlight(r, c);
+				}
+			}
+		}
+	}
+
 	public boolean isEmpty(int row, int column) { // also return false if out of board
 		if (!isOutOfBoard(row, column)) {
 			return boardCells.get(row).get(column).isEmpty();
@@ -271,16 +267,16 @@ public class Board extends GridPane {
 		}
 	}
 
-	public boolean isFriendly(int row, int column, Direction playingSide) { // if OutOfBoard return false
+	public boolean isEnemy(int row, int column, Direction playingSide) { // if OutOfBoard return false
 		if (!isEmpty(row, column) && !isOutOfBoard(row, column)) {
-			return boardCells.get(row).get(column).getCard().getPlayingSide().equals(playingSide);
+			return !boardCells.get(row).get(column).getCard().getPlayingSide().equals(playingSide);
 		} else
 			return false;
 	}
 
-	public boolean isEnemy(int row, int column, Direction playingSide) { // if OutOfBoard return false
+	public boolean isFriendly(int row, int column, Direction playingSide) { // if OutOfBoard return false
 		if (!isEmpty(row, column) && !isOutOfBoard(row, column)) {
-			return !boardCells.get(row).get(column).getCard().getPlayingSide().equals(playingSide);
+			return boardCells.get(row).get(column).getCard().getPlayingSide().equals(playingSide);
 		} else
 			return false;
 	}
