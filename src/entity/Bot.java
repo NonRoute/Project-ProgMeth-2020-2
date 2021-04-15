@@ -31,6 +31,9 @@ public abstract class Bot extends Controller {
 				GameController.threadDrawCard.join(); // wait for draw card finish
 				Thread.sleep(1000);
 				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
+					if (GameController.threadDrawCard != null) { // if still draw card wait to draw finish
+						GameController.threadDrawCard.join();
+					}
 					Platform.runLater(new Runnable() {
 						public void run() { // play
 							CardInHandPane selectCard = selectCard();

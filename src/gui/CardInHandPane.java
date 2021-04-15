@@ -154,8 +154,8 @@ public class CardInHandPane extends CardPane {
 		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHight - 2 * insets) / 3);
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth((cardWidth - 2 * insets) / 5);
-		imageView.setFitHeight((cardHight - 2 * insets) / 3);
+		imageView.setFitWidth(((cardWidth - 2 * insets) / 5) + 2);
+		imageView.setFitHeight(((cardHight - 2 * insets) / 3) + 2);
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font15);
 		text.setText("" + value);

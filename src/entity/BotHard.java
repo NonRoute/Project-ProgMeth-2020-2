@@ -104,31 +104,4 @@ public class BotHard extends Bot {
 		}
 	}
 
-	public void play() {
-		// will play card until can't play
-		Thread thread = new Thread(() -> {
-			try {
-				GameController.threadDrawCard.join(); // wait for draw card finish
-				Thread.sleep(1000);
-				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
-					Platform.runLater(new Runnable() {
-						public void run() { // play
-							CardInHandPane selectCard = selectCard();
-							useCard(cardsInHandPane.indexOf(selectCard));
-							if (selectCard.getCard() instanceof FighterCard) {
-								// set card on map, if it is FighterCard or MagicianCard
-								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
-							}
-						}
-					});
-					Thread.sleep(1000);
-				}
-				GameController.startNextPhase();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-		thread.start();
-		GameController.threadBotPlay = thread;
-	}
 }
