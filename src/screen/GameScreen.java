@@ -121,18 +121,18 @@ public class GameScreen {
 
 	public Button getStartNextPhaseButton() {
 		Button nextPhaseButton = new Button();
-		ImageView imageView = new ImageView(RenderableHolder.nextTurn);
+		ImageView imageView = new ImageView(RenderableHolder.nextPhase);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(40);
-		imageView.setFitHeight(40);
+		imageView.setFitWidth(50);
+		imageView.setFitHeight(50);
 		nextPhaseButton.setGraphic(imageView);
 		nextPhaseButton.setLayoutX(607);
-		nextPhaseButton.setLayoutY(20);
+		nextPhaseButton.setLayoutY(15);
 		nextPhaseButton.setPrefSize(40, 40);
 		nextPhaseButton
 				.setBackground(new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
 		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-				new CornerRadii(5), new BorderWidths(5))));
+				new CornerRadii(5), new BorderWidths(3))));
 
 		nextPhaseButton.setOnMouseClicked((MouseEvent e) -> {
 			if (canClickStartNextPhaseButton()) {
@@ -145,7 +145,7 @@ public class GameScreen {
 				nextPhaseButton.setBackground(
 						new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), new Insets(2))));
 				nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-						new CornerRadii(5), new BorderWidths(5))));
+						new CornerRadii(5), new BorderWidths(3))));
 				nextPhaseButton.setEffect(new InnerShadow());
 			}
 		});
@@ -153,7 +153,7 @@ public class GameScreen {
 			nextPhaseButton.setBackground(
 					new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
 			nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-					new CornerRadii(5), new BorderWidths(5))));
+					new CornerRadii(5), new BorderWidths(3))));
 			nextPhaseButton.setEffect(null);
 		});
 		return nextPhaseButton;

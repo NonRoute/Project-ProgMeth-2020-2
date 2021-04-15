@@ -24,7 +24,7 @@ public class RenderableHolder {
 	public static Image attackRange;
 	public static Image heart;
 	public static Image speed;
-	public static Image nextTurn;
+	public static Image nextPhase;
 
 	public static Image testDeckNameLeft; // TODO Remove
 	public static Image testDeckNameRight;
@@ -62,7 +62,7 @@ public class RenderableHolder {
 		RenderableHolder.attackRange = loadImage("attackRange.png");
 		RenderableHolder.heart = loadImage("heart.png");
 		RenderableHolder.speed = loadImage("speed.png");
-		RenderableHolder.nextTurn = loadImage("nextTurn.png");
+		RenderableHolder.nextPhase = loadImage("nextPhase.png");
 	}
 
 	public static Image loadImage(String fileName) {
