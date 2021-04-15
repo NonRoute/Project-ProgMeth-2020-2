@@ -38,7 +38,7 @@ public class FighterCard extends Card {
 	}
 
 	public void setAttackDamage(int attackDamage) {
-		this.attackDamage = attackDamage;
+		this.attackDamage = Math.max(0, attackDamage);
 	}
 
 	public int getAttackRange() {
@@ -46,7 +46,7 @@ public class FighterCard extends Card {
 	}
 
 	public void setAttackRange(int attackRange) {
-		this.attackRange = attackRange;
+		this.attackRange = Math.max(0, attackRange);
 	}
 
 	public int getHeart() {
@@ -54,7 +54,7 @@ public class FighterCard extends Card {
 	}
 
 	public void setHeart(int heart) {
-		this.heart = heart;
+		this.heart = Math.max(0, heart);
 	}
 
 	public int getSpeed() {
@@ -62,7 +62,7 @@ public class FighterCard extends Card {
 	}
 
 	public void setSpeed(int speed) {
-		this.speed = speed;
+		this.speed = Math.max(0, speed);
 	}
 
 	public int getRow() {
