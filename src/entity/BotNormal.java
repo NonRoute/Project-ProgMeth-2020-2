@@ -52,32 +52,4 @@ public class BotNormal extends Bot {
 			return -1; // can't play any row
 		}
 	}
-
-	public void play() {
-		// BotNormal will play card until can't play
-		Thread thread = new Thread(() -> {
-			try {
-				GameController.threadDrawCard.join();
-				Thread.sleep(1000);
-				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) {
-					// have card can play and have row can play
-					Platform.runLater(new Runnable() {
-						public void run() {
-							CardInHandPane selectCard = selectCard();
-							useCard(cardsInHandPane.indexOf(selectCard));
-							if (selectCard.getCard() instanceof FighterCard) {
-								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
-							}
-						}
-					});
-					Thread.sleep(1000);
-				}
-				GameController.startNextPhase();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-		thread.start();
-		GameController.threadBotPlay = thread;
-	}
 }

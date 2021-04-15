@@ -36,32 +36,4 @@ public class BotEasy extends Bot {
 			return -1; // can't play any row
 		}
 	}
-
-	public void play() {
-		// BotEasy will play card until can't play
-		Thread thread = new Thread(() -> {
-			try {
-				GameController.threadDrawCard.join(); // wait for draw card finish
-				Thread.sleep(1000);
-				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
-					Platform.runLater(new Runnable() {
-						public void run() { // play
-							CardInHandPane selectCard = selectCard();
-							useCard(cardsInHandPane.indexOf(selectCard));
-							if (selectCard.getCard() instanceof FighterCard) { 
-								// set card on map, if it is FighterCard or MagicianCard
-								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
-							}
-						}
-					});
-					Thread.sleep(1000);
-				}
-				GameController.startNextPhase();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		});
-		thread.start();
-		GameController.threadBotPlay = thread;
-	}
 }

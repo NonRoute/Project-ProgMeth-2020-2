@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import card.Card;
+import card.FighterCard;
 import card.TrickCard;
 import deck.Deck;
 import gui.CardInHandPane;
+import javafx.application.Platform;
 import logic.Board;
 import logic.Direction;
 import logic.GameController;
+import trick.Trick;
 
 public abstract class Bot extends Controller {
 
@@ -21,7 +24,33 @@ public abstract class Bot extends Controller {
 
 	public abstract int selectRow();
 
-	public abstract void play();
+	public void play() {
+		// will play card until can't play
+		Thread thread = new Thread(() -> {
+			try {
+				GameController.threadDrawCard.join(); // wait for draw card finish
+				Thread.sleep(1000);
+				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
+					Platform.runLater(new Runnable() {
+						public void run() { // play
+							CardInHandPane selectCard = selectCard();
+							useCard(cardsInHandPane.indexOf(selectCard));
+							if (selectCard.getCard() instanceof FighterCard) {
+								// set card on map, if it is FighterCard or MagicianCard
+								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+							}
+						}
+					});
+					Thread.sleep(1000);
+				}
+				GameController.startNextPhase();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		thread.start();
+		GameController.threadBotPlay = thread;
+	}
 
 	public int randomRow() {
 		Random rand = new Random();
@@ -36,11 +65,24 @@ public abstract class Bot extends Controller {
 	public boolean isCardCanPlay(CardInHandPane cardPane) {
 		boolean canPlay = true;
 		if (cardPane.getCard() instanceof TrickCard) {
-			//if trickCard, trickCard must canPlay and check cost of card <= money
+			// if trickCard, trickCard must canPlay and check cost of card <= money
 			canPlay = GameController.board.canPlayTrickCard((TrickCard) cardPane.getCard());
 		}
 		return cardPane.getCard().getCost() <= money && canPlay;
 
+	}
+
+	public FighterCard getTargetCard(Trick trick) {
+		FighterCard card = null;
+		switch (trick.getFirstParameter()) {
+		case 'C':
+			card = GameController.board.getRandomFriendly(playingSide);
+			break;
+		case 'D':
+			card = GameController.board.getRandomEnemy(playingSide);
+			break;
+		}
+		return card;
 	}
 
 	public ArrayList<CardInHandPane> getAllCardsCanPlay() {
