@@ -8,9 +8,9 @@ import trick.Trick;
 public class MagicianCard extends FighterCard implements Trickable {
 	private Trick trick;
 
-	public MagicianCard(String deckName, String name, String description, int cost, int attackDamage, int attackRange,
+	public MagicianCard(String deckName, String description, int cost, int attackDamage, int attackRange,
 			int heart, int speed, Trick trick) {
-		super(deckName, name, description, cost, attackDamage, attackRange, heart, speed);
+		super(deckName, description, cost, attackDamage, attackRange, heart, speed);
 		this.trick = trick;
 	}
 

@@ -16,9 +16,9 @@ public class FighterCard extends Card {
 	protected int row;
 	protected int column;
 
-	public FighterCard(String deckName, String name, String description, int cost, int attackDamage, int attackRange,
+	public FighterCard(String deckName, String description, int cost, int attackDamage, int attackRange,
 			int heart, int speed) {
-		super(deckName, name, description, cost);
+		super(deckName, description, cost);
 		this.DEFAULT_ATTACK_DAMAGE = attackDamage;
 		this.attackDamage = attackDamage;
 		this.DEFAULT_ATTACK_RANGE = attackRange;
