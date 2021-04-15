@@ -10,6 +10,9 @@ import card.MagicianCard;
 import card.TrickCard;
 import logic.GameController;
 import trick.ChangeCardAbility;
+import trick.ChangeControllerHeart;
+import trick.DestroyCard;
+import trick.Draw;
 
 public class Deck {
 	private String name;
@@ -21,44 +24,6 @@ public class Deck {
 		this.cards = importDeck(fileName);
 		this.numberOfCardsEachCost = countNumberOfCardsEachCost();
 		GameController.Decks.add(this);
-	}
-
-	public ArrayList<Card> importDeck(String filename) {
-		ArrayList<Card> deck = new ArrayList<Card>();
-		String[][] deckData = CSVParser.readCSV(filename);
-		for (int i = 2; i < deckData.length; i++) { // each row = each cards
-			switch (deckData[i][0]) {
-			case "Fighter":
-				FighterCard fighterCard = new FighterCard(name, deckData[i][1], deckData[i][2],
-						Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
-						Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
-						Integer.parseInt(deckData[i][7]));
-				deck.add(fighterCard);
-				break;
-			case "Magician":
-				switch (deckData[i][8]) {
-				case ("ChangeCardAbility"):
-					MagicianCard magicianCard = new MagicianCard(name, deckData[i][1], deckData[i][2],
-							Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
-							Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
-							Integer.parseInt(deckData[i][7]), new ChangeCardAbility(deckData[i][9])); // TODO
-					deck.add(magicianCard);
-					break;
-				}
-				break;
-			case "Trick":
-				switch (deckData[i][8]) {
-				case ("ChangeCardAbility"):
-					TrickCard trickCard = new TrickCard(name, deckData[i][1], deckData[i][2],
-							Integer.parseInt(deckData[i][3]), new ChangeCardAbility(deckData[i][9])); // TODO
-					deck.add(trickCard);
-					break;
-				}
-				break;
-			}
-		}
-		return deck;
-
 	}
 
 	public ArrayList<Integer> countNumberOfCardsEachCost() {
@@ -77,6 +42,10 @@ public class Deck {
 		return numberOfCardsEachCost;
 	}
 
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
 	public ArrayList<Card> getListOfCardsbyCost(int cost) {
 		ArrayList<Card> listOfCardsbyCost = new ArrayList<>();
 		for (Card card : this.cards) {
@@ -91,19 +60,99 @@ public class Deck {
 		return name;
 	}
 
-	public void setName(String name) {
-		name = name;
+	public ArrayList<Integer> getNumberOfCardsEachCost() {
+		return numberOfCardsEachCost;
 	}
 
-	public ArrayList<Card> getCards() {
-		return cards;
+	public ArrayList<Card> importDeck(String filename) {
+		ArrayList<Card> deck = new ArrayList<Card>();
+		String[][] deckData = CSVParser.readCSV(filename);
+		for (int i = 2; i < deckData.length; i++) { // each row = each cards
+			try {
+				switch (deckData[i][0]) {
+				case "Fighter":
+					FighterCard fighterCard = new FighterCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+							Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
+							Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]));
+					deck.add(fighterCard);
+					break;
+				case "Magician":
+					MagicianCard magicianCard;
+					switch (deckData[i][7]) {
+					case ("ChangeCardAbility"):
+						magicianCard = new MagicianCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
+								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
+								new ChangeCardAbility(deckData[i][8]));
+						deck.add(magicianCard);
+						break;
+					case ("DestroyCard"):
+						magicianCard = new MagicianCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
+								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
+								new DestroyCard(deckData[i][8]));
+						deck.add(magicianCard);
+						break;
+					case ("Draw"):
+						magicianCard = new MagicianCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
+								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
+								new Draw(deckData[i][8]));
+						deck.add(magicianCard);
+						break;
+					case ("ChangeControllerHeart"):
+						magicianCard = new MagicianCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
+								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
+								new ChangeControllerHeart(deckData[i][8]));
+						deck.add(magicianCard);
+						break;
+					default:
+						System.out.println("Wrong magician input");
+					}
+					break;
+				case "Trick":
+					TrickCard trickCard;
+					switch (deckData[i][7]) {
+					case ("ChangeCardAbility"):
+						trickCard = new TrickCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								new ChangeCardAbility(deckData[i][8]));
+						break;
+					case ("DestroyCard"):
+						trickCard = new TrickCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								new DestroyCard(deckData[i][8]));
+						deck.add(trickCard);
+						break;
+					case ("Draw"):
+						trickCard = new TrickCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								new Draw(deckData[i][8]));
+						deck.add(trickCard);
+						break;
+					case ("ChangeControllerHeart"):
+						trickCard = new TrickCard(name, deckData[i][1], Integer.parseInt(deckData[i][2]),
+								new ChangeControllerHeart(deckData[i][8]));
+						deck.add(trickCard);
+						break;
+					default:
+						System.out.println("Wrong trick input");
+						break;
+					}
+					break;
+				default:
+					System.out.println("Wrong card type input, You input: " + deckData[i][0]);
+				}
+			} catch (Exception e) {
+				System.out.println("Wrong card input " + name + " " + deckData[i][0]);
+			}
+		}
+		return deck;
 	}
 
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
 
-	public ArrayList<Integer> getNumberOfCardsEachCost() {
-		return numberOfCardsEachCost;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

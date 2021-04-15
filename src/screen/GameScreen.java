@@ -21,7 +21,6 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import logic.Board;
 import logic.Direction;
@@ -36,7 +35,6 @@ public class GameScreen {
 	private GraphicsContext gc;
 	private TurnText turnText;
 	private Button nextPhaseButton;
-//	private GameLogic logic;
 	private HandPane leftCardsInHand;
 	private HandPane rightCardsInHand;
 
@@ -67,9 +65,7 @@ public class GameScreen {
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
 				paintComponent();
-//				logic.logicUpdate();
 				updateStartNextPhaseButton();
-//				GameController.board.update();
 				RenderableHolder.getInstance().update();
 			}
 		};
@@ -121,18 +117,18 @@ public class GameScreen {
 
 	public Button getStartNextPhaseButton() {
 		Button nextPhaseButton = new Button();
-		ImageView imageView = new ImageView(RenderableHolder.nextTurn);
+		ImageView imageView = new ImageView(RenderableHolder.nextPhase);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(40);
-		imageView.setFitHeight(40);
+		imageView.setFitWidth(50);
+		imageView.setFitHeight(50);
 		nextPhaseButton.setGraphic(imageView);
 		nextPhaseButton.setLayoutX(607);
-		nextPhaseButton.setLayoutY(20);
+		nextPhaseButton.setLayoutY(15);
 		nextPhaseButton.setPrefSize(40, 40);
 		nextPhaseButton
 				.setBackground(new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
 		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-				new CornerRadii(5), new BorderWidths(5))));
+				new CornerRadii(5), new BorderWidths(3))));
 
 		nextPhaseButton.setOnMouseClicked((MouseEvent e) -> {
 			if (canClickStartNextPhaseButton()) {
@@ -145,7 +141,7 @@ public class GameScreen {
 				nextPhaseButton.setBackground(
 						new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), new Insets(2))));
 				nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-						new CornerRadii(5), new BorderWidths(5))));
+						new CornerRadii(5), new BorderWidths(3))));
 				nextPhaseButton.setEffect(new InnerShadow());
 			}
 		});
@@ -153,7 +149,7 @@ public class GameScreen {
 			nextPhaseButton.setBackground(
 					new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
 			nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-					new CornerRadii(5), new BorderWidths(5))));
+					new CornerRadii(5), new BorderWidths(3))));
 			nextPhaseButton.setEffect(null);
 		});
 		return nextPhaseButton;

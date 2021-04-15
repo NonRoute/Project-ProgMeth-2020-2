@@ -15,12 +15,9 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.GameController;
 import sharedObject.FontHolder;
@@ -46,16 +43,6 @@ public class EndGame extends StackPane {
 		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
 			((Entity) e).setVisible(false);
 		}
-	}
-
-	public VBox getVBox() {
-		VBox vBox = new VBox();
-		vBox.setAlignment(Pos.CENTER);
-		vBox.setSpacing(50);
-		Text text = new Text("The winner is " + GameController.winner + " side!!");
-		text.setFont(FontHolder.getInstance().font48);
-		vBox.getChildren().addAll(text, getGoBackButton());
-		return vBox;
 	}
 
 	public Button getGoBackButton() {
@@ -84,5 +71,15 @@ public class EndGame extends StackPane {
 			goBackButton.setEffect(null);
 		});
 		return goBackButton;
+	}
+
+	public VBox getVBox() {
+		VBox vBox = new VBox();
+		vBox.setAlignment(Pos.CENTER);
+		vBox.setSpacing(50);
+		Text text = new Text("The winner is " + GameController.winner + " side!!");
+		text.setFont(FontHolder.getInstance().font48);
+		vBox.getChildren().addAll(text, getGoBackButton());
+		return vBox;
 	}
 }

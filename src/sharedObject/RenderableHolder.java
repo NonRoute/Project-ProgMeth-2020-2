@@ -6,13 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 
-	private List<IRenderable> entities;
-	private Comparator<IRenderable> comparator;
 	public static Image backgroundSelectGameMode;
 	public static Image backgroundSelectDeckPvB;
 	public static Image backgroundSelectDeckPvP;
@@ -24,26 +21,19 @@ public class RenderableHolder {
 	public static Image attackRange;
 	public static Image heart;
 	public static Image speed;
-	public static Image nextTurn;
-
+	public static Image nextPhase;
 	public static Image testDeckNameLeft; // TODO Remove
 	public static Image testDeckNameRight;
 
 	static {
 		loadResource();
 	}
-
-	public RenderableHolder() {
-		entities = new ArrayList<IRenderable>();
-		comparator = (IRenderable o1, IRenderable o2) -> {
-			if (o1.getZ() > o2.getZ())
-				return 1;
-			return -1;
-		};
-	}
-
 	public static RenderableHolder getInstance() {
 		return instance;
+	}
+
+	public static Image loadImage(String fileName) {
+		return new Image(ClassLoader.getSystemResource("picture/" + fileName).toString());
 	}
 
 	public static void loadResource() {
@@ -62,11 +52,20 @@ public class RenderableHolder {
 		RenderableHolder.attackRange = loadImage("attackRange.png");
 		RenderableHolder.heart = loadImage("heart.png");
 		RenderableHolder.speed = loadImage("speed.png");
-		RenderableHolder.nextTurn = loadImage("nextTurn.png");
+		RenderableHolder.nextPhase = loadImage("nextPhase.png");
 	}
 
-	public static Image loadImage(String fileName) {
-		return new Image(ClassLoader.getSystemResource("picture/" + fileName).toString());
+	private List<IRenderable> entities;
+
+	private Comparator<IRenderable> comparator;
+
+	public RenderableHolder() {
+		entities = new ArrayList<IRenderable>();
+		comparator = (IRenderable o1, IRenderable o2) -> {
+			if (o1.getZ() > o2.getZ())
+				return 1;
+			return -1;
+		};
 	}
 
 	public void add(IRenderable entity) {
@@ -74,15 +73,15 @@ public class RenderableHolder {
 		Collections.sort(entities, comparator);
 	}
 
+	public List<IRenderable> getEntities() {
+		return entities;
+	}
+
 	public void update() {
 		for (int i = entities.size() - 1; i >= 0; i--) {
 			if (!entities.get(i).isVisible())
 				entities.remove(i);
 		}
-	}
-
-	public List<IRenderable> getEntities() {
-		return entities;
 	}
 
 }

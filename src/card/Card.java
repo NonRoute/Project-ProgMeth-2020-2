@@ -1,13 +1,10 @@
 package card;
 
-import entity.Entity;
 import javafx.scene.image.Image;
 import logic.Direction;
 import sharedObject.RenderableHolder;
-import trick.Trick;
 
 public abstract class Card implements Cloneable {
-	private String name;
 	private String description;
 	private int cost;
 	private boolean isInHand;
@@ -15,8 +12,7 @@ public abstract class Card implements Cloneable {
 	private Image leftPlayingSideImage;
 	private Image rightPlayingSideImage;
 
-	public Card(String deckName, String name, String description, int cost) {
-		this.name = name;
+	public Card(String deckName, String description, int cost) {
 		this.description = description;
 		this.cost = cost;
 		switch (deckName) {
@@ -35,12 +31,6 @@ public abstract class Card implements Cloneable {
 	public Object clone() {
 		try {
 			Card card = (Card) super.clone();
-			if (card instanceof TrickCard) {
-				((TrickCard) card).setTrick((Trick) ((TrickCard) card).getTrick().clone());
-			}
-			if (card instanceof MagicianCard) {
-				((MagicianCard) card).setTrick((Trick) ((MagicianCard) card).getTrick().clone());
-			}
 			return card;
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
@@ -55,14 +45,6 @@ public abstract class Card implements Cloneable {
 		} else {
 			return "Trick";
 		}
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getDescription() {

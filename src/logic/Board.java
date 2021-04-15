@@ -3,11 +3,8 @@ package logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-import card.Card;
 import card.FighterCard;
-import card.MagicianCard;
 import card.TrickCard;
-import card.Trickable;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
@@ -17,10 +14,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -62,6 +55,28 @@ public class Board extends GridPane {
 
 	public void attackCard(int row, int column, int attackDamage) {
 		boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
+	}
+
+	public boolean canPlayTrickCard(TrickCard trickCard) {
+		switch (trickCard.getTrick().getFirstParameter()) {
+		case 'A':
+		case 'C': // trick to friendly
+			if (haveFriendly(trickCard.getPlayingSide())) {
+				return true;
+			}
+			break;
+		case 'B':
+		case 'D': // trick to enemy
+			if (haveEnemy(trickCard.getPlayingSide())) {
+				return true;
+			}
+			break;
+		case 'T':
+		case 'E':
+		case 'S':
+			return true;
+		}
+		return false;
 	}
 
 	public ObservableList<ObservableList<Cell>> getBoard() {
@@ -201,7 +216,7 @@ public class Board extends GridPane {
 	}
 
 	public void highlightCellCanPlay(CardInHandPane selectedCardPane) {
-		if (!(selectedCardPane.getCard() instanceof TrickCard)) {// if not trickCard
+		if (selectedCardPane.getCard() instanceof FighterCard) {// if not trickCard
 			for (int r = 0; r < NUMBER_OF_ROW; r++) {
 				switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 				case LEFT:
@@ -216,7 +231,6 @@ public class Board extends GridPane {
 					break;
 				}
 			}
-			// TODO magician card highlight after click
 		} else {
 			switch (((TrickCard) selectedCardPane.getCard()).getTrick().getFirstParameter()) {
 			case 'A': // random friendly
@@ -234,6 +248,11 @@ public class Board extends GridPane {
 				break;
 			case 'D': // select enemy
 				hightlightEnemy(selectedCardPane.getCard().getPlayingSide());
+				break;
+			case 'T':
+			case 'E':
+			case 'S': // highlight all
+				highlightAllCell();
 				break;
 			}
 		}
@@ -365,10 +384,11 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void update() {
+	public void update() { // update GUI of card if card ability change
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (!isEmpty(r, c)) {
+					// recreate cardOnBoardPane
 					CardOnBoardPane cardPane = new CardOnBoardPane(boardCells.get(r).get(c).getCard());
 					removeCardOnMap(r, c);
 					setCardOnMap(cardPane, r, c);

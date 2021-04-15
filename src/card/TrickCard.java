@@ -1,19 +1,24 @@
 package card;
 
-import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import trick.Trick;
 
 public class TrickCard extends Card implements Trickable {
 	private Trick trick;
 
-	public TrickCard(String deckName, String name, String description, int cost, Trick trick) {
-		super(deckName, name, description, cost);
+	public TrickCard(String deckName, String description, int cost, Trick trick) {
+		super(deckName, description, cost);
 		this.trick = trick;
 	}
 
 	public void activateTrick() {
 		trick.activate();
+	}
+
+	public Object clone() {
+		TrickCard card = (TrickCard) super.clone();
+		card.setTrick((Trick) card.getTrick().clone());
+		return card;
 	}
 
 	public Trick getTrick() {

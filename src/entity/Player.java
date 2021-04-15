@@ -1,10 +1,6 @@
 package entity;
 
-import java.util.Random;
-
-import card.Card;
 import deck.Deck;
-import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
 import logic.GameController;
 

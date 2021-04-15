@@ -29,9 +29,6 @@ public class GameController {
 	public static GameScreen gameScreen;
 
 	public static ArrayList<Deck> Decks = new ArrayList<>();
-	private static Deck angelDeck;
-	private static Deck devilDeck;
-	private static Deck testDeck; // TODO Remove this when game finish
 
 	public static Board board;
 	public static int turn;
@@ -52,9 +49,9 @@ public class GameController {
 	public static String difficultyRight;
 
 	static {
-		angelDeck = new Deck("Angel", "AngelDeck.csv");
-		devilDeck = new Deck("Devil", "DevilDeck.csv");
-		testDeck = new Deck("Test", "TestDeck.csv"); // TODO Remove this when game finish
+		new Deck("Angel", "AngelDeck.csv");
+		new Deck("Devil", "DevilDeck.csv");
+		new Deck("Test", "TestDeck.csv"); // TODO Remove this when game finish
 	}
 
 	public static void initializeGameBvB() {
@@ -105,6 +102,16 @@ public class GameController {
 		leftSideController = new Player(20, 1, leftSideDeck, Direction.LEFT);
 		rightSideController = new Player(20, 1, rightSideDeck, Direction.RIGHT);
 		startGame();
+	}
+
+	public static boolean isBotSide(Direction direction) {
+		switch(direction) {
+		case LEFT:
+			return (leftSideController instanceof Bot);
+		case RIGHT:
+			return (rightSideController instanceof Bot);
+		}
+		return false;
 	}
 
 	public static void playGame() {
@@ -212,7 +219,7 @@ public class GameController {
 		});
 		thread.start();
 	}
-
+	
 	public static void startTurn() { // called when click next turn button
 		isPhaseOneEnd = false;
 		turn++;

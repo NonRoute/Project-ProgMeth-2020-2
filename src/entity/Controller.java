@@ -10,8 +10,6 @@ import gui.HandPane;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import logic.Board;
 import logic.Direction;
 import logic.GameController;
@@ -23,7 +21,7 @@ public abstract class Controller extends Entity {
 
 	protected int heart;
 	protected int money;
-	private Deck deck;
+	protected Deck deck;
 	protected HandPane cardsInHandPane;
 	protected Direction playingSide;
 
@@ -45,6 +43,26 @@ public abstract class Controller extends Entity {
 			break;
 		}
 		RenderableHolder.getInstance().add(this);
+	}
+
+	public void draw(GraphicsContext gc) {
+		gc.drawImage(RenderableHolder.heart, x, y, 50, 50);
+		gc.setFont(FontHolder.getInstance().font28);
+		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
+		gc.setFill(Color.DARKRED);
+		if (heart >= 10) {
+			gc.fillText("" + heart, x + 14, y + 33);
+		} else {
+			gc.fillText("" + heart, x + 18, y + 33);
+		}
+		gc.setFill(Color.DARKGOLDENROD);
+		if (money >= 100) {
+			gc.fillText("" + money, x + 66, y + 33);
+		} else if (money >= 10) {
+			gc.fillText("" + money, x + 73, y + 33);
+		} else {
+			gc.fillText("" + money, x + 80, y + 33);
+		}
 	}
 
 	public void drawCard(int number) {
@@ -91,16 +109,34 @@ public abstract class Controller extends Entity {
 		GameController.threadDrawCard = thread;
 	}
 
+	public HandPane getCardsInHandPane() {
+		return cardsInHandPane;
+	}
+
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public int getHeart() {
+		return heart;
+	}
+
 	public int getMaxCardCostCanDraw() {
 		return GameController.turn + 2;
 	}
 
-	public void useCard(int index) {
-		money -= cardsInHandPane.get(index).getCost();
-		if (cardsInHandPane.get(index) instanceof Trickable) {
-			((Trickable) cardsInHandPane.get(index)).activateTrick();
+	public int getMoney() {
+		return money;
+	}
+
+	public int getPlayableColumn() {
+		switch (playingSide) {
+		case LEFT:
+			return 0;
+		case RIGHT:
+			return (Board.NUMBER_OF_COLUMN - 1);
 		}
-		cardsInHandPane.remove(index);
+		return -1;
 	}
 
 	public ArrayList<Integer> getPlayableRow() {
@@ -124,23 +160,14 @@ public abstract class Controller extends Entity {
 		return rowCanPlay;
 	}
 
-	public int getPlayableColumn() {
-		switch (playingSide) {
-		case LEFT:
-			return 0;
-		case RIGHT:
-			return (Board.NUMBER_OF_COLUMN - 1);
-		}
-		return -1;
-	}
-
-	public int getHeart() {
-		return heart;
+	public Direction getPlayingSide() {
+		return playingSide;
 	}
 
 	public void reduceHeart(int number) {
 		if (heart - number <= 0) {
 			heart = 0;
+			//end game
 			switch (playingSide) {
 			case LEFT:
 				GameController.winner = Direction.RIGHT;
@@ -155,43 +182,15 @@ public abstract class Controller extends Entity {
 		}
 	}
 
-	public int getMoney() {
-		return money;
-	}
-
 	public void setMoney(int money) {
 		this.money = money;
 	}
 
-	public Deck getDeck() {
-		return deck;
-	}
-
-	public HandPane getCardsInHandPane() {
-		return cardsInHandPane;
-	}
-
-	public Direction getPlayingSide() {
-		return playingSide;
-	}
-
-	public void draw(GraphicsContext gc) {
-		gc.drawImage(RenderableHolder.heart, x, y, 50, 50);
-		gc.setFont(FontHolder.getInstance().font28);
-		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
-		gc.setFill(Color.DARKRED);
-		if (heart >= 10) {
-			gc.fillText("" + heart, x + 14, y + 33);
-		} else {
-			gc.fillText("" + heart, x + 18, y + 33);
+	public void useCard(int index) {
+		money -= cardsInHandPane.get(index).getCost();
+		if (cardsInHandPane.get(index) instanceof Trickable) {
+			((Trickable) cardsInHandPane.get(index)).activateTrick();
 		}
-		gc.setFill(Color.DARKGOLDENROD);
-		if (money >= 100) {
-			gc.fillText("" + money, x + 66, y + 33);
-		} else if (money >= 10) {
-			gc.fillText("" + money, x + 73, y + 33);
-		} else {
-			gc.fillText("" + money, x + 80, y + 33);
-		}
+		cardsInHandPane.remove(index);
 	}
 }
