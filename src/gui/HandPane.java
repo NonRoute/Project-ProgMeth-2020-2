@@ -82,7 +82,7 @@ public class HandPane extends VBox {
 	public int indexOf(CardInHandPane cardPane) {
 		return cardsList.indexOf(cardPane);
 	}
-
+	
 	public void setSelectedCard(CardInHandPane selectedCardPane) {
 		GameController.board.unHighlightAllCells();
 		GameController.selectedCardPane = selectedCardPane;

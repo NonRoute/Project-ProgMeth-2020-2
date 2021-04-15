@@ -67,7 +67,6 @@ public class CardInHandPane extends CardPane {
 		addCardImage(card.getImage());
 		setCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
-
 	}
 
 	public boolean canSelectCard() {
