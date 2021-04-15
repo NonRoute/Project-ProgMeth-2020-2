@@ -25,8 +25,8 @@ public class RenderableHolder {
 	public static Image heart;
 	public static Image speed;
 	public static Image nextTurn;
-	
-	public static Image testDeckNameLeft; //TODO Remove
+
+	public static Image testDeckNameLeft; // TODO Remove
 	public static Image testDeckNameRight;
 
 	static {
@@ -47,37 +47,26 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
-		String p = "picture/";
-		RenderableHolder.backgroundSelectGameMode = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectGameMode.png").toString());
-		RenderableHolder.backgroundSelectDeckPvB = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckPvB.png").toString());
-		RenderableHolder.backgroundSelectDeckPvP = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckPvP.png").toString());
-		RenderableHolder.backgroundSelectDeckBvB = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundSelectDeckBvB.png").toString());
-		RenderableHolder.backgroundGameScreen = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundGameScreen.png").toString());
-		RenderableHolder.backgroundEndGame = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "backgroundEndGame.png").toString());
-		
-		RenderableHolder.testDeckNameLeft = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameLeft.png").toString());
-		RenderableHolder.testDeckNameRight = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "testDeckNameRight.png").toString());
-		
-		RenderableHolder.cost = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "cost.png").toString());
-		RenderableHolder.attackDamage = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "attackDamage.png").toString());
-		RenderableHolder.attackRange = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "attackRange.png").toString());
-		RenderableHolder.heart = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "heart.png").toString());
-		RenderableHolder.speed = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "speed.png").toString());
-		RenderableHolder.nextTurn = new Image(
-				ClassLoader.getSystemResource(String.valueOf(p) + "nextTurn.png").toString());
+		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.png");
+		RenderableHolder.backgroundSelectDeckPvB = loadImage("backgroundSelectDeckPvB.png");
+		RenderableHolder.backgroundSelectDeckPvP = loadImage("backgroundSelectDeckPvP.png");
+		RenderableHolder.backgroundSelectDeckBvB = loadImage("backgroundSelectDeckBvB.png");
+		RenderableHolder.backgroundGameScreen = loadImage("backgroundGameScreen.png");
+		RenderableHolder.backgroundEndGame = loadImage("backgroundEndGame.png");
+
+		RenderableHolder.testDeckNameLeft = loadImage("testDeckNameLeft.png");
+		RenderableHolder.testDeckNameRight = loadImage("testDeckNameRight.png");
+
+		RenderableHolder.cost = loadImage("cost.png");
+		RenderableHolder.attackDamage = loadImage("attackDamage.png");
+		RenderableHolder.attackRange = loadImage("attackRange.png");
+		RenderableHolder.heart = loadImage("heart.png");
+		RenderableHolder.speed = loadImage("speed.png");
+		RenderableHolder.nextTurn = loadImage("nextTurn.png");
+	}
+
+	public static Image loadImage(String fileName) {
+		return new Image(ClassLoader.getSystemResource("picture/" + fileName).toString());
 	}
 
 	public void add(IRenderable entity) {

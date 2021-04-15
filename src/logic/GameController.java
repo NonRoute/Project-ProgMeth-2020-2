@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.Random;
 
+import card.FighterCard;
 import deck.Deck;
 import entity.Bot;
 import entity.BotEasy;
@@ -42,6 +43,7 @@ public class GameController {
 
 	public static Direction winner;
 	public static CardInHandPane selectedCardPane;
+	public static FighterCard targetCard;
 
 	public static String gameMode;
 	public static Deck leftSideDeck;
@@ -127,8 +129,8 @@ public class GameController {
 				Platform.runLater(new Runnable() {
 					public void run() {
 						board.allCardAttack();
-						board.removeDeadCards();
 						board.update();
+						board.removeDeadCards();
 					}
 				});
 			} catch (InterruptedException e) {
@@ -189,7 +191,6 @@ public class GameController {
 				}
 				Platform.runLater(new Runnable() {
 					public void run() {
-						System.out.println("Start next phase");
 						if (isPhaseOneEnd == true) { // two controller have played
 							startMoveCard();
 							startAttackCard();
@@ -223,13 +224,14 @@ public class GameController {
 	}
 
 	public static void switchPlayingSide() {
+		gameScreen.getLeftCardsInHand().unHightlightAllCardInHandPane();
+		gameScreen.getRightCardsInHand().unHightlightAllCardInHandPane();
+		gameScreen.unHighlightHandPane();
 		if (currentPlayingSide == Direction.LEFT) {
 			currentPlayingSide = Direction.RIGHT;
-			gameScreen.unHighlightHandPane();
 			gameScreen.highlightHandPane(Direction.RIGHT);
 		} else {
 			currentPlayingSide = Direction.LEFT;
-			gameScreen.unHighlightHandPane();
 			gameScreen.highlightHandPane(Direction.LEFT);
 		}
 		isPhaseOneEnd = true;

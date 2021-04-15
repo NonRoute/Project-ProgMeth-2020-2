@@ -37,13 +37,13 @@ public class BotNormal extends Bot {
 		ArrayList<Integer> rowCanPlay = getPlayableRow();
 		ArrayList<Integer> excludedRow = new ArrayList<>();
 		if (rowCanPlay.size() > 0) {
-			int row = GameController.board.getnearestEnemyRow(playingSide, excludedRow);
+			int row = GameController.board.getNearestEnemyRow(playingSide, excludedRow);
 			while (row != -1) { // found enemy
 				if (rowCanPlay.contains(row)) {
 					return row;
 				} else { // can't play -> find new row
 					excludedRow.add(row);
-					row = GameController.board.getnearestEnemyRow(playingSide, excludedRow);
+					row = GameController.board.getNearestEnemyRow(playingSide, excludedRow);
 				}
 			}
 			Collections.shuffle(rowCanPlay);

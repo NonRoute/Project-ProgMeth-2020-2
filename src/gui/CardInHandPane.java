@@ -1,12 +1,15 @@
 package gui;
 
 import card.Card;
+import card.TrickCard;
 import card.FighterCard;
 import entity.Bot;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +29,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class CardInHandPane extends CardPane {
@@ -42,6 +46,7 @@ public class CardInHandPane extends CardPane {
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
 		this.setBorder(new Border(
 				new BorderStroke(Color.PERU, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(3))));
+		setToolTip();
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -60,7 +65,7 @@ public class CardInHandPane extends CardPane {
 			}
 		});
 		addCardImage(card.getImage());
-		setUpCardAbility(card);
+		setCardAbility(card);
 		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
 
 	}
@@ -126,7 +131,7 @@ public class CardInHandPane extends CardPane {
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
 
-	public void setUpCardAbility(Card card) {
+	public void setCardAbility(Card card) {
 		addCardAbility(RenderableHolder.cost, card, card.getCost(), 3, 0, 2);
 
 		if (card instanceof FighterCard) {
@@ -137,7 +142,7 @@ public class CardInHandPane extends CardPane {
 		}
 	}
 
-	public void addCardAbility(Image image, Card card, int text, int x, int y, int columnSpan) {
+	public void addCardAbility(Image image, Card card, int value, int x, int y, int columnSpan) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHight - 2 * insets) / 3);
 		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -145,11 +150,14 @@ public class CardInHandPane extends CardPane {
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth((cardWidth - 2 * insets) / 5);
 		imageView.setFitHeight((cardHight - 2 * insets) / 3);
-		Text text1 = new Text();
-		text1.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-		text1.setText("" + text);
-		text1.setFill(Color.BLACK);
-		stackPane.getChildren().addAll(imageView, text1);
+		Text text = new Text();
+		text.setFont(FontHolder.getInstance().font12);
+		text.setText("" + value);
+		text.setFill(Color.BLACK);
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setColor(Color.WHITE);
+		text.setEffect(dropShadow);
+		stackPane.getChildren().addAll(imageView, text);
 		this.add(stackPane, x, y, columnSpan, 1);
 		GridPane.setHalignment(stackPane, HPos.CENTER);
 	}

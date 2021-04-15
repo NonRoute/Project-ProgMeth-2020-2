@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -19,26 +20,28 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.GameController;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
-	private FighterCard card;
 	private int cardWidth = 88;
 	private int cardHight = 116;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {
-		this.card = (FighterCard) card;
+		this.card = card;
 		this.setPrefSize(cardWidth, cardHight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
 		addCardImage(card.getImage());
-		setUpCardAbility(card);
+		setCardAbility(card);
+		setToolTip();
 		this.getRowConstraints().add(new RowConstraints((cardHight / 4) - 2 * insets));
 	}
 
 	public void move() {
+		FighterCard card = (FighterCard) this.card;
 		Thread thread = new Thread(() -> {
 			try {
 				switch (card.getPlayingSide()) {
@@ -53,7 +56,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(500);
+							Thread.sleep(250);
 						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() + 1)) {
 							// can attack controller
 							Platform.runLater(new Runnable() {
@@ -76,7 +79,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(500);
+							Thread.sleep(250);
 						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
 							Platform.runLater(new Runnable() {
 								public void run() {
@@ -89,8 +92,7 @@ public class CardOnBoardPane extends CardPane {
 					}
 					break;
 				}
-			} catch (
-			InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		});
@@ -100,6 +102,7 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public void attack() {
+		FighterCard card = (FighterCard) this.card;
 		switch (card.getPlayingSide()) {
 		case LEFT:
 			for (int i = 1; i <= card.getAttackRange(); i++) {
@@ -119,7 +122,7 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public FighterCard getCard() {
-		return card;
+		return (FighterCard) card;
 	}
 
 	public void addCardImage(Image image) {
@@ -131,28 +134,40 @@ public class CardOnBoardPane extends CardPane {
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
 
-	public void setUpCardAbility(Card card) {
+	public void setCardAbility(Card card) {
 		if (card instanceof FighterCard) {
-			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(), 0, 2);
-			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(), 1, 2);
-			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(), 0, 3);
-			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(), 1, 3);
+			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(),
+					((FighterCard) card).getDefaultAttackDamage(), 0, 2);
+			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(),
+					((FighterCard) card).getDefaultAttackRange(), 1, 2);
+			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(),
+					((FighterCard) card).getDefaultHeart(), 0, 3);
+			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(),
+					((FighterCard) card).getDefaultSpeed(), 1, 3);
 		}
 	}
 
-	public void addCardAbility(Image image, Card card, int text, int x, int y) {
+	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHight - 2 * insets) / 4);
-		stackPane.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
 		imageView.setFitHeight((cardHight - 2 * insets) / 4);
-		Text text1 = new Text();
-		text1.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-		text1.setText("" + text);
-		text1.setFill(Color.BLACK);
-		stackPane.getChildren().addAll(imageView, text1);
+		Text text = new Text();
+		text.setFont(FontHolder.getInstance().font18);
+		text.setText("" + value);
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setColor(Color.WHITE);
+		text.setEffect(dropShadow);
+		if (value > defultValue) {
+			text.setFill(Color.GREEN);
+		} else if (value == defultValue) {
+			text.setFill(Color.BLACK);
+		} else {
+			text.setFill(Color.MAROON);
+		}
+		stackPane.getChildren().addAll(imageView, text);
 		this.add(stackPane, x, y);
 		GridPane.setHalignment(stackPane, HPos.CENTER);
 	}

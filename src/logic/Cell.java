@@ -2,6 +2,7 @@ package logic;
 
 import card.Card;
 import card.FighterCard;
+import card.Trickable;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
@@ -34,6 +35,23 @@ public class Cell extends StackPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (isHighLight) {
+					if (GameController.selectedCardPane.getCard() instanceof FighterCard) {
+						// place card on board
+						setCard(GameController.selectedCardPane);
+					}
+					if (GameController.selectedCardPane.getCard() instanceof Trickable) {
+						// set target card
+						switch (((Trickable) GameController.selectedCardPane.getCard()).getTrick()
+								.getFirstParameter()) {
+						case 'C': //not random
+							GameController.targetCard = cardOnBoardPane.getCard();
+							break;
+						case 'D': //not random
+							GameController.targetCard = cardOnBoardPane.getCard();
+							break;
+						}
+					}
+					// use card
 					switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 					case LEFT:
 						int index = GameController.leftSideController.getCardsInHandPane()
@@ -46,7 +64,6 @@ public class Cell extends StackPane {
 						GameController.rightSideController.useCard(index2);
 						break;
 					}
-					setCard(GameController.selectedCardPane);
 				}
 			}
 		});
@@ -64,11 +81,11 @@ public class Cell extends StackPane {
 
 	public void setCard(CardPane cardPane) {
 		if (isEmpty) {
-			if (cardPane instanceof CardInHandPane) { //change gui to OnBoard
+			if (cardPane instanceof CardInHandPane) { // change gui to OnBoard
 				cardPane = new CardOnBoardPane(((CardInHandPane) cardPane).getCard());
 			}
 			this.cardOnBoardPane = (CardOnBoardPane) cardPane;
-			this.cardOnBoardPane.getCard().setRow(row); //update row to card
+			this.cardOnBoardPane.getCard().setRow(row); // update row to card
 			this.cardOnBoardPane.getCard().setColumn(column);
 			GameController.board.unHighlightAllCells();
 			this.getChildren().add(cardPane);

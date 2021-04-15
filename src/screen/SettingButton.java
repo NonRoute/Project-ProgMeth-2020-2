@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.FontHolder;
 
 public class SettingButton extends GridPane {
 	private MenuButton LeftSideDeck;
@@ -68,7 +69,7 @@ public class SettingButton extends GridPane {
 			});
 		}
 		menuButton.setPrefSize(400, 40);
-		menuButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		menuButton.setFont(FontHolder.getInstance().font18);
 		return menuButton;
 	}
 
@@ -121,7 +122,7 @@ public class SettingButton extends GridPane {
 			}
 		});
 		menuButton.getItems().addAll(menuItem1, menuItem2, menuItem3);
-		menuButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		menuButton.setFont(FontHolder.getInstance().font18);
 		return menuButton;
 	}
 

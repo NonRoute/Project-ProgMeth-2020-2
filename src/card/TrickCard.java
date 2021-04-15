@@ -20,18 +20,13 @@ public class TrickCard extends Card implements Trickable {
 		return trick;
 	}
 
+	public void setPlayingSide(Direction playingSide) {
+		this.playingSide = playingSide;
+		this.trick.setPlayingSide(playingSide);
+	}
+
 	public void setTrick(Trick trick) {
 		this.trick = trick;
 	}
 
-	public void setPlayingSide(Direction playingSide) {
-		this.playingSide = playingSide;
-		trick.setPlayingSide(playingSide);
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-
-	}
 }

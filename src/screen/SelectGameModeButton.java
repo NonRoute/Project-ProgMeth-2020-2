@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import logic.GameController;
+import sharedObject.FontHolder;
 
 public class SelectGameModeButton extends GridPane {
 	private Button exitButton;
@@ -46,8 +47,8 @@ public class SelectGameModeButton extends GridPane {
 
 	public Button setUpButton(String name) {
 		Button button = new Button(name);
-		button.setPrefSize(300, 100);
-		button.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+		button.setPrefSize(320, 100);
+		button.setFont(FontHolder.getInstance().font36);
 		button.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
 		button.setBorder(new Border(
 				new BorderStroke(Color.SADDLEBROWN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));

@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import logic.GameController;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class SelectGameModeScreen {
@@ -44,10 +45,9 @@ public class SelectGameModeScreen {
 
 	public Button getExitButton() {
 		Button exitButton = new Button("Exit");
-		exitButton.setPrefSize(80, 50);
+		exitButton.setPrefSize(90, 50);
 		exitButton.setBackground(new Background(new BackgroundFill(Color.TOMATO, new CornerRadii(5), new Insets(2))));
-
-		exitButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		exitButton.setFont(FontHolder.getInstance().font24);
 		exitButton.setTextFill(Color.MAROON);
 		exitButton.setBorder(new Border(
 				new BorderStroke(Color.MAROON, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(5))));

@@ -22,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.GameController;
+import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class SettingScreen {
@@ -51,7 +52,7 @@ public class SettingScreen {
 		borderPane.setBottom(playButton);
 
 		warningText = new Text("Please fill all required fields");
-		warningText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		warningText.setFont(FontHolder.getInstance().font24);
 		warningText.setFill(Color.RED);
 		warningText.setX(508);
 		warningText.setY(550);
@@ -80,7 +81,7 @@ public class SettingScreen {
 		Button goBackButton = new Button("Go back");
 		goBackButton.setPrefSize(120, 50);
 		goBackButton.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, new CornerRadii(5), new Insets(2))));
-		goBackButton.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		goBackButton.setFont(FontHolder.getInstance().font24);
 		goBackButton.setTextFill(Color.NAVY);
 		goBackButton.setBorder(new Border(
 				new BorderStroke(Color.NAVY, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(5))));
@@ -107,7 +108,7 @@ public class SettingScreen {
 		playButton.setPrefSize(250, 100);
 		playButton
 				.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, new CornerRadii(5), new Insets(5))));
-		playButton.setFont(Font.font("Arial", FontWeight.BOLD, 50));
+		playButton.setFont(FontHolder.getInstance().font64);
 		playButton.setTextFill(Color.MEDIUMSEAGREEN);
 		playButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(10))));
