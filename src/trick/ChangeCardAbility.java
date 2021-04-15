@@ -31,9 +31,14 @@ public class ChangeCardAbility extends Trick {
 		FighterCard card = null;
 		switch (activateType) {
 		case 'A':
+			System.out.println("A Friend");
+			System.out.println("GET"+getPlayingSide());
+			System.out.println(playingSide);
 			card = GameController.board.getRandomFriendly(playingSide);
 			break;
 		case 'B':
+			System.out.println("B Enemy");
+			System.out.println(playingSide);
 			card = GameController.board.getRandomEnemy(playingSide);
 			break;
 		case 'C':
@@ -43,6 +48,7 @@ public class ChangeCardAbility extends Trick {
 			card = GameController.targetCard;
 			break;
 		}
+		System.out.println("Activate at"+card.getRow()+" "+card.getColumn()+"");
 		Update(card);
 		GameController.board.update();
 		GameController.board.removeDeadCards();

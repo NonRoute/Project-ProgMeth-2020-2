@@ -4,6 +4,7 @@ import entity.Entity;
 import javafx.scene.image.Image;
 import logic.Direction;
 import sharedObject.RenderableHolder;
+import trick.Trick;
 
 public abstract class Card implements Cloneable {
 	private String name;
@@ -33,17 +34,24 @@ public abstract class Card implements Cloneable {
 
 	public Object clone() {
 		try {
-			return super.clone();
+			Card card = (Card) super.clone();
+			if (card instanceof TrickCard) {
+				((TrickCard) card).setTrick((Trick) ((TrickCard) card).getTrick().clone());
+			}
+			if (card instanceof MagicianCard) {
+				((MagicianCard) card).setTrick((Trick) ((MagicianCard) card).getTrick().clone());
+			}
+			return card;
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
 		}
 	}
 
 	public String getType() {
-		if (this instanceof FighterCard) {
-			return "Fighter";
-		} else if (this instanceof MagicianCard) {
+		if (this instanceof MagicianCard) {
 			return "Magician";
+		} else if (this instanceof FighterCard) {
+			return "Fighter";
 		} else {
 			return "Trick";
 		}

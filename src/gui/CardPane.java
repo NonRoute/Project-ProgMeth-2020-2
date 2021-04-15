@@ -1,6 +1,7 @@
 package gui;
 
 import card.Card;
+import card.TrickCard;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +23,7 @@ public abstract class CardPane extends GridPane {
 		Tooltip tooltip = new Tooltip();
 		tooltip.setFont(FontHolder.getInstance().font12);
 		tooltip.setText(card.getType() + "\n" + card.getDescription());
+
 		this.setOnMouseMoved((MouseEvent e) -> {
 			tooltip.show(this, e.getScreenX(), e.getScreenY() + 10);
 		});

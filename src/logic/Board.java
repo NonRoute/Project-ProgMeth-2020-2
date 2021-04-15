@@ -85,6 +85,7 @@ public class Board extends GridPane {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isFriendly(r, c, playingSide)) {
+					System.out.println("FRIENDLY"+r+c);
 					friendly.add(boardCells.get(r).get(c).getCard());
 				}
 			}
@@ -121,6 +122,7 @@ public class Board extends GridPane {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) { // loop all cell
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isEnemy(r, c, playingSide)) {
+					System.out.println("ENEMY"+r+c);
 					enemy.add(boardCells.get(r).get(c).getCard());
 				}
 			}
@@ -185,6 +187,7 @@ public class Board extends GridPane {
 	public FighterCard getRandomFriendly(Direction playingSide) {
 		Random rand = new Random();
 		ArrayList<FighterCard> friendly = getFriendly(playingSide);
+		System.out.println("friendlyS"+friendly.size());
 		if (friendly.size() == 0) {
 			return null;
 		} else {
@@ -196,6 +199,7 @@ public class Board extends GridPane {
 	public FighterCard getRandomEnemy(Direction playingSide) {
 		Random rand = new Random();
 		ArrayList<FighterCard> enemy = getEnemy(playingSide);
+		System.out.println("EnemyS"+enemy.size());
 		if (enemy.size() == 0) {
 			return null;
 		} else {
