@@ -158,17 +158,21 @@ public class CardInHandPane extends CardPane {
 		imageView.setFitWidth((cardWidth - 2 * insets) / 5);
 		imageView.setFitHeight((cardHight - 2 * insets) / 3);
 		Text text = new Text();
-		text.setFont(FontHolder.getInstance().font12);
+		text.setFont(FontHolder.getInstance().font15);
 		text.setText("" + value);
 		if (value > defultValue) {
-			text.setFill(Color.GREEN);
+			text.setFill(Color.LIGHTGREEN);
 		} else if (value == defultValue) {
-			text.setFill(Color.BLACK);
+			text.setFill(Color.WHITE);
 		} else {
-			text.setFill(Color.MAROON);
+			text.setFill(Color.LIGHTPINK);
 		}
 		DropShadow dropShadow = new DropShadow();
-		dropShadow.setColor(Color.WHITE);
+		dropShadow.setColor(Color.BLACK);
+		dropShadow.setRadius(0.2);
+		dropShadow.setSpread(0.8);
+		dropShadow.setOffsetX(1);
+		dropShadow.setOffsetY(1);
 		text.setEffect(dropShadow);
 		stackPane.getChildren().addAll(imageView, text);
 		this.add(stackPane, x, y, columnSpan, 1);

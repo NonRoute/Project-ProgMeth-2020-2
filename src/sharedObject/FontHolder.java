@@ -6,6 +6,7 @@ public class FontHolder {
 	private static final String TTF = "ttf";
 	private static final FontHolder instance;
 	public Font font12;
+	public Font font15;
 	public Font font18;
 	public Font font24;
 	public Font font28;
@@ -24,6 +25,7 @@ public class FontHolder {
 
 	public FontHolder() {
 		this.font12 = this.loadFont("EvilEmpire-4BBVK", "ttf", 12.0);
+		this.font15 = this.loadFont("EvilEmpire-4BBVK", "ttf", 15.0);
 		this.font18 = this.loadFont("EvilEmpire-4BBVK", "ttf", 18.0);
 		this.font24 = this.loadFont("EvilEmpire-4BBVK", "ttf", 24.0);
 		this.font28 = this.loadFont("EvilEmpire-4BBVK", "ttf", 28.0);
