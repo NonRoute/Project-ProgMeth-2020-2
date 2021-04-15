@@ -239,6 +239,24 @@ public class Board extends GridPane {
 		}
 	}
 
+	public boolean canPlayTrickCard(TrickCard trickCard) {
+		switch (trickCard.getTrick().getFirstParameter()) {
+		case 'A':
+		case 'C': // trick to friendly
+			if (haveFriendly(trickCard.getPlayingSide())) {
+				return true;
+			}
+			break;
+		case 'B':
+		case 'D': // trick to enemy
+			if (haveEnemy(trickCard.getPlayingSide())) {
+				return true;
+			}
+			break;
+		}
+		return false;
+	}
+
 	public void hightlightEnemy(Direction playingSide) {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {

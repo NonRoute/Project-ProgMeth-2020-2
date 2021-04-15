@@ -308,70 +308,70 @@
     </display>  
   </class>  
   <generalization id="35">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="34"/>  
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="18"/>  
   </generalization>  
   <generalization id="36">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <generalization id="37">    
     <end type="SOURCE" refId="27"/>    
     <end type="TARGET" refId="28"/>  
   </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="34"/>  
+  </generalization>  
   <generalization id="38">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="18"/>  
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="9"/>  
   </generalization>  
   <generalization id="39">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="13"/>  
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="18"/>  
   </generalization>  
   <generalization id="40">    
     <end type="SOURCE" refId="29"/>    
     <end type="TARGET" refId="32"/>  
   </generalization>  
   <generalization id="41">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="43">    
     <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="34"/>  
   </generalization>  
-  <realization id="42">    
+  <realization id="44">    
     <bendpoint x="3084" y="1301"/>    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="21"/>  
   </realization>  
-  <generalization id="43">    
+  <generalization id="45">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="16"/>    
+  <generalization id="46">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="18"/>  
   </generalization>  
-  <realization id="45">    
+  <realization id="47">    
     <end type="SOURCE" refId="34"/>    
     <end type="TARGET" refId="15"/>  
   </realization>  
-  <generalization id="46">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="18"/>  
-  </generalization>  
-  <generalization id="47">    
+  <generalization id="48">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="13"/>  
   </generalization>  
-  <generalization id="48">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="32"/>  
-  </generalization>  
-  <realization id="49">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="21"/>  
-  </realization>  
-  <generalization id="50">    
+  <generalization id="49">    
     <end type="SOURCE" refId="25"/>    
     <end type="TARGET" refId="20"/>  
   </generalization>  
+  <realization id="50">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

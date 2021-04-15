@@ -24,20 +24,28 @@ public class ChangeCardAbility extends Trick {
 	}
 
 	@Override
-	public void activate() {
+	public void activate() { // this method be called when use card
 		FighterCard card = null;
 		switch (activateType) {
-		case 'A':
+		case 'A': // Random Friendly
 			card = GameController.board.getRandomFriendly(playingSide);
 			break;
-		case 'B':
+		case 'B': // Random Enemy
 			card = GameController.board.getRandomEnemy(playingSide);
 			break;
-		case 'C':
-			card = GameController.targetCard;
+		case 'C':// Select Friendly
+			if (GameController.isBotSide(playingSide)) { // if bot play this card
+				card = GameController.board.getRandomFriendly(playingSide);
+			} else { //use player selected target card
+				card = GameController.targetCard;
+			}
 			break;
-		case 'D':
-			card = GameController.targetCard;
+		case 'D':// Select Enemy
+			if (GameController.isBotSide(playingSide)) { // if bot play this card
+				card = GameController.board.getRandomEnemy(playingSide);
+			} else {
+				card = GameController.targetCard;
+			}
 			break;
 		}
 		Update(card);

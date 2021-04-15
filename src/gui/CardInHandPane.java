@@ -84,6 +84,10 @@ public class CardInHandPane extends CardPane {
 		if (isCardTooExpensive()) { // can't select if card too expensive
 			return false;
 		}
+		if (card instanceof TrickCard && !GameController.board.canPlayTrickCard((TrickCard) card)) {
+			// can't select if can't use this trick card
+			return false;
+		}
 		if (GameController.threadDrawCard != null) {
 			if (GameController.threadDrawCard.isAlive()) {
 				return false;

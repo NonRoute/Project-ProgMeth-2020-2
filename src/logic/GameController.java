@@ -213,6 +213,16 @@ public class GameController {
 		thread.start();
 	}
 
+	public static boolean isBotSide(Direction direction) {
+		switch(direction) {
+		case LEFT:
+			return (leftSideController instanceof Bot);
+		case RIGHT:
+			return (rightSideController instanceof Bot);
+		}
+		return false;
+	}
+	
 	public static void startTurn() { // called when click next turn button
 		isPhaseOneEnd = false;
 		turn++;

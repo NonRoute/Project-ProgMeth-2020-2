@@ -48,7 +48,8 @@ public class BotEasy extends Bot {
 						public void run() { // play
 							CardInHandPane selectCard = selectCard();
 							useCard(cardsInHandPane.indexOf(selectCard));
-							if (selectCard.getCard() instanceof FighterCard) {
+							if (selectCard.getCard() instanceof FighterCard) { 
+								// set card on map, if it is FighterCard or MagicianCard
 								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
 							}
 						}

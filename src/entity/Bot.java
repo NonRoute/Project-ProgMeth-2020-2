@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import card.Card;
+import card.TrickCard;
 import deck.Deck;
 import gui.CardInHandPane;
 import logic.Board;
 import logic.Direction;
+import logic.GameController;
 
 public abstract class Bot extends Controller {
 
@@ -32,13 +34,19 @@ public abstract class Bot extends Controller {
 	}
 
 	public boolean isCardCanPlay(CardInHandPane cardPane) {
-		return cardPane.getCard().getCost() > money;
+		boolean canPlay = true;
+		if (cardPane.getCard() instanceof TrickCard) {
+			//if trickCard, trickCard must canPlay and check cost of card <= money
+			canPlay = GameController.board.canPlayTrickCard((TrickCard) cardPane.getCard());
+		}
+		return cardPane.getCard().getCost() <= money && canPlay;
+
 	}
 
 	public ArrayList<CardInHandPane> getAllCardsCanPlay() {
 		ArrayList<CardInHandPane> CardsCanPlay = new ArrayList<>();
 		for (CardInHandPane c : cardsInHandPane.getCardsList()) {
-			if (!isCardCanPlay(c)) {
+			if (isCardCanPlay(c)) {
 				CardsCanPlay.add(c);
 			}
 		}
