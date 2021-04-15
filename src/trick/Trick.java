@@ -3,9 +3,7 @@ package trick;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import card.Card;
 import card.FighterCard;
-import card.TrickCard;
 import entity.Bot;
 import logic.Direction;
 import logic.GameController;

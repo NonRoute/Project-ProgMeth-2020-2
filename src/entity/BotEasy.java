@@ -2,14 +2,10 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import card.Card;
-import card.FighterCard;
+
 import deck.Deck;
 import gui.CardInHandPane;
-import javafx.application.Platform;
-import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
-import logic.GameController;
 
 public class BotEasy extends Bot {
 

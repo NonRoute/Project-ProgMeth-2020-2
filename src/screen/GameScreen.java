@@ -21,7 +21,6 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import logic.Board;
 import logic.Direction;
@@ -36,7 +35,6 @@ public class GameScreen {
 	private GraphicsContext gc;
 	private TurnText turnText;
 	private Button nextPhaseButton;
-//	private GameLogic logic;
 	private HandPane leftCardsInHand;
 	private HandPane rightCardsInHand;
 
@@ -67,9 +65,7 @@ public class GameScreen {
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
 				paintComponent();
-//				logic.logicUpdate();
 				updateStartNextPhaseButton();
-//				GameController.board.update();
 				RenderableHolder.getInstance().update();
 			}
 		};

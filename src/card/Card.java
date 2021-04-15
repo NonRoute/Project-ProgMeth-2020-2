@@ -1,10 +1,8 @@
 package card;
 
-import entity.Entity;
 import javafx.scene.image.Image;
 import logic.Direction;
 import sharedObject.RenderableHolder;
-import trick.Trick;
 
 public abstract class Card implements Cloneable {
 	private String description;

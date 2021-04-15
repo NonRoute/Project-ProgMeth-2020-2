@@ -1,6 +1,5 @@
 package logic;
 
-import card.Card;
 import card.FighterCard;
 import card.Trickable;
 import gui.CardInHandPane;
@@ -69,14 +68,26 @@ public class Cell extends StackPane {
 		});
 	}
 
+	public FighterCard getCard() {
+		return cardOnBoardPane.getCard();
+	}
+
+	public CardOnBoardPane getCardOnBoardPane() {
+		return cardOnBoardPane;
+	}
+
 	public void highlight() {
 		this.setBackground(new Background(new BackgroundFill(Color.PALEGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
 		isHighLight = true;
 	}
 
-	public void unhighlight() {
-		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
-		isHighLight = false;
+	public boolean isEmpty() {
+		return isEmpty;
+	}
+
+	public void removeCard() {
+		this.getChildren().clear();
+		isEmpty = true;
 	}
 
 	public void setCard(CardPane cardPane) {
@@ -93,25 +104,13 @@ public class Cell extends StackPane {
 		}
 	}
 
-	public void removeCard() {
-		this.getChildren().clear();
-		isEmpty = true;
-	}
-
-	public boolean isEmpty() {
-		return isEmpty;
-	}
-
 	public void setEmpty(boolean isEmpty) {
 		this.isEmpty = isEmpty;
 	}
 
-	public CardOnBoardPane getCardOnBoardPane() {
-		return cardOnBoardPane;
-	}
-
-	public FighterCard getCard() {
-		return cardOnBoardPane.getCard();
+	public void unhighlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
+		isHighLight = false;
 	}
 
 }

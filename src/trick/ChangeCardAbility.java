@@ -1,11 +1,6 @@
 package trick;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import card.Card;
 import card.FighterCard;
-import entity.Bot;
 import logic.GameController;
 
 public class ChangeCardAbility extends Trick {

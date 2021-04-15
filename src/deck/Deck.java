@@ -13,7 +13,6 @@ import trick.ChangeCardAbility;
 import trick.ChangeControllerHeart;
 import trick.DestroyCard;
 import trick.Draw;
-import trick.Trick;
 
 public class Deck {
 	private String name;
@@ -25,6 +24,44 @@ public class Deck {
 		this.cards = importDeck(fileName);
 		this.numberOfCardsEachCost = countNumberOfCardsEachCost();
 		GameController.Decks.add(this);
+	}
+
+	public ArrayList<Integer> countNumberOfCardsEachCost() {
+		ArrayList<Integer> temp = new ArrayList<>();
+		for (Card card : this.cards) {
+			temp.add(card.getCost());
+		}
+		// set the initial size = [0,1,2,3,...,max cost]
+		ArrayList<Integer> numberOfCardsEachCost = new ArrayList<>();
+		for (int i = 0; i <= Collections.max(temp); i++) {
+			numberOfCardsEachCost.add(0);
+		}
+		for (int cost : temp) {
+			numberOfCardsEachCost.set(cost, numberOfCardsEachCost.get(cost) + 1); // index = cost
+		}
+		return numberOfCardsEachCost;
+	}
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
+	public ArrayList<Card> getListOfCardsbyCost(int cost) {
+		ArrayList<Card> listOfCardsbyCost = new ArrayList<>();
+		for (Card card : this.cards) {
+			if (card.getCost() == cost) {
+				listOfCardsbyCost.add(card);
+			}
+		}
+		return listOfCardsbyCost;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public ArrayList<Integer> getNumberOfCardsEachCost() {
+		return numberOfCardsEachCost;
 	}
 
 	public ArrayList<Card> importDeck(String filename) {
@@ -111,49 +148,11 @@ public class Deck {
 		return deck;
 	}
 
-	public ArrayList<Integer> countNumberOfCardsEachCost() {
-		ArrayList<Integer> temp = new ArrayList<>();
-		for (Card card : this.cards) {
-			temp.add(card.getCost());
-		}
-		// set the initial size = [0,1,2,3,...,max cost]
-		ArrayList<Integer> numberOfCardsEachCost = new ArrayList<>();
-		for (int i = 0; i <= Collections.max(temp); i++) {
-			numberOfCardsEachCost.add(0);
-		}
-		for (int cost : temp) {
-			numberOfCardsEachCost.set(cost, numberOfCardsEachCost.get(cost) + 1); // index = cost
-		}
-		return numberOfCardsEachCost;
-	}
-
-	public ArrayList<Card> getListOfCardsbyCost(int cost) {
-		ArrayList<Card> listOfCardsbyCost = new ArrayList<>();
-		for (Card card : this.cards) {
-			if (card.getCost() == cost) {
-				listOfCardsbyCost.add(card);
-			}
-		}
-		return listOfCardsbyCost;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public ArrayList<Card> getCards() {
-		return cards;
-	}
-
 	public void setCards(ArrayList<Card> cards) {
 		this.cards = cards;
 	}
 
-	public ArrayList<Integer> getNumberOfCardsEachCost() {
-		return numberOfCardsEachCost;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

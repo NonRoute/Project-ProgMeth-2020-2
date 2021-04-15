@@ -3,7 +3,6 @@ package entity;
 import java.util.ArrayList;
 import java.util.Random;
 
-import card.Card;
 import card.FighterCard;
 import card.TrickCard;
 import deck.Deck;
@@ -20,9 +19,38 @@ public abstract class Bot extends Controller {
 		super(heart, money, deck, playingSide);
 	}
 
-	public abstract CardInHandPane selectCard();
+	public ArrayList<CardInHandPane> getAllCardsCanPlay() {
+		ArrayList<CardInHandPane> CardsCanPlay = new ArrayList<>();
+		for (CardInHandPane c : cardsInHandPane.getCardsList()) {
+			if (isCardCanPlay(c)) {
+				CardsCanPlay.add(c);
+			}
+		}
+		return CardsCanPlay;
+	}
 
-	public abstract int selectRow();
+	public FighterCard getTargetCard(Trick trick) {
+		FighterCard card = null;
+		switch (trick.getFirstParameter()) {
+		case 'C':
+			card = GameController.board.getRandomFriendly(playingSide);
+			break;
+		case 'D':
+			card = GameController.board.getRandomEnemy(playingSide);
+			break;
+		}
+		return card;
+	}
+
+	public boolean isCardCanPlay(CardInHandPane cardPane) {
+		boolean canPlay = true;
+		if (cardPane.getCard() instanceof TrickCard) {
+			// if trickCard, trickCard must canPlay and check cost of card <= money
+			canPlay = GameController.board.canPlayTrickCard((TrickCard) cardPane.getCard());
+		}
+		return cardPane.getCard().getCost() <= money && canPlay;
+
+	}
 
 	public void play() {
 		// will play card until can't play
@@ -55,46 +83,17 @@ public abstract class Bot extends Controller {
 		GameController.threadBotPlay = thread;
 	}
 
-	public int randomRow() {
-		Random rand = new Random();
-		return rand.nextInt(Board.NUMBER_OF_ROW);
-	}
-
 	public int randomIndexCardInHand() {
 		Random rand = new Random();
 		return rand.nextInt(cardsInHandPane.getSize());
 	}
 
-	public boolean isCardCanPlay(CardInHandPane cardPane) {
-		boolean canPlay = true;
-		if (cardPane.getCard() instanceof TrickCard) {
-			// if trickCard, trickCard must canPlay and check cost of card <= money
-			canPlay = GameController.board.canPlayTrickCard((TrickCard) cardPane.getCard());
-		}
-		return cardPane.getCard().getCost() <= money && canPlay;
-
+	public int randomRow() {
+		Random rand = new Random();
+		return rand.nextInt(Board.NUMBER_OF_ROW);
 	}
 
-	public FighterCard getTargetCard(Trick trick) {
-		FighterCard card = null;
-		switch (trick.getFirstParameter()) {
-		case 'C':
-			card = GameController.board.getRandomFriendly(playingSide);
-			break;
-		case 'D':
-			card = GameController.board.getRandomEnemy(playingSide);
-			break;
-		}
-		return card;
-	}
+	public abstract CardInHandPane selectCard();
 
-	public ArrayList<CardInHandPane> getAllCardsCanPlay() {
-		ArrayList<CardInHandPane> CardsCanPlay = new ArrayList<>();
-		for (CardInHandPane c : cardsInHandPane.getCardsList()) {
-			if (isCardCanPlay(c)) {
-				CardsCanPlay.add(c);
-			}
-		}
-		return CardsCanPlay;
-	}
+	public abstract int selectRow();
 }

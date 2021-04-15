@@ -3,12 +3,9 @@ package entity;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import card.Card;
-import card.FighterCard;
 import card.Trickable;
 import deck.Deck;
 import gui.CardInHandPane;
-import javafx.application.Platform;
 import logic.Direction;
 import logic.GameController;
 

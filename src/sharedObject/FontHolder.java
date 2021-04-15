@@ -3,7 +3,6 @@ package sharedObject;
 import javafx.scene.text.Font;
 
 public class FontHolder {
-	private static final String TTF = "ttf";
 	private static final FontHolder instance;
 	public Font font12;
 	public Font font15;

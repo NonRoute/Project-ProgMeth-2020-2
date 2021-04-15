@@ -3,11 +3,8 @@ package logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-import card.Card;
 import card.FighterCard;
-import card.MagicianCard;
 import card.TrickCard;
-import card.Trickable;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
@@ -17,10 +14,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -62,6 +55,28 @@ public class Board extends GridPane {
 
 	public void attackCard(int row, int column, int attackDamage) {
 		boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
+	}
+
+	public boolean canPlayTrickCard(TrickCard trickCard) {
+		switch (trickCard.getTrick().getFirstParameter()) {
+		case 'A':
+		case 'C': // trick to friendly
+			if (haveFriendly(trickCard.getPlayingSide())) {
+				return true;
+			}
+			break;
+		case 'B':
+		case 'D': // trick to enemy
+			if (haveEnemy(trickCard.getPlayingSide())) {
+				return true;
+			}
+			break;
+		case 'T':
+		case 'E':
+		case 'S':
+			return true;
+		}
+		return false;
 	}
 
 	public ObservableList<ObservableList<Cell>> getBoard() {
@@ -241,28 +256,6 @@ public class Board extends GridPane {
 				break;
 			}
 		}
-	}
-
-	public boolean canPlayTrickCard(TrickCard trickCard) {
-		switch (trickCard.getTrick().getFirstParameter()) {
-		case 'A':
-		case 'C': // trick to friendly
-			if (haveFriendly(trickCard.getPlayingSide())) {
-				return true;
-			}
-			break;
-		case 'B':
-		case 'D': // trick to enemy
-			if (haveEnemy(trickCard.getPlayingSide())) {
-				return true;
-			}
-			break;
-		case 'T':
-		case 'E':
-		case 'S':
-			return true;
-		}
-		return false;
 	}
 
 	public void hightlightEnemy(Direction playingSide) {

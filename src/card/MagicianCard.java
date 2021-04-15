@@ -1,8 +1,6 @@
 package card;
 
-import javafx.scene.canvas.GraphicsContext;
 import logic.Direction;
-import logic.GameController;
 import trick.Trick;
 
 public class MagicianCard extends FighterCard implements Trickable {
@@ -14,9 +12,8 @@ public class MagicianCard extends FighterCard implements Trickable {
 		this.trick = trick;
 	}
 
-	public void setPosition(int row, int column) {
-		this.row = row;
-		this.column = column;
+	public void activateTrick() {
+		trick.activate();
 	}
 
 	public Object clone() {
@@ -25,17 +22,18 @@ public class MagicianCard extends FighterCard implements Trickable {
 		return card;
 	}
 
+	public Trick getTrick() {
+		return trick;
+	}
+
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
 		trick.setPlayingSide(playingSide);
 	}
 
-	public void activateTrick() {
-		trick.activate();
-	}
-
-	public Trick getTrick() {
-		return trick;
+	public void setPosition(int row, int column) {
+		this.row = row;
+		this.column = column;
 	}
 
 	public void setTrick(Trick trick) {

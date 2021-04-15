@@ -8,8 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import logic.Direction;
 import logic.GameController;
 import sharedObject.FontHolder;
