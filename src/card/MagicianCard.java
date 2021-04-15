@@ -19,6 +19,12 @@ public class MagicianCard extends FighterCard implements Trickable {
 		this.column = column;
 	}
 
+	public Object clone() {
+		MagicianCard card = (MagicianCard) super.clone();
+		card.setTrick((Trick) card.getTrick().clone());
+		return card;
+	}
+
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
 		trick.setPlayingSide(playingSide);
@@ -33,7 +39,7 @@ public class MagicianCard extends FighterCard implements Trickable {
 	}
 
 	public void setTrick(Trick trick) {
-		this.trick = trick;	
+		this.trick = trick;
 	}
 
 }

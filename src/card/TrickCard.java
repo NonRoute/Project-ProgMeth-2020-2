@@ -12,6 +12,12 @@ public class TrickCard extends Card implements Trickable {
 		this.trick = trick;
 	}
 
+	public Object clone() {
+		TrickCard card = (TrickCard) super.clone();
+		card.setTrick((Trick) card.getTrick().clone());
+		return card;
+	}
+
 	public void activateTrick() {
 		trick.activate();
 	}

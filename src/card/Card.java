@@ -35,12 +35,6 @@ public abstract class Card implements Cloneable {
 	public Object clone() {
 		try {
 			Card card = (Card) super.clone();
-			if (card instanceof TrickCard) {
-				((TrickCard) card).setTrick((Trick) ((TrickCard) card).getTrick().clone());
-			}
-			if (card instanceof MagicianCard) {
-				((MagicianCard) card).setTrick((Trick) ((MagicianCard) card).getTrick().clone());
-			}
 			return card;
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
