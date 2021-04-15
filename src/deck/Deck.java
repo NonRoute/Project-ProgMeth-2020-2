@@ -80,7 +80,7 @@ public class Deck {
 					System.out.println("Wrong card type input, You input: " + deckData[i][0]);
 				}
 			} catch (Exception e) {
-				System.out.println("Worng card input");
+				System.out.println("Wrong card input "+name+" "+deckData[i][0]);
 			}
 		}
 		return deck;
@@ -118,7 +118,7 @@ public class Deck {
 	}
 
 	public void setName(String name) {
-		name = name;
+		this.name = name;
 	}
 
 	public ArrayList<Card> getCards() {
