@@ -1,7 +1,10 @@
 ﻿Test,,,,,,,,
 Type,Description,Cost,Attack Damage,Attack Range,Heart,Speed,Effect type,Effect parameter
-Magician,B,1,1,1,4,1,DestroyCard,B.-10.-10.-1.-10
-Trick,B,0,,,,,DestroyCard,B
-Trick,D,0,,,,,DestroyCard,D
-Fighter,F,1,1,1,4,1,,
-Fighter,F,1,1,1,4,1,,
+Magician,T,0,1,1,5,1,Draw,T.4
+Magician,E,0,1,1,4,1,Draw,E.4
+Magician,S,0,1,1,10,1,Draw,S.4
+Trick,T,0,1,1,10,1,Draw,T.4
+Trick,E,0,1,1,10,1,Draw,E.4
+Trick,S,0,1,1,10,1,Draw,S.4
+Fighter,F,0,1,1,4,1,,
+Fighter,F,0,1,1,4,1,,

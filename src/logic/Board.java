@@ -201,7 +201,7 @@ public class Board extends GridPane {
 	}
 
 	public void highlightCellCanPlay(CardInHandPane selectedCardPane) {
-		if (!(selectedCardPane.getCard() instanceof TrickCard)) {// if not trickCard
+		if (selectedCardPane.getCard() instanceof FighterCard) {// if not trickCard
 			for (int r = 0; r < NUMBER_OF_ROW; r++) {
 				switch (GameController.selectedCardPane.getCard().getPlayingSide()) {
 				case LEFT:
@@ -216,7 +216,6 @@ public class Board extends GridPane {
 					break;
 				}
 			}
-			// TODO magician card highlight after click
 		} else {
 			switch (((TrickCard) selectedCardPane.getCard()).getTrick().getFirstParameter()) {
 			case 'A': // random friendly
@@ -234,6 +233,11 @@ public class Board extends GridPane {
 				break;
 			case 'D': // select enemy
 				hightlightEnemy(selectedCardPane.getCard().getPlayingSide());
+				break;
+			case 'T':
+			case 'E':
+			case 'S': // highlight all
+				highlightAllCell();
 				break;
 			}
 		}
@@ -253,6 +257,10 @@ public class Board extends GridPane {
 				return true;
 			}
 			break;
+		case 'T':
+		case 'E':
+		case 'S':
+			return true;
 		}
 		return false;
 	}
