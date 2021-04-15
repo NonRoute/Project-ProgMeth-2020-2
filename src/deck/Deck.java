@@ -10,6 +10,7 @@ import card.MagicianCard;
 import card.TrickCard;
 import logic.GameController;
 import trick.ChangeCardAbility;
+import trick.ChangeControllerHeart;
 import trick.DestroyCard;
 import trick.Draw;
 import trick.Trick;
@@ -63,6 +64,13 @@ public class Deck {
 								Integer.parseInt(deckData[i][6]), new Draw(deckData[i][8]));
 						deck.add(magicianCard);
 						break;
+					case ("ChangeControllerHeart"):
+						magicianCard = new MagicianCard(name, deckData[i][1],
+								Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+								Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]),
+								Integer.parseInt(deckData[i][6]), new ChangeControllerHeart(deckData[i][8]));
+						deck.add(magicianCard);
+						break;
 					default:
 						System.out.println("Wrong magician input");
 					}
@@ -82,6 +90,11 @@ public class Deck {
 					case ("Draw"):
 						trickCard = new TrickCard(name, deckData[i][1],
 								Integer.parseInt(deckData[i][2]), new Draw(deckData[i][8]));
+						deck.add(trickCard);
+						break;
+					case ("ChangeControllerHeart"):
+						trickCard = new TrickCard(name, deckData[i][1],
+								Integer.parseInt(deckData[i][2]), new ChangeControllerHeart(deckData[i][8]));
 						deck.add(trickCard);
 						break;
 					default:

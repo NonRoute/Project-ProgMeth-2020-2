@@ -141,6 +141,7 @@ public abstract class Controller extends Entity {
 	public void reduceHeart(int number) {
 		if (heart - number <= 0) {
 			heart = 0;
+			//end game
 			switch (playingSide) {
 			case LEFT:
 				GameController.winner = Direction.RIGHT;
