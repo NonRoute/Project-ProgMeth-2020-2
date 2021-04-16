@@ -12,8 +12,8 @@ public abstract class Card implements Cloneable {
 	private Image leftPlayingSideImage;
 	private Image rightPlayingSideImage;
 
-	public Card(String deckName, String description, int cost) {
-		this.description = description;
+	public Card(String deckName, int cost) {
+		this.description = setDescription();
 		this.cost = cost;
 		switch (deckName) {
 		case "Angel": // TODO Update
@@ -26,6 +26,10 @@ public abstract class Card implements Cloneable {
 			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
 			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
 		}
+	}
+	
+	public String setDescription() {
+		return "";
 	}
 
 	public Object clone() {
