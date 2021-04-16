@@ -19,7 +19,7 @@ public class LastUsedCard extends Entity {
 		this.setVisible(true);
 	}
 
-	private int countLines(String str) {
+	public int countLines(String str) {
 		if (str.equals("")) {
 			return 0;
 		}
