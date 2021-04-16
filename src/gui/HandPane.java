@@ -35,7 +35,7 @@ public class HandPane extends VBox {
 		cardsList.add(cardPane);
 	}
 	
-	public Card get(int index) {
+	public Card getCard(int index) {
 		return cardsList.get(index).getCard();
 	}
 

@@ -102,7 +102,7 @@ public class Deck {
 		return deck;
 	}
 
-	public Trick getTrick(String trick, String[][] deckData, int row) { //get Trick by name of trick
+	public Trick getTrick(String trick, String[][] deckData, int row) { // get Trick by name of trick
 		switch (trick) {
 		case "ChangeCardAbility":
 			return new ChangeCardAbility(deckData[row][7]);
