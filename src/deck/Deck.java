@@ -23,7 +23,7 @@ public class Deck {
 		this.name = Name;
 		this.cards = importDeck(fileName);
 		this.numberOfCardsEachCost = countNumberOfCardsEachCost();
-		GameController.Decks.add(this);
+		GameController.DECKS.add(this);
 	}
 
 	public ArrayList<Integer> countNumberOfCardsEachCost() {

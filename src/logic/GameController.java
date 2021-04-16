@@ -28,7 +28,7 @@ public class GameController {
 	public static Stage primaryStage;
 	public static GameScreen gameScreen;
 
-	public static ArrayList<Deck> Decks = new ArrayList<>();
+	public static final ArrayList<Deck> DECKS = new ArrayList<>();
 
 	public static Board board;
 	public static int turn;

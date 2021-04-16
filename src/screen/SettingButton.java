@@ -48,7 +48,7 @@ public class SettingButton extends GridPane {
 
 	public MenuButton getSelectDeckButton(Direction direction) {
 		MenuButton menuButton = new MenuButton("Select " + direction.toString().toLowerCase() + " side deck");
-		for (Deck e : GameController.Decks) { // Add decks to menuButton
+		for (Deck e : GameController.DECKS) { // Add decks to menuButton
 			MenuItem menuItem = new MenuItem(e.getName());
 			menuButton.getItems().add(menuItem);
 			menuItem.setOnAction(new EventHandler<ActionEvent>() {
