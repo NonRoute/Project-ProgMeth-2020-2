@@ -52,7 +52,7 @@ public class SettingScreen {
 		warningText = new Text("Please fill all required fields");
 		warningText.setFont(FontHolder.getInstance().font24);
 		warningText.setFill(Color.RED);
-		warningText.setX(508);
+		warningText.setX(497);
 		warningText.setY(550);
 		warningText.setVisible(false);
 
@@ -110,7 +110,6 @@ public class SettingScreen {
 		playButton.setTextFill(Color.MEDIUMSEAGREEN);
 		playButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(10))));
-		StackPane.setMargin(playButton, new Insets(20));
 		playButton.setOnMouseClicked((MouseEvent e) -> {
 			switch (GameController.gameMode) {
 			case "PvB":
