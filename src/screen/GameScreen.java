@@ -1,8 +1,9 @@
 package screen;
 
 import entity.Bot;
+import entity.LastUsedCard;
+import entity.TurnText;
 import gui.HandPane;
-import gui.TurnText;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -34,6 +35,7 @@ public class GameScreen {
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private TurnText turnText;
+	private LastUsedCard lastUsedCard;
 	private Button nextPhaseButton;
 	private HandPane leftCardsInHand;
 	private HandPane rightCardsInHand;
@@ -44,6 +46,7 @@ public class GameScreen {
 		nextPhaseButton = getStartNextPhaseButton();
 		borderPane = new BorderPane();
 		turnText = new TurnText();
+		lastUsedCard = new LastUsedCard();
 		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
 		leftCardsInHand = GameController.leftSideController.getCardsInHandPane();
 		rightCardsInHand = GameController.rightSideController.getCardsInHandPane();

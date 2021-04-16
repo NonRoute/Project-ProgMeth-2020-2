@@ -30,8 +30,8 @@ public abstract class CardPane extends GridPane {
 
 	public void setToolTip() {
 		this.tooltip = new Tooltip();
-		tooltip.setFont(FontHolder.getInstance().font12);
-		tooltip.setText(card.getType() + "\n" + card.getDescription());
+		tooltip.setFont(FontHolder.getInstance().font15);
+		tooltip.setText("- " + card.getType() + " -\n" + card.getDescription());
 		setMouseEvent();
 	}
 }

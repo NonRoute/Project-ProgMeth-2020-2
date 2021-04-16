@@ -338,7 +338,8 @@ public class Board extends GridPane {
 			if (!isEmpty(r, c)) {
 				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.LEFT) {
 					boardCells.get(r).get(c).getCardOnBoardPane().move();
-					GameController.threadCardMove.join();
+					GameController.threadCardMove.join(); // wait for a card finish move to move next card
+					Thread.sleep(1);
 				}
 			}
 		}
@@ -350,6 +351,7 @@ public class Board extends GridPane {
 				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.RIGHT) {
 					boardCells.get(r).get(c).getCardOnBoardPane().move();
 					GameController.threadCardMove.join();
+					Thread.sleep(1);
 				}
 			}
 		}
