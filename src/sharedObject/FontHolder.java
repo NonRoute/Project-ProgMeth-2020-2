@@ -23,15 +23,15 @@ public class FontHolder {
 	}
 
 	public FontHolder() {
-		this.font12 = this.loadFont("EvilEmpire-4BBVK", "ttf", 12.0);
-		this.font15 = this.loadFont("EvilEmpire-4BBVK", "ttf", 15.0);
-		this.font18 = this.loadFont("EvilEmpire-4BBVK", "ttf", 18.0);
-		this.font24 = this.loadFont("EvilEmpire-4BBVK", "ttf", 24.0);
-		this.font28 = this.loadFont("EvilEmpire-4BBVK", "ttf", 28.0);
-		this.font32 = this.loadFont("EvilEmpire-4BBVK", "ttf", 32.0);
-		this.font36 = this.loadFont("EvilEmpire-4BBVK", "ttf", 36.0);
-		this.font48 = this.loadFont("EvilEmpire-4BBVK", "ttf", 48.0);
-		this.font64 = this.loadFont("EvilEmpire-4BBVK", "ttf", 64.0);
+		this.font12 = this.loadFont("EvilEmpire", "ttf", 12.0);
+		this.font15 = this.loadFont("EvilEmpire", "ttf", 15.0);
+		this.font18 = this.loadFont("EvilEmpire", "ttf", 18.0);
+		this.font24 = this.loadFont("EvilEmpire", "ttf", 24.0);
+		this.font28 = this.loadFont("EvilEmpire", "ttf", 28.0);
+		this.font32 = this.loadFont("EvilEmpire", "ttf", 32.0);
+		this.font36 = this.loadFont("EvilEmpire", "ttf", 36.0);
+		this.font48 = this.loadFont("EvilEmpire", "ttf", 48.0);
+		this.font64 = this.loadFont("EvilEmpire", "ttf", 64.0);
 	}
 
 	public Font loadFont(String name, String fontType, double size) {

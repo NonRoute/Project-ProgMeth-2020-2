@@ -5,15 +5,15 @@ import logic.Direction;
 import sharedObject.RenderableHolder;
 
 public abstract class Card implements Cloneable {
-	private String description;
+	protected String description;
 	private int cost;
 	private boolean isInHand;
 	protected Direction playingSide;
 	private Image leftPlayingSideImage;
 	private Image rightPlayingSideImage;
 
-	public Card(String deckName, String description, int cost) {
-		this.description = description;
+	public Card(String deckName, int cost) {
+		this.description = "";
 		this.cost = cost;
 		switch (deckName) {
 		case "Angel": // TODO Update

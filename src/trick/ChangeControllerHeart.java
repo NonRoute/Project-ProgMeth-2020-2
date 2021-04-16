@@ -5,12 +5,12 @@ import logic.GameController;
 
 public class ChangeControllerHeart extends Trick {
 	private char activateType;
-	private int number;
+	private int heart;
 
 	public ChangeControllerHeart(String trickparameter) {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
-		number = Integer.parseInt(trickParameter.get(1));
+		heart = Integer.parseInt(trickParameter.get(1));
 	}
 
 	@Override
@@ -18,23 +18,45 @@ public class ChangeControllerHeart extends Trick {
 		switch (activateType) {
 		case 'T': // this side
 			if (playingSide == Direction.LEFT) {
-				GameController.leftSideController.reduceHeart(-number);
+				GameController.leftSideController.reduceHeart(-heart);
 			} else {
-				GameController.rightSideController.reduceHeart(-number);
+				GameController.rightSideController.reduceHeart(-heart);
 			}
 			break;
 		case 'E': // enemy side
 			if (playingSide == Direction.RIGHT) {
-				GameController.leftSideController.reduceHeart(-number);
+				GameController.leftSideController.reduceHeart(-heart);
 			} else {
-				GameController.rightSideController.reduceHeart(-number);
+				GameController.rightSideController.reduceHeart(-heart);
 			}
 			break;
 		case 'S': // both side
-			GameController.leftSideController.reduceHeart(-number);
-			GameController.rightSideController.reduceHeart(-number);
+			GameController.leftSideController.reduceHeart(-heart);
+			GameController.rightSideController.reduceHeart(-heart);
 			break;
 		}
 		GameController.board.unHighlightAllCells();
+	}
+
+	@Override
+	public String getDescription() {
+		String description = "";
+		switch (activateType) {
+		case 'T':
+			description += "Your controller's Heart ";
+			break;
+		case 'E':
+			description += "Enemy controller's Heart ";
+			break;
+		case 'S':
+			description += "Both side controller's Heart ";
+			break;
+		}
+		if (heart >= 0) {
+			description += "+ " + heart;
+		} else {
+			description += heart;
+		}
+		return description;
 	}
 }

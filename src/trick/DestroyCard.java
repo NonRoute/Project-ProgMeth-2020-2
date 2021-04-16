@@ -37,4 +37,25 @@ public class DestroyCard extends Trick {
 		}
 	}
 
+	@Override
+	public String getDescription() {
+		String description = "";
+		switch (activateType) {
+		case 'A':
+			description += "Random a friendly";
+			break;
+		case 'B':
+			description += "Random a enemy";
+			break;
+		case 'C':
+			description += "Select a friendly";
+			break;
+		case 'D':
+			description += "Select a enemy";
+			break;
+		}
+		description += " to destory";
+		return description;
+	}
+
 }

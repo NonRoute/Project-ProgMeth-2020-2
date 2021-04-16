@@ -9,11 +9,12 @@ import logic.Direction;
 import logic.GameController;
 
 public abstract class Trick implements Cloneable {
+	protected String description;
 	protected Direction playingSide;
 	protected ArrayList<String> trickParameter;
 
 	public abstract void activate();
-
+	public abstract String getDescription();
 	
 	public Object clone() {
 		try {
