@@ -9,6 +9,11 @@ public class TrickCard extends Card implements Trickable {
 	public TrickCard(String deckName, int cost, Trick trick) {
 		super(deckName, cost);
 		this.trick = trick;
+		this.description = setDescription();
+	}
+	
+	public String setDescription() {
+		return trick.getDescription();
 	}
 
 	public void activateTrick() {

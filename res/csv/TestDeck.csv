@@ -1,10 +1,10 @@
 ﻿Test,,,,,,,
 Type,Cost,Attack Damage,Attack Range,Heart,Speed,Effect type,Effect parameter
-Magician,0,1,1,5,1,ChangeControllerHeart,T.-4
-Magician,0,1,1,4,1,ChangeControllerHeart,E.-4
-Magician,0,1,1,10,1,ChangeControllerHeart,S.-4
-Trick,0,1,1,10,1,ChangeControllerHeart,T.4
-Trick,0,1,1,10,1,ChangeControllerHeart,E.4
-Trick,0,1,1,10,1,ChangeControllerHeart,S.4
-Fighter,0,1,1,4,1,,
-Fighter,0,1,1,4,1,,
+Magician,0,1,2,5,1,ChangeCardAbility,A.1.2.3.4
+Magician,0,1,2,4,1,ChangeCardAbility,B.0.2.3.0
+Magician,0,1,2,10,1,ChangeCardAbility,C.1.0.0.0
+Trick,0,1,2,10,1,ChangeCardAbility,A.0.0.0.1
+Trick,0,1,2,10,1,ChangeCardAbility,C.1.2.3.7
+Trick,0,1,2,10,1,ChangeCardAbility,D.1.2.3.8
+Fighter,0,1,2,4,1,,
+Fighter,0,1,2,4,1,,

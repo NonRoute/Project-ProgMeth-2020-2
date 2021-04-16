@@ -58,4 +58,49 @@ public class ChangeCardAbility extends Trick {
 			card.setSpeed(card.getSpeed() + speed);
 		}
 	}
+
+	@Override
+	public String getDescription() {
+		String description = "";
+		switch (activateType) {
+		case 'A':
+			description += "Random a friendly";
+			break;
+		case 'B':
+			description += "Random a enemy";
+			break;
+		case 'C':
+			description += "Select a friendly";
+			break;
+		case 'D':
+			description += "Select a enemy";
+			break;
+		}
+		description += "\n";
+		if (attackDamage > 0) {
+			description += "Attack Damage + " + attackDamage + "\n";
+		}
+		if (attackRange > 0) {
+			description += "Attack Range + " + attackRange + "\n";
+		}
+		if (heart > 0) {
+			description += "Heart + " + heart + "\n";
+		}
+		if (speed > 0) {
+			description += "Speed + " + speed + "\n";
+		}
+		if (attackDamage < 0) {
+			description += "Attack Damage " + attackDamage + "\n";
+		}
+		if (attackRange < 0) {
+			description += "Attack Range " + attackRange + "\n";
+		}
+		if (heart < 0) {
+			description += "Heart " + heart + "\n";
+		}
+		if (speed < 0) {
+			description += "Speed " + speed + "\n";
+		}
+		return description;
+	}
 }

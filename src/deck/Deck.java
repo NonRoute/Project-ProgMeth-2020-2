@@ -71,40 +71,40 @@ public class Deck {
 			try {
 				switch (deckData[i][0]) {
 				case "Fighter":
-					FighterCard fighterCard = new FighterCard(name, Integer.parseInt(deckData[i][2]),
-							Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
-							Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]));
+					FighterCard fighterCard = new FighterCard(name, Integer.parseInt(deckData[i][1]),
+							Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+							Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]));
 					deck.add(fighterCard);
 					break;
 				case "Magician":
 					MagicianCard magicianCard;
-					switch (deckData[i][7]) {
+					switch (deckData[i][6]) {
 					case ("ChangeCardAbility"):
-						magicianCard = new MagicianCard(name,  Integer.parseInt(deckData[i][2]),
-								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
-								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
-								new ChangeCardAbility(deckData[i][8]));
+						magicianCard = new MagicianCard(name,  Integer.parseInt(deckData[i][1]),
+								Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+								Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]),
+								new ChangeCardAbility(deckData[i][7]));
 						deck.add(magicianCard);
 						break;
 					case ("DestroyCard"):
-						magicianCard = new MagicianCard(name,  Integer.parseInt(deckData[i][2]),
-								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
-								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
-								new DestroyCard(deckData[i][8]));
+						magicianCard = new MagicianCard(name,  Integer.parseInt(deckData[i][1]),
+								Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+								Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]),
+								new DestroyCard(deckData[i][7]));
 						deck.add(magicianCard);
 						break;
 					case ("Draw"):
-						magicianCard = new MagicianCard(name, Integer.parseInt(deckData[i][2]),
-								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
-								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
-								new Draw(deckData[i][8]));
+						magicianCard = new MagicianCard(name, Integer.parseInt(deckData[i][1]),
+								Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+								Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]),
+								new Draw(deckData[i][7]));
 						deck.add(magicianCard);
 						break;
 					case ("ChangeControllerHeart"):
-						magicianCard = new MagicianCard(name, Integer.parseInt(deckData[i][2]),
-								Integer.parseInt(deckData[i][3]), Integer.parseInt(deckData[i][4]),
-								Integer.parseInt(deckData[i][5]), Integer.parseInt(deckData[i][6]),
-								new ChangeControllerHeart(deckData[i][8]));
+						magicianCard = new MagicianCard(name, Integer.parseInt(deckData[i][1]),
+								Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+								Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]),
+								new ChangeControllerHeart(deckData[i][7]));
 						deck.add(magicianCard);
 						break;
 					default:
@@ -113,24 +113,24 @@ public class Deck {
 					break;
 				case "Trick":
 					TrickCard trickCard;
-					switch (deckData[i][7]) {
+					switch (deckData[i][6]) {
 					case ("ChangeCardAbility"):
-						trickCard = new TrickCard(name, Integer.parseInt(deckData[i][2]),
-								new ChangeCardAbility(deckData[i][8]));
+						trickCard = new TrickCard(name, Integer.parseInt(deckData[i][1]),
+								new ChangeCardAbility(deckData[i][7]));
 						break;
 					case ("DestroyCard"):
-						trickCard = new TrickCard(name, Integer.parseInt(deckData[i][2]),
-								new DestroyCard(deckData[i][8]));
+						trickCard = new TrickCard(name, Integer.parseInt(deckData[i][1]),
+								new DestroyCard(deckData[i][7]));
 						deck.add(trickCard);
 						break;
 					case ("Draw"):
-						trickCard = new TrickCard(name,  Integer.parseInt(deckData[i][2]),
-								new Draw(deckData[i][8]));
+						trickCard = new TrickCard(name,  Integer.parseInt(deckData[i][1]),
+								new Draw(deckData[i][7]));
 						deck.add(trickCard);
 						break;
 					case ("ChangeControllerHeart"):
-						trickCard = new TrickCard(name, Integer.parseInt(deckData[i][2]),
-								new ChangeControllerHeart(deckData[i][8]));
+						trickCard = new TrickCard(name, Integer.parseInt(deckData[i][1]),
+								new ChangeControllerHeart(deckData[i][7]));
 						deck.add(trickCard);
 						break;
 					default:
@@ -142,6 +142,7 @@ public class Deck {
 					System.out.println("Wrong card type input, You input: " + deckData[i][0]);
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 				System.out.println("Wrong card input " + name + " " + deckData[i][0]);
 			}
 		}

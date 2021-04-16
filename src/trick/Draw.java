@@ -38,4 +38,26 @@ public class Draw extends Trick {
 		GameController.board.unHighlightAllCells();
 	}
 
+	@Override
+	public String getDescription() {
+		String description = "";
+		switch (activateType) {
+		case 'T':
+			description += "Draw ";
+			break;
+		case 'E':
+			description += "Enemy draw ";
+			break;
+		case 'S':
+			description += "Both side draw ";
+			break;
+		}
+		if (number == 1) {
+			description += "a card";
+		} else {
+			description += number + " card";
+		}
+		return description;
+	}
+
 }

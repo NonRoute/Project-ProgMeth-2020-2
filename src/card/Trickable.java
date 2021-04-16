@@ -9,4 +9,5 @@ public interface Trickable {
 	Trick getTrick();
 	void setTrick(Trick trick);
 	void setPlayingSide(Direction playingSide);
+	public String setDescription();
 }

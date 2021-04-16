@@ -10,6 +10,11 @@ public class MagicianCard extends FighterCard implements Trickable {
 			int heart, int speed, Trick trick) {
 		super(deckName, cost, attackDamage, attackRange, heart, speed);
 		this.trick = trick;
+		this.description = setDescription();
+	}
+	
+	public String setDescription() {
+		return trick.getDescription();
 	}
 
 	public void activateTrick() {
