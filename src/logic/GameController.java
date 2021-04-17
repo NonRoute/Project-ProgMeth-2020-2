@@ -55,6 +55,7 @@ public class GameController {
 	public static String difficultyRight;
 
 	static {
+		// import deck .csv
 		new Deck("Angel", "AngelDeck.csv");
 		new Deck("Devil", "DevilDeck.csv");
 		new Deck("Test", "TestDeck.csv"); // TODO Remove this when game finish
@@ -196,7 +197,7 @@ public class GameController {
 	}
 
 	public static void startNextPhase() {
-		if (isGameEnd == true) {
+		if (isGameEnd) { //stop running if game end
 			return;
 		}
 		Thread thread = new Thread(() -> {

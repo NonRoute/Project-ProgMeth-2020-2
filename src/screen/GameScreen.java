@@ -81,30 +81,21 @@ public class GameScreen {
 		if (GameController.currentPlayingSide == Direction.RIGHT && GameController.rightSideController instanceof Bot) {
 			return false;
 		}
-		if (GameController.threadDrawCard != null) {
-			if (GameController.threadDrawCard.isAlive()) {
+		if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) {
 				return false;
-			}
 		}
-		if (GameController.threadAllCardMove != null) {
-			if (GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
 				return false;
-			}
 		}
-		if (GameController.threadBotPlay != null) {
-			if (GameController.threadBotPlay.isAlive()) {
+		if (GameController.threadBotPlay != null && GameController.threadBotPlay.isAlive()) {
 				return false;
-			}
 		}
-		if (GameController.threadAllCardMove != null) {
-			if (GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
 				return false;
-			}
 		}
-		if (GameController.threadAttackCard != null) {
-			if (GameController.threadAttackCard.isAlive()) {
+		if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
 				return false;
-			}
+		
 		}
 		return true;
 	}

@@ -106,30 +106,20 @@ public class CardInHandPane extends CardPane {
 			// can't select if can't use this trick card
 			return false;
 		}
-		if (GameController.threadDrawCard != null) {
-			if (GameController.threadDrawCard.isAlive()) {
-				return false;
-			}
+		if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) {
+			return false;
 		}
-		if (GameController.threadAllCardMove != null) {
-			if (GameController.threadAllCardMove.isAlive()) {
-				return false;
-			}
+		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+			return false;
 		}
-		if (GameController.threadBotPlay != null) {
-			if (GameController.threadBotPlay.isAlive()) {
-				return false;
-			}
+		if (GameController.threadBotPlay != null && GameController.threadBotPlay.isAlive()) {
+			return false;
 		}
-		if (GameController.threadAllCardMove != null) {
-			if (GameController.threadAllCardMove.isAlive()) {
-				return false;
-			}
+		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+			return false;
 		}
-		if (GameController.threadAttackCard != null) {
-			if (GameController.threadAttackCard.isAlive()) {
-				return false;
-			}
+		if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
+			return false;
 		}
 		return true;
 	}
