@@ -57,7 +57,6 @@ public class GameScreen {
 
 		gc = canvas.getGraphicsContext2D();
 		gc.drawImage(RenderableHolder.backgroundGameScreen, 0, 0, 1280, 720);
-//		logic = new GameLogic();
 
 		Board board = new Board();
 		GameController.board = board;
@@ -122,14 +121,14 @@ public class GameScreen {
 		Button nextPhaseButton = new Button();
 		ImageView imageView = new ImageView(RenderableHolder.nextPhase);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(50);
-		imageView.setFitHeight(50);
+		imageView.setFitWidth(150);
+		imageView.setFitHeight(70);
 		nextPhaseButton.setGraphic(imageView);
-		nextPhaseButton.setLayoutX(607);
+		nextPhaseButton.setLayoutX(800);
 		nextPhaseButton.setLayoutY(15);
-		nextPhaseButton.setPrefSize(40, 40);
+		nextPhaseButton.setPrefSize(150, 70);
 		nextPhaseButton
-				.setBackground(new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
+				.setBackground(new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(5), new Insets(2))));
 		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(3))));
 
@@ -150,7 +149,7 @@ public class GameScreen {
 		});
 		nextPhaseButton.setOnMouseExited((MouseEvent e) -> {
 			nextPhaseButton.setBackground(
-					new Background(new BackgroundFill(Color.MINTCREAM, new CornerRadii(5), new Insets(2))));
+					new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(5), new Insets(2))));
 			nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 					new CornerRadii(5), new BorderWidths(3))));
 			nextPhaseButton.setEffect(null);

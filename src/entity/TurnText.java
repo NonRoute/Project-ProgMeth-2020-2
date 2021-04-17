@@ -17,7 +17,7 @@ public class TurnText extends Entity {
 	public void draw(GraphicsContext gc) {
 		gc.setFont(FontHolder.getInstance().font36);
 		gc.setFill(Color.NAVY);
-		gc.fillText("Turn : " + GameController.turn, 380, 60);
+		gc.fillText("Turn : " + GameController.turn, 350, 50);
 	}
 
 }

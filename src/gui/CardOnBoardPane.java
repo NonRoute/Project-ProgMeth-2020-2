@@ -21,7 +21,7 @@ import sharedObject.RenderableHolder;
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
 	private int cardWidth = 88;
-	private int cardHight = 116;
+	private int cardHight = 112;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {

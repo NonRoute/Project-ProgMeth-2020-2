@@ -64,24 +64,24 @@ public class ChangeCardAbility extends Trick {
 		String description = "";
 		switch (activateType) {
 		case 'A':
-			description += "Random a friendly";
+			description += "Random a friendly:";
 			break;
 		case 'B':
-			description += "Random a enemy";
+			description += "Random a enemy:";
 			break;
 		case 'C':
-			description += "Select a friendly";
+			description += "Select a friendly:";
 			break;
 		case 'D':
-			description += "Select a enemy";
+			description += "Select a enemy:";
 			break;
 		}
 		description += "\n";
 		if (attackDamage > 0) {
-			description += "Attack Damage + " + attackDamage + "\n";
+			description += "ATK DMG + " + attackDamage + "\n";
 		}
 		if (attackRange > 0) {
-			description += "Attack Range + " + attackRange + "\n";
+			description += "ATK RNG + " + attackRange + "\n";
 		}
 		if (heart > 0) {
 			description += "Heart + " + heart + "\n";
@@ -90,10 +90,10 @@ public class ChangeCardAbility extends Trick {
 			description += "Speed + " + speed + "\n";
 		}
 		if (attackDamage < 0) {
-			description += "Attack Damage " + attackDamage + "\n";
+			description += "ATK DMG " + attackDamage + "\n";
 		}
 		if (attackRange < 0) {
-			description += "Attack Range " + attackRange + "\n";
+			description += "ATK RNG " + attackRange + "\n";
 		}
 		if (heart < 0) {
 			description += "Heart " + heart + "\n";
