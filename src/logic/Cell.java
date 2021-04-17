@@ -22,7 +22,7 @@ public class Cell extends StackPane {
 	private boolean isEmpty = true;
 	private boolean isHighLight;
 	private int cardWidth = 88;
-	private int cardHight = 116;
+	private int cardHight = 112;
 
 	public Cell(int row, int column) {
 		this.row = row;

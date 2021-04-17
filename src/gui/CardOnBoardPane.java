@@ -21,7 +21,7 @@ import sharedObject.RenderableHolder;
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
 	private int cardWidth = 88;
-	private int cardHight = 116;
+	private int cardHight = 112;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {
@@ -113,7 +113,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(250);
+							Thread.sleep(GameController.DELAY_CARD_MOVE);
 						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() + 1)) {
 							// can attack controller
 							Platform.runLater(new Runnable() {
@@ -136,7 +136,7 @@ public class CardOnBoardPane extends CardPane {
 									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
 								}
 							});
-							Thread.sleep(250);
+							Thread.sleep(GameController.DELAY_CARD_MOVE);
 						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
 							Platform.runLater(new Runnable() {
 								public void run() {

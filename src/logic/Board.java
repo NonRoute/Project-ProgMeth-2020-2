@@ -25,10 +25,10 @@ public class Board extends GridPane {
 
 	public Board() {
 		this.setPrefWidth(840);
-		this.setPrefHeight(610);
+		this.setPrefHeight(590);
 		this.setAlignment(Pos.CENTER);
 		this.setLayoutX(220);
-		this.setLayoutY(90);
+		this.setLayoutY(110);
 		this.setVgap(5);
 		this.setHgap(5);
 		this.setPadding(new Insets(5));
