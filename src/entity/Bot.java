@@ -57,7 +57,7 @@ public abstract class Bot extends Controller {
 		Thread thread = new Thread(() -> {
 			try {
 				GameController.threadDrawCard.join(); // wait for draw card finish
-				Thread.sleep(1000);
+				Thread.sleep(GameController.DELAY_BOT_PLAY);
 				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
 					if (GameController.threadDrawCard != null) { // if still draw card wait to draw finish
 						GameController.threadDrawCard.join();
@@ -72,7 +72,7 @@ public abstract class Bot extends Controller {
 							}
 						}
 					});
-					Thread.sleep(1000);
+					Thread.sleep(GameController.DELAY_BOT_PLAY);
 				}
 				GameController.startNextPhase();
 			} catch (InterruptedException e) {

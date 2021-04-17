@@ -23,6 +23,10 @@ public class GameController {
 	public static Thread threadAllCardMove;
 	public static Thread threadAttackCard;
 
+	public static final int DELAY_DRAW_CARD = 500; // 500
+	public static final int DELAY_BOT_PLAY = 1200; // 1200 (MUST >= 20)
+	public static final int DELAY_CARD_MOVE = 250; // 250 (MUST >= 20)
+
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
 	public static Stage primaryStage;
@@ -39,6 +43,7 @@ public class GameController {
 	public static Controller rightSideController;
 
 	public static Direction winner;
+	public static boolean isGameEnd;
 	public static CardInHandPane selectedCardPane;
 	public static Card lastUsedCard;
 	public static FighterCard targetCard;
@@ -106,7 +111,7 @@ public class GameController {
 	}
 
 	public static boolean isBotSide(Direction direction) {
-		switch(direction) {
+		switch (direction) {
 		case LEFT:
 			return (leftSideController instanceof Bot);
 		case RIGHT:
@@ -133,7 +138,7 @@ public class GameController {
 		Thread thread = new Thread(() -> {
 			try {
 				threadAllCardMove.join(); // wait all card move finish
-				Thread.sleep(1000);
+				Thread.sleep(GameController.DELAY_CARD_MOVE);
 				Platform.runLater(new Runnable() {
 					public void run() {
 						board.allCardAttack();
@@ -191,6 +196,9 @@ public class GameController {
 	}
 
 	public static void startNextPhase() {
+		if (isGameEnd == true) {
+			return;
+		}
 		Thread thread = new Thread(() -> {
 			try {
 				if (threadBotPlay != null) {
@@ -219,7 +227,7 @@ public class GameController {
 		});
 		thread.start();
 	}
-	
+
 	public static void startTurn() { // called when click next turn button
 		isPhaseOneEnd = false;
 		turn++;

@@ -121,16 +121,16 @@ public class GameScreen {
 		Button nextPhaseButton = new Button();
 		ImageView imageView = new ImageView(RenderableHolder.nextPhase);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(150);
+		imageView.setFitWidth(120);
 		imageView.setFitHeight(70);
 		nextPhaseButton.setGraphic(imageView);
-		nextPhaseButton.setLayoutX(800);
+		nextPhaseButton.setLayoutX(810);
 		nextPhaseButton.setLayoutY(15);
-		nextPhaseButton.setPrefSize(150, 70);
+		nextPhaseButton.setPrefSize(120, 70);
 		nextPhaseButton
-				.setBackground(new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(5), new Insets(2))));
+				.setBackground(new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(30), new Insets(2))));
 		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-				new CornerRadii(5), new BorderWidths(3))));
+				new CornerRadii(30), new BorderWidths(3))));
 
 		nextPhaseButton.setOnMouseClicked((MouseEvent e) -> {
 			if (canClickStartNextPhaseButton()) {
@@ -141,17 +141,17 @@ public class GameScreen {
 		nextPhaseButton.setOnMouseMoved((MouseEvent e) -> {
 			if (canClickStartNextPhaseButton()) {
 				nextPhaseButton.setBackground(
-						new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(5), new Insets(2))));
+						new Background(new BackgroundFill(Color.PALEGREEN, new CornerRadii(30), new Insets(2))));
 				nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-						new CornerRadii(5), new BorderWidths(3))));
+						new CornerRadii(30), new BorderWidths(3))));
 				nextPhaseButton.setEffect(new InnerShadow());
 			}
 		});
 		nextPhaseButton.setOnMouseExited((MouseEvent e) -> {
 			nextPhaseButton.setBackground(
-					new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(5), new Insets(2))));
+					new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(30), new Insets(2))));
 			nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
-					new CornerRadii(5), new BorderWidths(3))));
+					new CornerRadii(30), new BorderWidths(3))));
 			nextPhaseButton.setEffect(null);
 		});
 		return nextPhaseButton;
