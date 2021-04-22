@@ -24,6 +24,9 @@ public class RenderableHolder {
 	public static Image nextPhase;
 	public static Image testDeckNameLeft; // TODO Remove
 	public static Image testDeckNameRight;
+	public static Image PhaseBot;
+	public static Image PhaseFight;
+	public static Image PhaseMove;
 
 	static {
 		loadResource();
@@ -53,6 +56,10 @@ public class RenderableHolder {
 		RenderableHolder.heart = loadImage("heart.png");
 		RenderableHolder.speed = loadImage("speed.png");
 		RenderableHolder.nextPhase = loadImage("nextPhase.png");
+		RenderableHolder.PhaseBot = loadImage("PhaseBot.png");
+		RenderableHolder.PhaseFight = loadImage("PhaseFight.png");
+		RenderableHolder.PhaseMove = loadImage("PhaseMove.png");
+		
 	}
 
 	private List<IRenderable> entities;
