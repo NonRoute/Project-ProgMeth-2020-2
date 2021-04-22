@@ -50,19 +50,9 @@ public abstract class Controller extends Entity {
 		gc.setFont(FontHolder.getInstance().font28);
 		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
 		gc.setFill(Color.DARKRED);
-		if (heart >= 10) {
-			gc.fillText("" + heart, x + 14, y + 33);
-		} else {
-			gc.fillText("" + heart, x + 18, y + 33);
-		}
+		gc.fillText("" + heart, x + 24 - String.valueOf(heart).length() * 5, y + 33);
 		gc.setFill(Color.DARKGOLDENROD);
-		if (money >= 100) {
-			gc.fillText("" + money, x + 66, y + 33);
-		} else if (money >= 10) {
-			gc.fillText("" + money, x + 73, y + 33);
-		} else {
-			gc.fillText("" + money, x + 80, y + 33);
-		}
+		gc.fillText("" + money, x + 84 - String.valueOf(money).length() * 5, y + 33);
 	}
 
 	public void drawCard(int number) {
@@ -167,7 +157,7 @@ public abstract class Controller extends Entity {
 	public void reduceHeart(int number) {
 		if (heart - number <= 0) {
 			heart = 0;
-			//end game
+			// end game
 			switch (playingSide) {
 			case LEFT:
 				GameController.winner = Direction.RIGHT;
