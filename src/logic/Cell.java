@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 
 public class Cell extends StackPane {
 	private CardOnBoardPane cardOnBoardPane;
-//	private Card cardOnCell;
+	private Color bgColor;
 	private int row;
 	private int column;
 	private boolean isEmpty = true;
@@ -27,9 +27,14 @@ public class Cell extends StackPane {
 	public Cell(int row, int column) {
 		this.row = row;
 		this.column = column;
+		if ((row + column) % 2 == 0) {
+			bgColor = Color.PAPAYAWHIP;
+		} else {
+			bgColor = Color.PEACHPUFF;
+		}
 		this.setPrefWidth(cardWidth);
 		this.setPrefHeight(cardHight);
-		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBackground(new Background(new BackgroundFill(bgColor, CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -42,10 +47,10 @@ public class Cell extends StackPane {
 						// set target card
 						switch (((Trickable) GameController.selectedCardPane.getCard()).getTrick()
 								.getFirstParameter()) {
-						case 'C': //not random
+						case 'C': // not random
 							GameController.targetCard = cardOnBoardPane.getCard();
 							break;
-						case 'D': //not random
+						case 'D': // not random
 							GameController.targetCard = cardOnBoardPane.getCard();
 							break;
 						}
@@ -109,7 +114,7 @@ public class Cell extends StackPane {
 	}
 
 	public void unhighlight() {
-		this.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBackground(new Background(new BackgroundFill(bgColor, CornerRadii.EMPTY, Insets.EMPTY)));
 		isHighLight = false;
 	}
 
