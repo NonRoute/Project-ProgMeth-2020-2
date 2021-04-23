@@ -26,10 +26,7 @@ public class GameController {
 	public static final int DELAY_DRAW_CARD = 500; // 500
 	public static final int DELAY_BOT_PLAY = 1200; // 1200 (MUST >= 20)
 	public static final int DELAY_CARD_MOVE = 250; // 250 (MUST >= 20)
-
 	public static final int DELAY_ATTACK = 1000; // 1000
-
-	
 
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HIGHT = 720;
@@ -40,6 +37,7 @@ public class GameController {
 
 	public static Board board;
 	public static int turn;
+	public static int moneyFromTurn;
 	public static boolean isPhaseOneEnd;
 	public static Direction currentPlayingSide;
 
@@ -57,8 +55,6 @@ public class GameController {
 	public static Deck rightSideDeck;
 	public static String difficultyLeft;
 	public static String difficultyRight;
-
-	public static int moneyFromTurn;
 
 	static {
 		// import deck .csv
@@ -145,9 +141,7 @@ public class GameController {
 		Thread thread = new Thread(() -> {
 			try {
 				threadAllCardMove.join(); // wait all card move finish
-
-				Thread.sleep(DELAY_ATTACK/2);
-
+				Thread.sleep(DELAY_ATTACK / 2);
 				Platform.runLater(new Runnable() {
 					public void run() {
 						board.allCardAttack();
@@ -155,9 +149,7 @@ public class GameController {
 						board.removeDeadCards();
 					}
 				});
-
 				Thread.sleep(DELAY_ATTACK / 2);
-
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -208,9 +200,7 @@ public class GameController {
 	}
 
 	public static void startNextPhase() {
-
 		if (isGameEnd) { // stop running if game end
-
 			return;
 		}
 		Thread thread = new Thread(() -> {
