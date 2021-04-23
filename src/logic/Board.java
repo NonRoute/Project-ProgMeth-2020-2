@@ -25,10 +25,10 @@ public class Board extends GridPane {
 
 	public Board() {
 		this.setPrefWidth(840);
-		this.setPrefHeight(610);
+		this.setPrefHeight(590);
 		this.setAlignment(Pos.CENTER);
 		this.setLayoutX(220);
-		this.setLayoutY(90);
+		this.setLayoutY(110);
 		this.setVgap(5);
 		this.setHgap(5);
 		this.setPadding(new Insets(5));
@@ -338,7 +338,8 @@ public class Board extends GridPane {
 			if (!isEmpty(r, c)) {
 				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.LEFT) {
 					boardCells.get(r).get(c).getCardOnBoardPane().move();
-					GameController.threadCardMove.join();
+					GameController.threadCardMove.join(); // wait for a card finish move to move next card
+					Thread.sleep(1);
 				}
 			}
 		}
@@ -350,6 +351,7 @@ public class Board extends GridPane {
 				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.RIGHT) {
 					boardCells.get(r).get(c).getCardOnBoardPane().move();
 					GameController.threadCardMove.join();
+					Thread.sleep(1);
 				}
 			}
 		}

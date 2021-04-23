@@ -27,6 +27,7 @@ import sharedObject.RenderableHolder;
 public class EndGame extends StackPane {
 
 	public EndGame() {
+		GameController.isGameEnd = true;
 		clearEntity();
 		this.setAlignment(Pos.CENTER);
 
@@ -58,6 +59,7 @@ public class EndGame extends StackPane {
 		StackPane.setMargin(goBackButton, new Insets(20));
 		goBackButton.setOnMouseClicked((MouseEvent e) -> {
 			new SelectGameModeScreen();
+			GameController.isGameEnd = false;
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(

@@ -24,6 +24,10 @@ public class RenderableHolder {
 	public static Image nextPhase;
 	public static Image testDeckNameLeft; // TODO Remove
 	public static Image testDeckNameRight;
+	public static Image phaseDrawCard;
+	public static Image phaseBot;
+	public static Image phaseMove;
+	public static Image phaseAttack;
 
 	static {
 		loadResource();
@@ -53,6 +57,11 @@ public class RenderableHolder {
 		RenderableHolder.heart = loadImage("heart.png");
 		RenderableHolder.speed = loadImage("speed.png");
 		RenderableHolder.nextPhase = loadImage("nextPhase.png");
+		RenderableHolder.phaseDrawCard = loadImage("phaseDrawCard.png");
+		RenderableHolder.phaseBot = loadImage("phaseBot.png");
+		RenderableHolder.phaseMove = loadImage("phaseMove.png");
+		RenderableHolder.phaseAttack = loadImage("phaseAttack.png");
+		
 	}
 
 	private List<IRenderable> entities;

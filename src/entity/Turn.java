@@ -1,15 +1,14 @@
-package gui;
+package entity;
 
-import entity.Entity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
-public class TurnText extends Entity {
+public class Turn extends Entity {
 
-	public TurnText() {
+	public Turn() {
 		RenderableHolder.getInstance().add(this);
 		this.setVisible(true);
 	}
@@ -18,7 +17,7 @@ public class TurnText extends Entity {
 	public void draw(GraphicsContext gc) {
 		gc.setFont(FontHolder.getInstance().font36);
 		gc.setFill(Color.NAVY);
-		gc.fillText("Turn : " + GameController.turn, 380, 60);
+		gc.fillText("Turn : " + GameController.turn, 350, 50);
 	}
 
 }
