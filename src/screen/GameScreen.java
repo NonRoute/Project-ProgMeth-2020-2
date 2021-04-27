@@ -1,11 +1,21 @@
 package screen;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+import javax.sound.midi.Soundbank;
+
+import org.w3c.dom.stylesheets.MediaList;
+
 import entity.Bot;
 import entity.LastUsedCard;
 import entity.Phase;
 import entity.Turn;
 import gui.HandPane;
 import javafx.animation.AnimationTimer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -23,12 +33,16 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import logic.Board;
 import logic.Direction;
 import logic.GameController;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class GameScreen {
 	private Pane root;
@@ -41,6 +55,8 @@ public class GameScreen {
 	private Button nextPhaseButton;
 	private HandPane leftCardsInHand;
 	private HandPane rightCardsInHand;
+	private ObservableList<Media> mediaList;
+	private MediaPlayer mediaplayer;
 
 	public GameScreen() {
 		root = new Pane();
@@ -67,6 +83,8 @@ public class GameScreen {
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
+		getSoundList();
+		playSound();
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
 				paintComponent();
@@ -77,6 +95,33 @@ public class GameScreen {
 		animation.start();
 	}
 
+	public void stopSound() {
+		mediaplayer.stop();
+	}
+
+	public void getSoundList() {
+		ObservableList<Media> mediaList = FXCollections.observableArrayList();
+		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2); // add all sound
+																										// for play
+		Collections.shuffle(mediaList);
+		this.mediaList = mediaList;
+	}
+
+	public void playSound() {
+		if (mediaList.size() == 0) { // if no sound left, getSoundList again
+			getSoundList();
+		}
+		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
+		this.mediaplayer = mediaplayer;
+		mediaplayer.play();
+		mediaplayer.setOnEndOfMedia(new Runnable() {
+			@Override
+			public void run() {
+				playSound(); // play next sound
+			}
+		});
+	}
+
 	public boolean canClickStartNextPhaseButton() {
 		if (GameController.currentPlayingSide == Direction.LEFT && GameController.leftSideController instanceof Bot) {
 			return false;
@@ -85,20 +130,20 @@ public class GameScreen {
 			return false;
 		}
 		if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) {
-				return false;
+			return false;
 		}
 		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
-				return false;
+			return false;
 		}
 		if (GameController.threadBotPlay != null && GameController.threadBotPlay.isAlive()) {
-				return false;
+			return false;
 		}
 		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
-				return false;
+			return false;
 		}
 		if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
-				return false;
-		
+			return false;
+
 		}
 		return true;
 	}

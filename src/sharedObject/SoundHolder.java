@@ -1,12 +1,13 @@
 package sharedObject;
 
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 
 public class SoundHolder {
 	private static final SoundHolder instance;
-	public AudioClip button;
-	public AudioClip gameScreen1;
-	
+	public Media gameScreen1;
+	public Media gameScreen2;
+
 	static {
 		instance = new SoundHolder();
 	}
@@ -16,11 +17,16 @@ public class SoundHolder {
 	}
 
 	public SoundHolder() {
-		gameScreen1 = loadSound("gameScreen1", "mp3");
+		gameScreen1 = loadMedia("gameScreen1", "mp3");
+		gameScreen2 = loadMedia("gameScreen2", "mp3");
 
 	}
 
 	public AudioClip loadSound(String prefixName, String fileType) {
 		return new AudioClip(ClassLoader.getSystemResource("sound/" + prefixName + '.' + fileType).toString());
+	}
+
+	public Media loadMedia(String prefixName, String fileType) {
+		return new Media(ClassLoader.getSystemResource("sound/" + prefixName + '.' + fileType).toString());
 	}
 }
