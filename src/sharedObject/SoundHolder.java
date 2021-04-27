@@ -7,6 +7,7 @@ public class SoundHolder {
 	private static final SoundHolder instance;
 	public Media gameScreen1;
 	public Media gameScreen2;
+	public Media gameScreen3;
 
 	static {
 		instance = new SoundHolder();
@@ -19,6 +20,7 @@ public class SoundHolder {
 	public SoundHolder() {
 		gameScreen1 = loadMedia("gameScreen1", "mp3");
 		gameScreen2 = loadMedia("gameScreen2", "mp3");
+		gameScreen3 = loadMedia("gameScreen3", "mp3");
 
 	}
 
