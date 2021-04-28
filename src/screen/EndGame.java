@@ -23,12 +23,14 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class EndGame extends StackPane {
 
 	public EndGame() {
 		GameController.isGameEnd = true;
 		clearEntity();
+		stopSound();
 		this.setAlignment(Pos.CENTER);
 
 		ImageView image = new ImageView(RenderableHolder.backgroundEndGame);
@@ -44,6 +46,10 @@ public class EndGame extends StackPane {
 		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
 			((Entity) e).setVisible(false);
 		}
+	}
+
+	public void stopSound() {
+		GameController.gameScreen.stopSound();
 	}
 
 	public Button getGoBackButton() {
