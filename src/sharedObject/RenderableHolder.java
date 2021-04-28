@@ -41,11 +41,11 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
-		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.png");
+		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.jpg");
 		RenderableHolder.backgroundSelectDeckPvB = loadImage("backgroundSelectDeckPvB.png");
 		RenderableHolder.backgroundSelectDeckPvP = loadImage("backgroundSelectDeckPvP.png");
 		RenderableHolder.backgroundSelectDeckBvB = loadImage("backgroundSelectDeckBvB.png");
-		RenderableHolder.backgroundGameScreen = loadImage("backgroundGameScreen.png");
+		RenderableHolder.backgroundGameScreen = loadImage("backgroundGameScreen.jpg");
 		RenderableHolder.backgroundEndGame = loadImage("backgroundEndGame.png");
 
 		RenderableHolder.testDeckNameLeft = loadImage("testDeckNameLeft.png");
