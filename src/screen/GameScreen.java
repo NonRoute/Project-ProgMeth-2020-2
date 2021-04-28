@@ -63,14 +63,14 @@ public class GameScreen {
 
 	public GameScreen() {
 		root = new Pane();
-		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
+		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HEIGHT);
 		setBackground();
 		nextPhaseButton = getStartNextPhaseButton();
 		borderPane = new BorderPane();
 		turn = new Turn();
 		phase = new Phase();
 		lastUsedCard = new LastUsedCard();
-		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
+		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HEIGHT);
 		leftCardsInHand = GameController.leftSideController.getCardsInHandPane();
 		rightCardsInHand = GameController.rightSideController.getCardsInHandPane();
 		BorderPane.setMargin(leftCardsInHand, new Insets(20));

@@ -36,7 +36,7 @@ public class EndGame extends StackPane {
 
 		ImageView image = new ImageView(GameController.gameScreen.getBackground());
 		image.setFitWidth(GameController.SCREEN_WIDTH);
-		image.setFitHeight(GameController.SCREEN_HIGHT);
+		image.setFitHeight(GameController.SCREEN_HEIGHT);
 
 		this.getChildren().addAll(image, getVBox());
 		Scene scene = new Scene(this);

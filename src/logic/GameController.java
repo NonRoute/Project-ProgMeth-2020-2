@@ -29,7 +29,7 @@ public class GameController {
 	public static final int DELAY_ATTACK = 1000; // 1000
 
 	public static final int SCREEN_WIDTH = 1280;
-	public static final int SCREEN_HIGHT = 720;
+	public static final int SCREEN_HEIGHT = 720;
 	public static Stage primaryStage;
 	public static GameScreen gameScreen;
 
@@ -257,8 +257,8 @@ public class GameController {
 	}
 
 	public static void switchPlayingSide() {
-		gameScreen.getLeftCardsInHand().unHightlightAllCardInHandPane();
-		gameScreen.getRightCardsInHand().unHightlightAllCardInHandPane();
+		gameScreen.getLeftCardsInHand().unHeightlightAllCardInHandPane();
+		gameScreen.getRightCardsInHand().unHeightlightAllCardInHandPane();
 		gameScreen.unHighlightHandPane();
 		if (currentPlayingSide == Direction.LEFT) {
 			currentPlayingSide = Direction.RIGHT;

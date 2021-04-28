@@ -22,7 +22,7 @@ public class Cell extends StackPane {
 	private boolean isEmpty = true;
 	private boolean isHighLight;
 	private int cardWidth = 88;
-	private int cardHight = 112;
+	private int cardHeight = 112;
 
 	public Cell(int row, int column) {
 		this.row = row;
@@ -33,7 +33,7 @@ public class Cell extends StackPane {
 			bgColor = Color.PEACHPUFF;
 		}
 		this.setPrefWidth(cardWidth);
-		this.setPrefHeight(cardHight);
+		this.setPrefHeight(cardHeight);
 		this.setBackground(new Background(new BackgroundFill(bgColor, CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override

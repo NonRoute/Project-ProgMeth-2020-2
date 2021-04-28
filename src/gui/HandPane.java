@@ -22,7 +22,7 @@ public class HandPane extends VBox {
 	private ObservableList<CardInHandPane> cardsList = FXCollections.observableArrayList();
 
 	public HandPane() {
-		this.setPrefSize(140, GameController.SCREEN_HIGHT - 40);
+		this.setPrefSize(140, GameController.SCREEN_HEIGHT - 40);
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
 		this.setPadding(new Insets(10));
@@ -75,7 +75,7 @@ public class HandPane extends VBox {
 	public void setSelectedCard(CardInHandPane selectedCardPane) {
 		GameController.board.unHighlightAllCells();
 		GameController.selectedCardPane = selectedCardPane;
-		unHightlightAllCardInHandPane();
+		unHeightlightAllCardInHandPane();
 		(selectedCardPane).highlight();
 		GameController.board.highlightCellCanPlay(selectedCardPane);
 	}
@@ -86,7 +86,7 @@ public class HandPane extends VBox {
 		this.setEffect(null);
 	}
 
-	public void unHightlightAllCardInHandPane() {
+	public void unHeightlightAllCardInHandPane() {
 		for (GridPane e : cardsList) {
 			((CardInHandPane) e).unhighlight();
 		}
