@@ -164,7 +164,7 @@ public class GameScreen {
 		imageView.setFitWidth(120);
 		imageView.setFitHeight(70);
 		nextPhaseButton.setGraphic(imageView);
-		nextPhaseButton.setLayoutX(810);
+		nextPhaseButton.setLayoutX(580);
 		nextPhaseButton.setLayoutY(15);
 		nextPhaseButton.setPrefSize(120, 70);
 		nextPhaseButton
