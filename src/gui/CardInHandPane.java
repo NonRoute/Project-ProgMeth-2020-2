@@ -70,10 +70,9 @@ public class CardInHandPane extends CardPane {
 		}
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setColor(Color.BLACK);
-		dropShadow.setRadius(0.2);
-		dropShadow.setSpread(0.8);
+		dropShadow.setRadius(0.3);
+		dropShadow.setSpread(0.6);
 		dropShadow.setOffsetX(1);
-		dropShadow.setOffsetY(1);
 		text.setEffect(dropShadow);
 		stackPane.getChildren().addAll(imageView, text);
 		this.add(stackPane, x, y, columnSpan, 1);

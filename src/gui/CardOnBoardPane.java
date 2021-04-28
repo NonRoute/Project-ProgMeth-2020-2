@@ -43,13 +43,12 @@ public class CardOnBoardPane extends CardPane {
 		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
 		imageView.setFitHeight((cardHight - 2 * insets) / 4);
 		Text text = new Text();
-		text.setFont(FontHolder.getInstance().font24);
+		text.setFont(FontHolder.getInstance().font21);
 		text.setText("" + value);
 		DropShadow dropShadow = new DropShadow();
-		dropShadow.setRadius(0.2);
-		dropShadow.setSpread(0.8);
+		dropShadow.setRadius(0.3);
+		dropShadow.setSpread(1);
 		dropShadow.setOffsetX(1);
-		dropShadow.setOffsetY(1);
 		dropShadow.setColor(Color.BLACK);
 		text.setEffect(dropShadow);
 		if (value > defultValue) {
