@@ -21,27 +21,27 @@ import sharedObject.RenderableHolder;
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
 	private int cardWidth = 88;
-	private int cardHight = 112;
+	private int cardHeight = 112;
 	private int insets = 2;
 
 	public CardOnBoardPane(Card card) {
 		this.card = card;
-		this.setPrefSize(cardWidth, cardHight);
+		this.setPrefSize(cardWidth, cardHeight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
 		addCardImage(card.getImage());
 		setCardAbility(card);
 		setToolTip();
-		this.getRowConstraints().add(new RowConstraints((cardHight / 4) - 2 * insets));
+		this.getRowConstraints().add(new RowConstraints((cardHeight / 4) - 2 * insets));
 	}
 
 	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y) {
 		StackPane stackPane = new StackPane();
-		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHight - 2 * insets) / 4);
+		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHeight - 2 * insets) / 4);
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
-		imageView.setFitHeight((cardHight - 2 * insets) / 4);
+		imageView.setFitHeight((cardHeight - 2 * insets) / 4);
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font24);
 		text.setText("" + value);
@@ -68,7 +68,7 @@ public class CardOnBoardPane extends CardPane {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(cardWidth - (2 * insets));
-		imageView.setFitHeight((cardHight / 2) - (2 * insets));
+		imageView.setFitHeight((cardHeight / 2) - (2 * insets));
 		this.add(imageView, 0, 0, 2, 2);
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
