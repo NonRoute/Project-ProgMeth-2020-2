@@ -3,6 +3,7 @@ package screen;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 
 import javax.sound.midi.Soundbank;
 
@@ -99,11 +100,24 @@ public class GameScreen {
 	}
 
 	public void setBackground() {
-		ObservableList<Image> bg = FXCollections.observableArrayList();
-		// add all bg
-		bg.addAll(RenderableHolder.backgroundGameScreen, RenderableHolder.backgroundGameScreen1);
-		Collections.shuffle(bg);
-		this.background = bg.get(0);
+		Random rd = new Random();
+		switch(rd.nextInt(5)) {
+		case 1:
+			this.background = RenderableHolder.backgroundGameScreen1;
+			break;
+		case 2:
+			this.background = RenderableHolder.backgroundGameScreen2;
+			break;
+		case 3:
+			this.background = RenderableHolder.backgroundGameScreen3;
+			break;
+		case 4:
+			this.background = RenderableHolder.backgroundGameScreen4;
+			break;
+		case 0:
+			this.background = RenderableHolder.backgroundGameScreen5;
+			break;
+		}
 	}
 
 	public void stopSound() {
@@ -173,11 +187,11 @@ public class GameScreen {
 		ImageView imageView = new ImageView(RenderableHolder.nextPhase);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(120);
-		imageView.setFitHeight(70);
+		imageView.setFitHeight(60);
 		nextPhaseButton.setGraphic(imageView);
 		nextPhaseButton.setLayoutX(580);
-		nextPhaseButton.setLayoutY(15);
-		nextPhaseButton.setPrefSize(120, 70);
+		nextPhaseButton.setLayoutY(10);
+		nextPhaseButton.setPrefSize(120, 60);
 		nextPhaseButton
 				.setBackground(new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(30), new Insets(2))));
 		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,

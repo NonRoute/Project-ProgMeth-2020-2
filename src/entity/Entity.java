@@ -14,7 +14,7 @@ public abstract class Entity implements IRenderable {
 
 	@Override
 	public int getZ() {
-		return y; //make z depend on y
+		return z;
 	}
 
 	public void setVisible(boolean visible) {
@@ -35,6 +35,10 @@ public abstract class Entity implements IRenderable {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public void setZ(int z) {
+		this.z = z;
 	}
 
 }

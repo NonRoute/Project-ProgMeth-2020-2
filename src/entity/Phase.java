@@ -9,8 +9,9 @@ public class Phase extends Entity {
 	private int y = 5;
 
 	public Phase() {
-		RenderableHolder.getInstance().add(this);
+		this.setZ(3);
 		this.setVisible(true);
+		RenderableHolder.getInstance().add(this);
 	}
 
 	@Override
