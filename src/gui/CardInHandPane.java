@@ -28,6 +28,7 @@ import logic.Direction;
 import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
@@ -174,7 +175,7 @@ public class CardInHandPane extends CardPane {
 						break;
 					}
 				} else {
-					System.out.println("YOU CAN'T TOUCH THIS!!");
+					SoundHolder.getInstance().cannotSelect.play();
 				}
 			}
 		});

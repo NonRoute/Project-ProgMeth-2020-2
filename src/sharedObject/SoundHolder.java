@@ -8,6 +8,7 @@ public class SoundHolder {
 	public Media gameScreen1;
 	public Media gameScreen2;
 	public Media gameScreen3;
+	public AudioClip cannotSelect;
 
 	static {
 		instance = new SoundHolder();
@@ -21,6 +22,7 @@ public class SoundHolder {
 		gameScreen1 = loadMedia("gameScreen1", "mp3");
 		gameScreen2 = loadMedia("gameScreen2", "mp3");
 		gameScreen3 = loadMedia("gameScreen3", "mp3");
+		cannotSelect = loadSound("cannotSelect", "mp3");
 
 	}
 
