@@ -19,7 +19,6 @@ public class RenderableHolder {
 	public static Image backgroundGameScreen3;
 	public static Image backgroundGameScreen4;
 	public static Image backgroundGameScreen5;
-	public static Image backgroundEndGame;
 	public static Image cost;
 	public static Image attackDamage;
 	public static Image attackRange;
@@ -54,7 +53,6 @@ public class RenderableHolder {
 		RenderableHolder.backgroundGameScreen3 = loadImage("backgroundGameScreen3.jpg");
 		RenderableHolder.backgroundGameScreen4 = loadImage("backgroundGameScreen4.jpg");
 		RenderableHolder.backgroundGameScreen5 = loadImage("backgroundGameScreen5.jpg");
-		RenderableHolder.backgroundEndGame = loadImage("backgroundEndGame.png");
 
 		RenderableHolder.testDeckNameLeft = loadImage("testDeckNameLeft.png");
 		RenderableHolder.testDeckNameRight = loadImage("testDeckNameRight.png");

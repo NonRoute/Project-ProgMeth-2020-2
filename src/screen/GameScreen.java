@@ -99,55 +99,6 @@ public class GameScreen {
 		animation.start();
 	}
 
-	public void setBackground() {
-		Random rd = new Random();
-		switch(rd.nextInt(5)) {
-		case 1:
-			this.background = RenderableHolder.backgroundGameScreen1;
-			break;
-		case 2:
-			this.background = RenderableHolder.backgroundGameScreen2;
-			break;
-		case 3:
-			this.background = RenderableHolder.backgroundGameScreen3;
-			break;
-		case 4:
-			this.background = RenderableHolder.backgroundGameScreen4;
-			break;
-		case 0:
-			this.background = RenderableHolder.backgroundGameScreen5;
-			break;
-		}
-	}
-
-	public void stopSound() {
-		mediaplayer.stop();
-	}
-
-	public void getSoundList() {
-		ObservableList<Media> mediaList = FXCollections.observableArrayList();
-		// add all sound for play
-		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2,
-				SoundHolder.getInstance().gameScreen3);
-		Collections.shuffle(mediaList);
-		this.mediaList = mediaList;
-	}
-
-	public void playSound() {
-		if (mediaList.size() == 0) { // if no sound left, getSoundList again
-			getSoundList();
-		}
-		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
-		this.mediaplayer = mediaplayer;
-		mediaplayer.play();
-		mediaplayer.setOnEndOfMedia(new Runnable() {
-			@Override
-			public void run() {
-				playSound(); // play next sound
-			}
-		});
-	}
-
 	public boolean canClickStartNextPhaseButton() {
 		if (GameController.currentPlayingSide == Direction.LEFT && GameController.leftSideController instanceof Bot) {
 			return false;
@@ -174,12 +125,25 @@ public class GameScreen {
 		return true;
 	}
 
+	public Image getBackground() {
+		return background;
+	}
+
 	public HandPane getLeftCardsInHand() {
 		return leftCardsInHand;
 	}
 
 	public HandPane getRightCardsInHand() {
 		return rightCardsInHand;
+	}
+
+	public void getSoundList() {
+		ObservableList<Media> mediaList = FXCollections.observableArrayList();
+		// add all sound for play
+		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2,
+				SoundHolder.getInstance().gameScreen3);
+		Collections.shuffle(mediaList);
+		this.mediaList = mediaList;
 	}
 
 	public Button getStartNextPhaseButton() {
@@ -240,6 +204,46 @@ public class GameScreen {
 				entity.draw(gc);
 			}
 		}
+	}
+
+	public void playSound() {
+		if (mediaList.size() == 0) { // if no sound left, getSoundList again
+			getSoundList();
+		}
+		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
+		this.mediaplayer = mediaplayer;
+		mediaplayer.play();
+		mediaplayer.setOnEndOfMedia(new Runnable() {
+			@Override
+			public void run() {
+				playSound(); // play next sound
+			}
+		});
+	}
+
+	public void setBackground() {
+		Random rd = new Random();
+		switch(rd.nextInt(5)) {
+		case 1:
+			this.background = RenderableHolder.backgroundGameScreen1;
+			break;
+		case 2:
+			this.background = RenderableHolder.backgroundGameScreen2;
+			break;
+		case 3:
+			this.background = RenderableHolder.backgroundGameScreen3;
+			break;
+		case 4:
+			this.background = RenderableHolder.backgroundGameScreen4;
+			break;
+		case 0:
+			this.background = RenderableHolder.backgroundGameScreen5;
+			break;
+		}
+	}
+
+	public void stopSound() {
+		mediaplayer.stop();
 	}
 
 	public void unHighlightHandPane() {
