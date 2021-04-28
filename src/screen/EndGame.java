@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,9 +34,9 @@ public class EndGame extends StackPane {
 		stopSound();
 		this.setAlignment(Pos.CENTER);
 
-		ImageView image = new ImageView(RenderableHolder.backgroundEndGame);
+		ImageView image = new ImageView(GameController.gameScreen.getBackground());
 		image.setFitWidth(GameController.SCREEN_WIDTH);
-		image.setFitHeight(GameController.SCREEN_HIGHT);
+		image.setFitHeight(GameController.SCREEN_HEIGHT);
 
 		this.getChildren().addAll(image, getVBox());
 		Scene scene = new Scene(this);
@@ -86,6 +87,11 @@ public class EndGame extends StackPane {
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setSpacing(50);
 		Text text = new Text("The winner is " + GameController.winner + " side!!");
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setColor(Color.WHITE);
+		dropShadow.setRadius(2);
+		dropShadow.setSpread(1);
+		text.setEffect(dropShadow);
 		text.setFont(FontHolder.getInstance().font48);
 		vBox.getChildren().addAll(text, getGoBackButton());
 		return vBox;

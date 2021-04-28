@@ -35,7 +35,7 @@ public class SettingScreen {
 		root = new Pane();
 
 		borderPane = new BorderPane();
-		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
+		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HEIGHT);
 
 		goBackButton = getGoBackButton();
 		BorderPane.setAlignment(goBackButton, Pos.CENTER_RIGHT);
@@ -69,7 +69,7 @@ public class SettingScreen {
 			break;
 		}
 		image.setFitWidth(GameController.SCREEN_WIDTH);
-		image.setFitHeight(GameController.SCREEN_HIGHT);
+		image.setFitHeight(GameController.SCREEN_HEIGHT);
 
 		root.getChildren().addAll(image, borderPane, warningText);
 		GameController.primaryStage.setScene(scene);

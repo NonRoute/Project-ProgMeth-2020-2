@@ -33,7 +33,7 @@ public class SelectGameModeScreen {
 
 		image = new ImageView(RenderableHolder.backgroundSelectGameMode);
 		image.setFitWidth(GameController.SCREEN_WIDTH);
-		image.setFitHeight(GameController.SCREEN_HIGHT);
+		image.setFitHeight(GameController.SCREEN_HEIGHT);
 
 		root.setAlignment(Pos.TOP_RIGHT);
 		root.getChildren().addAll(image, new SelectGameModeButton(), getExitButton());
