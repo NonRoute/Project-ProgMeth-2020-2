@@ -141,7 +141,9 @@ public class GameScreen {
 		ObservableList<Media> mediaList = FXCollections.observableArrayList();
 		// add all sound for play
 		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2,
-				SoundHolder.getInstance().gameScreen3);
+				SoundHolder.getInstance().gameScreen3, SoundHolder.getInstance().gameScreen4,
+				SoundHolder.getInstance().gameScreen5, SoundHolder.getInstance().gameScreen6,
+				SoundHolder.getInstance().gameScreen7, SoundHolder.getInstance().gameScreen8);
 		Collections.shuffle(mediaList);
 		this.mediaList = mediaList;
 	}
@@ -223,7 +225,7 @@ public class GameScreen {
 
 	public void setBackground() {
 		Random rd = new Random();
-		switch(rd.nextInt(5)) {
+		switch (rd.nextInt(5)) {
 		case 1:
 			this.background = RenderableHolder.backgroundGameScreen1;
 			break;
