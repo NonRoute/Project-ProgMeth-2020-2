@@ -22,6 +22,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -49,6 +50,7 @@ public class GameScreen {
 	private BorderPane borderPane;
 	private Canvas canvas;
 	private GraphicsContext gc;
+	private Image background;
 	private Turn turn;
 	private Phase phase;
 	private LastUsedCard lastUsedCard;
@@ -61,6 +63,7 @@ public class GameScreen {
 	public GameScreen() {
 		root = new Pane();
 		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
+		setBackground();
 		nextPhaseButton = getStartNextPhaseButton();
 		borderPane = new BorderPane();
 		turn = new Turn();
@@ -75,7 +78,7 @@ public class GameScreen {
 		borderPane.setRight(rightCardsInHand);
 
 		gc = canvas.getGraphicsContext2D();
-		gc.drawImage(RenderableHolder.backgroundGameScreen, 0, 0, 1280, 720);
+		gc.drawImage(background, 0, 0, 1280, 720);
 
 		Board board = new Board();
 		GameController.board = board;
@@ -93,6 +96,14 @@ public class GameScreen {
 			}
 		};
 		animation.start();
+	}
+
+	public void setBackground() {
+		ObservableList<Image> bg = FXCollections.observableArrayList();
+		// add all bg
+		bg.addAll(RenderableHolder.backgroundGameScreen, RenderableHolder.backgroundGameScreen1);
+		Collections.shuffle(bg);
+		this.background = bg.get(0);
 	}
 
 	public void stopSound() {
@@ -209,7 +220,7 @@ public class GameScreen {
 	}
 
 	public void paintComponent() {
-		gc.drawImage(RenderableHolder.backgroundGameScreen, 0, 0, 1280, 720);
+		gc.drawImage(background, 0, 0, 1280, 720);
 		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
 			if (entity.isVisible()) {
 				entity.draw(gc);
