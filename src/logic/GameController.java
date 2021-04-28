@@ -176,6 +176,7 @@ public class GameController {
 		gameScreen = new GameScreen();
 		winner = null;
 		turn = 0;
+		moneyFromTurn = 1;
 		// Random side play first
 		Random rand = new Random();
 		if (rand.nextInt(2) == 1) {
@@ -232,15 +233,25 @@ public class GameController {
 		thread.start();
 	}
 
-	public static void startTurn() { // called when click next turn button
+	public static void startTurn() {
 		isPhaseOneEnd = false;
-		turn++;
-		if (turn <= 10) {
-			moneyFromTurn++;
-		}
-		// each side draw 2 card, money += turn
-		leftSideController.setMoney(leftSideController.getMoney() + moneyFromTurn);
-		rightSideController.setMoney(rightSideController.getMoney() + moneyFromTurn);
+		Thread thread = new Thread(() -> {
+			try {
+				if (threadAttackCard != null) { // wait attack finish first
+					threadAttackCard.join();
+				}
+				turn++;
+				if (turn <= 10) {
+					moneyFromTurn++;
+				}
+				// each side draw 2 card, money += turn
+				leftSideController.setMoney(leftSideController.getMoney() + moneyFromTurn);
+				rightSideController.setMoney(rightSideController.getMoney() + moneyFromTurn);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		thread.start();
 		leftSideController.drawCard(2);
 		rightSideController.drawCard(2);
 	}
