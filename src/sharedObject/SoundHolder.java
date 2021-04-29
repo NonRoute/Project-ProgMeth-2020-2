@@ -18,12 +18,12 @@ public class SoundHolder {
 	public Media gameScreen5;
 	public Media gameScreen6;
 	public Media gameScreen7;
-
 	public Media gameScreen8;
-
 	public AudioClip cannotSelect;
+	public AudioClip click;
 
 	public SoundHolder() {
+		click = loadSound("click", "mp3");
 		gameScreen1 = loadMedia("gameScreen1", "mp3");
 		gameScreen2 = loadMedia("gameScreen2", "mp3");
 		gameScreen3 = loadMedia("gameScreen3", "mp3");
