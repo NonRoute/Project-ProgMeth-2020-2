@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import card.FighterCard;
 import entity.Bot;
-import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
 

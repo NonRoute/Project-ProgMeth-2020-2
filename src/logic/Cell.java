@@ -77,22 +77,6 @@ public class Cell extends StackPane {
 		});
 	}
 
-	public void playPlaceCardSound() {
-		Random rand = new Random();
-		int n = rand.nextInt(2);
-		switch (n) {
-		case 0:
-			SoundHolder.getInstance().placeCard1.play();
-			break;
-		case 1:
-			SoundHolder.getInstance().placeCard2.play();
-			break;
-		case 2:
-			SoundHolder.getInstance().placeCard3.play();
-			break;
-		}
-	}
-
 	public FighterCard getCard() {
 		return cardOnBoardPane.getCard();
 	}
@@ -108,6 +92,22 @@ public class Cell extends StackPane {
 
 	public boolean isEmpty() {
 		return isEmpty;
+	}
+
+	public void playPlaceCardSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(2);
+		switch (n) {
+		case 0:
+			SoundHolder.getInstance().placeCard1.play();
+			break;
+		case 1:
+			SoundHolder.getInstance().placeCard2.play();
+			break;
+		case 2:
+			SoundHolder.getInstance().placeCard3.play();
+			break;
+		}
 	}
 
 	public void removeCard() {
