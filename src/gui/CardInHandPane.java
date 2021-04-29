@@ -141,7 +141,7 @@ public class CardInHandPane extends CardPane {
 		return true;
 	}
 
-	public boolean isSelect() {
+	public boolean isSelected() {
 		return GameController.selectedCardPane == this;
 	}
 
@@ -165,6 +165,7 @@ public class CardInHandPane extends CardPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (canSelectCard()) {
+					SoundHolder.getInstance().selectCard.play();
 					switch (card.getPlayingSide()) {
 					case LEFT:
 						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
@@ -187,7 +188,7 @@ public class CardInHandPane extends CardPane {
 		});
 		this.setOnMouseExited((MouseEvent e) -> {
 			tooltip.hide();
-			if (!isSelect()) {
+			if (!isSelected()) {
 				cardPane.setBackground(
 						new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
 			}

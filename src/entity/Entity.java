@@ -7,9 +7,12 @@ public abstract class Entity implements IRenderable {
 	protected int z;
 	protected boolean visible;
 
-	@Override
-	public boolean isVisible() {
-		return visible;
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 
 	@Override
@@ -17,20 +20,17 @@ public abstract class Entity implements IRenderable {
 		return z;
 	}
 
+	@Override
+	public boolean isVisible() {
+		return visible;
+	}
+
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
 
-	public int getX() {
-		return x;
-	}
-
 	public void setX(int x) {
 		this.x = x;
-	}
-
-	public int getY() {
-		return y;
 	}
 
 	public void setY(int y) {

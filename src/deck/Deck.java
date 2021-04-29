@@ -65,6 +65,21 @@ public class Deck {
 		return numberOfCardsEachCost;
 	}
 
+	public Trick getTrick(String trick, String[][] deckData, int row) { // get Trick by name of trick
+		switch (trick) {
+		case "ChangeCardAbility":
+			return new ChangeCardAbility(deckData[row][7]);
+		case "DestroyCard":
+			return new DestroyCard(deckData[row][7]);
+		case "Draw":
+			return new Draw(deckData[row][7]);
+		case "ChangeControllerHeart":
+			return new ChangeControllerHeart(deckData[row][7]);
+		}
+		System.out.println("Wrong trick input, You input: " + trick);
+		return null;
+	}
+
 	public ArrayList<Card> importDeck(String filename) {
 		ArrayList<Card> deck = new ArrayList<Card>();
 		String[][] deckData = CSVParser.readCSV(filename);
@@ -100,21 +115,6 @@ public class Deck {
 			}
 		}
 		return deck;
-	}
-
-	public Trick getTrick(String trick, String[][] deckData, int row) { // get Trick by name of trick
-		switch (trick) {
-		case "ChangeCardAbility":
-			return new ChangeCardAbility(deckData[row][7]);
-		case "DestroyCard":
-			return new DestroyCard(deckData[row][7]);
-		case "Draw":
-			return new Draw(deckData[row][7]);
-		case "ChangeControllerHeart":
-			return new ChangeControllerHeart(deckData[row][7]);
-		}
-		System.out.println("Wrong trick input, You input: " + trick);
-		return null;
 	}
 
 	public void setCards(ArrayList<Card> cards) {

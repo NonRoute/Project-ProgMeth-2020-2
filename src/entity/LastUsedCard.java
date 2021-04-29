@@ -20,15 +20,6 @@ public class LastUsedCard extends Entity {
 		RenderableHolder.getInstance().add(this);
 	}
 
-	public String replaceLineWithSpace(String str) {
-		String[] lines = str.split("\r\n|\r|\n");
-		String text = "";
-		for (int i = 0; i < lines.length; i++) {
-			text += lines[i] + " ";
-		}
-		return text;
-	}
-
 	@Override
 	public void draw(GraphicsContext gc) {
 		if (GameController.lastUsedCard != null) {
@@ -47,6 +38,15 @@ public class LastUsedCard extends Entity {
 			gc.fillText("- " + card.getType() + " -\n" + description, X, Y + 17);
 			gc.setEffect(null);
 		}
+	}
+
+	public String replaceLineWithSpace(String str) {
+		String[] lines = str.split("\r\n|\r|\n");
+		String text = "";
+		for (int i = 0; i < lines.length; i++) {
+			text += lines[i] + " ";
+		}
+		return text;
 	}
 
 }

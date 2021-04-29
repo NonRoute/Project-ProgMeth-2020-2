@@ -26,15 +26,9 @@ public class DestroyCard extends Trick {
 			}
 			break;
 		}
-		Update(card);
+		update(card);
 		GameController.board.update();
 		GameController.board.removeDeadCards();
-	}
-
-	public void Update(FighterCard card) {
-		if (card != null) {
-			card.setHeart(0);
-		}
 	}
 
 	@Override
@@ -56,6 +50,12 @@ public class DestroyCard extends Trick {
 		}
 		description += " to destory";
 		return description;
+	}
+
+	public void update(FighterCard card) {
+		if (card != null) {
+			card.setHeart(0);
+		}
 	}
 
 }

@@ -373,7 +373,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void setCardOnMap(CardPane cardPane, int row, int column) {
+	public void setCard(CardPane cardPane, int row, int column) {
 		boardCells.get(row).get(column).setCard(cardPane);
 		unHighlightAllCells();
 	}
@@ -393,7 +393,7 @@ public class Board extends GridPane {
 					// recreate cardOnBoardPane
 					CardOnBoardPane cardPane = new CardOnBoardPane(boardCells.get(r).get(c).getCard());
 					removeCardOnMap(r, c);
-					setCardOnMap(cardPane, r, c);
+					setCard(cardPane, r, c);
 				}
 			}
 		}

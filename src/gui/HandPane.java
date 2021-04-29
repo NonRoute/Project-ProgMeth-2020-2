@@ -80,15 +80,15 @@ public class HandPane extends VBox {
 		GameController.board.highlightCellCanPlay(selectedCardPane);
 	}
 	
-	public void unHighlight() {
-		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
-		this.setBorder(null);
-		this.setEffect(null);
-	}
-
 	public void unHeightlightAllCardInHandPane() {
 		for (GridPane e : cardsList) {
 			((CardInHandPane) e).unhighlight();
 		}
+	}
+
+	public void unHighlight() {
+		this.setBackground(new Background(new BackgroundFill(Color.SIENNA, new CornerRadii(5), Insets.EMPTY)));
+		this.setBorder(null);
+		this.setEffect(null);
 	}
 }

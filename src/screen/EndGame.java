@@ -49,10 +49,6 @@ public class EndGame extends StackPane {
 		}
 	}
 
-	public void stopSound() {
-		GameController.gameScreen.stopSound();
-	}
-
 	public Button getGoBackButton() {
 		Button goBackButton = new Button("New Game");
 		goBackButton.setLayoutY(600);
@@ -95,5 +91,9 @@ public class EndGame extends StackPane {
 		text.setFont(FontHolder.getInstance().font48);
 		vBox.getChildren().addAll(text, getGoBackButton());
 		return vBox;
+	}
+
+	public void stopSound() {
+		GameController.gameScreen.stopSound();
 	}
 }

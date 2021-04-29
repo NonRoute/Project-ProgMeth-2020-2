@@ -16,6 +16,7 @@ import logic.GameController;
 import screen.EndGame;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public abstract class Controller extends Entity {
 
@@ -82,7 +83,7 @@ public abstract class Controller extends Entity {
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
-
+							SoundHolder.getInstance().drawCard.play();
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
 							cardsInHandPane.add(deck.getName(), card);

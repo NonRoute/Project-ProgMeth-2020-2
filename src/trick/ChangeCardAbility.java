@@ -44,19 +44,10 @@ public class ChangeCardAbility extends Trick {
 			}
 			break;
 		}
-		Update(card);
+		update(card);
 		GameController.board.unHighlightAllCells();
 		GameController.board.update();
 		GameController.board.removeDeadCards();
-	}
-
-	public void Update(FighterCard card) {
-		if (card != null) {
-			card.setAttackDamage(card.getAttackDamage() + attackDamage);
-			card.setAttackRange(card.getAttackRange() + attackRange);
-			card.setHeart(card.getHeart() + heart);
-			card.setSpeed(card.getSpeed() + speed);
-		}
 	}
 
 	@Override
@@ -102,5 +93,14 @@ public class ChangeCardAbility extends Trick {
 			description += "Speed " + speed + "\n";
 		}
 		return description;
+	}
+
+	public void update(FighterCard card) {
+		if (card != null) {
+			card.setAttackDamage(card.getAttackDamage() + attackDamage);
+			card.setAttackRange(card.getAttackRange() + attackRange);
+			card.setHeart(card.getHeart() + heart);
+			card.setSpeed(card.getSpeed() + speed);
+		}
 	}
 }

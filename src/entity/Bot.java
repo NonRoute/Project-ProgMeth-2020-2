@@ -68,7 +68,7 @@ public abstract class Bot extends Controller {
 							useCard(cardsInHandPane.indexOf(selectCard));
 							if (selectCard.getCard() instanceof FighterCard) {
 								// set card on map, if it is FighterCard or MagicianCard
-								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+								GameController.board.setCard(selectCard, selectRow(), getPlayableColumn());
 							}
 						}
 					});

@@ -20,11 +20,12 @@ import javafx.scene.paint.Color;
 import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class SelectGameModeScreen {
-	StackPane root;
-	Scene scene;
-	ImageView image;
+	private StackPane root;
+	private Scene scene;
+	private ImageView image;
 
 	public SelectGameModeScreen() {
 		root = new StackPane();
@@ -51,6 +52,7 @@ public class SelectGameModeScreen {
 				new BorderStroke(Color.MAROON, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(5))));
 		StackPane.setMargin(exitButton, new Insets(20));
 		exitButton.setOnMouseClicked((MouseEvent e) -> {
+			SoundHolder.getInstance().click.play();
 			Platform.exit();
 		});
 		exitButton.setOnMouseEntered((MouseEvent e) -> {
