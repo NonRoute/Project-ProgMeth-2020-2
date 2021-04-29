@@ -24,12 +24,12 @@ import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class SettingScreen {
-	Pane root;
-	BorderPane borderPane;
-	Button goBackButton;
-	Button playButton;
-	ImageView image;
-	Text warningText;
+	private Pane root;
+	private BorderPane borderPane;
+	private Button goBackButton;
+	private Button playButton;
+	private ImageView image;
+	private Text warningText;
 
 	public SettingScreen() {
 		root = new Pane();

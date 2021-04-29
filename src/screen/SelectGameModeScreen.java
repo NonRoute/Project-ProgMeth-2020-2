@@ -22,9 +22,9 @@ import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
 public class SelectGameModeScreen {
-	StackPane root;
-	Scene scene;
-	ImageView image;
+	private StackPane root;
+	private Scene scene;
+	private ImageView image;
 
 	public SelectGameModeScreen() {
 		root = new StackPane();

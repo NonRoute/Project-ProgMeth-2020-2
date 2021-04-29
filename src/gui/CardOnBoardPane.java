@@ -109,7 +109,7 @@ public class CardOnBoardPane extends CardPane {
 									// can move to next cell
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 									card.setColumn(card.getColumn() + 1);
-									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
+									GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
 								}
 							});
 							Thread.sleep(GameController.DELAY_CARD_MOVE);
@@ -132,7 +132,7 @@ public class CardOnBoardPane extends CardPane {
 								public void run() {
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 									card.setColumn(card.getColumn() - 1);
-									GameController.board.setCardOnMap(cardPane, card.getRow(), card.getColumn());
+									GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
 								}
 							});
 							Thread.sleep(GameController.DELAY_CARD_MOVE);

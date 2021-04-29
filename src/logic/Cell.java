@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 
 public class Cell extends StackPane {
 	private CardOnBoardPane cardOnBoardPane;
-	private Color bgColor;
+	private Color backgroundColor;
 	private int row;
 	private int column;
 	private boolean isEmpty = true;
@@ -28,13 +28,13 @@ public class Cell extends StackPane {
 		this.row = row;
 		this.column = column;
 		if ((row + column) % 2 == 0) {
-			bgColor = Color.PAPAYAWHIP;
+			backgroundColor = Color.PAPAYAWHIP;
 		} else {
-			bgColor = Color.PEACHPUFF;
+			backgroundColor = Color.PEACHPUFF;
 		}
 		this.setPrefWidth(cardWidth);
 		this.setPrefHeight(cardHeight);
-		this.setBackground(new Background(new BackgroundFill(bgColor, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBackground(new Background(new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
@@ -114,7 +114,7 @@ public class Cell extends StackPane {
 	}
 
 	public void unhighlight() {
-		this.setBackground(new Background(new BackgroundFill(bgColor, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBackground(new Background(new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
 		isHighLight = false;
 	}
 
