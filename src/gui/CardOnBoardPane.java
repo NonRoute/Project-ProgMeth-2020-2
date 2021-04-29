@@ -161,11 +161,11 @@ public class CardOnBoardPane extends CardPane {
 		thread.start();
 
 	}
-	
+
 	public void playMoveSound() {
 		Random rand = new Random();
 		int n = rand.nextInt(6);
-		switch(n) {
+		switch (n) {
 		case 0:
 			SoundHolder.getInstance().move1.play();
 			break;

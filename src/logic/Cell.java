@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.Random;
+
 import card.FighterCard;
 import card.Trickable;
 import gui.CardInHandPane;
@@ -13,6 +15,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import sharedObject.SoundHolder;
 
 public class Cell extends StackPane {
 	private CardOnBoardPane cardOnBoardPane;
@@ -39,6 +42,7 @@ public class Cell extends StackPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (isHighLight) {
+					playPlaceCardSound();
 					if (GameController.selectedCardPane.getCard() instanceof FighterCard) {
 						// place card on board
 						setCard(GameController.selectedCardPane);
@@ -71,6 +75,22 @@ public class Cell extends StackPane {
 				}
 			}
 		});
+	}
+
+	public void playPlaceCardSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(2);
+		switch (n) {
+		case 0:
+			SoundHolder.getInstance().placeCard1.play();
+			break;
+		case 1:
+			SoundHolder.getInstance().placeCard2.play();
+			break;
+		case 2:
+			SoundHolder.getInstance().placeCard3.play();
+			break;
+		}
 	}
 
 	public FighterCard getCard() {
