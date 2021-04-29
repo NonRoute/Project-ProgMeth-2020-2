@@ -9,6 +9,7 @@ import card.FighterCard;
 import card.MagicianCard;
 import card.TrickCard;
 import exception.WrongDeckDataException;
+import exception.WrongTrickActivateTypeException;
 import logic.GameController;
 import trick.ChangeCardAbility;
 import trick.ChangeControllerHeart;
@@ -66,8 +67,9 @@ public class Deck {
 		return numberOfCardsEachCost;
 	}
 
-	public Trick getTrick(String trick, String[][] deckData, int line) throws WrongDeckDataException { // get Trick by
-																										// name of trick
+	public Trick getTrick(String trick, String[][] deckData, int line)
+			throws WrongDeckDataException, WrongTrickActivateTypeException { // get Trick by
+		// name of trick
 		switch (trick) {
 		case "ChangeCardAbility":
 			return new ChangeCardAbility(deckData[line][7]);
@@ -86,35 +88,38 @@ public class Deck {
 		String[][] deckData = CSVParser.readCSV(filename);
 		for (int i = 2; i < deckData.length; i++) { // each row = each cards
 			try {
-				try {
-					switch (deckData[i][0]) {
-					case "Fighter":
-						FighterCard fighterCard = new FighterCard(name, Integer.parseInt(deckData[i][1]),
-								Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
-								Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]));
-						deck.add(fighterCard);
-						break;
-					case "Magician":
-						MagicianCard magicianCard;
-						magicianCard = new MagicianCard(name, Integer.parseInt(deckData[i][1]),
-								Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
-								Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]),
-								getTrick(deckData[i][6], deckData, i));
-						deck.add(magicianCard);
-						break;
-					case "Trick":
-						TrickCard trickCard;
-						trickCard = new TrickCard(name, Integer.parseInt(deckData[i][1]),
-								getTrick(deckData[i][6], deckData, i));
-						deck.add(trickCard);
-						break;
-					default:
-						throw new WrongDeckDataException(name, i, deckData[i]);
-					}
-				} catch (Exception e) {
+				switch (deckData[i][0]) {
+				case "Fighter":
+					FighterCard fighterCard = new FighterCard(name, Integer.parseInt(deckData[i][1]),
+							Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+							Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]));
+					deck.add(fighterCard);
+					break;
+				case "Magician":
+					MagicianCard magicianCard;
+					magicianCard = new MagicianCard(name, Integer.parseInt(deckData[i][1]),
+							Integer.parseInt(deckData[i][2]), Integer.parseInt(deckData[i][3]),
+							Integer.parseInt(deckData[i][4]), Integer.parseInt(deckData[i][5]),
+							getTrick(deckData[i][6], deckData, i));
+					deck.add(magicianCard);
+					break;
+				case "Trick":
+					TrickCard trickCard;
+					trickCard = new TrickCard(name, Integer.parseInt(deckData[i][1]),
+							getTrick(deckData[i][6], deckData, i));
+					deck.add(trickCard);
+					break;
+				default:
 					throw new WrongDeckDataException(name, i, deckData[i]);
 				}
 			} catch (WrongDeckDataException e) {
+				System.out.println(e.toString());
+			} catch (Exception e) { // make other exception throw WrongDeckDataException
+				try {
+					throw new WrongDeckDataException(name, i, deckData[i]);
+				} catch (WrongDeckDataException e2) {
+					System.out.println(e2.toString());
+				}
 				System.out.println(e.toString());
 			}
 		}

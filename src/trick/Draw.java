@@ -1,5 +1,6 @@
 package trick;
 
+import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
 
@@ -7,9 +8,12 @@ public class Draw extends Trick {
 	private char activateType;
 	private int number;
 
-	public Draw(String trickparameter) {
+	public Draw(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
+		if (!"TES".contains(String.valueOf(activateType))) {
+			throw new WrongTrickActivateTypeException();
+		}
 		number = Integer.parseInt(trickParameter.get(1));
 	}
 

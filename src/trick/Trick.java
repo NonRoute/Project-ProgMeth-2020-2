@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import card.FighterCard;
 import entity.Bot;
+import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
 
@@ -16,8 +17,9 @@ public abstract class Trick implements Cloneable {
 	public Trick(String trickparameter) {
 		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameter.split("\\.")));
 	}
+
 	public abstract void activate();
-	
+
 	public Object clone() {
 		try {
 			return super.clone();
@@ -25,7 +27,7 @@ public abstract class Trick implements Cloneable {
 			throw new InternalError(e.toString());
 		}
 	}
-	
+
 	public FighterCard getBotSelectTargetCard() {
 		switch (playingSide) {
 		case LEFT:
@@ -35,7 +37,7 @@ public abstract class Trick implements Cloneable {
 		}
 		return null;
 	}
-	
+
 	public abstract String getDescription();
 
 	public char getFirstParameter() {
