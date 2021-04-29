@@ -7,7 +7,7 @@ public interface Trickable {
 
 	void activateTrick();
 	Trick getTrick();
-	void setTrick(Trick trick);
-	void setPlayingSide(Direction playingSide);
 	public String setDescription();
+	void setPlayingSide(Direction playingSide);
+	void setTrick(Trick trick);
 }

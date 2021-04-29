@@ -5,6 +5,12 @@ import javafx.scene.media.Media;
 
 public class SoundHolder {
 	private static final SoundHolder instance;
+	static {
+		instance = new SoundHolder();
+	}
+	public static SoundHolder getInstance() {
+		return SoundHolder.instance;
+	}
 	public Media gameScreen1;
 	public Media gameScreen2;
 	public Media gameScreen3;
@@ -12,16 +18,10 @@ public class SoundHolder {
 	public Media gameScreen5;
 	public Media gameScreen6;
 	public Media gameScreen7;
+
 	public Media gameScreen8;
+
 	public AudioClip cannotSelect;
-
-	static {
-		instance = new SoundHolder();
-	}
-
-	public static SoundHolder getInstance() {
-		return SoundHolder.instance;
-	}
 
 	public SoundHolder() {
 		gameScreen1 = loadMedia("gameScreen1", "mp3");
@@ -36,11 +36,11 @@ public class SoundHolder {
 
 	}
 
-	public AudioClip loadSound(String prefixName, String fileType) {
-		return new AudioClip(ClassLoader.getSystemResource("sound/" + prefixName + '.' + fileType).toString());
-	}
-
 	public Media loadMedia(String prefixName, String fileType) {
 		return new Media(ClassLoader.getSystemResource("sound/" + prefixName + '.' + fileType).toString());
+	}
+
+	public AudioClip loadSound(String prefixName, String fileType) {
+		return new AudioClip(ClassLoader.getSystemResource("sound/" + prefixName + '.' + fileType).toString());
 	}
 }

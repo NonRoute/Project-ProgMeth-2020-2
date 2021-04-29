@@ -37,46 +37,12 @@ public abstract class Card implements Cloneable {
 		}
 	}
 
-	public String getType() {
-		if (this instanceof MagicianCard) {
-			return "Magician";
-		} else if (this instanceof FighterCard) {
-			return "Fighter";
-		} else {
-			return "Trick";
-		}
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public int getCost() {
 		return cost;
 	}
 
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-
-	public boolean isInHand() {
-		return isInHand;
-	}
-
-	public void setInHand(boolean isInHand) {
-		this.isInHand = isInHand;
-	}
-
-	public Direction getPlayingSide() {
-		return playingSide;
-	}
-
-	public void setPlayingSide(Direction playingSide) {
-		this.playingSide = playingSide;
+	public String getDescription() {
+		return description;
 	}
 
 	public Image getImage() {
@@ -87,6 +53,40 @@ public abstract class Card implements Cloneable {
 			return rightPlayingSideImage;
 		}
 		return null;
+	}
+
+	public Direction getPlayingSide() {
+		return playingSide;
+	}
+
+	public String getType() {
+		if (this instanceof MagicianCard) {
+			return "Magician";
+		} else if (this instanceof FighterCard) {
+			return "Fighter";
+		} else {
+			return "Trick";
+		}
+	}
+
+	public boolean isInHand() {
+		return isInHand;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setInHand(boolean isInHand) {
+		this.isInHand = isInHand;
+	}
+
+	public void setPlayingSide(Direction playingSide) {
+		this.playingSide = playingSide;
 	}
 
 }

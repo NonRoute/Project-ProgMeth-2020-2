@@ -13,8 +13,10 @@ public abstract class Trick implements Cloneable {
 	protected Direction playingSide;
 	protected ArrayList<String> trickParameter;
 
+	public Trick(String trickparameter) {
+		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameter.split("\\.")));
+	}
 	public abstract void activate();
-	public abstract String getDescription();
 	
 	public Object clone() {
 		try {
@@ -22,10 +24,6 @@ public abstract class Trick implements Cloneable {
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
 		}
-	}
-	
-	public Trick(String trickparameter) {
-		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameter.split("\\.")));
 	}
 	
 	public FighterCard getBotSelectTargetCard() {
@@ -37,6 +35,12 @@ public abstract class Trick implements Cloneable {
 		}
 		return null;
 	}
+	
+	public abstract String getDescription();
+
+	public char getFirstParameter() {
+		return trickParameter.get(0).charAt(0);
+	}
 
 	public Direction getPlayingSide() {
 		return playingSide;
@@ -44,10 +48,6 @@ public abstract class Trick implements Cloneable {
 
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
-	}
-
-	public char getFirstParameter() {
-		return trickParameter.get(0).charAt(0);
 	}
 
 }
