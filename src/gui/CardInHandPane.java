@@ -165,7 +165,7 @@ public class CardInHandPane extends CardPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (canSelectCard()) {
-					SoundHolder.getInstance().click.play();
+					SoundHolder.getInstance().selectCard.play();
 					switch (card.getPlayingSide()) {
 					case LEFT:
 						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);

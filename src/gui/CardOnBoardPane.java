@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Random;
+
 import card.Card;
 import card.FighterCard;
 import javafx.application.Platform;
@@ -17,6 +19,7 @@ import javafx.scene.text.Text;
 import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
@@ -107,6 +110,7 @@ public class CardOnBoardPane extends CardPane {
 							Platform.runLater(new Runnable() {
 								public void run() {
 									// can move to next cell
+									playMoveSound();
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 									card.setColumn(card.getColumn() + 1);
 									GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
@@ -130,6 +134,7 @@ public class CardOnBoardPane extends CardPane {
 						if (GameController.board.isEmpty(card.getRow(), card.getColumn() - 1)) {
 							Platform.runLater(new Runnable() {
 								public void run() {
+									playMoveSound();
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 									card.setColumn(card.getColumn() - 1);
 									GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
@@ -155,6 +160,34 @@ public class CardOnBoardPane extends CardPane {
 		GameController.threadCardMove = thread;
 		thread.start();
 
+	}
+	
+	public void playMoveSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(6);
+		switch(n) {
+		case 0:
+			SoundHolder.getInstance().move1.play();
+			break;
+		case 1:
+			SoundHolder.getInstance().move2.play();
+			break;
+		case 2:
+			SoundHolder.getInstance().move3.play();
+			break;
+		case 3:
+			SoundHolder.getInstance().move4.play();
+			break;
+		case 4:
+			SoundHolder.getInstance().move5.play();
+			break;
+		case 5:
+			SoundHolder.getInstance().move6.play();
+			break;
+		case 6:
+			SoundHolder.getInstance().move7.play();
+			break;
+		}
 	}
 
 	public void setCardAbility(Card card) {
