@@ -1,14 +1,18 @@
 package trick;
 
 import card.FighterCard;
+import exception.WrongTrickActivateTypeException;
 import logic.GameController;
 
 public class DestroyCard extends Trick {
 	private char activateType;
 
-	public DestroyCard(String trickparameter) {
+	public DestroyCard(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
+		if (!"BD".contains(String.valueOf(activateType))) {
+			throw new WrongTrickActivateTypeException();
+		}
 	}
 
 	@Override

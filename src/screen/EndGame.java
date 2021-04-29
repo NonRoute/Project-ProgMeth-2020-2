@@ -24,7 +24,6 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
-import sharedObject.SoundHolder;
 
 public class EndGame extends StackPane {
 

@@ -1,6 +1,7 @@
 package trick;
 
 import card.FighterCard;
+import exception.WrongTrickActivateTypeException;
 import logic.GameController;
 
 public class ChangeCardAbility extends Trick {
@@ -10,9 +11,12 @@ public class ChangeCardAbility extends Trick {
 	private int heart;
 	private int speed;
 
-	public ChangeCardAbility(String trickparameter) {
+	public ChangeCardAbility(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
+		if (!"ABCD".contains(String.valueOf(activateType))) {
+			throw new WrongTrickActivateTypeException();
+		}
 		attackDamage = Integer.parseInt(trickParameter.get(1));
 		attackRange = Integer.parseInt(trickParameter.get(2));
 		heart = Integer.parseInt(trickParameter.get(3));

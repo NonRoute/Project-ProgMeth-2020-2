@@ -1,13 +1,7 @@
 package screen;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
-
-import javax.sound.midi.Soundbank;
-
-import org.w3c.dom.stylesheets.MediaList;
 
 import entity.Bot;
 import entity.LastUsedCard;
@@ -35,7 +29,6 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;

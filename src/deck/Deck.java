@@ -8,6 +8,8 @@ import card.Card;
 import card.FighterCard;
 import card.MagicianCard;
 import card.TrickCard;
+import exception.WrongDeckDataException;
+import exception.WrongTrickActivateTypeException;
 import logic.GameController;
 import trick.ChangeCardAbility;
 import trick.ChangeControllerHeart;
@@ -65,19 +67,20 @@ public class Deck {
 		return numberOfCardsEachCost;
 	}
 
-	public Trick getTrick(String trick, String[][] deckData, int row) { // get Trick by name of trick
+	public Trick getTrick(String trick, String[][] deckData, int line)
+			throws WrongDeckDataException, WrongTrickActivateTypeException { // get Trick by
+		// name of trick
 		switch (trick) {
 		case "ChangeCardAbility":
-			return new ChangeCardAbility(deckData[row][7]);
+			return new ChangeCardAbility(deckData[line][7]);
 		case "DestroyCard":
-			return new DestroyCard(deckData[row][7]);
+			return new DestroyCard(deckData[line][7]);
 		case "Draw":
-			return new Draw(deckData[row][7]);
+			return new Draw(deckData[line][7]);
 		case "ChangeControllerHeart":
-			return new ChangeControllerHeart(deckData[row][7]);
+			return new ChangeControllerHeart(deckData[line][7]);
 		}
-		System.out.println("Wrong trick input, You input: " + trick);
-		return null;
+		throw new WrongDeckDataException(name, line, deckData[line]);
 	}
 
 	public ArrayList<Card> importDeck(String filename) {
@@ -107,11 +110,17 @@ public class Deck {
 					deck.add(trickCard);
 					break;
 				default:
-					System.out.println("Wrong card type input, You input: " + deckData[i][0]);
+					throw new WrongDeckDataException(name, i, deckData[i]);
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Wrong card input " + name + " " + deckData[i][0]);
+			} catch (WrongDeckDataException e) {
+				System.out.println(e.toString());
+			} catch (Exception e) { // make other exception throw WrongDeckDataException
+				try {
+					throw new WrongDeckDataException(name, i, deckData[i]);
+				} catch (WrongDeckDataException e2) {
+					System.out.println(e2.toString());
+				}
+				System.out.println(e.toString());
 			}
 		}
 		return deck;

@@ -4,8 +4,6 @@ import card.Card;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;

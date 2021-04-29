@@ -2,6 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.Random;
+
 import card.Card;
 import card.FighterCard;
 import deck.Deck;

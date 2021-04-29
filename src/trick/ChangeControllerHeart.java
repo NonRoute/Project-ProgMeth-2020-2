@@ -1,5 +1,6 @@
 package trick;
 
+import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
 
@@ -7,9 +8,12 @@ public class ChangeControllerHeart extends Trick {
 	private char activateType;
 	private int heart;
 
-	public ChangeControllerHeart(String trickparameter) {
+	public ChangeControllerHeart(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
+		if (!"TES".contains(String.valueOf(activateType))) {
+			throw new WrongTrickActivateTypeException();
+		}
 		heart = Integer.parseInt(trickParameter.get(1));
 	}
 
