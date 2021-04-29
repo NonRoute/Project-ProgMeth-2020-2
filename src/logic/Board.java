@@ -244,10 +244,10 @@ public class Board extends GridPane {
 				}
 				break;
 			case 'C': // select friendly
-				hightlightFriendly(selectedCardPane.getCard().getPlayingSide());
+				highlightFriendly(selectedCardPane.getCard().getPlayingSide());
 				break;
 			case 'D': // select enemy
-				hightlightEnemy(selectedCardPane.getCard().getPlayingSide());
+				highlightEnemy(selectedCardPane.getCard().getPlayingSide());
 				break;
 			case 'T':
 			case 'E':
@@ -258,7 +258,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void hightlightEnemy(Direction playingSide) {
+	public void highlightEnemy(Direction playingSide) {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isEnemy(r, c, playingSide)) {
@@ -268,7 +268,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void hightlightFriendly(Direction playingSide) {
+	public void highlightFriendly(Direction playingSide) {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isFriendly(r, c, playingSide)) {
