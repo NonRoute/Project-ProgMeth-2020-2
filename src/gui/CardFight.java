@@ -1,4 +1,4 @@
-package entity;
+package gui;
 
 public class CardFight {
 
