@@ -1,7 +1,5 @@
 package logic;
 
-import java.util.Random;
-
 import card.FighterCard;
 import card.Trickable;
 import gui.CardInHandPane;
@@ -15,7 +13,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import sharedObject.SoundHolder;
 
 public class Cell extends StackPane {
 	private CardOnBoardPane cardOnBoardPane;

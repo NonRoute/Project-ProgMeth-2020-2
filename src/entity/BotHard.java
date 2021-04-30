@@ -69,6 +69,10 @@ public class BotHard extends Bot {
 		GameController.threadDrawCard = thread;
 	}
 
+	public int getMaxCardCostCanDraw() {
+		return GameController.turn + 2;
+	}
+
 	public CardInHandPane selectCard() { // select Trickable card first
 		ArrayList<CardInHandPane> cardsCanPlay = getAllCardsCanPlay();
 		if (cardsCanPlay.size() > 0) {
