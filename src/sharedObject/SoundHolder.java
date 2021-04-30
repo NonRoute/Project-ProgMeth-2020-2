@@ -33,6 +33,11 @@ public class SoundHolder {
 	public AudioClip move5;
 	public AudioClip move6;
 	public AudioClip move7;
+	public AudioClip attack1;
+	public AudioClip attack2;
+	public AudioClip attack3;
+	public AudioClip attack4;
+	public AudioClip attack5;
 
 	public SoundHolder() {
 		click = loadSound("click", "mp3");
@@ -58,6 +63,11 @@ public class SoundHolder {
 		move5 = loadSound("move5", "mp3");
 		move6 = loadSound("move6", "mp3");
 		move7 = loadSound("move7", "mp3");
+		attack1 = loadSound("attack1", "mp3");
+		attack2 = loadSound("attack2", "mp3");
+		attack3 = loadSound("attack3", "mp3");
+		attack4 = loadSound("attack4", "mp3");
+		attack5 = loadSound("attack5", "mp3");
 
 	}
 

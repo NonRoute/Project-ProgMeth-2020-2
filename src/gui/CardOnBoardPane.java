@@ -76,6 +76,28 @@ public class CardOnBoardPane extends CardPane {
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
 
+	public void playAttackSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(4);
+		switch (n) {
+		case 0:
+			SoundHolder.getInstance().attack1.play();
+			break;
+		case 1:
+			SoundHolder.getInstance().attack2.play();
+			break;
+		case 2:
+			SoundHolder.getInstance().attack3.play();
+			break;
+		case 3:
+			SoundHolder.getInstance().attack4.play();
+			break;
+		case 4:
+			SoundHolder.getInstance().attack5.play();
+			break;
+		}
+	}
+
 	public void attack() {
 		Thread thread = new Thread(() -> {
 			boolean attack = false;
@@ -94,6 +116,7 @@ public class CardOnBoardPane extends CardPane {
 					}
 				}
 				if (attack) { // if card attack, make delay
+					playAttackSound();
 					try {
 						Thread.sleep(GameController.DELAY_ATTACK);
 					} catch (InterruptedException e) {
@@ -114,6 +137,7 @@ public class CardOnBoardPane extends CardPane {
 					}
 				}
 				if (attack) { // if card attack, make delay
+					playAttackSound();
 					try {
 						Thread.sleep(GameController.DELAY_ATTACK);
 					} catch (InterruptedException e) {
