@@ -22,7 +22,7 @@ public class BotHard extends Bot {
 	public void drawCard(int number) {
 		Thread thread = new Thread(() -> {
 			try {
-				if (GameController.threadAttackCard != null) {
+				if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
 					GameController.threadAttackCard.join();
 				}
 				// if card exceed max; not draw

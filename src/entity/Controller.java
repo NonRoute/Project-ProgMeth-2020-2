@@ -59,8 +59,11 @@ public abstract class Controller extends Entity {
 	public void drawCard(int number) {
 		Thread thread = new Thread(() -> {
 			try {
-				if (GameController.threadAttackCard != null) {
+				if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
 					GameController.threadAttackCard.join();
+				}
+				if (GameController.isGameEnd) { // stop running if game end
+					return;
 				}
 				// if card exceed max; not draw
 				for (int i = 0; i < number; i++) {

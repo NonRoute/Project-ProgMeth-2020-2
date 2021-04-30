@@ -325,6 +325,9 @@ public class Board extends GridPane {
 		Thread thread = new Thread(() -> {
 			try {
 				for (int r = 0; r < NUMBER_OF_ROW; r++) {
+					if (GameController.isGameEnd) { // stop running if game end
+						return;
+					}
 					switch (playingsideMoveFirst) {
 					case LEFT: // each row, move card left playing side first
 						moveLeftPlayingSideCard(r);
@@ -385,6 +388,9 @@ public class Board extends GridPane {
 	}
 
 	public void setCard(CardPane cardPane, int row, int column) {
+		if (GameController.isGameEnd) { // stop running if game end
+			return;
+		}
 		boardCells.get(row).get(column).setCard(cardPane);
 		unHighlightAllCells();
 	}

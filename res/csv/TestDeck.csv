@@ -1,11 +1,5 @@
 ﻿Test,,,,,,,
 Type,Cost,Attack Damage,Attack Range,Heart,Speed,Trick type,Trick parameter
-Magician,0,10,2,11,5,ChangeCardAbility,A.1.1.1.1
-Magician,0,10,2,11,5,ChangeCardAbility,B.1.1.1.1
-Magician,0,10,2,11,5,DestroyCard,B
-Trick,0,,,,,ChangeCardAbility,A.1.1.1.1
-Trick,0,,,,,ChangeCardAbility,B.1.1.1.1
-Trick,0,,,,,ChangeCardAbility,C.1.1.1.1
-Trick,0,,,,,ChangeCardAbility,D.1.1.1.1
-Trick,0,,,,,DestroyCard,B
-Trick,0,,,,,DestroyCard,D
+Magician,0,55,2,11,64,ChangeCardAbility,A.1.1.1.1
+Magician,0,55,2,11,43,ChangeCardAbility,B.1.1.1.1
+Magician,0,55,2,11,21,DestroyCard,B

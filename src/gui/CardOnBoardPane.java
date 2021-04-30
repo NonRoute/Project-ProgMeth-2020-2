@@ -103,6 +103,9 @@ public class CardOnBoardPane extends CardPane {
 		FighterCard card = (FighterCard) this.card;
 		Thread thread = new Thread(() -> {
 			try {
+				if (GameController.isGameEnd) { // stop running if game end
+					return;
+				}
 				switch (card.getPlayingSide()) {
 				case LEFT:
 					for (int i = 0; i < card.getSpeed(); i++) {
@@ -110,6 +113,9 @@ public class CardOnBoardPane extends CardPane {
 							Platform.runLater(new Runnable() {
 								public void run() {
 									// can move to next cell
+									if (GameController.isGameEnd) { // stop running if game end
+										return;
+									}
 									playMoveSound();
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 									card.setColumn(card.getColumn() + 1);
@@ -134,6 +140,9 @@ public class CardOnBoardPane extends CardPane {
 						if (GameController.board.isEmpty(card.getRow(), card.getColumn() - 1)) {
 							Platform.runLater(new Runnable() {
 								public void run() {
+									if (GameController.isGameEnd) { // stop running if game end
+										return;
+									}
 									playMoveSound();
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
 									card.setColumn(card.getColumn() - 1);

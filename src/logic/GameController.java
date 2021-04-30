@@ -67,13 +67,13 @@ public class GameController {
 	public static void initializeGameBvB() {
 		switch (difficultyLeft) {
 		case "Easy":
-			leftSideController = new BotEasy(20, 1, rightSideDeck, Direction.LEFT);
+			leftSideController = new BotEasy(20, 1, leftSideDeck, Direction.LEFT);
 			break;
 		case "Normal":
-			leftSideController = new BotNormal(20, 1, rightSideDeck, Direction.LEFT);
+			leftSideController = new BotNormal(20, 1, leftSideDeck, Direction.LEFT);
 			break;
 		case "Hard":
-			leftSideController = new BotHard(30, 1, rightSideDeck, Direction.LEFT);
+			leftSideController = new BotHard(30, 1, leftSideDeck, Direction.LEFT);
 			break;
 		}
 		switch (difficultyRight) {
@@ -174,6 +174,7 @@ public class GameController {
 
 	public static void startGame() {
 		gameScreen = new GameScreen();
+		isGameEnd = false;
 		winner = null;
 		turn = 0;
 		moneyFromTurn = 1;
@@ -201,9 +202,6 @@ public class GameController {
 	}
 
 	public static void startNextPhase() {
-		if (isGameEnd) { // stop running if game end
-			return;
-		}
 		Thread thread = new Thread(() -> {
 			try {
 				if (threadBotPlay != null) {
@@ -237,8 +235,11 @@ public class GameController {
 		isPhaseOneEnd = false;
 		Thread thread = new Thread(() -> {
 			try {
-				if (threadAttackCard != null) { // wait attack finish first
+				if (threadAttackCard != null && threadAttackCard.isAlive()) { // wait attack finish first
 					threadAttackCard.join();
+				}
+				if (isGameEnd) { // stop running if game end
+					return;
 				}
 				turn++;
 				if (turn <= 10) {
@@ -247,6 +248,8 @@ public class GameController {
 				// each side draw 2 card, money += turn
 				leftSideController.setMoney(leftSideController.getMoney() + moneyFromTurn);
 				rightSideController.setMoney(rightSideController.getMoney() + moneyFromTurn);
+				
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

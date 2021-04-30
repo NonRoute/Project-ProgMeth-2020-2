@@ -217,7 +217,7 @@ public class GameScreen {
 		}
 		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
 		this.mediaplayer = mediaplayer;
-		mediaplayer.setVolume(10);
+		mediaplayer.setVolume(5);
 		mediaplayer.play();
 		mediaplayer.setOnEndOfMedia(new Runnable() {
 			@Override

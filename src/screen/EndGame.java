@@ -1,6 +1,7 @@
 package screen;
 
 import entity.Entity;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class EndGame extends StackPane {
 
@@ -48,8 +50,8 @@ public class EndGame extends StackPane {
 		}
 	}
 
-	public Button getGoBackButton() {
-		Button goBackButton = new Button("New Game");
+	public Button getExitButton() {
+		Button goBackButton = new Button("Exit Game");
 		goBackButton.setLayoutY(600);
 		goBackButton.setPrefSize(300, 100);
 		goBackButton
@@ -60,8 +62,8 @@ public class EndGame extends StackPane {
 				new BorderStroke(Color.NAVY, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(5))));
 		StackPane.setMargin(goBackButton, new Insets(20));
 		goBackButton.setOnMouseClicked((MouseEvent e) -> {
-			new SelectGameModeScreen();
-			GameController.isGameEnd = false;
+			SoundHolder.getInstance().click.play();
+			Platform.exit();
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(
@@ -88,7 +90,7 @@ public class EndGame extends StackPane {
 		dropShadow.setSpread(1);
 		text.setEffect(dropShadow);
 		text.setFont(FontHolder.getInstance().font48);
-		vBox.getChildren().addAll(text, getGoBackButton());
+		vBox.getChildren().addAll(text, getExitButton());
 		return vBox;
 	}
 
