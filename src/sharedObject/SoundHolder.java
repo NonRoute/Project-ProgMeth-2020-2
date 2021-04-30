@@ -19,6 +19,8 @@ public class SoundHolder {
 	public Media gameScreen6;
 	public Media gameScreen7;
 	public Media gameScreen8;
+	public Media gameScreen9;
+	public Media gameScreen10;
 	public AudioClip cannotSelect;
 	public AudioClip selectCard;
 	public AudioClip placeCard1;
@@ -49,6 +51,8 @@ public class SoundHolder {
 		gameScreen6 = loadMedia("gameScreen6", "mp3");
 		gameScreen7 = loadMedia("gameScreen7", "mp3");
 		gameScreen8 = loadMedia("gameScreen8", "mp3");
+		gameScreen8 = loadMedia("gameScreen9", "mp3");
+		gameScreen8 = loadMedia("gameScreen10", "mp3");
 		cannotSelect = loadSound("cannotSelect", "mp3");
 		selectCard = loadSound("selectCard", "mp3");
 		placeCard1 = loadSound("placeCard1", "mp3");
