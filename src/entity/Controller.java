@@ -117,9 +117,7 @@ public abstract class Controller extends Entity {
 		return heart;
 	}
 
-	public int getMaxCardCostCanDraw() {
-		return GameController.turn + 2;
-	}
+	public abstract int getMaxCardCostCanDraw();
 
 	public int getMoney() {
 		return money;

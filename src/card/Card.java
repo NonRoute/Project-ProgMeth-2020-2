@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import logic.Direction;
 import sharedObject.RenderableHolder;
 
-public abstract class Card implements Cloneable {
+public class Card implements Cloneable {
 	protected String description;
 	private int cost;
 	private boolean isInHand;
