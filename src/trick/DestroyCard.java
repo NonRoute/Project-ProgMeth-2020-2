@@ -1,6 +1,7 @@
 package trick;
 
 import card.FighterCard;
+import cardStatus.CardBeTricked;
 import exception.WrongTrickActivateTypeException;
 import logic.GameController;
 
@@ -59,6 +60,7 @@ public class DestroyCard extends Trick {
 	public void update(FighterCard card) {
 		if (card != null) {
 			card.setHeart(0);
+			new CardBeTricked(card.getRow(), card.getColumn()); // show image
 		}
 	}
 

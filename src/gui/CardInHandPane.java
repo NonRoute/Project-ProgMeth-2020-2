@@ -32,9 +32,9 @@ import sharedObject.SoundHolder;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
-	private int cardWidth = 120;
-	private int cardHeight = 58;
-	private int insets = 2;
+	private final int cardWidth = 120;
+	private final int cardHeight = 58;
+	private final int insets = 2;
 
 	public CardInHandPane(Card card) {
 		this.card = card;
@@ -51,7 +51,7 @@ public class CardInHandPane extends CardPane {
 		this.getRowConstraints().add(new RowConstraints((cardHeight / 3) - 2 * insets));
 	}
 
-	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y, int columnSpan) {
+	public void addCardAbility(Image image, Card card, int value, int defaultValue, int x, int y, int columnSpan) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHeight - 2 * insets) / 3);
 		ImageView imageView = new ImageView(image);
@@ -61,9 +61,9 @@ public class CardInHandPane extends CardPane {
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font15);
 		text.setText("" + value);
-		if (value > defultValue) {
+		if (value > defaultValue) {
 			text.setFill(Color.LIGHTGREEN);
-		} else if (value == defultValue) {
+		} else if (value == defaultValue) {
 			text.setFill(Color.WHITE);
 		} else {
 			text.setFill(Color.LIGHTPINK);

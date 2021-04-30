@@ -1,6 +1,11 @@
 ﻿Test,,,,,,,
 Type,Cost,Attack Damage,Attack Range,Heart,Speed,Trick type,Trick parameter
-Trick,0,999,2,4,88,ChangeControllerHeart,T.2.3
-Trick,0,999,2,4,88,ChangeControllerHeart,P.2
-Trick,0,999,2,4,88,ChangeControllerHeart,L.2.3
-Fighter,0,999,2,4,88,,
+Magician,0,10,2,11,5,ChangeCardAbility,A.1.1.1.1
+Magician,0,10,2,11,5,ChangeCardAbility,B.1.1.1.1
+Magician,0,10,2,11,5,DestroyCard,B
+Trick,0,,,,,ChangeCardAbility,A.1.1.1.1
+Trick,0,,,,,ChangeCardAbility,B.1.1.1.1
+Trick,0,,,,,ChangeCardAbility,C.1.1.1.1
+Trick,0,,,,,ChangeCardAbility,D.1.1.1.1
+Trick,0,,,,,DestroyCard,B
+Trick,0,,,,,DestroyCard,D

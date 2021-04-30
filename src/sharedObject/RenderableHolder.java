@@ -31,10 +31,14 @@ public class RenderableHolder {
 	public static Image phaseBot;
 	public static Image phaseMove;
 	public static Image phaseAttack;
+	public static Image cardFight;
+	public static Image cardDead;
+	public static Image trick;
 
 	static {
 		loadResource();
 	}
+
 	public static RenderableHolder getInstance() {
 		return instance;
 	}
@@ -67,7 +71,9 @@ public class RenderableHolder {
 		RenderableHolder.phaseBot = loadImage("phaseBot.png");
 		RenderableHolder.phaseMove = loadImage("phaseMove.png");
 		RenderableHolder.phaseAttack = loadImage("phaseAttack.png");
-		
+		RenderableHolder.cardFight = loadImage("cardFight.png");
+		RenderableHolder.cardDead = loadImage("cardDead.png");
+		RenderableHolder.trick = loadImage("trick.png");
 	}
 
 	private List<IRenderable> entities;
