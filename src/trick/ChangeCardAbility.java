@@ -4,6 +4,7 @@ import card.FighterCard;
 import cardStatus.CardBeTricked;
 import exception.WrongTrickActivateTypeException;
 import logic.GameController;
+import sharedObject.SoundHolder;
 
 public class ChangeCardAbility extends Trick {
 	private char activateType;
@@ -26,6 +27,7 @@ public class ChangeCardAbility extends Trick {
 
 	@Override
 	public void activate() { // this method be called when use card
+		SoundHolder.getInstance().trick.play();
 		FighterCard card = null;
 		switch (activateType) {
 		case 'A': // Random Friendly

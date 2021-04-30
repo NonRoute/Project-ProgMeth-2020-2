@@ -78,7 +78,7 @@ public class CardOnBoardPane extends CardPane {
 
 	public void playAttackSound() {
 		Random rand = new Random();
-		int n = rand.nextInt(4);
+		int n = rand.nextInt(3);
 		switch (n) {
 		case 0:
 			SoundHolder.getInstance().attack1.play();
@@ -91,9 +91,6 @@ public class CardOnBoardPane extends CardPane {
 			break;
 		case 3:
 			SoundHolder.getInstance().attack4.play();
-			break;
-		case 4:
-			SoundHolder.getInstance().attack5.play();
 			break;
 		}
 	}
