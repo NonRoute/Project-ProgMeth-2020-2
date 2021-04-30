@@ -23,8 +23,8 @@ public class BotHard extends Bot {
 	public void drawCard(int number) {
 		Thread thread = new Thread(() -> {
 			try {
-				if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
-					GameController.threadAttackCard.join();
+				if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
+					GameController.threadStartAttackCard.join();
 				}
 				if (GameController.isGameEnd) { // stop running if game end
 					return;

@@ -76,23 +76,44 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public void attack() {
-		FighterCard card = (FighterCard) this.card;
-		switch (card.getPlayingSide()) {
-		case LEFT:
-			for (int i = 1; i <= card.getAttackRange(); i++) {
-				if (GameController.board.isEnemy(card.getRow(), card.getColumn() + i, card.getPlayingSide())) {
-					GameController.board.attackCard(card.getRow(), card.getColumn() + i, card.getAttackDamage());
+		Thread thread = new Thread(() -> {
+			boolean attack = false;
+			FighterCard card = (FighterCard) getCard();
+			switch (card.getPlayingSide()) {
+			case LEFT:
+				for (int i = 1; i <= card.getAttackRange(); i++) {
+					if (GameController.board.isEnemy(card.getRow(), card.getColumn() + i, card.getPlayingSide())) {
+						GameController.board.attackCard(card.getRow(), card.getColumn() + i, card.getAttackDamage());
+						attack = true;
+					}
 				}
-			}
-			break;
-		case RIGHT:
-			for (int i = 1; i <= card.getAttackRange(); i++) {
-				if (GameController.board.isEnemy(card.getRow(), card.getColumn() - i, card.getPlayingSide())) {
-					GameController.board.attackCard(card.getRow(), card.getColumn() - i, card.getAttackDamage());
+				if (attack) { // if card attack, make delay
+					try {
+						Thread.sleep(GameController.DELAY_ATTACK);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
+				break;
+			case RIGHT:
+				for (int i = 1; i <= card.getAttackRange(); i++) {
+					if (GameController.board.isEnemy(card.getRow(), card.getColumn() - i, card.getPlayingSide())) {
+						GameController.board.attackCard(card.getRow(), card.getColumn() - i, card.getAttackDamage());
+						attack = true;
+					}
+				}
+				if (attack) { // if card attack, make delay
+					try {
+						Thread.sleep(GameController.DELAY_ATTACK);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				break;
 			}
-			break;
-		}
+		});
+		thread.start();
+		GameController.threadAttack = thread;
 	}
 
 	public FighterCard getCard() {

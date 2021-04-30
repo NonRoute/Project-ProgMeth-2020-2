@@ -10,6 +10,7 @@ import cardStatus.CardFight;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -49,23 +50,47 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void allCardAttack() {
-		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				if (!isEmpty(r, c)) {
-					boardCells.get(r).get(c).getCardOnBoardPane().attack();
+	public void attackAllCard() {
+		Thread thread = new Thread(() -> {
+			for (int r = 0; r < NUMBER_OF_ROW; r++) {
+				for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+					if (!isEmpty(r, c)) {
+						boardCells.get(r).get(c).getCardOnBoardPane().attack();
+						Platform.runLater(new Runnable() {
+							public void run() {
+								GameController.board.update();
+							}
+						});
+						try {
+							GameController.threadAttack.join();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
 				}
+				Platform.runLater(new Runnable() {
+					public void run() {
+						// finish attack each row, remove dead card
+						GameController.board.removeDeadCards();
+					}
+				});
 			}
-		}
+		});
+		thread.start();
+		GameController.threadAttackAllCard = thread;
 	}
 
 	public void attackCard(int row, int column, int attackDamage) {
-		boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
-		if (boardCells.get(row).get(column).getCard().getHeart() <= 0) { // card dead
-			new CardDead(row, column, attackDamage); // show CardDead image
-		} else {
-			new CardFight(row, column, attackDamage); // show CardFight image
-		}
+		Platform.runLater(new Runnable() {
+			public void run() {
+				boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
+				if (boardCells.get(row).get(column).getCard().getHeart() <= 0) { // card dead
+					new CardDead(row, column, attackDamage); // show CardDead image
+				} else {
+					new CardFight(row, column, attackDamage); // show CardFight image
+				}
+			}
+		});
 	}
 
 	public boolean canPlayTrickCard(TrickCard trickCard) {

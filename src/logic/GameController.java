@@ -22,12 +22,14 @@ public class GameController {
 	public static Thread threadBotPlay;
 	public static Thread threadCardMove;
 	public static Thread threadAllCardMove;
-	public static Thread threadAttackCard;
+	public static Thread threadStartAttackCard;
+	public static Thread threadAttackAllCard;
+	public static Thread threadAttack;
 
 	public static final int DELAY_DRAW_CARD = 500; // 500
 	public static final int DELAY_BOT_PLAY = 1200; // 1200 (MUST >= 20)
 	public static final int DELAY_CARD_MOVE = 250; // 250 (MUST >= 20)
-	public static final int DELAY_ATTACK = 2000; // 2000
+	public static final int DELAY_ATTACK = 500; //500
 
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
@@ -142,9 +144,10 @@ public class GameController {
 		Thread thread = new Thread(() -> {
 			try {
 				threadAllCardMove.join(); // wait all card move finish
+				board.attackAllCard();
+				threadAttackAllCard.join(); // wait atackAllCard finish
 				Platform.runLater(new Runnable() {
 					public void run() {
-						board.allCardAttack();
 						board.update();
 						board.removeDeadCards();
 					}
@@ -155,7 +158,7 @@ public class GameController {
 			}
 		});
 		thread.start();
-		threadAttackCard = thread;
+		threadStartAttackCard = thread;
 	}
 
 	public static void startFirstTurn() {
@@ -235,8 +238,8 @@ public class GameController {
 		isPhaseOneEnd = false;
 		Thread thread = new Thread(() -> {
 			try {
-				if (threadAttackCard != null && threadAttackCard.isAlive()) { // wait attack finish first
-					threadAttackCard.join();
+				if (threadStartAttackCard != null && threadStartAttackCard.isAlive()) { // wait attack finish first
+					threadStartAttackCard.join();
 				}
 				if (isGameEnd) { // stop running if game end
 					return;
@@ -248,8 +251,7 @@ public class GameController {
 				// each side draw 2 card, money += turn
 				leftSideController.setMoney(leftSideController.getMoney() + moneyFromTurn);
 				rightSideController.setMoney(rightSideController.getMoney() + moneyFromTurn);
-				
-				
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -117,7 +117,7 @@ public class GameScreen {
 		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
+		if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
 			return false;
 
 		}
