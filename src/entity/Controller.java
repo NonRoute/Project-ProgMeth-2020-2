@@ -72,6 +72,9 @@ public abstract class Controller extends Entity {
 					}
 					Platform.runLater(new Runnable() {
 						public void run() {
+							if (GameController.isGameEnd) { // stop running if game end
+								return;
+							}
 							// random pick 1 card from deck
 							Random rand = new Random();
 							// .nextInt(int) will random value from 0 to int-1

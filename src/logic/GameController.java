@@ -255,6 +255,9 @@ public class GameController {
 			}
 		});
 		thread.start();
+		if (isGameEnd) { // stop running if game end
+			return;
+		}
 		leftSideController.drawCard(2);
 		rightSideController.drawCard(2);
 	}

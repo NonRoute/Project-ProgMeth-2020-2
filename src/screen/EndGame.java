@@ -32,6 +32,7 @@ public class EndGame extends StackPane {
 	public EndGame() {
 		GameController.isGameEnd = true;
 		clearEntity();
+		clearThread();
 		stopSound();
 		this.setAlignment(Pos.CENTER);
 
@@ -43,6 +44,14 @@ public class EndGame extends StackPane {
 		Scene scene = new Scene(this);
 		GameController.primaryStage.setScene(scene);
 	}
+	
+	public void clearThread() {
+		GameController.threadAllCardMove = null;
+		GameController.threadAttackCard = null;
+		GameController.threadBotPlay = null;
+		GameController.threadCardMove = null;
+		GameController.threadDrawCard = null;
+	}
 
 	public void clearEntity() {
 		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
@@ -50,8 +59,8 @@ public class EndGame extends StackPane {
 		}
 	}
 
-	public Button getExitButton() {
-		Button goBackButton = new Button("Exit Game");
+	public Button getGoBackButton() {
+		Button goBackButton = new Button("New Game");
 		goBackButton.setLayoutY(600);
 		goBackButton.setPrefSize(300, 100);
 		goBackButton
@@ -62,8 +71,7 @@ public class EndGame extends StackPane {
 				new BorderStroke(Color.NAVY, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(5))));
 		StackPane.setMargin(goBackButton, new Insets(20));
 		goBackButton.setOnMouseClicked((MouseEvent e) -> {
-			SoundHolder.getInstance().click.play();
-			Platform.exit();
+			new SelectGameModeScreen();
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(
@@ -90,7 +98,7 @@ public class EndGame extends StackPane {
 		dropShadow.setSpread(1);
 		text.setEffect(dropShadow);
 		text.setFont(FontHolder.getInstance().font48);
-		vBox.getChildren().addAll(text, getExitButton());
+		vBox.getChildren().addAll(text, getGoBackButton());
 		return vBox;
 	}
 
