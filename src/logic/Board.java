@@ -5,8 +5,8 @@ import java.util.Random;
 
 import card.FighterCard;
 import card.TrickCard;
-import gui.CardDead;
-import gui.CardFight;
+import cardStatus.CardDead;
+import cardStatus.CardFight;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;

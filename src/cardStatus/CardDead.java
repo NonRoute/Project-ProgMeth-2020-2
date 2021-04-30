@@ -1,24 +1,28 @@
-package gui;
+package cardStatus;
 
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
+import logic.GameController;
 import sharedObject.RenderableHolder;
 
-public class CardFight extends CardStatus {
-	public CardFight(int row, int column, int attackDamage) {
+public class CardDead extends CardStatusShowChangedHeart {
+
+	public CardDead(int row, int column, int attackDamage) {
+		this.showDuration = GameController.DELAY_ATTACK;
 		this.attackDamage = attackDamage;
 		this.row = row;
 		this.column = column;
-		image = new ImageView(RenderableHolder.cardFight);
+		image = new ImageView(RenderableHolder.cardDead);
 		image.setEffect(new DropShadow());
 		showImage();
 	}
 
 	public int indentImageX() {
-		return 5;
+		return 4;
 	}
 
 	public int indentImageY() {
 		return 19;
 	}
+
 }

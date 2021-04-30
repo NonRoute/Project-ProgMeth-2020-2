@@ -98,10 +98,6 @@ public class GameScreen {
 		animation.start();
 	}
 
-	public Pane getCardStatusPane() {
-		return cardStatusPane;
-	}
-
 	public boolean canClickStartNextPhaseButton() {
 		if (GameController.currentPlayingSide == Direction.LEFT && GameController.leftSideController instanceof Bot) {
 			return false;
@@ -130,6 +126,10 @@ public class GameScreen {
 
 	public Image getBackground() {
 		return background;
+	}
+
+	public Pane getCardStatusPane() {
+		return cardStatusPane;
 	}
 
 	public HandPane getLeftCardsInHand() {
