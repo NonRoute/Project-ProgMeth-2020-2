@@ -1,7 +1,6 @@
 package screen;
 
 import entity.Entity;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,7 +24,6 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
-import sharedObject.SoundHolder;
 
 public class EndGame extends StackPane {
 
@@ -45,6 +43,12 @@ public class EndGame extends StackPane {
 		GameController.primaryStage.setScene(scene);
 	}
 	
+	public void clearEntity() {
+		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
+			((Entity) e).setVisible(false);
+		}
+	}
+
 	public void clearThread() {
 		GameController.threadAllCardMove = null;
 		GameController.threadStartAttackCard = null;
@@ -53,12 +57,6 @@ public class EndGame extends StackPane {
 		GameController.threadBotPlay = null;
 		GameController.threadCardMove = null;
 		GameController.threadDrawCard = null;
-	}
-
-	public void clearEntity() {
-		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
-			((Entity) e).setVisible(false);
-		}
 	}
 
 	public Button getGoBackButton() {

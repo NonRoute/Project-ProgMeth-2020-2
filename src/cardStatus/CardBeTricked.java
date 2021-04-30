@@ -2,7 +2,6 @@ package cardStatus;
 
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import logic.GameController;
 import sharedObject.RenderableHolder;
 
 public class CardBeTricked extends CardStatus{

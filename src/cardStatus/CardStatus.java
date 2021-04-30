@@ -3,13 +3,8 @@ package cardStatus;
 import gui.CardOnBoardPane;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import logic.Board;
 import logic.GameController;
-import sharedObject.FontHolder;
-import sharedObject.RenderableHolder;
 
 public class CardStatus {
 	protected int showDuration;

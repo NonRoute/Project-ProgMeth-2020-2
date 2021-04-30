@@ -160,6 +160,22 @@ public abstract class Controller extends Entity {
 		return playingSide;
 	}
 
+	public void playPlaceCardSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(2);
+		switch (n) {
+		case 0:
+			SoundHolder.getInstance().placeCard1.play();
+			break;
+		case 1:
+			SoundHolder.getInstance().placeCard2.play();
+			break;
+		case 2:
+			SoundHolder.getInstance().placeCard3.play();
+			break;
+		}
+	}
+
 	public void reduceHeart(int number) {
 		if (heart - number <= 0) {
 			heart = 0;
@@ -190,22 +206,6 @@ public abstract class Controller extends Entity {
 			((Trickable) cardsInHandPane.getCard(index)).activateTrick();
 		}
 		cardsInHandPane.remove(index);
-	}
-
-	public void playPlaceCardSound() {
-		Random rand = new Random();
-		int n = rand.nextInt(2);
-		switch (n) {
-		case 0:
-			SoundHolder.getInstance().placeCard1.play();
-			break;
-		case 1:
-			SoundHolder.getInstance().placeCard2.play();
-			break;
-		case 2:
-			SoundHolder.getInstance().placeCard3.play();
-			break;
-		}
 	}
 
 }
