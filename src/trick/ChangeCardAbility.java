@@ -1,6 +1,7 @@
 package trick;
 
 import card.FighterCard;
+import cardStatus.CardBeTricked;
 import exception.WrongTrickActivateTypeException;
 import logic.GameController;
 
@@ -105,6 +106,7 @@ public class ChangeCardAbility extends Trick {
 			card.setAttackRange(card.getAttackRange() + attackRange);
 			card.setHeart(card.getHeart() + heart);
 			card.setSpeed(card.getSpeed() + speed);
+			new CardBeTricked(card.getRow(), card.getColumn()); // show image
 		}
 	}
 }

@@ -9,11 +9,11 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
-public abstract class CardStatusShowChangedHeart extends CardStatus{
+public class CardStatusShowChangedHeart extends CardStatus {
 	protected int attackDamage;
 	protected ImageView heart = new ImageView(RenderableHolder.heart);
 	protected StackPane heartPane;
-	
+
 	public int indentHeartX() {
 		return 55;
 	}
@@ -21,7 +21,7 @@ public abstract class CardStatusShowChangedHeart extends CardStatus{
 	public int indentHeartY() {
 		return 5;
 	}
-	
+
 	public void setUpHeart() {
 		heartPane = new StackPane();
 		heartPane.setLayoutX(getX() + indentHeartX());
@@ -35,7 +35,7 @@ public abstract class CardStatusShowChangedHeart extends CardStatus{
 		heart.setFitWidth(40);
 		heartPane.getChildren().addAll(heart, text);
 	}
-	
+
 	public void showImage() {
 		setUpImage();
 		setUpHeart();

@@ -42,7 +42,6 @@ public class Cell extends StackPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (isHighLight) {
-					playPlaceCardSound();
 					if (GameController.selectedCardPane.getCard() instanceof FighterCard) {
 						// place card on board
 						setCard(GameController.selectedCardPane);
@@ -92,22 +91,6 @@ public class Cell extends StackPane {
 
 	public boolean isEmpty() {
 		return isEmpty;
-	}
-
-	public void playPlaceCardSound() {
-		Random rand = new Random();
-		int n = rand.nextInt(2);
-		switch (n) {
-		case 0:
-			SoundHolder.getInstance().placeCard1.play();
-			break;
-		case 1:
-			SoundHolder.getInstance().placeCard2.play();
-			break;
-		case 2:
-			SoundHolder.getInstance().placeCard3.play();
-			break;
-		}
 	}
 
 	public void removeCard() {

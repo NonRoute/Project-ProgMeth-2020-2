@@ -179,10 +179,28 @@ public abstract class Controller extends Entity {
 
 	public void useCard(int index) {
 		GameController.lastUsedCard = cardsInHandPane.getCard(index);
+		playPlaceCardSound();
 		money -= cardsInHandPane.getCard(index).getCost();
 		if (cardsInHandPane.getCard(index) instanceof Trickable) {
 			((Trickable) cardsInHandPane.getCard(index)).activateTrick();
 		}
 		cardsInHandPane.remove(index);
 	}
+
+	public void playPlaceCardSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(2);
+		switch (n) {
+		case 0:
+			SoundHolder.getInstance().placeCard1.play();
+			break;
+		case 1:
+			SoundHolder.getInstance().placeCard2.play();
+			break;
+		case 2:
+			SoundHolder.getInstance().placeCard3.play();
+			break;
+		}
+	}
+
 }

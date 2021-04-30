@@ -5,13 +5,13 @@ import javafx.scene.image.ImageView;
 import logic.GameController;
 import sharedObject.RenderableHolder;
 
-public class CardFight extends CardStatusShowChangedHeart {
-	public CardFight(int row, int column, int attackDamage) {
-		this.showDuration = GameController.DELAY_ATTACK;
-		this.attackDamage = attackDamage;
+public class CardBeTricked extends CardStatus{
+
+	public CardBeTricked(int row, int column) {
+		this.showDuration = 1000;
 		this.row = row;
 		this.column = column;
-		image = new ImageView(RenderableHolder.cardFight);
+		image = new ImageView(RenderableHolder.trick);
 		image.setEffect(new DropShadow());
 		showImage();
 	}

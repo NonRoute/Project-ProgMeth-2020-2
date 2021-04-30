@@ -16,13 +16,4 @@ public class CardDead extends CardStatusShowChangedHeart {
 		image.setEffect(new DropShadow());
 		showImage();
 	}
-
-	public int indentImageX() {
-		return 4;
-	}
-
-	public int indentImageY() {
-		return 19;
-	}
-
 }

@@ -11,7 +11,7 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
-public abstract class CardStatus {
+public class CardStatus {
 	protected int showDuration;
 	protected int row;
 	protected int column;
@@ -25,16 +25,20 @@ public abstract class CardStatus {
 		return Board.LAYOUT_Y + row * (Board.V_GAP + CardOnBoardPane.CARD_HEIGHT);
 	}
 
-	public abstract int indentImageX();
+	public int indentImageX() {
+		return 8;
+	}
 
-	public abstract int indentImageY();
+	public int indentImageY() {
+		return 22;
+	}
 
 	public void setUpImage() {
 		image.setX(getX() + indentImageX());
 		image.setY(getY() + indentImageY());
 		image.setPreserveRatio(true);
-		image.setFitWidth(CardOnBoardPane.CARD_WIDTH);
-		image.setFitHeight(CardOnBoardPane.CARD_HEIGHT);
+		image.setFitWidth(CardOnBoardPane.CARD_WIDTH - 6);
+		image.setFitHeight(CardOnBoardPane.CARD_HEIGHT - 6);
 	}
 
 	public void showImage() {

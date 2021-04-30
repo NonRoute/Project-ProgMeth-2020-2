@@ -33,6 +33,7 @@ public class RenderableHolder {
 	public static Image phaseAttack;
 	public static Image cardFight;
 	public static Image cardDead;
+	public static Image trick;
 
 	static {
 		loadResource();
@@ -72,6 +73,7 @@ public class RenderableHolder {
 		RenderableHolder.phaseAttack = loadImage("phaseAttack.png");
 		RenderableHolder.cardFight = loadImage("cardFight.png");
 		RenderableHolder.cardDead = loadImage("cardDead.png");
+		RenderableHolder.trick = loadImage("trick.png");
 	}
 
 	private List<IRenderable> entities;

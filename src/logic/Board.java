@@ -21,7 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class Board extends GridPane {
-	public static final int LAYOUT_X = 220;
+	public static final int LAYOUT_X = 219;
 	public static final int LAYOUT_Y = 110;
 	public static final int H_GAP = 5;
 	public static final int V_GAP = 5;
@@ -30,7 +30,7 @@ public class Board extends GridPane {
 	private ObservableList<ObservableList<Cell>> boardCells = FXCollections.observableArrayList();
 
 	public Board() {
-		this.setPrefWidth(840);
+		this.setPrefWidth(842);
 		this.setPrefHeight(590);
 		this.setAlignment(Pos.CENTER);
 		this.setLayoutX(LAYOUT_X);
