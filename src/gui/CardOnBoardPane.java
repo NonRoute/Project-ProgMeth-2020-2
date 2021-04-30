@@ -38,7 +38,7 @@ public class CardOnBoardPane extends CardPane {
 		this.getRowConstraints().add(new RowConstraints((cardHeight / 4) - 2 * insets));
 	}
 
-	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y) {
+	public void addCardAbility(Image image, Card card, int value, int defaultValue, int x, int y) {
 		StackPane stackPane = new StackPane();
 		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHeight - 2 * insets) / 4);
 		ImageView imageView = new ImageView(image);
@@ -54,9 +54,9 @@ public class CardOnBoardPane extends CardPane {
 		dropShadow.setOffsetX(1);
 		dropShadow.setColor(Color.BLACK);
 		text.setEffect(dropShadow);
-		if (value > defultValue) {
+		if (value > defaultValue) {
 			text.setFill(Color.LIGHTGREEN);
-		} else if (value == defultValue) {
+		} else if (value == defaultValue) {
 			text.setFill(Color.WHITE);
 		} else {
 			text.setFill(Color.LIGHTPINK);
