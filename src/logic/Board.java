@@ -6,6 +6,7 @@ import java.util.Random;
 import card.FighterCard;
 import card.TrickCard;
 import gui.CardDead;
+import gui.CardFight;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
@@ -62,6 +63,8 @@ public class Board extends GridPane {
 		boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
 		if (boardCells.get(row).get(column).getCard().getHeart() <= 0) { // card dead
 			new CardDead(row, column, attackDamage); // show CardDead image
+		} else {
+			new CardFight(row, column, attackDamage); // show CardFight image
 		}
 	}
 

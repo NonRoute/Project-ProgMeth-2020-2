@@ -79,6 +79,7 @@ public class GameScreen {
 		GameController.board = board;
 
 		Pane cardStatusPane = new Pane();
+		cardStatusPane.setPickOnBounds(false);
 		this.cardStatusPane = cardStatusPane;
 
 		root.getChildren().addAll(canvas, borderPane, nextPhaseButton, board, cardStatusPane);

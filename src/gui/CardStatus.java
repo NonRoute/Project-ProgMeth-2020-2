@@ -27,7 +27,7 @@ public abstract class CardStatus {
 		GameController.gameScreen.getCardStatusPane().getChildren().addAll(image, heartPane);
 		Thread thread = new Thread(() -> {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -46,7 +46,7 @@ public abstract class CardStatus {
 	public abstract int indentImageY();
 
 	public int indentHeartX() {
-		return 60;
+		return 55;
 	}
 
 	public int indentHeartY() {
@@ -74,7 +74,7 @@ public abstract class CardStatus {
 		heartPane.setLayoutX(getX() + indentHeartX());
 		heartPane.setLayoutY(getY() + indentHeartY());
 		Text text = new Text();
-		text.setFont(FontHolder.getInstance().font18);
+		text.setFont(FontHolder.getInstance().font21);
 		text.setFill(Color.WHITE);
 		text.setText("-" + attackDamage);
 		heart.setPreserveRatio(true);
