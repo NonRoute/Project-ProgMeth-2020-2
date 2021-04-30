@@ -4,6 +4,7 @@ import java.util.Random;
 
 import card.Card;
 import card.FighterCard;
+import cardStatus.CardAttack;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -84,6 +85,11 @@ public class CardOnBoardPane extends CardPane {
 				for (int i = 1; i <= card.getAttackRange(); i++) {
 					if (GameController.board.isEnemy(card.getRow(), card.getColumn() + i, card.getPlayingSide())) {
 						GameController.board.attackCard(card.getRow(), card.getColumn() + i, card.getAttackDamage());
+						Platform.runLater(new Runnable() {
+							public void run() {
+								new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
+							}
+						});
 						attack = true;
 					}
 				}
@@ -99,6 +105,11 @@ public class CardOnBoardPane extends CardPane {
 				for (int i = 1; i <= card.getAttackRange(); i++) {
 					if (GameController.board.isEnemy(card.getRow(), card.getColumn() - i, card.getPlayingSide())) {
 						GameController.board.attackCard(card.getRow(), card.getColumn() - i, card.getAttackDamage());
+						Platform.runLater(new Runnable() {
+							public void run() {
+								new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
+							}
+						});
 						attack = true;
 					}
 				}
