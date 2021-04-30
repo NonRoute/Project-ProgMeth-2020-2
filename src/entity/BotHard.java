@@ -12,6 +12,7 @@ import gui.CardInHandPane;
 import javafx.application.Platform;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.SoundHolder;
 
 public class BotHard extends Bot {
 
@@ -25,6 +26,9 @@ public class BotHard extends Bot {
 				if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
 					GameController.threadAttackCard.join();
 				}
+				if (GameController.isGameEnd) { // stop running if game end
+					return;
+				}
 				// if card exceed max; not draw
 				for (int i = 0; i < number; i++) {
 					if (cardsInHandPane.getSize() >= 9) {
@@ -32,6 +36,9 @@ public class BotHard extends Bot {
 					}
 					Platform.runLater(new Runnable() {
 						public void run() {
+							if (GameController.isGameEnd) { // stop running if game end
+								return;
+							}
 							// random pick 1 card from deck
 							Random rand = new Random();
 							// .nextInt(int) will random value from 0 to int-1
@@ -46,20 +53,17 @@ public class BotHard extends Bot {
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
-
+							SoundHolder.getInstance().drawCard.play();
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
-
 							// every FighterCard of HardBot have 1 extra heart when draw
 							if (card instanceof FighterCard) {
 								((FighterCard) card).setHeart(((FighterCard) card).getHeart() + 1);
 							}
-
 							cardsInHandPane.add(deck.getName(), card);
-							// GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
 					});
-					Thread.sleep(GameController.DELAY_DRAW_CARD); // Delay 0.5 second
+					Thread.sleep(GameController.DELAY_DRAW_CARD); // Delay
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();

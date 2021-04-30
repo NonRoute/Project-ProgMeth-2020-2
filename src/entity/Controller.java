@@ -93,7 +93,6 @@ public abstract class Controller extends Entity {
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
 							cardsInHandPane.add(deck.getName(), card);
-							// GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
 					});
 					Thread.sleep(GameController.DELAY_DRAW_CARD); // Delay
