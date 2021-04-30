@@ -4,6 +4,7 @@ import card.FighterCard;
 import cardStatus.CardBeTricked;
 import exception.WrongTrickActivateTypeException;
 import logic.GameController;
+import sharedObject.SoundHolder;
 
 public class DestroyCard extends Trick {
 	private char activateType;
@@ -18,6 +19,7 @@ public class DestroyCard extends Trick {
 
 	@Override
 	public void activate() {
+		SoundHolder.getInstance().trick.play();
 		FighterCard card = null;
 		switch (activateType) {
 		case 'B': // Random Enemy

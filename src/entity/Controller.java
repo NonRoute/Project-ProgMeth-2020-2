@@ -59,8 +59,11 @@ public abstract class Controller extends Entity {
 	public void drawCard(int number) {
 		Thread thread = new Thread(() -> {
 			try {
-				if (GameController.threadAttackCard != null) {
-					GameController.threadAttackCard.join();
+				if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
+					GameController.threadStartAttackCard.join();
+				}
+				if (GameController.isGameEnd) { // stop running if game end
+					return;
 				}
 				// if card exceed max; not draw
 				for (int i = 0; i < number; i++) {
@@ -69,6 +72,9 @@ public abstract class Controller extends Entity {
 					}
 					Platform.runLater(new Runnable() {
 						public void run() {
+							if (GameController.isGameEnd) { // stop running if game end
+								return;
+							}
 							// random pick 1 card from deck
 							Random rand = new Random();
 							// .nextInt(int) will random value from 0 to int-1
@@ -87,7 +93,6 @@ public abstract class Controller extends Entity {
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
 							cardsInHandPane.add(deck.getName(), card);
-							// GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
 					});
 					Thread.sleep(GameController.DELAY_DRAW_CARD); // Delay

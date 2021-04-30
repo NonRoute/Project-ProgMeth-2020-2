@@ -42,7 +42,7 @@ public class CardStatusShowChangedHeart extends CardStatus {
 		GameController.gameScreen.getCardStatusPane().getChildren().addAll(image, heartPane);
 		Thread thread = new Thread(() -> {
 			try {
-				Thread.sleep(GameController.DELAY_ATTACK);
+				Thread.sleep(showDuration);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

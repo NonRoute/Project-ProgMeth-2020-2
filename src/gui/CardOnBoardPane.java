@@ -4,6 +4,7 @@ import java.util.Random;
 
 import card.Card;
 import card.FighterCard;
+import cardStatus.CardAttack;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -76,23 +77,56 @@ public class CardOnBoardPane extends CardPane {
 	}
 
 	public void attack() {
-		FighterCard card = (FighterCard) this.card;
-		switch (card.getPlayingSide()) {
-		case LEFT:
-			for (int i = 1; i <= card.getAttackRange(); i++) {
-				if (GameController.board.isEnemy(card.getRow(), card.getColumn() + i, card.getPlayingSide())) {
-					GameController.board.attackCard(card.getRow(), card.getColumn() + i, card.getAttackDamage());
+		Thread thread = new Thread(() -> {
+			boolean attack = false;
+			FighterCard card = (FighterCard) getCard();
+			switch (card.getPlayingSide()) {
+			case LEFT:
+				for (int i = 1; i <= card.getAttackRange(); i++) {
+					if (GameController.board.isEnemy(card.getRow(), card.getColumn() + i, card.getPlayingSide())) {
+						GameController.board.attackCard(card.getRow(), card.getColumn() + i, card.getAttackDamage());
+						attack = true;
+					}
 				}
-			}
-			break;
-		case RIGHT:
-			for (int i = 1; i <= card.getAttackRange(); i++) {
-				if (GameController.board.isEnemy(card.getRow(), card.getColumn() - i, card.getPlayingSide())) {
-					GameController.board.attackCard(card.getRow(), card.getColumn() - i, card.getAttackDamage());
+				if (attack) { // if card attack, make delay
+					Platform.runLater(new Runnable() {
+						public void run() {
+							new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
+						}
+					});
+					playAttackSound();
+					try {
+						Thread.sleep(GameController.DELAY_ATTACK);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
+				break;
+			case RIGHT:
+				for (int i = 1; i <= card.getAttackRange(); i++) {
+					if (GameController.board.isEnemy(card.getRow(), card.getColumn() - i, card.getPlayingSide())) {
+						GameController.board.attackCard(card.getRow(), card.getColumn() - i, card.getAttackDamage());
+						attack = true;
+					}
+				}
+				if (attack) { // if card attack, make delay
+					Platform.runLater(new Runnable() {
+						public void run() {
+							new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
+						}
+					});
+					playAttackSound();
+					try {
+						Thread.sleep(GameController.DELAY_ATTACK);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				break;
 			}
-			break;
-		}
+		});
+		thread.start();
+		GameController.threadAttack = thread;
 	}
 
 	public FighterCard getCard() {
@@ -106,6 +140,9 @@ public class CardOnBoardPane extends CardPane {
 				switch (card.getPlayingSide()) {
 				case LEFT:
 					for (int i = 0; i < card.getSpeed(); i++) {
+						if (GameController.isGameEnd) { // stop running if game end
+							return;
+						}
 						if (GameController.board.isEmpty(card.getRow(), card.getColumn() + 1)) {
 							Platform.runLater(new Runnable() {
 								public void run() {
@@ -131,6 +168,9 @@ public class CardOnBoardPane extends CardPane {
 					break;
 				case RIGHT:
 					for (int i = 0; i < card.getSpeed(); i++) {
+						if (GameController.isGameEnd) { // stop running if game end
+							return;
+						}
 						if (GameController.board.isEmpty(card.getRow(), card.getColumn() - 1)) {
 							Platform.runLater(new Runnable() {
 								public void run() {
@@ -160,6 +200,25 @@ public class CardOnBoardPane extends CardPane {
 		GameController.threadCardMove = thread;
 		thread.start();
 
+	}
+
+	public void playAttackSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(3);
+		switch (n) {
+		case 0:
+			SoundHolder.getInstance().attack1.play();
+			break;
+		case 1:
+			SoundHolder.getInstance().attack2.play();
+			break;
+		case 2:
+			SoundHolder.getInstance().attack3.play();
+			break;
+		case 3:
+			SoundHolder.getInstance().attack4.play();
+			break;
+		}
 	}
 
 	public void playMoveSound() {

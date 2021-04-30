@@ -3,6 +3,7 @@ package trick;
 import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.SoundHolder;
 
 public class ChangeControllerHeart extends Trick {
 	private char activateType;
@@ -19,6 +20,7 @@ public class ChangeControllerHeart extends Trick {
 
 	@Override
 	public void activate() {
+		SoundHolder.getInstance().trick.play();
 		switch (activateType) {
 		case 'T': // this side
 			if (playingSide == Direction.LEFT) {

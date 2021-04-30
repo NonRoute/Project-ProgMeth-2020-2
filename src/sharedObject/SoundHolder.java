@@ -19,6 +19,8 @@ public class SoundHolder {
 	public Media gameScreen6;
 	public Media gameScreen7;
 	public Media gameScreen8;
+	public Media gameScreen9;
+	public Media gameScreen10;
 	public AudioClip cannotSelect;
 	public AudioClip selectCard;
 	public AudioClip placeCard1;
@@ -33,6 +35,11 @@ public class SoundHolder {
 	public AudioClip move5;
 	public AudioClip move6;
 	public AudioClip move7;
+	public AudioClip attack1;
+	public AudioClip attack2;
+	public AudioClip attack3;
+	public AudioClip attack4;
+	public AudioClip trick;
 
 	public SoundHolder() {
 		click = loadSound("click", "mp3");
@@ -44,6 +51,8 @@ public class SoundHolder {
 		gameScreen6 = loadMedia("gameScreen6", "mp3");
 		gameScreen7 = loadMedia("gameScreen7", "mp3");
 		gameScreen8 = loadMedia("gameScreen8", "mp3");
+		gameScreen8 = loadMedia("gameScreen9", "mp3");
+		gameScreen8 = loadMedia("gameScreen10", "mp3");
 		cannotSelect = loadSound("cannotSelect", "mp3");
 		selectCard = loadSound("selectCard", "mp3");
 		placeCard1 = loadSound("placeCard1", "mp3");
@@ -58,7 +67,11 @@ public class SoundHolder {
 		move5 = loadSound("move5", "mp3");
 		move6 = loadSound("move6", "mp3");
 		move7 = loadSound("move7", "mp3");
-
+		attack1 = loadSound("attack1", "mp3");
+		attack2 = loadSound("attack2", "mp3");
+		attack3 = loadSound("attack3", "mp3");
+		attack4 = loadSound("attack4", "mp3");
+		trick = loadSound("trick", "mp3");
 	}
 
 	public Media loadMedia(String prefixName, String fileType) {

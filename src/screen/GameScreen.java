@@ -117,7 +117,7 @@ public class GameScreen {
 		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
+		if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
 			return false;
 
 		}
@@ -146,7 +146,8 @@ public class GameScreen {
 		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2,
 				SoundHolder.getInstance().gameScreen3, SoundHolder.getInstance().gameScreen4,
 				SoundHolder.getInstance().gameScreen5, SoundHolder.getInstance().gameScreen6,
-				SoundHolder.getInstance().gameScreen7, SoundHolder.getInstance().gameScreen8);
+				SoundHolder.getInstance().gameScreen7, SoundHolder.getInstance().gameScreen8,
+				SoundHolder.getInstance().gameScreen9, SoundHolder.getInstance().gameScreen10);
 		Collections.shuffle(mediaList);
 		this.mediaList = mediaList;
 	}
@@ -217,7 +218,7 @@ public class GameScreen {
 		}
 		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
 		this.mediaplayer = mediaplayer;
-		mediaplayer.setVolume(10);
+		mediaplayer.setVolume(5);
 		mediaplayer.play();
 		mediaplayer.setOnEndOfMedia(new Runnable() {
 			@Override

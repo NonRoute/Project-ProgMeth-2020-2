@@ -30,6 +30,7 @@ public class EndGame extends StackPane {
 	public EndGame() {
 		GameController.isGameEnd = true;
 		clearEntity();
+		clearThread();
 		stopSound();
 		this.setAlignment(Pos.CENTER);
 
@@ -41,11 +42,21 @@ public class EndGame extends StackPane {
 		Scene scene = new Scene(this);
 		GameController.primaryStage.setScene(scene);
 	}
-
+	
 	public void clearEntity() {
 		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
 			((Entity) e).setVisible(false);
 		}
+	}
+
+	public void clearThread() {
+		GameController.threadAllCardMove = null;
+		GameController.threadStartAttackCard = null;
+		GameController.threadAttackAllCard = null;
+		GameController.threadAttack = null;
+		GameController.threadBotPlay = null;
+		GameController.threadCardMove = null;
+		GameController.threadDrawCard = null;
 	}
 
 	public Button getGoBackButton() {
@@ -61,7 +72,6 @@ public class EndGame extends StackPane {
 		StackPane.setMargin(goBackButton, new Insets(20));
 		goBackButton.setOnMouseClicked((MouseEvent e) -> {
 			new SelectGameModeScreen();
-			GameController.isGameEnd = false;
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(

@@ -12,8 +12,7 @@ public class FighterCard extends Card {
 	protected int row;
 	protected int column;
 
-	public FighterCard(String deckName, int cost, int attackDamage, int attackRange,
-			int heart, int speed) {
+	public FighterCard(String deckName, int cost, int attackDamage, int attackRange, int heart, int speed) {
 		super(deckName, cost);
 		this.description = "";
 		this.DEFAULT_ATTACK_DAMAGE = attackDamage;
@@ -67,7 +66,7 @@ public class FighterCard extends Card {
 	}
 
 	public void reduceHeart(int attackCard) {
-		heart -= attackCard;
+		heart = Math.max(heart - attackCard, 0);
 	}
 
 	public void setAttackDamage(int attackDamage) {

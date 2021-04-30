@@ -22,12 +22,14 @@ public class GameController {
 	public static Thread threadBotPlay;
 	public static Thread threadCardMove;
 	public static Thread threadAllCardMove;
-	public static Thread threadAttackCard;
+	public static Thread threadStartAttackCard;
+	public static Thread threadAttackAllCard;
+	public static Thread threadAttack;
 
 	public static final int DELAY_DRAW_CARD = 500; // 500
 	public static final int DELAY_BOT_PLAY = 1200; // 1200 (MUST >= 20)
 	public static final int DELAY_CARD_MOVE = 250; // 250 (MUST >= 20)
-	public static final int DELAY_ATTACK = 2000; // 2000
+	public static final int DELAY_ATTACK = 500; //500
 
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
@@ -67,13 +69,13 @@ public class GameController {
 	public static void initializeGameBvB() {
 		switch (difficultyLeft) {
 		case "Easy":
-			leftSideController = new BotEasy(20, 1, rightSideDeck, Direction.LEFT);
+			leftSideController = new BotEasy(20, 1, leftSideDeck, Direction.LEFT);
 			break;
 		case "Normal":
-			leftSideController = new BotNormal(20, 1, rightSideDeck, Direction.LEFT);
+			leftSideController = new BotNormal(20, 1, leftSideDeck, Direction.LEFT);
 			break;
 		case "Hard":
-			leftSideController = new BotHard(30, 1, rightSideDeck, Direction.LEFT);
+			leftSideController = new BotHard(30, 1, leftSideDeck, Direction.LEFT);
 			break;
 		}
 		switch (difficultyRight) {
@@ -142,9 +144,10 @@ public class GameController {
 		Thread thread = new Thread(() -> {
 			try {
 				threadAllCardMove.join(); // wait all card move finish
+				board.attackAllCard();
+				threadAttackAllCard.join(); // wait atackAllCard finish
 				Platform.runLater(new Runnable() {
 					public void run() {
-						board.allCardAttack();
 						board.update();
 						board.removeDeadCards();
 					}
@@ -155,7 +158,7 @@ public class GameController {
 			}
 		});
 		thread.start();
-		threadAttackCard = thread;
+		threadStartAttackCard = thread;
 	}
 
 	public static void startFirstTurn() {
@@ -174,6 +177,7 @@ public class GameController {
 
 	public static void startGame() {
 		gameScreen = new GameScreen();
+		isGameEnd = false;
 		winner = null;
 		turn = 0;
 		moneyFromTurn = 1;
@@ -201,9 +205,6 @@ public class GameController {
 	}
 
 	public static void startNextPhase() {
-		if (isGameEnd) { // stop running if game end
-			return;
-		}
 		Thread thread = new Thread(() -> {
 			try {
 				if (threadBotPlay != null) {
@@ -237,8 +238,11 @@ public class GameController {
 		isPhaseOneEnd = false;
 		Thread thread = new Thread(() -> {
 			try {
-				if (threadAttackCard != null) { // wait attack finish first
-					threadAttackCard.join();
+				if (threadStartAttackCard != null && threadStartAttackCard.isAlive()) { // wait attack finish first
+					threadStartAttackCard.join();
+				}
+				if (isGameEnd) { // stop running if game end
+					return;
 				}
 				turn++;
 				if (turn <= 10) {
@@ -247,11 +251,15 @@ public class GameController {
 				// each side draw 2 card, money += turn
 				leftSideController.setMoney(leftSideController.getMoney() + moneyFromTurn);
 				rightSideController.setMoney(rightSideController.getMoney() + moneyFromTurn);
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		});
 		thread.start();
+		if (isGameEnd) { // stop running if game end
+			return;
+		}
 		leftSideController.drawCard(2);
 		rightSideController.drawCard(2);
 	}
