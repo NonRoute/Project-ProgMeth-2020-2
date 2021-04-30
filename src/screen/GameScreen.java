@@ -42,6 +42,7 @@ import sharedObject.SoundHolder;
 public class GameScreen {
 	private Pane root;
 	private BorderPane borderPane;
+	private Pane cardStatusPane;
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private Image background;
@@ -76,7 +77,11 @@ public class GameScreen {
 
 		Board board = new Board();
 		GameController.board = board;
-		root.getChildren().addAll(canvas, borderPane, nextPhaseButton, board);
+
+		Pane cardStatusPane = new Pane();
+		this.cardStatusPane = cardStatusPane;
+
+		root.getChildren().addAll(canvas, borderPane, nextPhaseButton, board, cardStatusPane);
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
@@ -90,6 +95,10 @@ public class GameScreen {
 			}
 		};
 		animation.start();
+	}
+
+	public Pane getCardStatusPane() {
+		return cardStatusPane;
 	}
 
 	public boolean canClickStartNextPhaseButton() {
@@ -207,7 +216,7 @@ public class GameScreen {
 		}
 		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
 		this.mediaplayer = mediaplayer;
-		mediaplayer.setVolume(20);
+		mediaplayer.setVolume(10);
 		mediaplayer.play();
 		mediaplayer.setOnEndOfMedia(new Runnable() {
 			@Override

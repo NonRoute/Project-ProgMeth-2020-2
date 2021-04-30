@@ -23,28 +23,28 @@ import sharedObject.SoundHolder;
 
 public class CardOnBoardPane extends CardPane {
 	private CardOnBoardPane cardPane = this;
-	private int cardWidth = 88;
-	private int cardHeight = 112;
-	private int insets = 2;
+	public static final int CARD_WIDTH = 88;
+	public static final int CARD_HEIGHT = 112;
+	private final int insets = 2;
 
 	public CardOnBoardPane(Card card) {
 		this.card = card;
-		this.setPrefSize(cardWidth, cardHeight);
+		this.setPrefSize(CARD_WIDTH, CARD_HEIGHT);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
 		addCardImage(card.getImage());
 		setCardAbility(card);
 		setToolTip();
-		this.getRowConstraints().add(new RowConstraints((cardHeight / 4) - 2 * insets));
+		this.getRowConstraints().add(new RowConstraints((CARD_HEIGHT / 4) - 2 * insets));
 	}
 
 	public void addCardAbility(Image image, Card card, int value, int defaultValue, int x, int y) {
 		StackPane stackPane = new StackPane();
-		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHeight - 2 * insets) / 4);
+		stackPane.setPrefSize((CARD_WIDTH - 2 * insets) / 2, (CARD_HEIGHT - 2 * insets) / 4);
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
-		imageView.setFitHeight((cardHeight - 2 * insets) / 4);
+		imageView.setFitWidth((CARD_WIDTH - 2 * insets) / 2);
+		imageView.setFitHeight((CARD_HEIGHT - 2 * insets) / 4);
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font21);
 		text.setText("" + value);
@@ -69,8 +69,8 @@ public class CardOnBoardPane extends CardPane {
 	public void addCardImage(Image image) {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(cardWidth - (2 * insets));
-		imageView.setFitHeight((cardHeight / 2) - (2 * insets));
+		imageView.setFitWidth(CARD_WIDTH - (2 * insets));
+		imageView.setFitHeight((CARD_HEIGHT / 2) - (2 * insets));
 		this.add(imageView, 0, 0, 2, 2);
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}

@@ -5,6 +5,7 @@ import java.util.Random;
 
 import card.FighterCard;
 import card.TrickCard;
+import entity.CardDead;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
@@ -19,6 +20,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class Board extends GridPane {
+	public static final int LAYOUT_X = 220;
+	public static final int LAYOUT_Y = 110;
+	public static final int H_GAP = 5;
+	public static final int V_GAP = 5;
 	public static final int NUMBER_OF_ROW = 5;
 	public static final int NUMBER_OF_COLUMN = 9;
 	private ObservableList<ObservableList<Cell>> boardCells = FXCollections.observableArrayList();
@@ -27,10 +32,10 @@ public class Board extends GridPane {
 		this.setPrefWidth(840);
 		this.setPrefHeight(590);
 		this.setAlignment(Pos.CENTER);
-		this.setLayoutX(220);
-		this.setLayoutY(110);
-		this.setVgap(5);
-		this.setHgap(5);
+		this.setLayoutX(LAYOUT_X);
+		this.setLayoutY(LAYOUT_Y);
+		this.setVgap(V_GAP);
+		this.setHgap(H_GAP);
 		this.setPadding(new Insets(5));
 		this.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
@@ -55,6 +60,9 @@ public class Board extends GridPane {
 
 	public void attackCard(int row, int column, int attackDamage) {
 		boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
+		if (boardCells.get(row).get(column).getCard().getHeart() <= 0) { // card dead
+			new CardDead(row, column); // show CardDead image
+		}
 	}
 
 	public boolean canPlayTrickCard(TrickCard trickCard) {

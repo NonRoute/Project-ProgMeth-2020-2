@@ -32,9 +32,9 @@ import sharedObject.SoundHolder;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
-	private int cardWidth = 120;
-	private int cardHeight = 58;
-	private int insets = 2;
+	private final int cardWidth = 120;
+	private final int cardHeight = 58;
+	private final int insets = 2;
 
 	public CardInHandPane(Card card) {
 		this.card = card;

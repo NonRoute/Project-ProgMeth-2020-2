@@ -1,6 +1,3 @@
 ﻿Test,,,,,,,
 Type,Cost,Attack Damage,Attack Range,Heart,Speed,Trick type,Trick parameter
-Trick,0,999,2,4,88,ChangeControllerHeart,T.2.3
-Trick,0,999,2,4,88,ChangeControllerHeart,P.2
-Trick,0,999,2,4,88,ChangeControllerHeart,L.2.3
-Fighter,0,999,2,4,88,,
+Fighter,0,999,2,4,5,,
