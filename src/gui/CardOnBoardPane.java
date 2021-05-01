@@ -160,6 +160,7 @@ public class CardOnBoardPane extends CardPane {
 								public void run() {
 									GameController.rightSideController.reduceHeart(card.getAttackDamage());
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+									SoundHolder.getInstance().attackController.play();
 								}
 							});
 							break;
@@ -186,6 +187,7 @@ public class CardOnBoardPane extends CardPane {
 								public void run() {
 									GameController.leftSideController.reduceHeart(card.getAttackDamage());
 									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+									SoundHolder.getInstance().attackController.play();
 								}
 							});
 							break;

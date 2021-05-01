@@ -39,6 +39,7 @@ public class SoundHolder {
 	public AudioClip attack2;
 	public AudioClip attack3;
 	public AudioClip attack4;
+	public AudioClip attackController;
 	public AudioClip trick;
 
 	public SoundHolder() {
@@ -71,6 +72,7 @@ public class SoundHolder {
 		attack2 = loadSound("attack2", "mp3");
 		attack3 = loadSound("attack3", "mp3");
 		attack4 = loadSound("attack4", "mp3");
+		attackController = loadSound("attackController", "mp3");
 		trick = loadSound("trick", "mp3");
 	}
 
