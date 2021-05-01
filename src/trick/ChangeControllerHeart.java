@@ -3,6 +3,7 @@ package trick;
 import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 
 public class ChangeControllerHeart extends Trick {
@@ -16,6 +17,7 @@ public class ChangeControllerHeart extends Trick {
 			throw new WrongTrickActivateTypeException();
 		}
 		heart = Integer.parseInt(trickParameter.get(1));
+		image = RenderableHolder.ChangeControllerHeart;
 	}
 
 	@Override

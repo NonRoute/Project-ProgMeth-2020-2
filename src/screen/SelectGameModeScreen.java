@@ -38,7 +38,8 @@ public class SelectGameModeScreen {
 
 		root.setAlignment(Pos.TOP_RIGHT);
 		root.getChildren().addAll(image, new SelectGameModeButton(), getExitButton());
-		GameController.primaryStage.setTitle("Angel vs. Devil");
+		GameController.primaryStage.setTitle("Troop War");
+		GameController.primaryStage.getIcons().add(RenderableHolder.icon);
 		GameController.primaryStage.setScene(scene);
 	}
 

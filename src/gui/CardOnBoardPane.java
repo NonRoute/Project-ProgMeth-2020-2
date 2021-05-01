@@ -88,19 +88,6 @@ public class CardOnBoardPane extends CardPane {
 						attack = true;
 					}
 				}
-				if (attack) { // if card attack, make delay
-					Platform.runLater(new Runnable() {
-						public void run() {
-							new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
-						}
-					});
-					playAttackSound();
-					try {
-						Thread.sleep(GameController.DELAY_ATTACK);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
 				break;
 			case RIGHT:
 				for (int i = 1; i <= card.getAttackRange(); i++) {
@@ -109,20 +96,20 @@ public class CardOnBoardPane extends CardPane {
 						attack = true;
 					}
 				}
-				if (attack) { // if card attack, make delay
-					Platform.runLater(new Runnable() {
-						public void run() {
-							new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
-						}
-					});
-					playAttackSound();
-					try {
-						Thread.sleep(GameController.DELAY_ATTACK);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
 				break;
+			}
+			if (attack) { // if card attack, make delay
+				Platform.runLater(new Runnable() {
+					public void run() {
+						new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
+					}
+				});
+				playAttackSound();
+				try {
+					Thread.sleep(GameController.DELAY_ATTACK);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		thread.start();
@@ -133,65 +120,47 @@ public class CardOnBoardPane extends CardPane {
 		return (FighterCard) card;
 	}
 
+	public int getNextColumnMove() {
+		FighterCard card = (FighterCard) this.card;
+		switch (card.getPlayingSide()) {
+		case LEFT:
+			return card.getColumn() + 1;
+		case RIGHT:
+			return card.getColumn() - 1;
+		}
+		return 0;
+	}
+
 	public void move() {
 		FighterCard card = (FighterCard) this.card;
 		Thread thread = new Thread(() -> {
 			try {
-				switch (card.getPlayingSide()) {
-				case LEFT:
-					for (int i = 0; i < card.getSpeed(); i++) {
-						if (GameController.isGameEnd) { // stop running if game end
-							return;
-						}
-						if (GameController.board.isEmpty(card.getRow(), card.getColumn() + 1)) {
-							Platform.runLater(new Runnable() {
-								public void run() {
-									// can move to next cell
-									playMoveSound();
-									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-									card.setColumn(card.getColumn() + 1);
-									GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
-								}
-							});
-							Thread.sleep(GameController.DELAY_CARD_MOVE);
-						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() + 1)) {
-							// can attack controller
-							Platform.runLater(new Runnable() {
-								public void run() {
-									GameController.rightSideController.reduceHeart(card.getAttackDamage());
-									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-								}
-							});
-							break;
-						}
+				for (int i = 0; i < card.getSpeed(); i++) {
+					if (GameController.isGameEnd) { // stop running if game end
+						return;
 					}
-					break;
-				case RIGHT:
-					for (int i = 0; i < card.getSpeed(); i++) {
-						if (GameController.isGameEnd) { // stop running if game end
-							return;
-						}
-						if (GameController.board.isEmpty(card.getRow(), card.getColumn() - 1)) {
-							Platform.runLater(new Runnable() {
-								public void run() {
-									playMoveSound();
-									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-									card.setColumn(card.getColumn() - 1);
-									GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
-								}
-							});
-							Thread.sleep(GameController.DELAY_CARD_MOVE);
-						} else if (GameController.board.isOutOfBoard(card.getRow(), card.getColumn() - 1)) {
-							Platform.runLater(new Runnable() {
-								public void run() {
-									GameController.leftSideController.reduceHeart(card.getAttackDamage());
-									GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-								}
-							});
-							break;
-						}
+					if (GameController.board.isEmpty(card.getRow(), getNextColumnMove())) {
+						// can move to next cell
+						Platform.runLater(new Runnable() {
+							public void run() {
+								playMoveSound();
+								GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+								card.setColumn(getNextColumnMove());
+								GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
+							}
+						});
+						Thread.sleep(GameController.DELAY_CARD_MOVE);
+					} else if (GameController.board.isOutOfBoard(card.getRow(), getNextColumnMove())) {
+						// can attack controller
+						Platform.runLater(new Runnable() {
+							public void run() {
+								GameController.rightSideController.reduceHeart(card.getAttackDamage());
+								GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+								SoundHolder.getInstance().attackController.play();
+							}
+						});
+						break;
 					}
-					break;
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -199,7 +168,6 @@ public class CardOnBoardPane extends CardPane {
 		});
 		GameController.threadCardMove = thread;
 		thread.start();
-
 	}
 
 	public void playAttackSound() {

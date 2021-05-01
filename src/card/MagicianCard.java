@@ -1,6 +1,7 @@
 package card;
 
 import logic.Direction;
+import sharedObject.RenderableHolder;
 import trick.Trick;
 
 public class MagicianCard extends FighterCard implements Trickable {
@@ -11,6 +12,17 @@ public class MagicianCard extends FighterCard implements Trickable {
 		super(deckName, cost, attackDamage, attackRange, heart, speed);
 		this.trick = trick;
 		this.description = setDescription();
+		switch (deckName) { // set Magician image
+		case "Angel": // TODO Update
+			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
+			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+		case "Devil": // TODO Update
+			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
+			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+		case "Test": // TODO Remove
+			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
+			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+		}
 	}
 	
 	public void activateTrick() {

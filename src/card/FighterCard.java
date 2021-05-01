@@ -1,5 +1,7 @@
 package card;
 
+import sharedObject.RenderableHolder;
+
 public class FighterCard extends Card {
 	protected final int DEFAULT_ATTACK_DAMAGE;
 	protected final int DEFAULT_ATTACK_RANGE;
@@ -23,6 +25,17 @@ public class FighterCard extends Card {
 		this.heart = heart;
 		this.DEFAULT_SPEED = speed;
 		this.speed = speed;
+		switch (deckName) { // set Fighter image
+		case "Angel": // TODO Update
+			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
+			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+		case "Devil": // TODO Update
+			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
+			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+		case "Test": // TODO Remove
+			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
+			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+		}
 	}
 
 	public int getAttackDamage() {

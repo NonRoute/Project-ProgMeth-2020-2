@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 
+	public static Image icon;
 	public static Image backgroundSelectGameMode;
 	public static Image backgroundSelectDeckPvB;
 	public static Image backgroundSelectDeckPvP;
@@ -35,6 +36,8 @@ public class RenderableHolder {
 	public static Image cardDefense;
 	public static Image cardDead;
 	public static Image trick;
+	public static Image ChangeCardAbility;
+	public static Image ChangeControllerHeart;
 
 	static {
 		loadResource();
@@ -49,6 +52,7 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
+		RenderableHolder.icon = loadImage("icon.png");
 		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.jpg");
 		RenderableHolder.backgroundSelectDeckPvB = loadImage("backgroundSelectDeckPvB.png");
 		RenderableHolder.backgroundSelectDeckPvP = loadImage("backgroundSelectDeckPvP.png");
@@ -76,6 +80,8 @@ public class RenderableHolder {
 		RenderableHolder.cardDefense = loadImage("cardDefense.png");
 		RenderableHolder.cardDead = loadImage("cardDead.png");
 		RenderableHolder.trick = loadImage("trick.png");
+		RenderableHolder.ChangeCardAbility = loadImage("ChangeCardAbility.png");
+		RenderableHolder.ChangeControllerHeart = loadImage("ChangeControllerHeart.png");
 	}
 
 	private List<IRenderable> entities;

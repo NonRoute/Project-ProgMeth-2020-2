@@ -28,7 +28,7 @@ public class GameController {
 
 	public static final int DELAY_DRAW_CARD = 500; // 500
 	public static final int DELAY_BOT_PLAY = 1200; // 1200 (MUST >= 20)
-	public static final int DELAY_CARD_MOVE = 250; // 250 (MUST >= 20)
+	public static final int DELAY_CARD_MOVE = 200; // 200 (MUST >= 20)
 	public static final int DELAY_ATTACK = 500; //500
 
 	public static final int SCREEN_WIDTH = 1280;

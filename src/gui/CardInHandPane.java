@@ -84,6 +84,9 @@ public class CardInHandPane extends CardPane {
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(cardWidth - 2 * insets);
 		imageView.setFitHeight(cardHeight - 2 * insets);
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setRadius(0.3);
+		imageView.setEffect(dropShadow);
 		this.add(imageView, 0, 0, 3, 3);
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}

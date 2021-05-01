@@ -2,30 +2,18 @@ package card;
 
 import javafx.scene.image.Image;
 import logic.Direction;
-import sharedObject.RenderableHolder;
 
 public class Card implements Cloneable {
 	protected String description;
-	private int cost;
-	private boolean isInHand;
+	protected int cost;
+	protected boolean isInHand;
 	protected Direction playingSide;
-	private Image leftPlayingSideImage;
-	private Image rightPlayingSideImage;
+	protected Image leftPlayingSideImage;
+	protected Image rightPlayingSideImage;
 
 	public Card(String deckName, int cost) {
 		this.description = "";
 		this.cost = cost;
-		switch (deckName) {
-		case "Angel": // TODO Update
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-		case "Devil": // TODO Update
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-		case "Test": // TODO Remove
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-		}
 	}
 
 	public Object clone() {

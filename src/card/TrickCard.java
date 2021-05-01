@@ -10,8 +10,10 @@ public class TrickCard extends Card implements Trickable {
 		super(deckName, cost);
 		this.trick = trick;
 		this.description = setDescription();
+		leftPlayingSideImage = trick.getImage();
+		rightPlayingSideImage = trick.getImage();
 	}
-	
+
 	public void activateTrick() {
 		trick.activate();
 	}
