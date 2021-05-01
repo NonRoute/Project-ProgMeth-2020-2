@@ -2,7 +2,6 @@ package card;
 
 import javafx.scene.image.Image;
 import logic.Direction;
-import sharedObject.RenderableHolder;
 
 public class Card implements Cloneable {
 	protected String description;

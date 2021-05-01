@@ -1,7 +1,6 @@
 package card;
 
 import logic.Direction;
-import sharedObject.RenderableHolder;
 import trick.Trick;
 
 public class TrickCard extends Card implements Trickable {

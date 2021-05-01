@@ -45,16 +45,16 @@ public abstract class Trick implements Cloneable {
 		return trickParameter.get(0).charAt(0);
 	}
 
+	public Image getImage() {
+		return image;
+	}
+
 	public Direction getPlayingSide() {
 		return playingSide;
 	}
 
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
-	}
-
-	public Image getImage() {
-		return image;
 	}
 
 }
