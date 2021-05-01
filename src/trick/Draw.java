@@ -3,6 +3,7 @@ package trick;
 import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 
 public class Draw extends Trick {
@@ -16,6 +17,7 @@ public class Draw extends Trick {
 			throw new WrongTrickActivateTypeException();
 		}
 		number = Integer.parseInt(trickParameter.get(1));
+		image = RenderableHolder.phaseDrawCard;
 	}
 
 	@Override

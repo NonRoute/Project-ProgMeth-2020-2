@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import card.FighterCard;
 import entity.Bot;
+import javafx.scene.image.Image;
 import logic.Direction;
 import logic.GameController;
 
@@ -12,6 +13,7 @@ public abstract class Trick implements Cloneable {
 	protected String description;
 	protected Direction playingSide;
 	protected ArrayList<String> trickParameter;
+	protected Image image;
 
 	public Trick(String trickparameter) {
 		this.trickParameter = new ArrayList<>(Arrays.asList(trickparameter.split("\\.")));
@@ -49,6 +51,10 @@ public abstract class Trick implements Cloneable {
 
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
+	}
+
+	public Image getImage() {
+		return image;
 	}
 
 }

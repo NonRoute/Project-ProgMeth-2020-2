@@ -4,6 +4,7 @@ import card.FighterCard;
 import cardStatus.CardBeTricked;
 import exception.WrongTrickActivateTypeException;
 import logic.GameController;
+import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 
 public class ChangeCardAbility extends Trick {
@@ -23,6 +24,7 @@ public class ChangeCardAbility extends Trick {
 		attackRange = Integer.parseInt(trickParameter.get(2));
 		heart = Integer.parseInt(trickParameter.get(3));
 		speed = Integer.parseInt(trickParameter.get(4));
+		image = RenderableHolder.ChangeCardAbility;
 	}
 
 	@Override

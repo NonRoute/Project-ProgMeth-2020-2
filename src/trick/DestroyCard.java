@@ -4,6 +4,7 @@ import card.FighterCard;
 import cardStatus.CardBeTricked;
 import exception.WrongTrickActivateTypeException;
 import logic.GameController;
+import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 
 public class DestroyCard extends Trick {
@@ -15,6 +16,7 @@ public class DestroyCard extends Trick {
 		if (!"BD".contains(String.valueOf(activateType))) {
 			throw new WrongTrickActivateTypeException();
 		}
+		image = RenderableHolder.cardDead;
 	}
 
 	@Override

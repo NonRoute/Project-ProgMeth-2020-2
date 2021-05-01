@@ -36,6 +36,8 @@ public class RenderableHolder {
 	public static Image cardDefense;
 	public static Image cardDead;
 	public static Image trick;
+	public static Image ChangeCardAbility;
+	public static Image ChangeControllerHeart;
 
 	static {
 		loadResource();
@@ -78,6 +80,8 @@ public class RenderableHolder {
 		RenderableHolder.cardDefense = loadImage("cardDefense.png");
 		RenderableHolder.cardDead = loadImage("cardDead.png");
 		RenderableHolder.trick = loadImage("trick.png");
+		RenderableHolder.ChangeCardAbility = loadImage("ChangeCardAbility.png");
+		RenderableHolder.ChangeControllerHeart = loadImage("ChangeControllerHeart.png");
 	}
 
 	private List<IRenderable> entities;
