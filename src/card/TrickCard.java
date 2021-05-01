@@ -12,10 +12,6 @@ public class TrickCard extends Card implements Trickable {
 		this.description = setDescription();
 	}
 	
-	public String setDescription() {
-		return trick.getDescription();
-	}
-
 	public void activateTrick() {
 		trick.activate();
 	}
@@ -28,6 +24,10 @@ public class TrickCard extends Card implements Trickable {
 
 	public Trick getTrick() {
 		return trick;
+	}
+
+	public String setDescription() {
+		return trick.getDescription();
 	}
 
 	public void setPlayingSide(Direction playingSide) {

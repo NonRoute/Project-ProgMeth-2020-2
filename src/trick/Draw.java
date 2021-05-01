@@ -1,20 +1,26 @@
 package trick;
 
+import exception.WrongTrickActivateTypeException;
 import logic.Direction;
 import logic.GameController;
+import sharedObject.SoundHolder;
 
 public class Draw extends Trick {
 	private char activateType;
 	private int number;
 
-	public Draw(String trickparameter) {
+	public Draw(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
+		if (!"TES".contains(String.valueOf(activateType))) {
+			throw new WrongTrickActivateTypeException();
+		}
 		number = Integer.parseInt(trickParameter.get(1));
 	}
 
 	@Override
 	public void activate() {
+		SoundHolder.getInstance().trick.play();
 		switch (activateType) {
 		case 'T': // this side
 			if (playingSide == Direction.LEFT) {

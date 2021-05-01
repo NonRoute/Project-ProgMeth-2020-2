@@ -1,18 +1,25 @@
 package trick;
 
 import card.FighterCard;
+import cardStatus.CardBeTricked;
+import exception.WrongTrickActivateTypeException;
 import logic.GameController;
+import sharedObject.SoundHolder;
 
 public class DestroyCard extends Trick {
 	private char activateType;
 
-	public DestroyCard(String trickparameter) {
+	public DestroyCard(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
+		if (!"BD".contains(String.valueOf(activateType))) {
+			throw new WrongTrickActivateTypeException();
+		}
 	}
 
 	@Override
 	public void activate() {
+		SoundHolder.getInstance().trick.play();
 		FighterCard card = null;
 		switch (activateType) {
 		case 'B': // Random Enemy
@@ -26,15 +33,9 @@ public class DestroyCard extends Trick {
 			}
 			break;
 		}
-		Update(card);
+		update(card);
 		GameController.board.update();
 		GameController.board.removeDeadCards();
-	}
-
-	public void Update(FighterCard card) {
-		if (card != null) {
-			card.setHeart(0);
-		}
 	}
 
 	@Override
@@ -56,6 +57,13 @@ public class DestroyCard extends Trick {
 		}
 		description += " to destory";
 		return description;
+	}
+
+	public void update(FighterCard card) {
+		if (card != null) {
+			card.setHeart(0);
+			new CardBeTricked(card.getRow(), card.getColumn()); // show image
+		}
 	}
 
 }

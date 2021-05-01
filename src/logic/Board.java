@@ -5,9 +5,12 @@ import java.util.Random;
 
 import card.FighterCard;
 import card.TrickCard;
+import cardStatus.CardDead;
+import cardStatus.CardDefense;
 import gui.CardInHandPane;
 import gui.CardOnBoardPane;
 import gui.CardPane;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,18 +22,22 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class Board extends GridPane {
+	public static final int LAYOUT_X = 219;
+	public static final int LAYOUT_Y = 110;
+	public static final int H_GAP = 5;
+	public static final int V_GAP = 5;
 	public static final int NUMBER_OF_ROW = 5;
 	public static final int NUMBER_OF_COLUMN = 9;
 	private ObservableList<ObservableList<Cell>> boardCells = FXCollections.observableArrayList();
 
 	public Board() {
-		this.setPrefWidth(840);
+		this.setPrefWidth(842);
 		this.setPrefHeight(590);
 		this.setAlignment(Pos.CENTER);
-		this.setLayoutX(220);
-		this.setLayoutY(110);
-		this.setVgap(5);
-		this.setHgap(5);
+		this.setLayoutX(LAYOUT_X);
+		this.setLayoutY(LAYOUT_Y);
+		this.setVgap(V_GAP);
+		this.setHgap(H_GAP);
 		this.setPadding(new Insets(5));
 		this.setBackground(new Background(new BackgroundFill(Color.PERU, CornerRadii.EMPTY, Insets.EMPTY)));
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
@@ -43,18 +50,47 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void allCardAttack() {
-		for (int r = 0; r < NUMBER_OF_ROW; r++) {
-			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
-				if (!isEmpty(r, c)) {
-					boardCells.get(r).get(c).getCardOnBoardPane().attack();
+	public void attackAllCard() {
+		Thread thread = new Thread(() -> {
+			for (int r = 0; r < NUMBER_OF_ROW; r++) {
+				for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
+					if (!isEmpty(r, c)) {
+						boardCells.get(r).get(c).getCardOnBoardPane().attack();
+						Platform.runLater(new Runnable() {
+							public void run() {
+								GameController.board.update();
+							}
+						});
+						try {
+							GameController.threadAttack.join();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
 				}
+				Platform.runLater(new Runnable() {
+					public void run() {
+						// finish attack each row, remove dead card
+						GameController.board.removeDeadCards();
+					}
+				});
 			}
-		}
+		});
+		thread.start();
+		GameController.threadAttackAllCard = thread;
 	}
 
 	public void attackCard(int row, int column, int attackDamage) {
-		boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
+		Platform.runLater(new Runnable() {
+			public void run() {
+				boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
+				if (boardCells.get(row).get(column).getCard().getHeart() <= 0) { // card dead
+					new CardDead(row, column, attackDamage); // show CardDead image
+				} else {
+					new CardDefense(row, column, attackDamage); // show CardFight image
+				}
+			}
+		});
 	}
 
 	public boolean canPlayTrickCard(TrickCard trickCard) {
@@ -244,10 +280,10 @@ public class Board extends GridPane {
 				}
 				break;
 			case 'C': // select friendly
-				hightlightFriendly(selectedCardPane.getCard().getPlayingSide());
+				highlightFriendly(selectedCardPane.getCard().getPlayingSide());
 				break;
 			case 'D': // select enemy
-				hightlightEnemy(selectedCardPane.getCard().getPlayingSide());
+				highlightEnemy(selectedCardPane.getCard().getPlayingSide());
 				break;
 			case 'T':
 			case 'E':
@@ -258,7 +294,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void hightlightEnemy(Direction playingSide) {
+	public void highlightEnemy(Direction playingSide) {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isEnemy(r, c, playingSide)) {
@@ -268,7 +304,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void hightlightFriendly(Direction playingSide) {
+	public void highlightFriendly(Direction playingSide) {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (isFriendly(r, c, playingSide)) {
@@ -314,6 +350,9 @@ public class Board extends GridPane {
 		Thread thread = new Thread(() -> {
 			try {
 				for (int r = 0; r < NUMBER_OF_ROW; r++) {
+					if (GameController.isGameEnd) { // stop running if game end
+						return;
+					}
 					switch (playingsideMoveFirst) {
 					case LEFT: // each row, move card left playing side first
 						moveLeftPlayingSideCard(r);
@@ -338,6 +377,9 @@ public class Board extends GridPane {
 			if (!isEmpty(r, c)) {
 				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.LEFT) {
 					boardCells.get(r).get(c).getCardOnBoardPane().move();
+					if (GameController.isGameEnd) { // stop running if game end
+						return;
+					}
 					GameController.threadCardMove.join(); // wait for a card finish move to move next card
 					Thread.sleep(1);
 				}
@@ -350,6 +392,9 @@ public class Board extends GridPane {
 			if (!isEmpty(r, c)) {
 				if (boardCells.get(r).get(c).getCardOnBoardPane().getCard().getPlayingSide() == Direction.RIGHT) {
 					boardCells.get(r).get(c).getCardOnBoardPane().move();
+					if (GameController.isGameEnd) { // stop running if game end
+						return;
+					}
 					GameController.threadCardMove.join();
 					Thread.sleep(1);
 				}
@@ -373,7 +418,10 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void setCardOnMap(CardPane cardPane, int row, int column) {
+	public void setCard(CardPane cardPane, int row, int column) {
+		if (GameController.isGameEnd) { // stop running if game end
+			return;
+		}
 		boardCells.get(row).get(column).setCard(cardPane);
 		unHighlightAllCells();
 	}
@@ -393,7 +441,7 @@ public class Board extends GridPane {
 					// recreate cardOnBoardPane
 					CardOnBoardPane cardPane = new CardOnBoardPane(boardCells.get(r).get(c).getCard());
 					removeCardOnMap(r, c);
-					setCardOnMap(cardPane, r, c);
+					setCard(cardPane, r, c);
 				}
 			}
 		}

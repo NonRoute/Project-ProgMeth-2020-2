@@ -57,9 +57,12 @@ public abstract class Bot extends Controller {
 		Thread thread = new Thread(() -> {
 			try {
 				GameController.threadDrawCard.join(); // wait for draw card finish
+				if (GameController.isGameEnd) { // stop running if game end
+					return;
+				}
 				Thread.sleep(GameController.DELAY_BOT_PLAY);
 				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
-					if (GameController.threadDrawCard != null) { // if still draw card wait to draw finish
+					if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) { // if still draw card wait to draw finish
 						GameController.threadDrawCard.join();
 					}
 					Platform.runLater(new Runnable() {
@@ -68,7 +71,7 @@ public abstract class Bot extends Controller {
 							useCard(cardsInHandPane.indexOf(selectCard));
 							if (selectCard.getCard() instanceof FighterCard) {
 								// set card on map, if it is FighterCard or MagicianCard
-								GameController.board.setCardOnMap(selectCard, selectRow(), getPlayableColumn());
+								GameController.board.setCard(selectCard, selectRow(), getPlayableColumn());
 							}
 						}
 					});

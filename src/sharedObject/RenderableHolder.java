@@ -14,9 +14,11 @@ public class RenderableHolder {
 	public static Image backgroundSelectDeckPvB;
 	public static Image backgroundSelectDeckPvP;
 	public static Image backgroundSelectDeckBvB;
-	public static Image backgroundGameScreen;
 	public static Image backgroundGameScreen1;
-	public static Image backgroundEndGame;
+	public static Image backgroundGameScreen2;
+	public static Image backgroundGameScreen3;
+	public static Image backgroundGameScreen4;
+	public static Image backgroundGameScreen5;
 	public static Image cost;
 	public static Image attackDamage;
 	public static Image attackRange;
@@ -29,10 +31,15 @@ public class RenderableHolder {
 	public static Image phaseBot;
 	public static Image phaseMove;
 	public static Image phaseAttack;
+	public static Image cardAttack;
+	public static Image cardDefense;
+	public static Image cardDead;
+	public static Image trick;
 
 	static {
 		loadResource();
 	}
+
 	public static RenderableHolder getInstance() {
 		return instance;
 	}
@@ -46,9 +53,11 @@ public class RenderableHolder {
 		RenderableHolder.backgroundSelectDeckPvB = loadImage("backgroundSelectDeckPvB.png");
 		RenderableHolder.backgroundSelectDeckPvP = loadImage("backgroundSelectDeckPvP.png");
 		RenderableHolder.backgroundSelectDeckBvB = loadImage("backgroundSelectDeckBvB.png");
-		RenderableHolder.backgroundGameScreen = loadImage("backgroundGameScreen.jpg");
 		RenderableHolder.backgroundGameScreen1 = loadImage("backgroundGameScreen1.jpg");
-		RenderableHolder.backgroundEndGame = loadImage("backgroundEndGame.png");
+		RenderableHolder.backgroundGameScreen2 = loadImage("backgroundGameScreen2.png");
+		RenderableHolder.backgroundGameScreen3 = loadImage("backgroundGameScreen3.jpg");
+		RenderableHolder.backgroundGameScreen4 = loadImage("backgroundGameScreen4.jpg");
+		RenderableHolder.backgroundGameScreen5 = loadImage("backgroundGameScreen5.jpg");
 
 		RenderableHolder.testDeckNameLeft = loadImage("testDeckNameLeft.png");
 		RenderableHolder.testDeckNameRight = loadImage("testDeckNameRight.png");
@@ -63,7 +72,10 @@ public class RenderableHolder {
 		RenderableHolder.phaseBot = loadImage("phaseBot.png");
 		RenderableHolder.phaseMove = loadImage("phaseMove.png");
 		RenderableHolder.phaseAttack = loadImage("phaseAttack.png");
-		
+		RenderableHolder.cardAttack = loadImage("cardAttack.png");
+		RenderableHolder.cardDefense = loadImage("cardDefense.png");
+		RenderableHolder.cardDead = loadImage("cardDead.png");
+		RenderableHolder.trick = loadImage("trick.png");
 	}
 
 	private List<IRenderable> entities;

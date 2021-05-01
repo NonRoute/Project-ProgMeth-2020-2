@@ -1,12 +1,7 @@
 package screen;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-
-import javax.sound.midi.Soundbank;
-
-import org.w3c.dom.stylesheets.MediaList;
+import java.util.Random;
 
 import entity.Bot;
 import entity.LastUsedCard;
@@ -34,7 +29,6 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -48,6 +42,7 @@ import sharedObject.SoundHolder;
 public class GameScreen {
 	private Pane root;
 	private BorderPane borderPane;
+	private Pane cardStatusPane;
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private Image background;
@@ -62,14 +57,14 @@ public class GameScreen {
 
 	public GameScreen() {
 		root = new Pane();
-		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
+		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HEIGHT);
 		setBackground();
 		nextPhaseButton = getStartNextPhaseButton();
 		borderPane = new BorderPane();
 		turn = new Turn();
 		phase = new Phase();
 		lastUsedCard = new LastUsedCard();
-		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
+		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HEIGHT);
 		leftCardsInHand = GameController.leftSideController.getCardsInHandPane();
 		rightCardsInHand = GameController.rightSideController.getCardsInHandPane();
 		BorderPane.setMargin(leftCardsInHand, new Insets(20));
@@ -82,7 +77,12 @@ public class GameScreen {
 
 		Board board = new Board();
 		GameController.board = board;
-		root.getChildren().addAll(canvas, borderPane, nextPhaseButton, board);
+
+		Pane cardStatusPane = new Pane();
+		cardStatusPane.setPickOnBounds(false);
+		this.cardStatusPane = cardStatusPane;
+
+		root.getChildren().addAll(canvas, borderPane, nextPhaseButton, board, cardStatusPane);
 
 		Scene scene = new Scene(root);
 		GameController.primaryStage.setScene(scene);
@@ -96,42 +96,6 @@ public class GameScreen {
 			}
 		};
 		animation.start();
-	}
-
-	public void setBackground() {
-		ObservableList<Image> bg = FXCollections.observableArrayList();
-		// add all bg
-		bg.addAll(RenderableHolder.backgroundGameScreen, RenderableHolder.backgroundGameScreen1);
-		Collections.shuffle(bg);
-		this.background = bg.get(0);
-	}
-
-	public void stopSound() {
-		mediaplayer.stop();
-	}
-
-	public void getSoundList() {
-		ObservableList<Media> mediaList = FXCollections.observableArrayList();
-		// add all sound for play
-		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2,
-				SoundHolder.getInstance().gameScreen3);
-		Collections.shuffle(mediaList);
-		this.mediaList = mediaList;
-	}
-
-	public void playSound() {
-		if (mediaList.size() == 0) { // if no sound left, getSoundList again
-			getSoundList();
-		}
-		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
-		this.mediaplayer = mediaplayer;
-		mediaplayer.play();
-		mediaplayer.setOnEndOfMedia(new Runnable() {
-			@Override
-			public void run() {
-				playSound(); // play next sound
-			}
-		});
 	}
 
 	public boolean canClickStartNextPhaseButton() {
@@ -153,11 +117,19 @@ public class GameScreen {
 		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
+		if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
 			return false;
 
 		}
 		return true;
+	}
+
+	public Image getBackground() {
+		return background;
+	}
+
+	public Pane getCardStatusPane() {
+		return cardStatusPane;
 	}
 
 	public HandPane getLeftCardsInHand() {
@@ -168,16 +140,28 @@ public class GameScreen {
 		return rightCardsInHand;
 	}
 
+	public void getSoundList() {
+		ObservableList<Media> mediaList = FXCollections.observableArrayList();
+		// add all sound for play
+		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2,
+				SoundHolder.getInstance().gameScreen3, SoundHolder.getInstance().gameScreen4,
+				SoundHolder.getInstance().gameScreen5, SoundHolder.getInstance().gameScreen6,
+				SoundHolder.getInstance().gameScreen7, SoundHolder.getInstance().gameScreen8,
+				SoundHolder.getInstance().gameScreen9, SoundHolder.getInstance().gameScreen10);
+		Collections.shuffle(mediaList);
+		this.mediaList = mediaList;
+	}
+
 	public Button getStartNextPhaseButton() {
 		Button nextPhaseButton = new Button();
 		ImageView imageView = new ImageView(RenderableHolder.nextPhase);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(120);
-		imageView.setFitHeight(70);
+		imageView.setFitHeight(60);
 		nextPhaseButton.setGraphic(imageView);
 		nextPhaseButton.setLayoutX(580);
-		nextPhaseButton.setLayoutY(15);
-		nextPhaseButton.setPrefSize(120, 70);
+		nextPhaseButton.setLayoutY(10);
+		nextPhaseButton.setPrefSize(120, 60);
 		nextPhaseButton
 				.setBackground(new Background(new BackgroundFill(Color.HONEYDEW, new CornerRadii(30), new Insets(2))));
 		nextPhaseButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
@@ -226,6 +210,47 @@ public class GameScreen {
 				entity.draw(gc);
 			}
 		}
+	}
+
+	public void playSound() {
+		if (mediaList.size() == 0) { // if no sound left, getSoundList again
+			getSoundList();
+		}
+		MediaPlayer mediaplayer = new MediaPlayer(mediaList.remove(0)); // play a sound in list and remove it
+		this.mediaplayer = mediaplayer;
+		mediaplayer.setVolume(5);
+		mediaplayer.play();
+		mediaplayer.setOnEndOfMedia(new Runnable() {
+			@Override
+			public void run() {
+				playSound(); // play next sound
+			}
+		});
+	}
+
+	public void setBackground() {
+		Random rd = new Random();
+		switch (rd.nextInt(5)) {
+		case 1:
+			this.background = RenderableHolder.backgroundGameScreen1;
+			break;
+		case 2:
+			this.background = RenderableHolder.backgroundGameScreen2;
+			break;
+		case 3:
+			this.background = RenderableHolder.backgroundGameScreen3;
+			break;
+		case 4:
+			this.background = RenderableHolder.backgroundGameScreen4;
+			break;
+		case 0:
+			this.background = RenderableHolder.backgroundGameScreen5;
+			break;
+		}
+	}
+
+	public void stopSound() {
+		mediaplayer.stop();
 	}
 
 	public void unHighlightHandPane() {

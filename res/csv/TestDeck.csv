@@ -1,10 +1,5 @@
 ﻿Test,,,,,,,
 Type,Cost,Attack Damage,Attack Range,Heart,Speed,Trick type,Trick parameter
-Magician,0,1,2,5,1,ChangeCardAbility,A.-1.-2.-3.-4
-Magician,0,1,2,4,1,ChangeCardAbility,B.0.2.3.0
-Magician,0,1,2,10,1,ChangeCardAbility,C.1.0.0.0
-Trick,0,,,,,ChangeCardAbility,A.0.0.0.1
-Trick,0,,,,,ChangeCardAbility,C.1.2.3.7
-Trick,0,,,,,ChangeCardAbility,D.1.2.3.8
-Fighter,0,1,2,4,1,,
-Fighter,0,1,2,4,1,,
+Fighter,0,1,5,5,5,,
+Fighter,0,1,10,5,5,,
+Magician,0,1,1,5,5,Draw,T.2

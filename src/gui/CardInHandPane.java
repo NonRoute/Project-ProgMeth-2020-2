@@ -32,13 +32,13 @@ import sharedObject.SoundHolder;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
-	private int cardWidth = 120;
-	private int cardHight = 58;
-	private int insets = 2;
+	private final int cardWidth = 120;
+	private final int cardHeight = 58;
+	private final int insets = 2;
 
 	public CardInHandPane(Card card) {
 		this.card = card;
-		this.setPrefSize(cardWidth, cardHight);
+		this.setPrefSize(cardWidth, cardHeight);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(insets));
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
@@ -48,32 +48,31 @@ public class CardInHandPane extends CardPane {
 		setMouseEvent();
 		addCardImage(card.getImage());
 		setCardAbility(card);
-		this.getRowConstraints().add(new RowConstraints((cardHight / 3) - 2 * insets));
+		this.getRowConstraints().add(new RowConstraints((cardHeight / 3) - 2 * insets));
 	}
 
-	public void addCardAbility(Image image, Card card, int value, int defultValue, int x, int y, int columnSpan) {
+	public void addCardAbility(Image image, Card card, int value, int defaultValue, int x, int y, int columnSpan) {
 		StackPane stackPane = new StackPane();
-		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHight - 2 * insets) / 3);
+		stackPane.setPrefSize((cardWidth - 2 * insets) * columnSpan / 5, (cardHeight - 2 * insets) / 3);
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(((cardWidth - 2 * insets) / 5) + 1);
-		imageView.setFitHeight(((cardHight - 2 * insets) / 3) + 1);
+		imageView.setFitHeight(((cardHeight - 2 * insets) / 3) + 1);
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font15);
 		text.setText("" + value);
-		if (value > defultValue) {
+		if (value > defaultValue) {
 			text.setFill(Color.LIGHTGREEN);
-		} else if (value == defultValue) {
+		} else if (value == defaultValue) {
 			text.setFill(Color.WHITE);
 		} else {
 			text.setFill(Color.LIGHTPINK);
 		}
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setColor(Color.BLACK);
-		dropShadow.setRadius(0.2);
-		dropShadow.setSpread(0.8);
+		dropShadow.setRadius(0.3);
+		dropShadow.setSpread(0.6);
 		dropShadow.setOffsetX(1);
-		dropShadow.setOffsetY(1);
 		text.setEffect(dropShadow);
 		stackPane.getChildren().addAll(imageView, text);
 		this.add(stackPane, x, y, columnSpan, 1);
@@ -84,7 +83,7 @@ public class CardInHandPane extends CardPane {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(cardWidth - 2 * insets);
-		imageView.setFitHeight(cardHight - 2 * insets);
+		imageView.setFitHeight(cardHeight - 2 * insets);
 		this.add(imageView, 0, 0, 3, 3);
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
@@ -119,7 +118,7 @@ public class CardInHandPane extends CardPane {
 		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
+		if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
 			return false;
 		}
 		return true;
@@ -142,7 +141,7 @@ public class CardInHandPane extends CardPane {
 		return true;
 	}
 
-	public boolean isSelect() {
+	public boolean isSelected() {
 		return GameController.selectedCardPane == this;
 	}
 
@@ -166,6 +165,7 @@ public class CardInHandPane extends CardPane {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (canSelectCard()) {
+					SoundHolder.getInstance().selectCard.play();
 					switch (card.getPlayingSide()) {
 					case LEFT:
 						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
@@ -188,7 +188,7 @@ public class CardInHandPane extends CardPane {
 		});
 		this.setOnMouseExited((MouseEvent e) -> {
 			tooltip.hide();
-			if (!isSelect()) {
+			if (!isSelected()) {
 				cardPane.setBackground(
 						new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
 			}

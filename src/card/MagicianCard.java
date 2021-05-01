@@ -13,10 +13,6 @@ public class MagicianCard extends FighterCard implements Trickable {
 		this.description = setDescription();
 	}
 	
-	public String setDescription() {
-		return trick.getDescription();
-	}
-
 	public void activateTrick() {
 		trick.activate();
 	}
@@ -29,6 +25,10 @@ public class MagicianCard extends FighterCard implements Trickable {
 
 	public Trick getTrick() {
 		return trick;
+	}
+
+	public String setDescription() {
+		return trick.getDescription();
 	}
 
 	public void setPlayingSide(Direction playingSide) {
