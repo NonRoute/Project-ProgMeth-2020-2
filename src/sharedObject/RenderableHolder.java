@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 
+	public static Image icon;
 	public static Image backgroundSelectGameMode;
 	public static Image backgroundSelectDeckPvB;
 	public static Image backgroundSelectDeckPvP;
@@ -49,6 +50,7 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
+		RenderableHolder.icon = loadImage("icon.png");
 		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.jpg");
 		RenderableHolder.backgroundSelectDeckPvB = loadImage("backgroundSelectDeckPvB.png");
 		RenderableHolder.backgroundSelectDeckPvP = loadImage("backgroundSelectDeckPvP.png");
