@@ -27,7 +27,7 @@ public class CardOnBoardPane extends CardPane {
 	private final int cardWidth = 84;
 	private final int cardHeight = 108;
 	private CardOnBoardPane cardPane = this;
-	private final int insets = 2;
+	private final int insets = 1;
 
 	public CardOnBoardPane(Card card) {
 		this.card = card;
@@ -38,18 +38,18 @@ public class CardOnBoardPane extends CardPane {
 		setCardAbility(card);
 		setToolTip();
 		ColumnConstraints columnConstraints = new ColumnConstraints((cardWidth - 2 * insets) / 2);
-		RowConstraints rowConstraints = new RowConstraints((cardHeight - 2 * insets) / 4);
+		RowConstraints rowConstraints = new RowConstraints((cardHeight - 2 * insets) / 5);
 		this.getColumnConstraints().addAll(columnConstraints, columnConstraints);
-		this.getRowConstraints().addAll(rowConstraints, rowConstraints, rowConstraints, rowConstraints);
+		this.getRowConstraints().addAll(rowConstraints, rowConstraints, rowConstraints, rowConstraints, rowConstraints);
 	}
 
 	public void addCardAbility(Image image, Card card, int value, int defaultValue, int x, int y) {
 		StackPane stackPane = new StackPane();
-		stackPane.setPrefSize((cardWidth - 2 * insets) / 2, (cardHeight - 2 * insets) / 4);
+		stackPane.setPrefSize((cardHeight - 2 * insets) / 5, (cardHeight - 2 * insets) / 5);
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth((cardWidth - 2 * insets) / 2);
-		imageView.setFitHeight((cardHeight - 2 * insets) / 4);
+		imageView.setFitHeight(((cardHeight - 2 * insets) / 5) + 3);
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font21);
 		text.setText("" + value);
@@ -75,8 +75,8 @@ public class CardOnBoardPane extends CardPane {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
 		imageView.setFitWidth(cardWidth - (2 * insets));
-		imageView.setFitHeight((cardHeight - (2 * insets)) / 2);
-		this.add(imageView, 0, 0, 2, 2);
+		imageView.setFitHeight((cardHeight - (2 * insets)) * 3 / 5);
+		this.add(imageView, 0, 0, 2, 3);
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
 
@@ -224,13 +224,13 @@ public class CardOnBoardPane extends CardPane {
 	public void setCardAbility(Card card) {
 		if (card instanceof FighterCard) {
 			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(),
-					((FighterCard) card).getDefaultAttackDamage(), 0, 2);
+					((FighterCard) card).getDefaultAttackDamage(), 0, 3);
 			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(),
-					((FighterCard) card).getDefaultAttackRange(), 1, 2);
+					((FighterCard) card).getDefaultAttackRange(), 1, 3);
 			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(),
-					((FighterCard) card).getDefaultHeart(), 0, 3);
+					((FighterCard) card).getDefaultHeart(), 0, 4);
 			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(),
-					((FighterCard) card).getDefaultSpeed(), 1, 3);
+					((FighterCard) card).getDefaultSpeed(), 1, 4);
 		}
 	}
 }
