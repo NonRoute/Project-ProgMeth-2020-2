@@ -12,6 +12,7 @@ import entity.BotHard;
 import entity.BotNormal;
 import entity.Controller;
 import entity.Player;
+import gui.Board;
 import gui.CardInHandPane;
 import javafx.application.Platform;
 import javafx.stage.Stage;

@@ -1,4 +1,4 @@
-package logic;
+package gui;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,9 +7,6 @@ import card.FighterCard;
 import card.TrickCard;
 import cardStatus.CardDead;
 import cardStatus.CardDefense;
-import gui.CardInHandPane;
-import gui.CardOnBoardPane;
-import gui.CardPane;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +17,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import logic.Direction;
+import logic.GameController;
 
 public class Board extends GridPane {
 	public static final int LAYOUT_X = 219;
@@ -31,8 +30,9 @@ public class Board extends GridPane {
 	private ObservableList<ObservableList<Cell>> boardCells = FXCollections.observableArrayList();
 
 	public Board() {
-		this.setPrefWidth(842);
-		this.setPrefHeight(590);
+		this.setMinSize(842,590);
+		this.setPrefSize(842,590);
+		this.setMaxSize(842,590);
 		this.setAlignment(Pos.CENTER);
 		this.setLayoutX(LAYOUT_X);
 		this.setLayoutY(LAYOUT_Y);
