@@ -14,12 +14,12 @@ public class MagicianCard extends FighterCard implements Trickable {
 		this.description = setDescription();
 		switch (deckName) { // set Magician image
 		case "Angel":
-			leftPlayingSideImage = RenderableHolder.angelMigicianL;
-			rightPlayingSideImage = RenderableHolder.angelMigicianR;
+			leftPlayingSideImage = RenderableHolder.angelMagicianL;
+			rightPlayingSideImage = RenderableHolder.angelMagicianR;
 			break;
 		case "Devil":
-			leftPlayingSideImage = RenderableHolder.devilMigicianL;
-			rightPlayingSideImage = RenderableHolder.devilMigicianR;
+			leftPlayingSideImage = RenderableHolder.devilMagicianL;
+			rightPlayingSideImage = RenderableHolder.devilMagicianR;
 			break;
 		case "Test": // TODO Remove
 			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;

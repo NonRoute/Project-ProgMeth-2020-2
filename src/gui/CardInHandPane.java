@@ -30,6 +30,7 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
+import trick.Trick;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
@@ -92,7 +93,9 @@ public class CardInHandPane extends CardPane {
 		imageView.setFitHeight(cardHeight - (2 * insets));
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setRadius(0.3);
-		imageView.setEffect(dropShadow);
+		if (card instanceof TrickCard) {
+			imageView.setEffect(dropShadow);
+		}
 		this.add(imageView, 0, 0, 3, 3);
 		GridPane.setHalignment(imageView, HPos.CENTER);
 	}
