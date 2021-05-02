@@ -53,7 +53,7 @@ public class BotHard extends Bot {
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
-							SoundHolder.getInstance().drawCard.play();
+							SoundHolder.drawCard.play();
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
 							// every FighterCard of HardBot have 1 extra heart when draw

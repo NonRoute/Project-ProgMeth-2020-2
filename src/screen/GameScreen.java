@@ -143,11 +143,11 @@ public class GameScreen {
 	public void getSoundList() {
 		ObservableList<Media> mediaList = FXCollections.observableArrayList();
 		// add all sound for play
-		mediaList.addAll(SoundHolder.getInstance().gameScreen1, SoundHolder.getInstance().gameScreen2,
-				SoundHolder.getInstance().gameScreen3, SoundHolder.getInstance().gameScreen4,
-				SoundHolder.getInstance().gameScreen5, SoundHolder.getInstance().gameScreen6,
-				SoundHolder.getInstance().gameScreen7, SoundHolder.getInstance().gameScreen8,
-				SoundHolder.getInstance().gameScreen9, SoundHolder.getInstance().gameScreen10);
+		mediaList.addAll(SoundHolder.gameScreen1, SoundHolder.gameScreen2,
+				SoundHolder.gameScreen3, SoundHolder.gameScreen4,
+				SoundHolder.gameScreen5, SoundHolder.gameScreen6,
+				SoundHolder.gameScreen7, SoundHolder.gameScreen8,
+				SoundHolder.gameScreen9, SoundHolder.gameScreen10);
 		Collections.shuffle(mediaList);
 		this.mediaList = mediaList;
 	}

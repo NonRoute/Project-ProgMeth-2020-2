@@ -53,7 +53,7 @@ public class SelectGameModeButton extends GridPane {
 				new BorderStroke(Color.SADDLEBROWN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
 		button.setTextFill(Color.SEASHELL);
 		button.setOnAction((ActionEvent e) -> {
-			SoundHolder.getInstance().click.play();
+			SoundHolder.click.play();
 			switch (name) {
 			case "Player vs. Player":
 				GameController.gameMode = "PvP";

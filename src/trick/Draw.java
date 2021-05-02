@@ -22,7 +22,7 @@ public class Draw extends Trick {
 
 	@Override
 	public void activate() {
-		SoundHolder.getInstance().trick.play();
+		SoundHolder.trick.play();
 		switch (activateType) {
 		case 'T': // this side
 			if (playingSide == Direction.LEFT) {

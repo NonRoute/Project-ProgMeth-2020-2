@@ -87,7 +87,7 @@ public class SettingScreen {
 		StackPane.setMargin(goBackButton, new Insets(20));
 		goBackButton.setOnMouseClicked((MouseEvent e) -> {
 			new SelectGameModeScreen();
-			SoundHolder.getInstance().click.play();
+			SoundHolder.click.play();
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(
@@ -113,7 +113,7 @@ public class SettingScreen {
 		playButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(10))));
 		playButton.setOnMouseClicked((MouseEvent e) -> {
-			SoundHolder.getInstance().click.play();
+			SoundHolder.click.play();
 			switch (GameController.gameMode) {
 			case "PvB":
 				if (GameController.leftSideDeck == null || GameController.rightSideDeck == null

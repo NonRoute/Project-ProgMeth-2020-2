@@ -29,7 +29,7 @@ public class ChangeCardAbility extends Trick {
 
 	@Override
 	public void activate() { // this method be called when use card
-		SoundHolder.getInstance().trick.play();
+		SoundHolder.trick.play();
 		FighterCard card = null;
 		switch (activateType) {
 		case 'A': // Random Friendly
