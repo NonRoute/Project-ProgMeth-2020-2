@@ -52,8 +52,8 @@ public class SoundHolder {
 		gameScreen6 = loadMedia("gameScreen6", "mp3");
 		gameScreen7 = loadMedia("gameScreen7", "mp3");
 		gameScreen8 = loadMedia("gameScreen8", "mp3");
-		gameScreen8 = loadMedia("gameScreen9", "mp3");
-		gameScreen8 = loadMedia("gameScreen10", "mp3");
+		gameScreen9 = loadMedia("gameScreen9", "mp3");
+		gameScreen10 = loadMedia("gameScreen10", "mp3");
 		cannotSelect = loadSound("cannotSelect", "mp3");
 		selectCard = loadSound("selectCard", "mp3");
 		placeCard1 = loadSound("placeCard1", "mp3");

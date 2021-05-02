@@ -1,9 +1,10 @@
 package cardStatus;
 
+import gui.Board;
 import gui.CardOnBoardPane;
+import gui.Cell;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
-import logic.Board;
 import logic.GameController;
 
 public class CardStatus {
@@ -13,11 +14,11 @@ public class CardStatus {
 	protected ImageView image;
 
 	public int getX() {
-		return Board.LAYOUT_X + column * (Board.H_GAP + CardOnBoardPane.CARD_WIDTH);
+		return Board.LAYOUT_X + column * (Board.H_GAP + Cell.CARD_WIDTH);
 	}
 
 	public int getY() {
-		return Board.LAYOUT_Y + row * (Board.V_GAP + CardOnBoardPane.CARD_HEIGHT);
+		return Board.LAYOUT_Y + row * (Board.V_GAP + Cell.CARD_HEIGHT);
 	}
 
 	public int indentImageX() {
@@ -32,8 +33,8 @@ public class CardStatus {
 		image.setX(getX() + indentImageX());
 		image.setY(getY() + indentImageY());
 		image.setPreserveRatio(true);
-		image.setFitWidth(CardOnBoardPane.CARD_WIDTH - 6);
-		image.setFitHeight(CardOnBoardPane.CARD_HEIGHT - 6);
+		image.setFitWidth(Cell.CARD_WIDTH - 6);
+		image.setFitHeight(Cell.CARD_HEIGHT - 6);
 	}
 
 	public void showImage() {

@@ -18,6 +18,7 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -34,12 +35,14 @@ public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;
 	private final int cardWidth = 120;
 	private final int cardHeight = 58;
-	private final int insets = 2;
+	private final int insets = 3;
 
 	public CardInHandPane(Card card) {
 		this.card = card;
+		this.setMinSize(cardWidth, cardHeight);
 		this.setPrefSize(cardWidth, cardHeight);
-		this.setAlignment(Pos.CENTER);
+		this.setMaxSize(cardWidth, cardHeight);
+		this.setAlignment(Pos.CENTER_RIGHT);
 		this.setPadding(new Insets(insets));
 		this.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(3), new Insets(3))));
 		this.setBorder(new Border(
@@ -48,7 +51,10 @@ public class CardInHandPane extends CardPane {
 		setMouseEvent();
 		addCardImage(card.getImage());
 		setCardAbility(card);
-		this.getRowConstraints().add(new RowConstraints((cardHeight / 3) - 2 * insets));
+		ColumnConstraints columnConstraints = new ColumnConstraints((cardWidth - 2 * insets) / 5);
+		RowConstraints rowConstraints = new RowConstraints((cardHeight - 2 * insets) / 3);
+		this.getColumnConstraints().addAll(columnConstraints, columnConstraints, columnConstraints);
+		this.getRowConstraints().addAll(rowConstraints, rowConstraints, rowConstraints);
 	}
 
 	public void addCardAbility(Image image, Card card, int value, int defaultValue, int x, int y, int columnSpan) {
@@ -82,8 +88,8 @@ public class CardInHandPane extends CardPane {
 	public void addCardImage(Image image) {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
-		imageView.setFitWidth(cardWidth - 2 * insets);
-		imageView.setFitHeight(cardHeight - 2 * insets);
+		imageView.setFitWidth((cardWidth - (2 * insets)) * 3 / 5);
+		imageView.setFitHeight(cardHeight - (2 * insets));
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setRadius(0.3);
 		imageView.setEffect(dropShadow);

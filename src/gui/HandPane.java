@@ -22,7 +22,9 @@ public class HandPane extends VBox {
 	private ObservableList<CardInHandPane> cardsList = FXCollections.observableArrayList();
 
 	public HandPane() {
+		this.setMinSize(140, GameController.SCREEN_HEIGHT - 40);
 		this.setPrefSize(140, GameController.SCREEN_HEIGHT - 40);
+		this.setMaxSize(140, GameController.SCREEN_HEIGHT - 40);
 		this.setAlignment(Pos.TOP_CENTER);
 		this.setSpacing(10);
 		this.setPadding(new Insets(10));

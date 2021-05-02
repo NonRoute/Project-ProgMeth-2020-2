@@ -1,10 +1,7 @@
-package logic;
+package gui;
 
 import card.FighterCard;
 import card.Trickable;
-import gui.CardInHandPane;
-import gui.CardOnBoardPane;
-import gui.CardPane;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.input.MouseEvent;
@@ -13,6 +10,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import logic.GameController;
 
 public class Cell extends StackPane {
 	private CardOnBoardPane cardOnBoardPane;
@@ -21,8 +19,8 @@ public class Cell extends StackPane {
 	private int column;
 	private boolean isEmpty = true;
 	private boolean isHighLight;
-	private int cardWidth = 88;
-	private int cardHeight = 112;
+	public static final int CARD_WIDTH = 88;
+	public static final int CARD_HEIGHT = 112;
 
 	public Cell(int row, int column) {
 		this.row = row;
@@ -32,8 +30,9 @@ public class Cell extends StackPane {
 		} else {
 			backgroundColor = Color.PEACHPUFF;
 		}
-		this.setPrefWidth(cardWidth);
-		this.setPrefHeight(cardHeight);
+		this.setMinSize(CARD_WIDTH, CARD_HEIGHT);
+		this.setPrefSize(CARD_WIDTH, CARD_HEIGHT);
+		this.setMaxSize(CARD_WIDTH, CARD_HEIGHT);
 		this.setBackground(new Background(new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override

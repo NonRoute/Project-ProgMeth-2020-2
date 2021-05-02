@@ -26,15 +26,18 @@ public class FighterCard extends Card {
 		this.DEFAULT_SPEED = speed;
 		this.speed = speed;
 		switch (deckName) { // set Fighter image
-		case "Angel": // TODO Update
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-		case "Devil": // TODO Update
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+		case "Angel":
+			leftPlayingSideImage = RenderableHolder.angelFighterL;
+			rightPlayingSideImage = RenderableHolder.angelFighterR;
+			break;
+		case "Devil":
+			leftPlayingSideImage = RenderableHolder.devilFighterL;
+			rightPlayingSideImage = RenderableHolder.devilFighterR;
+			break;
 		case "Test": // TODO Remove
 			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
 			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+			break;
 		}
 	}
 

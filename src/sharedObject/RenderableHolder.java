@@ -26,6 +26,7 @@ public class RenderableHolder {
 	public static Image heart;
 	public static Image speed;
 	public static Image nextPhase;
+
 	public static Image testDeckNameLeft; // TODO Remove
 	public static Image testDeckNameRight;
 	public static Image phaseDrawCard;
@@ -38,6 +39,16 @@ public class RenderableHolder {
 	public static Image trick;
 	public static Image ChangeCardAbility;
 	public static Image ChangeControllerHeart;
+	//angel
+	public static Image angelFighterL;
+	public static Image angelFighterR;
+	public static Image angelMigicianL;
+	public static Image angelMigicianR;
+	//devil
+	public static Image devilFighterL;
+	public static Image devilFighterR;
+	public static Image devilMigicianL;
+	public static Image devilMigicianR;
 
 	static {
 		loadResource();
@@ -82,6 +93,14 @@ public class RenderableHolder {
 		RenderableHolder.trick = loadImage("trick.png");
 		RenderableHolder.ChangeCardAbility = loadImage("ChangeCardAbility.png");
 		RenderableHolder.ChangeControllerHeart = loadImage("ChangeControllerHeart.png");
+		RenderableHolder.angelFighterL = loadImage("angel/angelFigtherL.png");
+		RenderableHolder.angelFighterR = loadImage("angel/angelFigtherR.png");
+		RenderableHolder.angelMigicianL = loadImage("angel/angelMigicianL.png");
+		RenderableHolder.angelMigicianR = loadImage("angel/angelMigicianR.png");
+		RenderableHolder.devilFighterL = loadImage("devil/devilFighterL.png");
+		RenderableHolder.devilFighterR = loadImage("devil/devilFighterR.png");
+		RenderableHolder.devilMigicianL = loadImage("devil/devilMigicianL.png");
+		RenderableHolder.devilMigicianR = loadImage("devil/devilMigicianR.png");
 	}
 
 	private List<IRenderable> entities;
