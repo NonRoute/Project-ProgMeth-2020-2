@@ -44,13 +44,13 @@ public class RenderableHolder {
 	// angel
 	public static Image angelFighterL;
 	public static Image angelFighterR;
-	public static Image angelMigicianL;
-	public static Image angelMigicianR;
+	public static Image angelMagicianL;
+	public static Image angelMagicianR;
 	// devil
 	public static Image devilFighterL;
 	public static Image devilFighterR;
-	public static Image devilMigicianL;
-	public static Image devilMigicianR;
+	public static Image devilMagicianL;
+	public static Image devilMagicianR;
 
 	static {
 		loadResource();
@@ -105,14 +105,14 @@ public class RenderableHolder {
 		RenderableHolder.trick = loadImage("trick.png");
 		RenderableHolder.ChangeCardAbility = loadImage("ChangeCardAbility.png");
 		RenderableHolder.ChangeControllerHeart = loadImage("ChangeControllerHeart.png");
-		RenderableHolder.angelFighterL = loadImage("angel/angelFigtherL.png");
-		RenderableHolder.angelFighterR = loadImage("angel/angelFigtherR.png");
-		RenderableHolder.angelMigicianL = loadImage("angel/angelMigicianL.png");
-		RenderableHolder.angelMigicianR = loadImage("angel/angelMigicianR.png");
+		RenderableHolder.angelFighterL = loadImage("angel/angelFighterL.png");
+		RenderableHolder.angelFighterR = loadImage("angel/angelFighterR.png");
+		RenderableHolder.angelMagicianL = loadImage("angel/angelMagicianL.png");
+		RenderableHolder.angelMagicianR = loadImage("angel/angelMagicianR.png");
 		RenderableHolder.devilFighterL = loadImage("devil/devilFighterL.png");
 		RenderableHolder.devilFighterR = loadImage("devil/devilFighterR.png");
-		RenderableHolder.devilMigicianL = loadImage("devil/devilMigicianL.png");
-		RenderableHolder.devilMigicianR = loadImage("devil/devilMigicianR.png");
+		RenderableHolder.devilMagicianL = loadImage("devil/devilMagicianL.png");
+		RenderableHolder.devilMagicianR = loadImage("devil/devilMagicianR.png");
 	}
 
 	private List<IRenderable> entities;
