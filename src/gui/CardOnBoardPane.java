@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
@@ -36,7 +37,10 @@ public class CardOnBoardPane extends CardPane {
 		addCardImage(card.getImage());
 		setCardAbility(card);
 		setToolTip();
-		this.getRowConstraints().add(new RowConstraints((cardHeight - 2 * insets) / 4));
+		ColumnConstraints columnConstraints = new ColumnConstraints((cardWidth - 2 * insets) / 2);
+		RowConstraints rowConstraints = new RowConstraints((cardHeight - 2 * insets) / 4);
+		this.getColumnConstraints().addAll(columnConstraints, columnConstraints);
+		this.getRowConstraints().addAll(rowConstraints, rowConstraints, rowConstraints, rowConstraints);
 	}
 
 	public void addCardAbility(Image image, Card card, int value, int defaultValue, int x, int y) {
