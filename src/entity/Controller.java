@@ -89,7 +89,7 @@ public abstract class Controller extends Entity {
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
-							SoundHolder.getInstance().drawCard.play();
+							SoundHolder.drawCard.play();
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
 							cardsInHandPane.add(deck.getName(), card);
@@ -163,13 +163,13 @@ public abstract class Controller extends Entity {
 		int n = rand.nextInt(2);
 		switch (n) {
 		case 0:
-			SoundHolder.getInstance().placeCard1.play();
+			SoundHolder.placeCard1.play();
 			break;
 		case 1:
-			SoundHolder.getInstance().placeCard2.play();
+			SoundHolder.placeCard2.play();
 			break;
 		case 2:
-			SoundHolder.getInstance().placeCard3.play();
+			SoundHolder.placeCard3.play();
 			break;
 		}
 	}

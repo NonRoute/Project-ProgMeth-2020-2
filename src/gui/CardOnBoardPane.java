@@ -160,7 +160,7 @@ public class CardOnBoardPane extends CardPane {
 							public void run() {
 								GameController.rightSideController.reduceHeart(card.getAttackDamage());
 								GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
-								SoundHolder.getInstance().attackController.play();
+								SoundHolder.attackController.play();
 							}
 						});
 						break;
@@ -179,16 +179,16 @@ public class CardOnBoardPane extends CardPane {
 		int n = rand.nextInt(3);
 		switch (n) {
 		case 0:
-			SoundHolder.getInstance().attack1.play();
+			SoundHolder.attack1.play();
 			break;
 		case 1:
-			SoundHolder.getInstance().attack2.play();
+			SoundHolder.attack2.play();
 			break;
 		case 2:
-			SoundHolder.getInstance().attack3.play();
+			SoundHolder.attack3.play();
 			break;
 		case 3:
-			SoundHolder.getInstance().attack4.play();
+			SoundHolder.attack4.play();
 			break;
 		}
 	}
@@ -198,25 +198,25 @@ public class CardOnBoardPane extends CardPane {
 		int n = rand.nextInt(6);
 		switch (n) {
 		case 0:
-			SoundHolder.getInstance().move1.play();
+			SoundHolder.move1.play();
 			break;
 		case 1:
-			SoundHolder.getInstance().move2.play();
+			SoundHolder.move2.play();
 			break;
 		case 2:
-			SoundHolder.getInstance().move3.play();
+			SoundHolder.move3.play();
 			break;
 		case 3:
-			SoundHolder.getInstance().move4.play();
+			SoundHolder.move4.play();
 			break;
 		case 4:
-			SoundHolder.getInstance().move5.play();
+			SoundHolder.move5.play();
 			break;
 		case 5:
-			SoundHolder.getInstance().move6.play();
+			SoundHolder.move6.play();
 			break;
 		case 6:
-			SoundHolder.getInstance().move7.play();
+			SoundHolder.move7.play();
 			break;
 		}
 	}

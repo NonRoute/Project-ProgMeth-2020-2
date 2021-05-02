@@ -1,10 +1,12 @@
 package sharedObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import exception.ImageNotFoundException;
 import javafx.scene.image.Image;
 
 public class RenderableHolder {
@@ -39,12 +41,12 @@ public class RenderableHolder {
 	public static Image trick;
 	public static Image ChangeCardAbility;
 	public static Image ChangeControllerHeart;
-	//angel
+	// angel
 	public static Image angelFighterL;
 	public static Image angelFighterR;
 	public static Image angelMigicianL;
 	public static Image angelMigicianR;
-	//devil
+	// devil
 	public static Image devilFighterL;
 	public static Image devilFighterR;
 	public static Image devilMigicianL;
@@ -59,7 +61,17 @@ public class RenderableHolder {
 	}
 
 	public static Image loadImage(String fileName) {
-		return new Image(ClassLoader.getSystemResource("picture/" + fileName).toString());
+		try {
+			URL imgUrl = ClassLoader.getSystemResource("picture/" + fileName);
+			if (imgUrl == null) {
+				throw new ImageNotFoundException(fileName);
+			}
+			return new Image(ClassLoader.getSystemResource("picture/" + fileName).toString());
+		} catch (ImageNotFoundException e) {
+			System.out.println(e.toString());
+			System.exit(1);
+		}
+		return null;
 	}
 
 	public static void loadResource() {

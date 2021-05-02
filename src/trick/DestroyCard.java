@@ -21,7 +21,7 @@ public class DestroyCard extends Trick {
 
 	@Override
 	public void activate() {
-		SoundHolder.getInstance().trick.play();
+		SoundHolder.trick.play();
 		FighterCard card = null;
 		switch (activateType) {
 		case 'B': // Random Enemy
