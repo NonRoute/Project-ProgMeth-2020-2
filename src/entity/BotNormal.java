@@ -15,6 +15,10 @@ public class BotNormal extends Bot {
 		super(heart, money, deck, playingSide);
 	}
 
+	public int getMaxCardCostCanDraw() {
+		return GameController.turn + 2;
+	}
+
 	public CardInHandPane selectCard() { // select Trickable card first
 		ArrayList<CardInHandPane> cardsCanPlay = getAllCardsCanPlay();
 		if (cardsCanPlay.size() > 0) {

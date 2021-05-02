@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import logic.GameController;
 import sharedObject.FontHolder;
+import sharedObject.SoundHolder;
 
 public class SelectGameModeButton extends GridPane {
 	private Button exitButton;
@@ -52,6 +53,7 @@ public class SelectGameModeButton extends GridPane {
 				new BorderStroke(Color.SADDLEBROWN, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
 		button.setTextFill(Color.SEASHELL);
 		button.setOnAction((ActionEvent e) -> {
+			SoundHolder.click.play();
 			switch (name) {
 			case "Player vs. Player":
 				GameController.gameMode = "PvP";

@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,21 +30,33 @@ public class EndGame extends StackPane {
 	public EndGame() {
 		GameController.isGameEnd = true;
 		clearEntity();
+		clearThread();
+		stopSound();
 		this.setAlignment(Pos.CENTER);
 
-		ImageView image = new ImageView(RenderableHolder.backgroundEndGame);
+		ImageView image = new ImageView(GameController.gameScreen.getBackground());
 		image.setFitWidth(GameController.SCREEN_WIDTH);
-		image.setFitHeight(GameController.SCREEN_HIGHT);
+		image.setFitHeight(GameController.SCREEN_HEIGHT);
 
 		this.getChildren().addAll(image, getVBox());
 		Scene scene = new Scene(this);
 		GameController.primaryStage.setScene(scene);
 	}
-
+	
 	public void clearEntity() {
 		for (IRenderable e : RenderableHolder.getInstance().getEntities()) {
 			((Entity) e).setVisible(false);
 		}
+	}
+
+	public void clearThread() {
+		GameController.threadAllCardMove = null;
+		GameController.threadStartAttackCard = null;
+		GameController.threadAttackAllCard = null;
+		GameController.threadAttack = null;
+		GameController.threadBotPlay = null;
+		GameController.threadCardMove = null;
+		GameController.threadDrawCard = null;
 	}
 
 	public Button getGoBackButton() {
@@ -59,7 +72,6 @@ public class EndGame extends StackPane {
 		StackPane.setMargin(goBackButton, new Insets(20));
 		goBackButton.setOnMouseClicked((MouseEvent e) -> {
 			new SelectGameModeScreen();
-			GameController.isGameEnd = false;
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(
@@ -80,8 +92,17 @@ public class EndGame extends StackPane {
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setSpacing(50);
 		Text text = new Text("The winner is " + GameController.winner + " side!!");
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setColor(Color.WHITE);
+		dropShadow.setRadius(2);
+		dropShadow.setSpread(1);
+		text.setEffect(dropShadow);
 		text.setFont(FontHolder.getInstance().font48);
 		vBox.getChildren().addAll(text, getGoBackButton());
 		return vBox;
+	}
+
+	public void stopSound() {
+		GameController.gameScreen.stopSound();
 	}
 }

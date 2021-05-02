@@ -1,5 +1,7 @@
 package card;
 
+import sharedObject.RenderableHolder;
+
 public class FighterCard extends Card {
 	protected final int DEFAULT_ATTACK_DAMAGE;
 	protected final int DEFAULT_ATTACK_RANGE;
@@ -12,8 +14,7 @@ public class FighterCard extends Card {
 	protected int row;
 	protected int column;
 
-	public FighterCard(String deckName, int cost, int attackDamage, int attackRange,
-			int heart, int speed) {
+	public FighterCard(String deckName, int cost, int attackDamage, int attackRange, int heart, int speed) {
 		super(deckName, cost);
 		this.description = "";
 		this.DEFAULT_ATTACK_DAMAGE = attackDamage;
@@ -24,6 +25,20 @@ public class FighterCard extends Card {
 		this.heart = heart;
 		this.DEFAULT_SPEED = speed;
 		this.speed = speed;
+		switch (deckName) { // set Fighter image
+		case "Angel":
+			leftPlayingSideImage = RenderableHolder.angelFighterL;
+			rightPlayingSideImage = RenderableHolder.angelFighterR;
+			break;
+		case "Devil":
+			leftPlayingSideImage = RenderableHolder.devilFighterL;
+			rightPlayingSideImage = RenderableHolder.devilFighterR;
+			break;
+		case "Test": // TODO Remove
+			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
+			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
+			break;
+		}
 	}
 
 	public int getAttackDamage() {
@@ -67,7 +82,7 @@ public class FighterCard extends Card {
 	}
 
 	public void reduceHeart(int attackCard) {
-		heart -= attackCard;
+		heart = Math.max(heart - attackCard, 0);
 	}
 
 	public void setAttackDamage(int attackDamage) {

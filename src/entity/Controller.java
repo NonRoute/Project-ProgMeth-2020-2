@@ -6,16 +6,17 @@ import java.util.Random;
 import card.Card;
 import card.Trickable;
 import deck.Deck;
+import gui.Board;
 import gui.HandPane;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import logic.Board;
 import logic.Direction;
 import logic.GameController;
 import screen.EndGame;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public abstract class Controller extends Entity {
 
@@ -58,8 +59,11 @@ public abstract class Controller extends Entity {
 	public void drawCard(int number) {
 		Thread thread = new Thread(() -> {
 			try {
-				if (GameController.threadAttackCard != null) {
-					GameController.threadAttackCard.join();
+				if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
+					GameController.threadStartAttackCard.join();
+				}
+				if (GameController.isGameEnd) { // stop running if game end
+					return;
 				}
 				// if card exceed max; not draw
 				for (int i = 0; i < number; i++) {
@@ -68,6 +72,9 @@ public abstract class Controller extends Entity {
 					}
 					Platform.runLater(new Runnable() {
 						public void run() {
+							if (GameController.isGameEnd) { // stop running if game end
+								return;
+							}
 							// random pick 1 card from deck
 							Random rand = new Random();
 							// .nextInt(int) will random value from 0 to int-1
@@ -82,11 +89,10 @@ public abstract class Controller extends Entity {
 							} while (numberOfCard == 0); // random again if no card with this cost
 
 							int indexOfCard = rand.nextInt(numberOfCard);
-
+							SoundHolder.drawCard.play();
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
 							cardsInHandPane.add(deck.getName(), card);
-							// GameController.gameScreen.addCardsInHands(deck.getName(), card);
 						}
 					});
 					Thread.sleep(GameController.DELAY_DRAW_CARD); // Delay
@@ -111,9 +117,7 @@ public abstract class Controller extends Entity {
 		return heart;
 	}
 
-	public int getMaxCardCostCanDraw() {
-		return GameController.turn + 2;
-	}
+	public abstract int getMaxCardCostCanDraw();
 
 	public int getMoney() {
 		return money;
@@ -154,6 +158,22 @@ public abstract class Controller extends Entity {
 		return playingSide;
 	}
 
+	public void playPlaceCardSound() {
+		Random rand = new Random();
+		int n = rand.nextInt(2);
+		switch (n) {
+		case 0:
+			SoundHolder.placeCard1.play();
+			break;
+		case 1:
+			SoundHolder.placeCard2.play();
+			break;
+		case 2:
+			SoundHolder.placeCard3.play();
+			break;
+		}
+	}
+
 	public void reduceHeart(int number) {
 		if (heart - number <= 0) {
 			heart = 0;
@@ -178,10 +198,12 @@ public abstract class Controller extends Entity {
 
 	public void useCard(int index) {
 		GameController.lastUsedCard = cardsInHandPane.getCard(index);
+		playPlaceCardSound();
 		money -= cardsInHandPane.getCard(index).getCost();
 		if (cardsInHandPane.getCard(index) instanceof Trickable) {
 			((Trickable) cardsInHandPane.getCard(index)).activateTrick();
 		}
 		cardsInHandPane.remove(index);
 	}
+
 }
