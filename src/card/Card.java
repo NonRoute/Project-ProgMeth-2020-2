@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import logic.Direction;
 
 public class Card implements Cloneable {
+	protected String deckName;
 	protected String description;
 	protected int cost;
 	protected boolean isInHand;
@@ -12,6 +13,7 @@ public class Card implements Cloneable {
 	protected Image rightPlayingSideImage;
 
 	public Card(String deckName, int cost) {
+		this.deckName = deckName;
 		this.description = "";
 		this.cost = cost;
 	}
