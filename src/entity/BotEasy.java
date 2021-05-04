@@ -15,7 +15,7 @@ public class BotEasy extends Bot {
 	}
 
 	public int getMaxCardCostCanDraw() {
-		return GameController.turn + 1;
+		return GameController.turn + 4;
 	}
 
 	public CardInHandPane selectCard() { // select by random
