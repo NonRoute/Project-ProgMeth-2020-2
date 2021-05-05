@@ -47,11 +47,6 @@ public class MagicianCard extends FighterCard implements Trickable {
 		trick.setPlayingSide(playingSide);
 	}
 
-	public void setPosition(int row, int column) {
-		this.row = row;
-		this.column = column;
-	}
-
 	public void setTrick(Trick trick) {
 		this.trick = trick;
 	}
