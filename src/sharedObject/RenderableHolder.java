@@ -23,6 +23,7 @@ public class RenderableHolder {
 	public static Image backgroundGameScreen4;
 	public static Image backgroundGameScreen5;
 	public static Image backgroundHowToPlay;
+	public static Image HowToPlayDetail;
 	public static Image cost;
 	public static Image attackDamage;
 	public static Image attackRange;
@@ -77,7 +78,7 @@ public class RenderableHolder {
 
 	public static void loadResource() {
 		RenderableHolder.icon = loadImage("icon.png");
-		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.jpg");
+		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.png");
 		RenderableHolder.backgroundSelectDeckPvB = loadImage("backgroundSelectDeckPvB.png");
 		RenderableHolder.backgroundSelectDeckPvP = loadImage("backgroundSelectDeckPvP.png");
 		RenderableHolder.backgroundSelectDeckBvB = loadImage("backgroundSelectDeckBvB.png");
@@ -87,6 +88,7 @@ public class RenderableHolder {
 		RenderableHolder.backgroundGameScreen4 = loadImage("backgroundGameScreen4.jpg");
 		RenderableHolder.backgroundGameScreen5 = loadImage("backgroundGameScreen5.jpg");
 		RenderableHolder.backgroundHowToPlay = loadImage("backgroundHowToPlay.png");
+		RenderableHolder.HowToPlayDetail = loadImage("HowToPlayDetail.png");
 		RenderableHolder.cost = loadImage("cost.png");
 		RenderableHolder.attackDamage = loadImage("attackDamage.png");
 		RenderableHolder.attackRange = loadImage("attackRange.png");
