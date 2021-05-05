@@ -20,11 +20,11 @@ public class SettingButton extends GridPane {
 
 	public SettingButton() {
 		this.setHgap(200);
-		this.setVgap(200);
+		this.setVgap(50);
 		this.setPrefWidth(1000);
-		this.setPrefHeight(600);
-		this.setAlignment(Pos.CENTER);
-		this.setPadding(new Insets(20));
+		this.setPrefHeight(400);
+		this.setAlignment(Pos.BOTTOM_CENTER);
+		this.setPadding(new Insets(100));
 
 		LeftSideDeck = getSelectDeckButton(Direction.LEFT);
 		this.add(LeftSideDeck, 0, 0);
@@ -36,6 +36,7 @@ public class SettingButton extends GridPane {
 			this.add(RightSideDifficulty, 1, 1);
 			break;
 		case "PvP":
+			this.setPadding(new Insets(190));
 			break;
 		case "BvB":
 			LeftSideDifficulty = getSelectDifficultyButton(Direction.LEFT);

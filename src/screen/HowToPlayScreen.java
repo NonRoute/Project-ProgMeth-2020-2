@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -40,12 +41,22 @@ public class HowToPlayScreen {
 		BorderPane.setAlignment(goBackButton, Pos.CENTER_RIGHT);
 		BorderPane.setMargin(goBackButton, new Insets(20));
 		borderPane.setTop(goBackButton);
+		borderPane.setCenter(getScrollPane());
 		
 		background.setFitWidth(GameController.SCREEN_WIDTH);
 		background.setFitHeight(GameController.SCREEN_HEIGHT);
 		root.getChildren().addAll(background, borderPane);
 		GameController.primaryStage.setScene(scene);
 		
+	}
+	
+	public ScrollPane getScrollPane() {
+		ScrollPane sp = new ScrollPane();
+		ImageView imageView = new ImageView(RenderableHolder.HowToPlayDetail);
+		imageView.setFitWidth(984);
+		sp.setMaxSize(1000, 510);
+		sp.setContent(imageView);
+		return sp;
 	}
 	
 	public Button getGoBackButton() {
