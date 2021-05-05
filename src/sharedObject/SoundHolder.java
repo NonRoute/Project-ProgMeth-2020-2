@@ -20,6 +20,8 @@ public class SoundHolder {
 	public static Media gameScreen8;
 	public static Media gameScreen9;
 	public static Media gameScreen10;
+	public static AudioClip endGameScreen;
+	public static AudioClip mainScreen;
 	public static AudioClip cannotSelect;
 	public static AudioClip selectCard;
 	public static AudioClip placeCard1;
@@ -61,6 +63,8 @@ public class SoundHolder {
 		gameScreen8 = loadMedia("gameScreen8.mp3");
 		gameScreen9 = loadMedia("gameScreen9.mp3");
 		gameScreen10 = loadMedia("gameScreen10.mp3");
+		endGameScreen = loadSound("endGameScreen.mp3");
+		mainScreen = loadSound("mainScreen.mp3");
 		cannotSelect = loadSound("cannotSelect.mp3");
 		selectCard = loadSound("selectCard.mp3");
 		placeCard1 = loadSound("placeCard1.mp3");

@@ -56,6 +56,7 @@ public class GameScreen {
 	private MediaPlayer mediaplayer;
 
 	public GameScreen() {
+		SoundHolder.mainScreen.stop();
 		root = new Pane();
 		canvas = new Canvas(GameController.SCREEN_WIDTH, GameController.SCREEN_HEIGHT);
 		setBackground();
@@ -167,6 +168,7 @@ public class GameScreen {
 				new CornerRadii(30), new BorderWidths(3))));
 
 		nextPhaseButton.setOnMouseClicked((MouseEvent e) -> {
+			SoundHolder.click.play();
 			if (canClickStartNextPhaseButton()) {
 				GameController.startNextPhase();
 				GameController.board.unHighlightAllCells();

@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import logic.GameController;
 import sharedObject.FontHolder;
@@ -28,6 +29,11 @@ public class SelectGameModeScreen {
 	private ImageView image;
 
 	public SelectGameModeScreen() {
+		if (!SoundHolder.mainScreen.isPlaying()) {
+			SoundHolder.mainScreen.setVolume(5);
+			SoundHolder.mainScreen.setCycleCount(AudioClip.INDEFINITE);
+			SoundHolder.mainScreen.play();
+		}
 		root = new StackPane();
 
 		scene = new Scene(root);
