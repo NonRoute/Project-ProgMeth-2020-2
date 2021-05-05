@@ -42,7 +42,6 @@ public class SettingScreen {
 		BorderPane.setAlignment(goBackButton, Pos.CENTER_RIGHT);
 		BorderPane.setMargin(goBackButton, new Insets(20));
 		borderPane.setTop(goBackButton);
-
 		borderPane.setCenter(new SettingButton());
 
 		playButton = getPlayButton();

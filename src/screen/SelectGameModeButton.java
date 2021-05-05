@@ -68,7 +68,8 @@ public class SelectGameModeButton extends GridPane {
 				new SettingScreen();
 				break;
 			case "How To Play":
-				// TODO:sTurn on how to play screen
+				new HowToPlayScreen();
+				break;
 			}
 		});
 		button.setOnMouseEntered((MouseEvent e) -> {
