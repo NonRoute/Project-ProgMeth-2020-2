@@ -11,8 +11,8 @@ import logic.GameController;
 
 public class BotNormal extends Bot {
 
-	public BotNormal(int heart, int money, Deck deck, Direction playingSide) {
-		super(heart, money, deck, playingSide);
+	public BotNormal(int health, int money, Deck deck, Direction playingSide) {
+		super(health, money, deck, playingSide);
 	}
 
 	public int getMaxCardCostCanDraw() {

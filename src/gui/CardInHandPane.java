@@ -121,13 +121,13 @@ public class CardInHandPane extends CardPane {
 		if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadMoveAllCard != null && GameController.threadMoveAllCard.isAlive()) {
 			return false;
 		}
 		if (GameController.threadBotPlay != null && GameController.threadBotPlay.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadMoveAllCard != null && GameController.threadMoveAllCard.isAlive()) {
 			return false;
 		}
 		if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
@@ -165,8 +165,8 @@ public class CardInHandPane extends CardPane {
 					((FighterCard) card).getDefaultAttackDamage(), 3, 1, 1);
 			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(),
 					((FighterCard) card).getDefaultAttackRange(), 4, 1, 1);
-			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(),
-					((FighterCard) card).getDefaultHeart(), 3, 2, 1);
+			addCardAbility(RenderableHolder.health, card, ((FighterCard) card).getHealth(),
+					((FighterCard) card).getDefaultHealth(), 3, 2, 1);
 			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(),
 					((FighterCard) card).getDefaultSpeed(), 4, 2, 1);
 		}

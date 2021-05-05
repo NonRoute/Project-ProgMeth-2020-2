@@ -15,8 +15,8 @@ import trick.Trick;
 
 public abstract class Bot extends Controller {
 
-	public Bot(int heart, int money, Deck deck, Direction playingSide) {
-		super(heart, money, deck, playingSide);
+	public Bot(int health, int money, Deck deck, Direction playingSide) {
+		super(health, money, deck, playingSide);
 	}
 
 	public ArrayList<CardInHandPane> getAllCardsCanPlay() {

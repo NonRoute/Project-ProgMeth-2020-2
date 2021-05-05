@@ -18,7 +18,7 @@ public class Cell extends StackPane {
 	private int row;
 	private int column;
 	private boolean isEmpty = true;
-	private boolean isHighLight;
+	private boolean isHighlight;
 	public static final int CARD_WIDTH = 88;
 	public static final int CARD_HEIGHT = 112;
 
@@ -37,7 +37,7 @@ public class Cell extends StackPane {
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
-				if (isHighLight) {
+				if (isHighlight) {
 					if (GameController.selectedCardPane.getCard() instanceof FighterCard) {
 						// place card on board
 						setCard(GameController.selectedCardPane);
@@ -82,7 +82,7 @@ public class Cell extends StackPane {
 
 	public void highlight() {
 		this.setBackground(new Background(new BackgroundFill(Color.PALEGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-		isHighLight = true;
+		isHighlight = true;
 	}
 
 	public boolean isEmpty() {
@@ -114,7 +114,7 @@ public class Cell extends StackPane {
 
 	public void unhighlight() {
 		this.setBackground(new Background(new BackgroundFill(backgroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
-		isHighLight = false;
+		isHighlight = false;
 	}
 
 }

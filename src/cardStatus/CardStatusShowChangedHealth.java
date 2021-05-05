@@ -9,37 +9,37 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 
-public class CardStatusShowChangedHeart extends CardStatus {
+public class CardStatusShowChangedHealth extends CardStatus {
 	protected int attackDamage;
-	protected ImageView heart = new ImageView(RenderableHolder.heart);
-	protected StackPane heartPane;
+	protected ImageView health = new ImageView(RenderableHolder.health);
+	protected StackPane healthPane;
 
-	public int indentHeartX() {
+	public int indentHealthX() {
 		return 55;
 	}
 
-	public int indentHeartY() {
+	public int indentHealthY() {
 		return 5;
 	}
 
-	public void setUpHeart() {
-		heartPane = new StackPane();
-		heartPane.setLayoutX(getX() + indentHeartX());
-		heartPane.setLayoutY(getY() + indentHeartY());
+	public void setUpHealth() {
+		healthPane = new StackPane();
+		healthPane.setLayoutX(getX() + indentHealthX());
+		healthPane.setLayoutY(getY() + indentHealthY());
 		Text text = new Text();
 		text.setFont(FontHolder.getInstance().font21);
 		text.setFill(Color.WHITE);
 		text.setText("-" + attackDamage);
-		heart.setPreserveRatio(true);
-		heart.setFitHeight(40);
-		heart.setFitWidth(40);
-		heartPane.getChildren().addAll(heart, text);
+		health.setPreserveRatio(true);
+		health.setFitHeight(40);
+		health.setFitWidth(40);
+		healthPane.getChildren().addAll(health, text);
 	}
 
 	public void showImage() {
 		setUpImage();
-		setUpHeart();
-		GameController.gameScreen.getCardStatusPane().getChildren().addAll(image, heartPane);
+		setUpHealth();
+		GameController.gameScreen.getCardStatusPane().getChildren().addAll(image, healthPane);
 		Thread thread = new Thread(() -> {
 			try {
 				Thread.sleep(showDuration);
@@ -48,7 +48,7 @@ public class CardStatusShowChangedHeart extends CardStatus {
 			}
 			Platform.runLater(new Runnable() {
 				public void run() {
-					GameController.gameScreen.getCardStatusPane().getChildren().removeAll(image, heartPane);
+					GameController.gameScreen.getCardStatusPane().getChildren().removeAll(image, healthPane);
 				}
 			});
 

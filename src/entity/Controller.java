@@ -20,15 +20,15 @@ import sharedObject.SoundHolder;
 
 public abstract class Controller extends Entity {
 
-	protected int heart;
+	protected int health;
 	protected int money;
 	protected Deck deck;
 	protected HandPane cardsInHandPane;
 	protected Direction playingSide;
 
-	public Controller(int heart, int money, Deck deck, Direction playingSide) {
+	public Controller(int health, int money, Deck deck, Direction playingSide) {
 		this.setVisible(true);
-		this.heart = Math.max(1, heart);
+		this.health = Math.max(1, health);
 		this.money = money;
 		this.deck = deck;
 		this.cardsInHandPane = new HandPane();
@@ -47,11 +47,11 @@ public abstract class Controller extends Entity {
 	}
 
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(RenderableHolder.heart, x, y, 50, 50);
+		gc.drawImage(RenderableHolder.health, x, y, 50, 50);
 		gc.setFont(FontHolder.getInstance().font28);
 		gc.drawImage(RenderableHolder.cost, x + 60, y, 50, 50);
 		gc.setFill(Color.DARKRED);
-		gc.fillText("" + heart, x + 24 - String.valueOf(heart).length() * 5, y + 33);
+		gc.fillText("" + health, x + 24 - String.valueOf(health).length() * 5, y + 33);
 		gc.setFill(Color.DARKGOLDENROD);
 		gc.fillText("" + money, x + 84 - String.valueOf(money).length() * 5, y + 33);
 	}
@@ -113,8 +113,8 @@ public abstract class Controller extends Entity {
 		return deck;
 	}
 
-	public int getHeart() {
-		return heart;
+	public int getHealth() {
+		return health;
 	}
 
 	public abstract int getMaxCardCostCanDraw();
@@ -174,9 +174,9 @@ public abstract class Controller extends Entity {
 		}
 	}
 
-	public void reduceHeart(int number) {
-		if (heart - number <= 0) {
-			heart = 0;
+	public void reduceHealth(int number) {
+		if (health - number <= 0) {
+			health = 0;
 			// end game
 			switch (playingSide) {
 			case LEFT:
@@ -188,7 +188,7 @@ public abstract class Controller extends Entity {
 			}
 			new EndGame();
 		} else {
-			heart -= number;
+			health -= number;
 		}
 	}
 

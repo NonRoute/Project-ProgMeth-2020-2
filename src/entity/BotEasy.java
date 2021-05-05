@@ -10,8 +10,8 @@ import logic.GameController;
 
 public class BotEasy extends Bot {
 
-	public BotEasy(int heart, int money, Deck deck, Direction playingSide) {
-		super(heart, money, deck, playingSide);
+	public BotEasy(int health, int money, Deck deck, Direction playingSide) {
+		super(health, money, deck, playingSide);
 	}
 
 	public int getMaxCardCostCanDraw() {

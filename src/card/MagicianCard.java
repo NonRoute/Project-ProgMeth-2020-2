@@ -8,8 +8,8 @@ public class MagicianCard extends FighterCard implements Trickable {
 	private Trick trick;
 
 	public MagicianCard(String deckName, int cost, int attackDamage, int attackRange,
-			int heart, int speed, Trick trick) {
-		super(deckName, cost, attackDamage, attackRange, heart, speed);
+			int health, int speed, Trick trick) {
+		super(deckName, cost, attackDamage, attackRange, health, speed);
 		this.trick = trick;
 		this.description = setDescription();
 		switch (deckName) { // set Magician image
@@ -20,10 +20,6 @@ public class MagicianCard extends FighterCard implements Trickable {
 		case "Devil":
 			leftPlayingSideImage = RenderableHolder.devilMagicianL;
 			rightPlayingSideImage = RenderableHolder.devilMagicianR;
-			break;
-		case "Test": // TODO Remove
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
 			break;
 		}
 	}
@@ -49,11 +45,6 @@ public class MagicianCard extends FighterCard implements Trickable {
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
 		trick.setPlayingSide(playingSide);
-	}
-
-	public void setPosition(int row, int column) {
-		this.row = row;
-		this.column = column;
 	}
 
 	public void setTrick(Trick trick) {

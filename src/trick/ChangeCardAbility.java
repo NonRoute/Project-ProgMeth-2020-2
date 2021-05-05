@@ -11,7 +11,7 @@ public class ChangeCardAbility extends Trick {
 	private char activateType;
 	private int attackDamage;
 	private int attackRange;
-	private int heart;
+	private int health;
 	private int speed;
 
 	public ChangeCardAbility(String trickparameter) throws WrongTrickActivateTypeException {
@@ -22,7 +22,7 @@ public class ChangeCardAbility extends Trick {
 		}
 		attackDamage = Integer.parseInt(trickParameter.get(1));
 		attackRange = Integer.parseInt(trickParameter.get(2));
-		heart = Integer.parseInt(trickParameter.get(3));
+		health = Integer.parseInt(trickParameter.get(3));
 		speed = Integer.parseInt(trickParameter.get(4));
 		image = RenderableHolder.ChangeCardAbility;
 	}
@@ -83,8 +83,8 @@ public class ChangeCardAbility extends Trick {
 		if (attackRange > 0) {
 			description += "ATK RNG + " + attackRange + "\n";
 		}
-		if (heart > 0) {
-			description += "Heart + " + heart + "\n";
+		if (health > 0) {
+			description += "Health + " + health + "\n";
 		}
 		if (speed > 0) {
 			description += "Speed + " + speed + "\n";
@@ -95,8 +95,8 @@ public class ChangeCardAbility extends Trick {
 		if (attackRange < 0) {
 			description += "ATK RNG " + attackRange + "\n";
 		}
-		if (heart < 0) {
-			description += "Heart " + heart + "\n";
+		if (health < 0) {
+			description += "Health " + health + "\n";
 		}
 		if (speed < 0) {
 			description += "Speed " + speed + "\n";
@@ -108,7 +108,7 @@ public class ChangeCardAbility extends Trick {
 		if (card != null) {
 			card.setAttackDamage(card.getAttackDamage() + attackDamage);
 			card.setAttackRange(card.getAttackRange() + attackRange);
-			card.setHeart(card.getHeart() + heart);
+			card.setHealth(card.getHealth() + health);
 			card.setSpeed(card.getSpeed() + speed);
 			new CardBeTricked(card.getRow(), card.getColumn()); // show image
 		}

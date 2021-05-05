@@ -12,7 +12,7 @@ import exception.WrongDeckDataException;
 import exception.WrongTrickActivateTypeException;
 import logic.GameController;
 import trick.ChangeCardAbility;
-import trick.ChangeControllerHeart;
+import trick.ChangeControllerHealth;
 import trick.DestroyCard;
 import trick.Draw;
 import trick.Trick;
@@ -77,8 +77,8 @@ public class Deck {
 			return new DestroyCard(deckData[line][7]);
 		case "Draw":
 			return new Draw(deckData[line][7]);
-		case "ChangeControllerHeart":
-			return new ChangeControllerHeart(deckData[line][7]);
+		case "ChangeControllerHealth":
+			return new ChangeControllerHealth(deckData[line][7]);
 		}
 		throw new WrongDeckDataException(name, line, deckData[line]);
 	}

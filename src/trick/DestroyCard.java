@@ -63,7 +63,7 @@ public class DestroyCard extends Trick {
 
 	public void update(FighterCard card) {
 		if (card != null) {
-			card.setHeart(0);
+			card.setHealth(0);
 			new CardBeTricked(card.getRow(), card.getColumn()); // show image
 		}
 	}

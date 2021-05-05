@@ -22,15 +22,13 @@ public class RenderableHolder {
 	public static Image backgroundGameScreen3;
 	public static Image backgroundGameScreen4;
 	public static Image backgroundGameScreen5;
+	public static Image backgroundHowToPlay;
 	public static Image cost;
 	public static Image attackDamage;
 	public static Image attackRange;
-	public static Image heart;
+	public static Image health;
 	public static Image speed;
 	public static Image nextPhase;
-
-	public static Image testDeckNameLeft; // TODO Remove
-	public static Image testDeckNameRight;
 	public static Image phaseDrawCard;
 	public static Image phaseBot;
 	public static Image phaseMove;
@@ -40,7 +38,7 @@ public class RenderableHolder {
 	public static Image cardDead;
 	public static Image trick;
 	public static Image ChangeCardAbility;
-	public static Image ChangeControllerHeart;
+	public static Image ChangeControllerHealth;
 	// angel
 	public static Image angelFighterL;
 	public static Image angelFighterR;
@@ -52,6 +50,9 @@ public class RenderableHolder {
 	public static Image devilMagicianL;
 	public static Image devilMagicianR;
 
+	private List<IRenderable> entities;
+	private Comparator<IRenderable> comparator;
+	
 	static {
 		loadResource();
 	}
@@ -85,14 +86,11 @@ public class RenderableHolder {
 		RenderableHolder.backgroundGameScreen3 = loadImage("backgroundGameScreen3.jpg");
 		RenderableHolder.backgroundGameScreen4 = loadImage("backgroundGameScreen4.jpg");
 		RenderableHolder.backgroundGameScreen5 = loadImage("backgroundGameScreen5.jpg");
-
-		RenderableHolder.testDeckNameLeft = loadImage("testDeckNameLeft.png");
-		RenderableHolder.testDeckNameRight = loadImage("testDeckNameRight.png");
-
+		RenderableHolder.backgroundHowToPlay = loadImage("backgroundHowToPlay.png");
 		RenderableHolder.cost = loadImage("cost.png");
 		RenderableHolder.attackDamage = loadImage("attackDamage.png");
 		RenderableHolder.attackRange = loadImage("attackRange.png");
-		RenderableHolder.heart = loadImage("heart.png");
+		RenderableHolder.health = loadImage("health.png");
 		RenderableHolder.speed = loadImage("speed.png");
 		RenderableHolder.nextPhase = loadImage("nextPhase.png");
 		RenderableHolder.phaseDrawCard = loadImage("phaseDrawCard.png");
@@ -104,7 +102,7 @@ public class RenderableHolder {
 		RenderableHolder.cardDead = loadImage("cardDead.png");
 		RenderableHolder.trick = loadImage("trick.png");
 		RenderableHolder.ChangeCardAbility = loadImage("ChangeCardAbility.png");
-		RenderableHolder.ChangeControllerHeart = loadImage("ChangeControllerHeart.png");
+		RenderableHolder.ChangeControllerHealth = loadImage("ChangeControllerHealth.png");
 		RenderableHolder.angelFighterL = loadImage("angel/angelFighterL.png");
 		RenderableHolder.angelFighterR = loadImage("angel/angelFighterR.png");
 		RenderableHolder.angelMagicianL = loadImage("angel/angelMagicianL.png");
@@ -114,10 +112,6 @@ public class RenderableHolder {
 		RenderableHolder.devilMagicianL = loadImage("devil/devilMagicianL.png");
 		RenderableHolder.devilMagicianR = loadImage("devil/devilMagicianR.png");
 	}
-
-	private List<IRenderable> entities;
-
-	private Comparator<IRenderable> comparator;
 
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();

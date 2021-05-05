@@ -16,8 +16,8 @@ import sharedObject.SoundHolder;
 
 public class BotHard extends Bot {
 
-	public BotHard(int heart, int money, Deck deck, Direction playingSide) {
-		super(heart, money, deck, playingSide);
+	public BotHard(int health, int money, Deck deck, Direction playingSide) {
+		super(health, money, deck, playingSide);
 	}
 
 	public void drawCard(int number) {
@@ -56,9 +56,9 @@ public class BotHard extends Bot {
 							SoundHolder.drawCard.play();
 							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
 							card.setPlayingSide(playingSide); // set playing side to card
-							// every FighterCard of HardBot have 1 extra heart when draw
+							// every FighterCard of HardBot have 1 extra health when draw
 							if (card instanceof FighterCard) {
-								((FighterCard) card).setHeart(((FighterCard) card).getHeart() + 1);
+								((FighterCard) card).setHealth(((FighterCard) card).getHealth() + 1);
 							}
 							cardsInHandPane.add(deck.getName(), card);
 						}

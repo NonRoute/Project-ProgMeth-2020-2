@@ -16,7 +16,7 @@ public class Phase extends Entity {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadMoveAllCard != null && GameController.threadMoveAllCard.isAlive()) {
 			gc.drawImage(RenderableHolder.phaseMove, x, y, 90, 90);
 		} else if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
 			gc.drawImage(RenderableHolder.phaseAttack, x, y, 90, 90);

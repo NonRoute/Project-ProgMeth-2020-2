@@ -83,8 +83,8 @@ public class Board extends GridPane {
 	public void attackCard(int row, int column, int attackDamage) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				boardCells.get(row).get(column).getCard().reduceHeart(attackDamage);
-				if (boardCells.get(row).get(column).getCard().getHeart() <= 0) { // card dead
+				boardCells.get(row).get(column).getCard().reduceHealth(attackDamage);
+				if (boardCells.get(row).get(column).getCard().getHealth() <= 0) { // card dead
 					new CardDead(row, column, attackDamage); // show CardDead image
 				} else {
 					new CardDefense(row, column, attackDamage); // show CardFight image
@@ -368,7 +368,7 @@ public class Board extends GridPane {
 				e.printStackTrace();
 			}
 		});
-		GameController.threadAllCardMove = thread;
+		GameController.threadMoveAllCard = thread;
 		thread.start();
 	}
 
@@ -402,7 +402,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void removeCardOnMap(int row, int column) {
+	public void removeCardOnBoard(int row, int column) {
 		boardCells.get(row).get(column).removeCard();
 	}
 
@@ -410,8 +410,8 @@ public class Board extends GridPane {
 		for (int r = 0; r < NUMBER_OF_ROW; r++) {
 			for (int c = 0; c < NUMBER_OF_COLUMN; c++) {
 				if (!isEmpty(r, c)) {
-					if (boardCells.get(r).get(c).getCard().getHeart() <= 0) {
-						removeCardOnMap(r, c);
+					if (boardCells.get(r).get(c).getCard().getHealth() <= 0) {
+						removeCardOnBoard(r, c);
 					}
 				}
 			}
@@ -440,7 +440,7 @@ public class Board extends GridPane {
 				if (!isEmpty(r, c)) {
 					// recreate cardOnBoardPane
 					CardOnBoardPane cardPane = new CardOnBoardPane(boardCells.get(r).get(c).getCard());
-					removeCardOnMap(r, c);
+					removeCardOnBoard(r, c);
 					setCard(cardPane, r, c);
 				}
 			}

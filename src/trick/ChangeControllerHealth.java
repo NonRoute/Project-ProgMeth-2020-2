@@ -6,18 +6,18 @@ import logic.GameController;
 import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 
-public class ChangeControllerHeart extends Trick {
+public class ChangeControllerHealth extends Trick {
 	private char activateType;
-	private int heart;
+	private int health;
 
-	public ChangeControllerHeart(String trickparameter) throws WrongTrickActivateTypeException {
+	public ChangeControllerHealth(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
 		if (!"TES".contains(String.valueOf(activateType))) {
 			throw new WrongTrickActivateTypeException();
 		}
-		heart = Integer.parseInt(trickParameter.get(1));
-		image = RenderableHolder.ChangeControllerHeart;
+		health = Integer.parseInt(trickParameter.get(1));
+		image = RenderableHolder.ChangeControllerHealth;
 	}
 
 	@Override
@@ -26,21 +26,21 @@ public class ChangeControllerHeart extends Trick {
 		switch (activateType) {
 		case 'T': // this side
 			if (playingSide == Direction.LEFT) {
-				GameController.leftSideController.reduceHeart(-heart);
+				GameController.leftSideController.reduceHealth(-health);
 			} else {
-				GameController.rightSideController.reduceHeart(-heart);
+				GameController.rightSideController.reduceHealth(-health);
 			}
 			break;
 		case 'E': // enemy side
 			if (playingSide == Direction.RIGHT) {
-				GameController.leftSideController.reduceHeart(-heart);
+				GameController.leftSideController.reduceHealth(-health);
 			} else {
-				GameController.rightSideController.reduceHeart(-heart);
+				GameController.rightSideController.reduceHealth(-health);
 			}
 			break;
 		case 'S': // both side
-			GameController.leftSideController.reduceHeart(-heart);
-			GameController.rightSideController.reduceHeart(-heart);
+			GameController.leftSideController.reduceHealth(-health);
+			GameController.rightSideController.reduceHealth(-health);
 			break;
 		}
 		GameController.board.unHighlightAllCells();
@@ -51,19 +51,19 @@ public class ChangeControllerHeart extends Trick {
 		String description = "";
 		switch (activateType) {
 		case 'T':
-			description += "Your controller's Heart ";
+			description += "Your controller's Health ";
 			break;
 		case 'E':
-			description += "Enemy controller's Heart ";
+			description += "Enemy controller's Health ";
 			break;
 		case 'S':
-			description += "Both side controller's Heart ";
+			description += "Both side controller's Health ";
 			break;
 		}
-		if (heart >= 0) {
-			description += "+ " + heart;
+		if (health >= 0) {
+			description += "+ " + health;
 		} else {
-			description += heart;
+			description += health;
 		}
 		return description;
 	}
