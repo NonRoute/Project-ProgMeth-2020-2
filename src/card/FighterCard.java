@@ -1,29 +1,40 @@
 package card;
 
+import sharedObject.RenderableHolder;
+
 public class FighterCard extends Card {
 	protected final int DEFAULT_ATTACK_DAMAGE;
 	protected final int DEFAULT_ATTACK_RANGE;
-	protected final int DEFAULT_HEART;
+	protected final int DEFAULT_HEALTH;
 	protected final int DEFAULT_SPEED;
 	protected int attackDamage;
 	protected int attackRange;
-	protected int heart;
+	protected int health;
 	protected int speed;
 	protected int row;
 	protected int column;
 
-	public FighterCard(String deckName, int cost, int attackDamage, int attackRange,
-			int heart, int speed) {
+	public FighterCard(String deckName, int cost, int attackDamage, int attackRange, int health, int speed) {
 		super(deckName, cost);
 		this.description = "";
 		this.DEFAULT_ATTACK_DAMAGE = attackDamage;
 		this.attackDamage = attackDamage;
 		this.DEFAULT_ATTACK_RANGE = attackRange;
 		this.attackRange = attackRange;
-		this.DEFAULT_HEART = heart;
-		this.heart = heart;
+		this.DEFAULT_HEALTH = health;
+		this.health = health;
 		this.DEFAULT_SPEED = speed;
 		this.speed = speed;
+		switch (deckName) { // set Fighter image
+		case "Angel":
+			leftPlayingSideImage = RenderableHolder.angelFighterL;
+			rightPlayingSideImage = RenderableHolder.angelFighterR;
+			break;
+		case "Devil":
+			leftPlayingSideImage = RenderableHolder.devilFighterL;
+			rightPlayingSideImage = RenderableHolder.devilFighterR;
+			break;
+		}
 	}
 
 	public int getAttackDamage() {
@@ -46,16 +57,16 @@ public class FighterCard extends Card {
 		return DEFAULT_ATTACK_RANGE;
 	}
 
-	public int getDefaultHeart() {
-		return DEFAULT_HEART;
+	public int getDefaultHealth() {
+		return DEFAULT_HEALTH;
 	}
 
 	public int getDefaultSpeed() {
 		return DEFAULT_SPEED;
 	}
 
-	public int getHeart() {
-		return heart;
+	public int getHealth() {
+		return health;
 	}
 
 	public int getRow() {
@@ -66,8 +77,8 @@ public class FighterCard extends Card {
 		return speed;
 	}
 
-	public void reduceHeart(int attackCard) {
-		heart -= attackCard;
+	public void reduceHealth(int attackCard) {
+		health = Math.max(health - attackCard, 0);
 	}
 
 	public void setAttackDamage(int attackDamage) {
@@ -82,8 +93,8 @@ public class FighterCard extends Card {
 		this.column = column;
 	}
 
-	public void setHeart(int heart) {
-		this.heart = Math.max(0, heart);
+	public void setHealth(int health) {
+		this.health = Math.max(0, health);
 	}
 
 	public void setRow(int row) {

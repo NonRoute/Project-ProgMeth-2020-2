@@ -22,26 +22,26 @@ import javafx.scene.text.Text;
 import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class SettingScreen {
-	Pane root;
-	BorderPane borderPane;
-	Button goBackButton;
-	Button playButton;
-	ImageView image;
-	Text warningText;
+	private Pane root;
+	private BorderPane borderPane;
+	private Button goBackButton;
+	private Button playButton;
+	private ImageView image;
+	private Text warningText;
 
 	public SettingScreen() {
 		root = new Pane();
 
 		borderPane = new BorderPane();
-		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HIGHT);
+		borderPane.setPrefSize(GameController.SCREEN_WIDTH, GameController.SCREEN_HEIGHT);
 
 		goBackButton = getGoBackButton();
 		BorderPane.setAlignment(goBackButton, Pos.CENTER_RIGHT);
 		BorderPane.setMargin(goBackButton, new Insets(20));
 		borderPane.setTop(goBackButton);
-
 		borderPane.setCenter(new SettingButton());
 
 		playButton = getPlayButton();
@@ -69,7 +69,7 @@ public class SettingScreen {
 			break;
 		}
 		image.setFitWidth(GameController.SCREEN_WIDTH);
-		image.setFitHeight(GameController.SCREEN_HIGHT);
+		image.setFitHeight(GameController.SCREEN_HEIGHT);
 
 		root.getChildren().addAll(image, borderPane, warningText);
 		GameController.primaryStage.setScene(scene);
@@ -86,6 +86,7 @@ public class SettingScreen {
 		StackPane.setMargin(goBackButton, new Insets(20));
 		goBackButton.setOnMouseClicked((MouseEvent e) -> {
 			new SelectGameModeScreen();
+			SoundHolder.click.play();
 		});
 		goBackButton.setOnMouseEntered((MouseEvent e) -> {
 			goBackButton.setBackground(
@@ -111,6 +112,7 @@ public class SettingScreen {
 		playButton.setBorder(new Border(new BorderStroke(Color.MEDIUMSEAGREEN, BorderStrokeStyle.SOLID,
 				new CornerRadii(5), new BorderWidths(10))));
 		playButton.setOnMouseClicked((MouseEvent e) -> {
+			SoundHolder.click.play();
 			switch (GameController.gameMode) {
 			case "PvB":
 				if (GameController.leftSideDeck == null || GameController.rightSideDeck == null

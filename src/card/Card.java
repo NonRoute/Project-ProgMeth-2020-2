@@ -2,30 +2,20 @@ package card;
 
 import javafx.scene.image.Image;
 import logic.Direction;
-import sharedObject.RenderableHolder;
 
-public abstract class Card implements Cloneable {
+public class Card implements Cloneable {
+	protected String deckName;
 	protected String description;
-	private int cost;
-	private boolean isInHand;
+	protected int cost;
+	protected boolean isInHand;
 	protected Direction playingSide;
-	private Image leftPlayingSideImage;
-	private Image rightPlayingSideImage;
+	protected Image leftPlayingSideImage;
+	protected Image rightPlayingSideImage;
 
 	public Card(String deckName, int cost) {
+		this.deckName = deckName;
 		this.description = "";
 		this.cost = cost;
-		switch (deckName) {
-		case "Angel": // TODO Update
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-		case "Devil": // TODO Update
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-		case "Test": // TODO Remove
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-		}
 	}
 
 	public Object clone() {
@@ -35,6 +25,28 @@ public abstract class Card implements Cloneable {
 		} catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
 		}
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public Image getImage() {
+		switch (playingSide) {
+		case LEFT:
+			return leftPlayingSideImage;
+		case RIGHT:
+			return rightPlayingSideImage;
+		}
+		return null;
+	}
+
+	public Direction getPlayingSide() {
+		return playingSide;
 	}
 
 	public String getType() {
@@ -47,46 +59,24 @@ public abstract class Card implements Cloneable {
 		}
 	}
 
-	public String getDescription() {
-		return description;
+	public boolean isInHand() {
+		return isInHand;
+	}
+
+	public void setCost(int cost) {
+		this.cost = Math.max(0, cost);
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public int getCost() {
-		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-
-	public boolean isInHand() {
-		return isInHand;
-	}
-
 	public void setInHand(boolean isInHand) {
 		this.isInHand = isInHand;
 	}
 
-	public Direction getPlayingSide() {
-		return playingSide;
-	}
-
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
-	}
-
-	public Image getImage() {
-		switch (playingSide) {
-		case LEFT:
-			return leftPlayingSideImage;
-		case RIGHT:
-			return rightPlayingSideImage;
-		}
-		return null;
 	}
 
 }

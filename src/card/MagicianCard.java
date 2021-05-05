@@ -1,22 +1,29 @@
 package card;
 
 import logic.Direction;
+import sharedObject.RenderableHolder;
 import trick.Trick;
 
 public class MagicianCard extends FighterCard implements Trickable {
 	private Trick trick;
 
 	public MagicianCard(String deckName, int cost, int attackDamage, int attackRange,
-			int heart, int speed, Trick trick) {
-		super(deckName, cost, attackDamage, attackRange, heart, speed);
+			int health, int speed, Trick trick) {
+		super(deckName, cost, attackDamage, attackRange, health, speed);
 		this.trick = trick;
 		this.description = setDescription();
+		switch (deckName) { // set Magician image
+		case "Angel":
+			leftPlayingSideImage = RenderableHolder.angelMagicianL;
+			rightPlayingSideImage = RenderableHolder.angelMagicianR;
+			break;
+		case "Devil":
+			leftPlayingSideImage = RenderableHolder.devilMagicianL;
+			rightPlayingSideImage = RenderableHolder.devilMagicianR;
+			break;
+		}
 	}
 	
-	public String setDescription() {
-		return trick.getDescription();
-	}
-
 	public void activateTrick() {
 		trick.activate();
 	}
@@ -31,14 +38,13 @@ public class MagicianCard extends FighterCard implements Trickable {
 		return trick;
 	}
 
+	public String setDescription() {
+		return trick.getDescription();
+	}
+
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
 		trick.setPlayingSide(playingSide);
-	}
-
-	public void setPosition(int row, int column) {
-		this.row = row;
-		this.column = column;
 	}
 
 	public void setTrick(Trick trick) {

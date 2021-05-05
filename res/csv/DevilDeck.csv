@@ -1,3 +1,4 @@
 ﻿Devil,,,,,,,
-Type,Cost,Attack Damage,Attack Range,Heart,Speed,Trick type,Trick parameter
+Type,Cost,Attack Damage,Attack Range,Health,Speed,Trick type,Trick parameter
 Fighter,1,1,1,1,1,,
+Magician,1,1,1,1,1,Draw,T.10

@@ -9,15 +9,16 @@ public class Phase extends Entity {
 	private int y = 5;
 
 	public Phase() {
-		RenderableHolder.getInstance().add(this);
+		this.setZ(3);
 		this.setVisible(true);
+		RenderableHolder.getInstance().add(this);
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadMoveAllCard != null && GameController.threadMoveAllCard.isAlive()) {
 			gc.drawImage(RenderableHolder.phaseMove, x, y, 90, 90);
-		} else if (GameController.threadAttackCard != null && GameController.threadAttackCard.isAlive()) {
+		} else if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {
 			gc.drawImage(RenderableHolder.phaseAttack, x, y, 90, 90);
 		} else if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) {
 			gc.drawImage(RenderableHolder.phaseDrawCard, x, y, 90, 90);

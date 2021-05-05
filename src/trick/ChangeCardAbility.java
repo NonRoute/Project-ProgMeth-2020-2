@@ -1,26 +1,35 @@
 package trick;
 
 import card.FighterCard;
+import cardStatus.CardBeTricked;
+import exception.WrongTrickActivateTypeException;
 import logic.GameController;
+import sharedObject.RenderableHolder;
+import sharedObject.SoundHolder;
 
 public class ChangeCardAbility extends Trick {
 	private char activateType;
 	private int attackDamage;
 	private int attackRange;
-	private int heart;
+	private int health;
 	private int speed;
 
-	public ChangeCardAbility(String trickparameter) {
+	public ChangeCardAbility(String trickparameter) throws WrongTrickActivateTypeException {
 		super(trickparameter);
 		activateType = (trickParameter.get(0)).charAt(0);
+		if (!"ABCD".contains(String.valueOf(activateType))) {
+			throw new WrongTrickActivateTypeException();
+		}
 		attackDamage = Integer.parseInt(trickParameter.get(1));
 		attackRange = Integer.parseInt(trickParameter.get(2));
-		heart = Integer.parseInt(trickParameter.get(3));
+		health = Integer.parseInt(trickParameter.get(3));
 		speed = Integer.parseInt(trickParameter.get(4));
+		image = RenderableHolder.ChangeCardAbility;
 	}
 
 	@Override
 	public void activate() { // this method be called when use card
+		SoundHolder.trick.play();
 		FighterCard card = null;
 		switch (activateType) {
 		case 'A': // Random Friendly
@@ -44,19 +53,10 @@ public class ChangeCardAbility extends Trick {
 			}
 			break;
 		}
-		Update(card);
+		update(card);
 		GameController.board.unHighlightAllCells();
 		GameController.board.update();
 		GameController.board.removeDeadCards();
-	}
-
-	public void Update(FighterCard card) {
-		if (card != null) {
-			card.setAttackDamage(card.getAttackDamage() + attackDamage);
-			card.setAttackRange(card.getAttackRange() + attackRange);
-			card.setHeart(card.getHeart() + heart);
-			card.setSpeed(card.getSpeed() + speed);
-		}
 	}
 
 	@Override
@@ -83,8 +83,8 @@ public class ChangeCardAbility extends Trick {
 		if (attackRange > 0) {
 			description += "ATK RNG + " + attackRange + "\n";
 		}
-		if (heart > 0) {
-			description += "Heart + " + heart + "\n";
+		if (health > 0) {
+			description += "Health + " + health + "\n";
 		}
 		if (speed > 0) {
 			description += "Speed + " + speed + "\n";
@@ -95,12 +95,22 @@ public class ChangeCardAbility extends Trick {
 		if (attackRange < 0) {
 			description += "ATK RNG " + attackRange + "\n";
 		}
-		if (heart < 0) {
-			description += "Heart " + heart + "\n";
+		if (health < 0) {
+			description += "Health " + health + "\n";
 		}
 		if (speed < 0) {
 			description += "Speed " + speed + "\n";
 		}
 		return description;
+	}
+
+	public void update(FighterCard card) {
+		if (card != null) {
+			card.setAttackDamage(card.getAttackDamage() + attackDamage);
+			card.setAttackRange(card.getAttackRange() + attackRange);
+			card.setHealth(card.getHealth() + health);
+			card.setSpeed(card.getSpeed() + speed);
+			new CardBeTricked(card.getRow(), card.getColumn()); // show image
+		}
 	}
 }
