@@ -158,7 +158,11 @@ public class CardOnBoardPane extends CardPane {
 						// can attack controller
 						Platform.runLater(new Runnable() {
 							public void run() {
-								GameController.rightSideController.reduceHealth(card.getAttackDamage());
+								if (card.getColumn() == 0) {
+									GameController.leftSideController.reduceHealth(card.getAttackDamage());
+								} else {
+									GameController.rightSideController.reduceHealth(card.getAttackDamage());
+								}
 								GameController.board.removeCardOnBoard(card.getRow(), card.getColumn());
 								SoundHolder.attackController.play();
 							}
