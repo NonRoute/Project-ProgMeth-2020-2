@@ -50,7 +50,7 @@ public class EndGame extends StackPane {
 	}
 
 	public void clearThread() {
-		GameController.threadAllCardMove = null;
+		GameController.threadMoveAllCard = null;
 		GameController.threadStartAttackCard = null;
 		GameController.threadAttackAllCard = null;
 		GameController.threadAttack = null;

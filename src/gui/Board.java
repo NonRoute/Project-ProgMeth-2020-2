@@ -368,7 +368,7 @@ public class Board extends GridPane {
 				e.printStackTrace();
 			}
 		});
-		GameController.threadAllCardMove = thread;
+		GameController.threadMoveAllCard = thread;
 		thread.start();
 	}
 

@@ -121,13 +121,13 @@ public class CardInHandPane extends CardPane {
 		if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadMoveAllCard != null && GameController.threadMoveAllCard.isAlive()) {
 			return false;
 		}
 		if (GameController.threadBotPlay != null && GameController.threadBotPlay.isAlive()) {
 			return false;
 		}
-		if (GameController.threadAllCardMove != null && GameController.threadAllCardMove.isAlive()) {
+		if (GameController.threadMoveAllCard != null && GameController.threadMoveAllCard.isAlive()) {
 			return false;
 		}
 		if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) {

@@ -52,6 +52,9 @@ public class RenderableHolder {
 	public static Image devilMagicianL;
 	public static Image devilMagicianR;
 
+	private List<IRenderable> entities;
+	private Comparator<IRenderable> comparator;
+	
 	static {
 		loadResource();
 	}
@@ -114,10 +117,6 @@ public class RenderableHolder {
 		RenderableHolder.devilMagicianL = loadImage("devil/devilMagicianL.png");
 		RenderableHolder.devilMagicianR = loadImage("devil/devilMagicianR.png");
 	}
-
-	private List<IRenderable> entities;
-
-	private Comparator<IRenderable> comparator;
 
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();

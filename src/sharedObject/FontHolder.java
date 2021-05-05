@@ -18,9 +18,7 @@ public class FontHolder {
 	public Font font28;
 	public Font font32;
 	public Font font36;
-
 	public Font font48;
-
 	public Font font64;
 
 	public FontHolder() {

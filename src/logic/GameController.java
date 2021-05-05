@@ -22,7 +22,7 @@ public class GameController {
 	public static Thread threadDrawCard;
 	public static Thread threadBotPlay;
 	public static Thread threadCardMove;
-	public static Thread threadAllCardMove;
+	public static Thread threadMoveAllCard;
 	public static Thread threadStartAttackCard;
 	public static Thread threadAttackAllCard;
 	public static Thread threadAttack;
@@ -144,7 +144,7 @@ public class GameController {
 	public static void startAttackCard() {
 		Thread thread = new Thread(() -> {
 			try {
-				threadAllCardMove.join(); // wait all card move finish
+				threadMoveAllCard.join(); // wait all card move finish
 				board.attackAllCard();
 				threadAttackAllCard.join(); // wait atackAllCard finish
 				Platform.runLater(new Runnable() {

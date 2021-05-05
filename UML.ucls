@@ -236,7 +236,7 @@
     </display>  
   </class>  
   <class id="27" language="java" name="trick.ChangeControllerHealth" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/trick/ChangeControllerHealth.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/Project-ProgMeth-2020-2/src/trick/ChangeControllerHeart.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="160" width="198" x="8050" y="975"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -380,16 +380,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="43" language="java" name="cardStatus.CardStatusShowChangedHealth" project="Project-ProgMeth-2020-2" 
-    file="/Project-ProgMeth-2020-2/src/cardStatus/CardStatusShowChangedHealth.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="245" x="4591" y="975"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="44" language="java" name="cardStatus.CardDefense" project="Project-ProgMeth-2020-2" 
+  <class id="43" language="java" name="cardStatus.CardDefense" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/cardStatus/CardDefense.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="158" x="4492" y="1589"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -398,7 +389,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="45" language="java" name="cardStatus.CardDead" project="Project-ProgMeth-2020-2" 
+  <class id="44" language="java" name="cardStatus.CardDead" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/cardStatus/CardDead.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="141" x="4690" y="1589"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -407,7 +398,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="46" language="java" name="cardStatus.CardStatus" project="Project-ProgMeth-2020-2" 
+  <class id="45" language="java" name="cardStatus.CardStatus" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/cardStatus/CardStatus.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="268" width="132" x="5047" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -416,7 +407,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="47" language="java" name="cardStatus.CardAttack" project="Project-ProgMeth-2020-2" 
+  <class id="46" language="java" name="cardStatus.CardAttack" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/cardStatus/CardAttack.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="131" x="4876" y="975"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -425,7 +416,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="48" language="java" name="cardStatus.CardBeTricked" project="Project-ProgMeth-2020-2" 
+  <class id="47" language="java" name="cardStatus.CardBeTricked" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/cardStatus/CardBeTricked.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="88" width="151" x="5047" y="975"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -434,110 +425,98 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <realization id="48">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="34"/>  
+  </realization>  
   <generalization id="49">    
-    <end type="SOURCE" refId="48"/>    
-    <end type="TARGET" refId="46"/>  
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="16"/>  
   </generalization>  
   <generalization id="50">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="51">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="23"/>  
-  </generalization>  
-  <generalization id="52">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="23"/>  
-  </generalization>  
-  <generalization id="53">    
-    <end type="SOURCE" refId="44"/>    
-    <end type="TARGET" refId="43"/>  
-  </generalization>  
-  <generalization id="54">    
-    <end type="SOURCE" refId="45"/>    
-    <end type="TARGET" refId="43"/>  
-  </generalization>  
-  <generalization id="55">    
-    <end type="SOURCE" refId="9"/>    
+    <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="32"/>  
   </generalization>  
-  <generalization id="56">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="16"/>  
   </generalization>  
-  <generalization id="57">    
+  <generalization id="52">    
     <end type="SOURCE" refId="31"/>    
     <end type="TARGET" refId="20"/>  
   </generalization>  
-  <realization id="58">    
-    <bendpoint x="6738" y="1589"/>    
+  <generalization id="53">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <generalization id="59">    
-    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <generalization id="56">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="38"/>    
     <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="23"/>  
   </generalization>  
   <generalization id="60">    
     <end type="SOURCE" refId="39"/>    
     <end type="TARGET" refId="36"/>  
   </generalization>  
   <generalization id="61">    
-    <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="36"/>  
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="45"/>  
   </generalization>  
   <generalization id="62">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="64">    
     <end type="SOURCE" refId="33"/>    
     <end type="TARGET" refId="36"/>  
   </generalization>  
-  <generalization id="63">    
-    <end type="SOURCE" refId="47"/>    
-    <end type="TARGET" refId="46"/>  
-  </generalization>  
-  <realization id="64">    
+  <realization id="65">    
     <end type="SOURCE" refId="31"/>    
     <end type="TARGET" refId="13"/>  
   </realization>  
-  <generalization id="65">    
-    <end type="SOURCE" refId="37"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <realization id="66">    
-    <end type="SOURCE" refId="36"/>    
-    <end type="TARGET" refId="34"/>  
-  </realization>  
-  <generalization id="67">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="68">    
-    <end type="SOURCE" refId="16"/>    
+  <generalization id="66">    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="32"/>  
   </generalization>  
-  <generalization id="69">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="70">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <generalization id="71">    
+  <generalization id="67">    
     <end type="SOURCE" refId="27"/>    
     <end type="TARGET" refId="15"/>  
   </generalization>  
-  <generalization id="72">    
-    <end type="SOURCE" refId="43"/>    
-    <end type="TARGET" refId="46"/>  
-  </generalization>  
-  <generalization id="73">    
+  <realization id="68">    
+    <bendpoint x="6738" y="1589"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <generalization id="69">    
     <end type="SOURCE" refId="40"/>    
     <end type="TARGET" refId="36"/>  
   </generalization>  
-  <generalization id="74">    
-    <end type="SOURCE" refId="38"/>    
-    <end type="TARGET" refId="15"/>  
+  <generalization id="70">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="36"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
