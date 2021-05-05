@@ -21,10 +21,6 @@ public class MagicianCard extends FighterCard implements Trickable {
 			leftPlayingSideImage = RenderableHolder.devilMagicianL;
 			rightPlayingSideImage = RenderableHolder.devilMagicianR;
 			break;
-		case "Test": // TODO Remove
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-			break;
 		}
 	}
 	

@@ -64,7 +64,6 @@ public class GameController {
 		// import deck .csv
 		new Deck("Angel", "AngelDeck.csv");
 		new Deck("Devil", "DevilDeck.csv");
-		new Deck("Test", "TestDeck.csv"); // TODO Remove this when game finish
 	}
 
 	public static void initializeGameBvB() {

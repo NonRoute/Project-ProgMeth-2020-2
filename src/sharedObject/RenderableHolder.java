@@ -29,9 +29,6 @@ public class RenderableHolder {
 	public static Image health;
 	public static Image speed;
 	public static Image nextPhase;
-
-	public static Image testDeckNameLeft; // TODO Remove
-	public static Image testDeckNameRight;
 	public static Image phaseDrawCard;
 	public static Image phaseBot;
 	public static Image phaseMove;
@@ -90,10 +87,6 @@ public class RenderableHolder {
 		RenderableHolder.backgroundGameScreen4 = loadImage("backgroundGameScreen4.jpg");
 		RenderableHolder.backgroundGameScreen5 = loadImage("backgroundGameScreen5.jpg");
 		RenderableHolder.backgroundHowToPlay = loadImage("backgroundHowToPlay.png");
-		
-		RenderableHolder.testDeckNameLeft = loadImage("testDeckNameLeft.png");
-		RenderableHolder.testDeckNameRight = loadImage("testDeckNameRight.png");
-
 		RenderableHolder.cost = loadImage("cost.png");
 		RenderableHolder.attackDamage = loadImage("attackDamage.png");
 		RenderableHolder.attackRange = loadImage("attackRange.png");

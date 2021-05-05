@@ -34,10 +34,6 @@ public class FighterCard extends Card {
 			leftPlayingSideImage = RenderableHolder.devilFighterL;
 			rightPlayingSideImage = RenderableHolder.devilFighterR;
 			break;
-		case "Test": // TODO Remove
-			leftPlayingSideImage = RenderableHolder.testDeckNameLeft;
-			rightPlayingSideImage = RenderableHolder.testDeckNameRight;
-			break;
 		}
 	}
 
