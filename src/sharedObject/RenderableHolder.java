@@ -25,7 +25,7 @@ public class RenderableHolder {
 	public static Image cost;
 	public static Image attackDamage;
 	public static Image attackRange;
-	public static Image heart;
+	public static Image health;
 	public static Image speed;
 	public static Image nextPhase;
 
@@ -40,7 +40,7 @@ public class RenderableHolder {
 	public static Image cardDead;
 	public static Image trick;
 	public static Image ChangeCardAbility;
-	public static Image ChangeControllerHeart;
+	public static Image ChangeControllerHealth;
 	// angel
 	public static Image angelFighterL;
 	public static Image angelFighterR;
@@ -92,7 +92,7 @@ public class RenderableHolder {
 		RenderableHolder.cost = loadImage("cost.png");
 		RenderableHolder.attackDamage = loadImage("attackDamage.png");
 		RenderableHolder.attackRange = loadImage("attackRange.png");
-		RenderableHolder.heart = loadImage("heart.png");
+		RenderableHolder.health = loadImage("health.png");
 		RenderableHolder.speed = loadImage("speed.png");
 		RenderableHolder.nextPhase = loadImage("nextPhase.png");
 		RenderableHolder.phaseDrawCard = loadImage("phaseDrawCard.png");
@@ -104,7 +104,7 @@ public class RenderableHolder {
 		RenderableHolder.cardDead = loadImage("cardDead.png");
 		RenderableHolder.trick = loadImage("trick.png");
 		RenderableHolder.ChangeCardAbility = loadImage("ChangeCardAbility.png");
-		RenderableHolder.ChangeControllerHeart = loadImage("ChangeControllerHeart.png");
+		RenderableHolder.ChangeControllerHealth = loadImage("ChangeControllerHealth.png");
 		RenderableHolder.angelFighterL = loadImage("angel/angelFighterL.png");
 		RenderableHolder.angelFighterR = loadImage("angel/angelFighterR.png");
 		RenderableHolder.angelMagicianL = loadImage("angel/angelMagicianL.png");

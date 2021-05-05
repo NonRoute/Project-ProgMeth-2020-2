@@ -266,8 +266,8 @@ public class GameController {
 	}
 
 	public static void switchPlayingSide() {
-		gameScreen.getLeftCardsInHand().unHeightlightAllCardInHandPane();
-		gameScreen.getRightCardsInHand().unHeightlightAllCardInHandPane();
+		gameScreen.getLeftCardsInHand().unHighlightAllCardInHandPane();
+		gameScreen.getRightCardsInHand().unHighlightAllCardInHandPane();
 		gameScreen.unHighlightHandPane();
 		if (currentPlayingSide == Direction.LEFT) {
 			currentPlayingSide = Direction.RIGHT;

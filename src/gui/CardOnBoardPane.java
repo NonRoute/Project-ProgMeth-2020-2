@@ -148,7 +148,7 @@ public class CardOnBoardPane extends CardPane {
 						Platform.runLater(new Runnable() {
 							public void run() {
 								playMoveSound();
-								GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+								GameController.board.removeCardOnBoard(card.getRow(), card.getColumn());
 								card.setColumn(getNextColumnMove());
 								GameController.board.setCard(cardPane, card.getRow(), card.getColumn());
 							}
@@ -158,8 +158,8 @@ public class CardOnBoardPane extends CardPane {
 						// can attack controller
 						Platform.runLater(new Runnable() {
 							public void run() {
-								GameController.rightSideController.reduceHeart(card.getAttackDamage());
-								GameController.board.removeCardOnMap(card.getRow(), card.getColumn());
+								GameController.rightSideController.reduceHealth(card.getAttackDamage());
+								GameController.board.removeCardOnBoard(card.getRow(), card.getColumn());
 								SoundHolder.attackController.play();
 							}
 						});
@@ -227,8 +227,8 @@ public class CardOnBoardPane extends CardPane {
 					((FighterCard) card).getDefaultAttackDamage(), 0, 3);
 			addCardAbility(RenderableHolder.attackRange, card, ((FighterCard) card).getAttackRange(),
 					((FighterCard) card).getDefaultAttackRange(), 1, 3);
-			addCardAbility(RenderableHolder.heart, card, ((FighterCard) card).getHeart(),
-					((FighterCard) card).getDefaultHeart(), 0, 4);
+			addCardAbility(RenderableHolder.health, card, ((FighterCard) card).getHealth(),
+					((FighterCard) card).getDefaultHealth(), 0, 4);
 			addCardAbility(RenderableHolder.speed, card, ((FighterCard) card).getSpeed(),
 					((FighterCard) card).getDefaultSpeed(), 1, 4);
 		}

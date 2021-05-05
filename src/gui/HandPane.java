@@ -77,12 +77,12 @@ public class HandPane extends VBox {
 	public void setSelectedCard(CardInHandPane selectedCardPane) {
 		GameController.board.unHighlightAllCells();
 		GameController.selectedCardPane = selectedCardPane;
-		unHeightlightAllCardInHandPane();
+		unHighlightAllCardInHandPane();
 		(selectedCardPane).highlight();
 		GameController.board.highlightCellCanPlay(selectedCardPane);
 	}
 	
-	public void unHeightlightAllCardInHandPane() {
+	public void unHighlightAllCardInHandPane() {
 		for (GridPane e : cardsList) {
 			((CardInHandPane) e).unhighlight();
 		}

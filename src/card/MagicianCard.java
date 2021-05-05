@@ -8,8 +8,8 @@ public class MagicianCard extends FighterCard implements Trickable {
 	private Trick trick;
 
 	public MagicianCard(String deckName, int cost, int attackDamage, int attackRange,
-			int heart, int speed, Trick trick) {
-		super(deckName, cost, attackDamage, attackRange, heart, speed);
+			int health, int speed, Trick trick) {
+		super(deckName, cost, attackDamage, attackRange, health, speed);
 		this.trick = trick;
 		this.description = setDescription();
 		switch (deckName) { // set Magician image
