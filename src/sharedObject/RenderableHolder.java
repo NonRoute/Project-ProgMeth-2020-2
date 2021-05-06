@@ -77,7 +77,7 @@ public class RenderableHolder {
 
 	public static void loadResource() {
 		RenderableHolder.icon = loadImage("icon.png");
-		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.jpg");
+		RenderableHolder.backgroundSelectGameMode = loadImage("backgroundSelectGameMode.png");
 		RenderableHolder.backgroundSelectDeckPvB = loadImage("backgroundSelectDeckPvB.png");
 		RenderableHolder.backgroundSelectDeckPvP = loadImage("backgroundSelectDeckPvP.png");
 		RenderableHolder.backgroundSelectDeckBvB = loadImage("backgroundSelectDeckBvB.png");
