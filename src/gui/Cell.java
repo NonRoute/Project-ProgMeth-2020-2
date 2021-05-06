@@ -13,14 +13,14 @@ import javafx.scene.paint.Color;
 import logic.GameController;
 
 public class Cell extends StackPane {
+	public static final int CARD_WIDTH = 88;
+	public static final int CARD_HEIGHT = 112;
 	private CardOnBoardPane cardOnBoardPane;
 	private Color backgroundColor;
 	private int row;
 	private int column;
 	private boolean isEmpty = true;
 	private boolean isHighlight;
-	public static final int CARD_WIDTH = 88;
-	public static final int CARD_HEIGHT = 112;
 
 	public Cell(int row, int column) {
 		this.row = row;

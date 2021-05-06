@@ -3,7 +3,6 @@ package sharedObject;
 import java.net.URL;
 
 import exception.AudioNotFoundException;
-import exception.ImageNotFoundException;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 
@@ -51,6 +50,20 @@ public class SoundHolder {
 		return SoundHolder.instance;
 	}
 
+	public static Media loadMedia(String fileName) {
+		try {
+			URL imgUrl = ClassLoader.getSystemResource("sound/" + fileName);
+			if (imgUrl == null) {
+				throw new AudioNotFoundException(fileName);
+			}
+			return new Media(ClassLoader.getSystemResource("sound/" + fileName).toString());
+		} catch (AudioNotFoundException e) {
+			System.out.println(e.toString());
+			System.exit(1);
+		}
+		return null;
+	}
+
 	public static void loadResource() {
 		click = loadSound("click.mp3");
 		gameScreen1 = loadMedia("gameScreen1.mp3");
@@ -84,20 +97,6 @@ public class SoundHolder {
 		attack4 = loadSound("attack4.mp3");
 		attackController = loadSound("attackController.mp3");
 		trick = loadSound("trick.mp3");
-	}
-
-	public static Media loadMedia(String fileName) {
-		try {
-			URL imgUrl = ClassLoader.getSystemResource("sound/" + fileName);
-			if (imgUrl == null) {
-				throw new AudioNotFoundException(fileName);
-			}
-			return new Media(ClassLoader.getSystemResource("sound/" + fileName).toString());
-		} catch (AudioNotFoundException e) {
-			System.out.println(e.toString());
-			System.exit(1);
-		}
-		return null;
 	}
 
 	public static AudioClip loadSound(String fileName) {

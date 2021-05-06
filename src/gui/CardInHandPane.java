@@ -30,7 +30,6 @@ import logic.GameController;
 import sharedObject.FontHolder;
 import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
-import trick.Trick;
 
 public class CardInHandPane extends CardPane {
 	private CardInHandPane cardPane = this;

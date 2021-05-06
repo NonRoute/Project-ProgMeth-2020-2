@@ -1,7 +1,6 @@
 package cardStatus;
 
 import gui.Board;
-import gui.CardOnBoardPane;
 import gui.Cell;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;

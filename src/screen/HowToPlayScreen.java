@@ -50,15 +50,6 @@ public class HowToPlayScreen {
 		
 	}
 	
-	public ScrollPane getScrollPane() {
-		ScrollPane sp = new ScrollPane();
-		ImageView imageView = new ImageView(RenderableHolder.HowToPlayDetail);
-		imageView.setFitWidth(984);
-		sp.setMaxSize(1000, 510);
-		sp.setContent(imageView);
-		return sp;
-	}
-	
 	public Button getGoBackButton() {
 		Button goBackButton = new Button("Go back");
 		goBackButton.setPrefSize(120, 50);
@@ -84,5 +75,14 @@ public class HowToPlayScreen {
 			goBackButton.setEffect(null);
 		});
 		return goBackButton;
+	}
+	
+	public ScrollPane getScrollPane() {
+		ScrollPane sp = new ScrollPane();
+		ImageView imageView = new ImageView(RenderableHolder.HowToPlayDetail);
+		imageView.setFitWidth(984);
+		sp.setMaxSize(1000, 510);
+		sp.setContent(imageView);
+		return sp;
 	}
 }
