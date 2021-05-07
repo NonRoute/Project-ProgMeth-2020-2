@@ -2,6 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import card.Trickable;
 import deck.Deck;
@@ -34,23 +35,33 @@ public class BotNormal extends Bot {
 		}
 	}
 
-	public int selectRow() { // select row that have nearest enemy first
+	public int selectRow() { // 70% select row that have nearest enemy first
+		Random rd = new Random();
 		ArrayList<Integer> rowCanPlay = getPlayableRow();
-		ArrayList<Integer> excludedRow = new ArrayList<>();
-		if (rowCanPlay.size() > 0) {
-			int row = GameController.board.getNearestEnemyRow(playingSide, excludedRow);
-			while (row != -1) { // found enemy
-				if (rowCanPlay.contains(row)) {
-					return row;
-				} else { // can't play -> find new row
-					excludedRow.add(row);
-					row = GameController.board.getNearestEnemyRow(playingSide, excludedRow);
+		if (rd.nextInt(9) < 7) {
+			ArrayList<Integer> excludedRow = new ArrayList<>();
+			if (rowCanPlay.size() > 0) {
+				int row = GameController.board.getNearestEnemyRow(playingSide, excludedRow);
+				while (row != -1) { // found enemy
+					if (rowCanPlay.contains(row)) {
+						return row;
+					} else { // can't play -> find new row
+						excludedRow.add(row);
+						row = GameController.board.getNearestEnemyRow(playingSide, excludedRow);
+					}
 				}
+				Collections.shuffle(rowCanPlay);
+				return rowCanPlay.get(0);
+			} else {
+				return -1; // can't play any row
 			}
-			Collections.shuffle(rowCanPlay);
-			return rowCanPlay.get(0);
 		} else {
-			return -1; // can't play any row
+			if (rowCanPlay.size() > 0) {
+				Collections.shuffle(rowCanPlay);
+				return rowCanPlay.get(0);
+			} else {
+				return -1; // can't play any row
+			}
 		}
 	}
 }

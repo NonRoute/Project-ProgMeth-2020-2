@@ -27,10 +27,10 @@ public class GameController {
 	public static Thread threadAttackAllCard;
 	public static Thread threadAttack;
 
-	public static final int DELAY_DRAW_CARD = 20; // 500
-	public static final int DELAY_BOT_PLAY = 40; // 1200 (MUST >= 20)
-	public static final int DELAY_CARD_MOVE = 40; // 200 (MUST >= 20)
-	public static final int DELAY_ATTACK = 20; //700
+	public static final int DELAY_DRAW_CARD = 500; // 500
+	public static final int DELAY_BOT_PLAY = 1200; // 1200 (MUST >= 20)
+	public static final int DELAY_CARD_MOVE = 200; // 200 (MUST >= 20)
+	public static final int DELAY_ATTACK = 700; //700
 
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
@@ -245,9 +245,9 @@ public class GameController {
 					return;
 				}
 				turn++;
-//				if (turn <= 10) {
+				if (turn <= 20) {
 					moneyFromTurn++;
-//				}
+				}
 				// each side draw 2 card, money += turn
 				leftSideController.setMoney(leftSideController.getMoney() + moneyFromTurn);
 				rightSideController.setMoney(rightSideController.getMoney() + moneyFromTurn);
