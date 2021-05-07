@@ -31,6 +31,7 @@ public class EndGame extends StackPane {
 	public EndGame() {
 		SoundHolder.endGameScreen.play();
 		GameController.isGameEnd = true;
+		GameController.lastUsedCard = null;
 		clearEntity();
 		clearThread();
 		stopSound();
