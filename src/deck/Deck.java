@@ -2,6 +2,7 @@ package deck;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import application.CSVParser;
 import card.Card;
@@ -48,7 +49,7 @@ public class Deck {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
-
+	
 	public ArrayList<Card> getListOfCardsbyCost(int cost) {
 		ArrayList<Card> listOfCardsbyCost = new ArrayList<>();
 		for (Card card : this.cards) {
@@ -65,6 +66,11 @@ public class Deck {
 
 	public ArrayList<Integer> getNumberOfCardsEachCost() {
 		return numberOfCardsEachCost;
+	}
+
+	public Card getRandomCard() {
+		Random rd = new Random();
+		return cards.get(rd.nextInt(cards.size()));
 	}
 
 	public Trick getTrick(String trick, String[][] deckData, int line)

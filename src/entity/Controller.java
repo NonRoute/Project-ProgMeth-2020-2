@@ -76,21 +76,11 @@ public abstract class Controller extends Entity {
 								return;
 							}
 							// random pick 1 card from deck
-							Random rand = new Random();
-							// .nextInt(int) will random value from 0 to int-1
-							// random select cost of card
-							int costOfCard;
-							int numberOfCard;
-							do {
-								costOfCard = rand.nextInt(Math.min((getMaxCardCostCanDraw() + 1),
-										getDeck().getNumberOfCardsEachCost().size()));
-								// random select index of card that have this cost
-								numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
-							} while (numberOfCard == 0); // random again if no card with this cost
-
-							int indexOfCard = rand.nextInt(numberOfCard);
 							SoundHolder.drawCard.play();
-							Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
+							Card card;
+							do {
+								card = deck.getRandomCard();
+							} while (card.getCost() > getMaxCardCostCanDraw()); //redraw if card cost exceed maxCardCostCostCanDraw
 							card.setPlayingSide(playingSide); // set playing side to card
 							cardsInHandPane.add(deck.getName(), card);
 						}
@@ -103,6 +93,25 @@ public abstract class Controller extends Entity {
 		});
 		thread.start();
 		GameController.threadDrawCard = thread;
+	}
+
+	public Card getRandomCardEachCostChanceEqually() {
+		// random pick 1 card from deck
+		Random rand = new Random();
+		// .nextInt(int) will random value from 0 to int-1
+		// random select cost of card
+		int costOfCard;
+		int numberOfCard;
+		do {
+			costOfCard = rand
+					.nextInt(Math.min((getMaxCardCostCanDraw() + 1), getDeck().getNumberOfCardsEachCost().size()));
+			// random select index of card that have this cost
+			numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
+		} while (numberOfCard == 0); // random again if no card with this cost
+
+		int indexOfCard = rand.nextInt(numberOfCard);
+		Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
+		return card;
 	}
 
 	public HandPane getCardsInHandPane() {
