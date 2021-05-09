@@ -70,7 +70,7 @@ public class Deck {
 
 	public Card getRandomCard() {
 		Random rd = new Random();
-		return cards.get(rd.nextInt(cards.size()));
+		return (Card) cards.get(rd.nextInt(cards.size())).clone();
 	}
 
 	public Trick getTrick(String trick, String[][] deckData, int line)
