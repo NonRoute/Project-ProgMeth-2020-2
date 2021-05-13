@@ -23,7 +23,7 @@ public class RenderableHolder {
 	public static Image backgroundGameScreen4;
 	public static Image backgroundGameScreen5;
 	public static Image backgroundHowToPlay;
-	public static Image HowToPlayDetail;
+	public static Image howToPlayDetail;
 	public static Image cost;
 	public static Image attackDamage;
 	public static Image attackRange;
@@ -38,8 +38,8 @@ public class RenderableHolder {
 	public static Image cardDefense;
 	public static Image cardDead;
 	public static Image trick;
-	public static Image ChangeCardAbility;
-	public static Image ChangeControllerHealth;
+	public static Image changeCardAbility;
+	public static Image changeControllerHealth;
 	// angel
 	public static Image angelFighterL;
 	public static Image angelFighterR;
@@ -84,7 +84,7 @@ public class RenderableHolder {
 		RenderableHolder.backgroundGameScreen4 = loadImage("backgroundGameScreen4.jpg");
 		RenderableHolder.backgroundGameScreen5 = loadImage("backgroundGameScreen5.jpg");
 		RenderableHolder.backgroundHowToPlay = loadImage("backgroundHowToPlay.png");
-		RenderableHolder.HowToPlayDetail = loadImage("HowToPlayDetail.png");
+		RenderableHolder.howToPlayDetail = loadImage("howToPlayDetail.png");
 		RenderableHolder.cost = loadImage("cost.png");
 		RenderableHolder.attackDamage = loadImage("attackDamage.png");
 		RenderableHolder.attackRange = loadImage("attackRange.png");
@@ -99,8 +99,8 @@ public class RenderableHolder {
 		RenderableHolder.cardDefense = loadImage("cardDefense.png");
 		RenderableHolder.cardDead = loadImage("cardDead.png");
 		RenderableHolder.trick = loadImage("trick.png");
-		RenderableHolder.ChangeCardAbility = loadImage("ChangeCardAbility.png");
-		RenderableHolder.ChangeControllerHealth = loadImage("ChangeControllerHealth.png");
+		RenderableHolder.changeCardAbility = loadImage("changeCardAbility.png");
+		RenderableHolder.changeControllerHealth = loadImage("changeControllerHealth.png");
 		RenderableHolder.angelFighterL = loadImage("angel/angelFighterL.png");
 		RenderableHolder.angelFighterR = loadImage("angel/angelFighterR.png");
 		RenderableHolder.angelMagicianL = loadImage("angel/angelMagicianL.png");

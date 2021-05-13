@@ -24,7 +24,7 @@ public class ChangeCardAbility extends Trick {
 		attackRange = Integer.parseInt(trickParameter.get(2));
 		health = Integer.parseInt(trickParameter.get(3));
 		speed = Integer.parseInt(trickParameter.get(4));
-		image = RenderableHolder.ChangeCardAbility;
+		image = RenderableHolder.changeCardAbility;
 	}
 
 	@Override

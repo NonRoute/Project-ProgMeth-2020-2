@@ -17,7 +17,7 @@ public class ChangeControllerHealth extends Trick {
 			throw new WrongTrickActivateTypeException();
 		}
 		health = Integer.parseInt(trickParameter.get(1));
-		image = RenderableHolder.ChangeControllerHealth;
+		image = RenderableHolder.changeControllerHealth;
 	}
 
 	@Override

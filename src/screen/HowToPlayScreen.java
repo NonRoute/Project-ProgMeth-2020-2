@@ -79,7 +79,7 @@ public class HowToPlayScreen {
 	
 	public ScrollPane getScrollPane() {
 		ScrollPane sp = new ScrollPane();
-		ImageView imageView = new ImageView(RenderableHolder.HowToPlayDetail);
+		ImageView imageView = new ImageView(RenderableHolder.howToPlayDetail);
 		imageView.setFitWidth(984);
 		sp.setMaxSize(1000, 510);
 		sp.setContent(imageView);
