@@ -58,7 +58,7 @@
   </class>  
   <interface id="8" language="java" name="card.Trickable" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/card/Trickable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="989" y="1241"/>    
+    <position height="-1" width="-1" x="978" y="1278"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -149,7 +149,7 @@
   </class>  
   <package id="19" language="java" name="entity" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1411" width="850" x="1859" y="19"/>    
+    <position height="1369" width="855" x="1859" y="19"/>    
     <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <class id="20" language="java" name="entity.Player" project="Project-ProgMeth-2020-2" 
@@ -468,7 +468,7 @@
   </class>  
   <interface id="57" language="java" name="entity.IRenderable" project="Project-ProgMeth-2020-2" 
     file="/Project-ProgMeth-2020-2/src/entity/IRenderable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2616" y="156"/>    
+    <position height="-1" width="-1" x="2591" y="156"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
