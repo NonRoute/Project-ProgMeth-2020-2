@@ -95,25 +95,6 @@ public abstract class Controller extends Entity {
 		GameController.threadDrawCard = thread;
 	}
 
-	public Card getRandomCardEachCostChanceEqually() {
-		// random pick 1 card from deck
-		Random rand = new Random();
-		// .nextInt(int) will random value from 0 to int-1
-		// random select cost of card
-		int costOfCard;
-		int numberOfCard;
-		do {
-			costOfCard = rand
-					.nextInt(Math.min((getMaxCardCostCanDraw() + 1), getDeck().getNumberOfCardsEachCost().size()));
-			// random select index of card that have this cost
-			numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
-		} while (numberOfCard == 0); // random again if no card with this cost
-
-		int indexOfCard = rand.nextInt(numberOfCard);
-		Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
-		return card;
-	}
-
 	public HandPane getCardsInHandPane() {
 		return cardsInHandPane;
 	}
@@ -165,6 +146,25 @@ public abstract class Controller extends Entity {
 
 	public Direction getPlayingSide() {
 		return playingSide;
+	}
+
+	public Card getRandomCardEachCostChanceEqually() {
+		// random pick 1 card from deck
+		Random rand = new Random();
+		// .nextInt(int) will random value from 0 to int-1
+		// random select cost of card
+		int costOfCard;
+		int numberOfCard;
+		do {
+			costOfCard = rand
+					.nextInt(Math.min((getMaxCardCostCanDraw() + 1), getDeck().getNumberOfCardsEachCost().size()));
+			// random select index of card that have this cost
+			numberOfCard = getDeck().getNumberOfCardsEachCost().get(costOfCard);
+		} while (numberOfCard == 0); // random again if no card with this cost
+
+		int indexOfCard = rand.nextInt(numberOfCard);
+		Card card = (Card) getDeck().getListOfCardsbyCost(costOfCard).get(indexOfCard).clone();
+		return card;
 	}
 
 	public void playPlaceCardSound() {
