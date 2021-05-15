@@ -1,6 +1,7 @@
 package screen;
 
 import entity.Entity;
+import entity.IRenderable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,7 +23,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import logic.GameController;
 import sharedObject.FontHolder;
-import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 

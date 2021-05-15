@@ -1,4 +1,4 @@
-package sharedObject;
+package entity;
 
 import javafx.scene.canvas.GraphicsContext;
 

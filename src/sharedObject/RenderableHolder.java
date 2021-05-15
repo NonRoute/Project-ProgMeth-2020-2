@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import entity.IRenderable;
 import exception.ImageNotFoundException;
 import javafx.scene.image.Image;
 

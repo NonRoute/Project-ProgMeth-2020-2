@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import entity.Bot;
+import entity.IRenderable;
 import entity.LastUsedCard;
 import entity.Phase;
 import entity.Turn;
@@ -35,7 +36,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import logic.Direction;
 import logic.GameController;
-import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 
