@@ -212,7 +212,7 @@ public class GameController {
 				}
 				Platform.runLater(new Runnable() {
 					public void run() {
-						if (isPhaseOneEnd == true) { // two controller have played
+						if (isPhaseOneEnd) { // two controller have played
 							startMoveCard();
 							startAttackCard();
 							startTurn();
