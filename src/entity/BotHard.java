@@ -46,7 +46,7 @@ public class BotHard extends Bot {
 								card = deck.getRandomCard();
 							} while (card.getCost() > getMaxCardCostCanDraw()); //redraw if card cost exceed maxCardCostCostCanDraw
 							card.setPlayingSide(playingSide); // set playing side to card
-							// every FighterCard of HardBot have 1 extra health when draw
+							// 30% of FighterCard of HardBot have 1 extra health when draw
 							Random rd = new Random();
 							if (card instanceof FighterCard && rd.nextInt(9) < 3) {
 								((FighterCard) card).setHealth(((FighterCard) card).getHealth() + 1);
