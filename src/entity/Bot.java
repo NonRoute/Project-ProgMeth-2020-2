@@ -56,11 +56,19 @@ public abstract class Bot extends Controller {
 		// will play card until can't play
 		Thread thread = new Thread(() -> {
 			try {
-				GameController.threadDrawCard.join(); // wait for draw card finish
 				if (GameController.isGameEnd) { // stop running if game end
 					return;
 				}
 				Thread.sleep(GameController.DELAY_BOT_PLAY);
+				if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) { // if still draw card wait to draw finish
+					GameController.threadDrawCard.join();
+				}
+				if (GameController.threadCardMove != null && GameController.threadCardMove.isAlive()) { // if still CardMove wait to finish
+					GameController.threadCardMove.join();
+				}
+				if (GameController.threadStartAttackCard != null && GameController.threadStartAttackCard.isAlive()) { // if still StartAttackCard wait to finish
+					GameController.threadStartAttackCard.join();
+				}
 				while (getAllCardsCanPlay().size() > 0 && selectRow() != -1) { // have card can play and have row can
 					if (GameController.threadDrawCard != null && GameController.threadDrawCard.isAlive()) { // if still draw card wait to draw finish
 						GameController.threadDrawCard.join();

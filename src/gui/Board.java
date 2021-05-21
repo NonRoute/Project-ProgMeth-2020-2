@@ -349,6 +349,7 @@ public class Board extends GridPane {
 	public void moveAllCard(Direction playingsideMoveFirst) {
 		Thread thread = new Thread(() -> {
 			try {
+				Thread.sleep(GameController.DELAY_CARD_MOVE);
 				for (int r = 0; r < NUMBER_OF_ROW; r++) {
 					if (GameController.isGameEnd) { // stop running if game end
 						return;
