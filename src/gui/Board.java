@@ -346,7 +346,7 @@ public class Board extends GridPane {
 		}
 	}
 
-	public void moveAllCard(Direction playingsideMoveFirst) {
+	public void moveAllCard(Direction playingSideMoveFirst) {
 		Thread thread = new Thread(() -> {
 			try {
 				Thread.sleep(GameController.DELAY_CARD_MOVE);
@@ -354,7 +354,7 @@ public class Board extends GridPane {
 					if (GameController.isGameEnd) { // stop running if game end
 						return;
 					}
-					switch (playingsideMoveFirst) {
+					switch (playingSideMoveFirst) {
 					case LEFT: // each row, move card left playing side first
 						moveLeftPlayingSideCard(r);
 						moveRightPlayingSideCard(r);

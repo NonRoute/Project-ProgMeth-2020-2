@@ -24,9 +24,9 @@ import sharedObject.RenderableHolder;
 import sharedObject.SoundHolder;
 
 public class CardOnBoardPane extends CardPane {
+	private CardOnBoardPane cardPane = this;
 	private final int cardWidth = 84;
 	private final int cardHeight = 108;
-	private CardOnBoardPane cardPane = this;
 	private final int insets = 1;
 
 	public CardOnBoardPane(Card card) {

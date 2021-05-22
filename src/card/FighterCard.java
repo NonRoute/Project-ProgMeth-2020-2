@@ -3,10 +3,10 @@ package card;
 import sharedObject.RenderableHolder;
 
 public class FighterCard extends Card {
-	protected final int DEFAULT_ATTACK_DAMAGE;
-	protected final int DEFAULT_ATTACK_RANGE;
-	protected final int DEFAULT_HEALTH;
-	protected final int DEFAULT_SPEED;
+	protected final int DefaultAttackDamage;
+	protected final int DefaultAttackRange;
+	protected final int DefaultHealth;
+	protected final int DefaultSpeed;
 	protected int attackDamage;
 	protected int attackRange;
 	protected int health;
@@ -17,13 +17,13 @@ public class FighterCard extends Card {
 	public FighterCard(String deckName, int cost, int attackDamage, int attackRange, int health, int speed) {
 		super(deckName, cost);
 		this.description = "";
-		this.DEFAULT_ATTACK_DAMAGE = attackDamage;
+		this.DefaultAttackDamage = attackDamage;
 		this.attackDamage = attackDamage;
-		this.DEFAULT_ATTACK_RANGE = attackRange;
+		this.DefaultAttackRange = attackRange;
 		this.attackRange = attackRange;
-		this.DEFAULT_HEALTH = health;
+		this.DefaultHealth = health;
 		this.health = health;
-		this.DEFAULT_SPEED = speed;
+		this.DefaultSpeed = speed;
 		this.speed = speed;
 		switch (deckName) { // set Fighter image
 		case "Angel":
@@ -50,19 +50,19 @@ public class FighterCard extends Card {
 	}
 
 	public int getDefaultAttackDamage() {
-		return DEFAULT_ATTACK_DAMAGE;
+		return DefaultAttackDamage;
 	}
 
 	public int getDefaultAttackRange() {
-		return DEFAULT_ATTACK_RANGE;
+		return DefaultAttackRange;
 	}
 
 	public int getDefaultHealth() {
-		return DEFAULT_HEALTH;
+		return DefaultHealth;
 	}
 
 	public int getDefaultSpeed() {
-		return DEFAULT_SPEED;
+		return DefaultSpeed;
 	}
 
 	public int getHealth() {
