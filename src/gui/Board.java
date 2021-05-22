@@ -57,6 +57,7 @@ public class Board extends GridPane {
 					if (!isEmpty(r, c)) {
 						boardCells.get(r).get(c).getCardOnBoardPane().attack();
 						Platform.runLater(new Runnable() {
+							@Override
 							public void run() {
 								GameController.board.update();
 							}
@@ -69,6 +70,7 @@ public class Board extends GridPane {
 					}
 				}
 				Platform.runLater(new Runnable() {
+					@Override
 					public void run() {
 						// finish attack each row, remove dead card
 						GameController.board.removeDeadCards();
@@ -82,6 +84,7 @@ public class Board extends GridPane {
 
 	public void attackCard(int row, int column, int attackDamage) {
 		Platform.runLater(new Runnable() {
+			@Override
 			public void run() {
 				boardCells.get(row).get(column).getCard().reduceHealth(attackDamage);
 				if (boardCells.get(row).get(column).getCard().getHealth() <= 0) { // card dead

@@ -20,6 +20,7 @@ public class BotHard extends Bot {
 		super(health, money, deck, playingSide);
 	}
 
+	@Override
 	public void drawCard(int number) {
 		Thread thread = new Thread(() -> {
 			try {
@@ -35,6 +36,7 @@ public class BotHard extends Bot {
 						break;
 					}
 					Platform.runLater(new Runnable() {
+						@Override
 						public void run() {
 							if (GameController.isGameEnd) { // stop running if game end
 								return;
@@ -64,10 +66,12 @@ public class BotHard extends Bot {
 		GameController.threadDrawCard = thread;
 	}
 
+	@Override
 	public int getMaxCardCostCanDraw() {
 		return GameController.turn + 2;
 	}
 
+	@Override
 	public CardInHandPane selectCard() { // select Trickable card first
 		ArrayList<CardInHandPane> cardsCanPlay = getAllCardsCanPlay();
 		if (cardsCanPlay.size() > 0) {
@@ -83,6 +87,7 @@ public class BotHard extends Bot {
 		}
 	}
 
+	@Override
 	public int selectRow() { // select row that have nearest enemy first
 		ArrayList<Integer> rowCanPlay = getPlayableRow();
 		ArrayList<Integer> excludedRow = new ArrayList<>();

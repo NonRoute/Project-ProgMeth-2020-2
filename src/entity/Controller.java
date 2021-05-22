@@ -46,6 +46,7 @@ public abstract class Controller extends Entity {
 		RenderableHolder.getInstance().add(this);
 	}
 
+	@Override
 	public void draw(GraphicsContext gc) {
 		gc.drawImage(RenderableHolder.health, x, y, 50, 50);
 		gc.setFont(FontHolder.getInstance().font28);
@@ -71,6 +72,7 @@ public abstract class Controller extends Entity {
 						break;
 					}
 					Platform.runLater(new Runnable() {
+						@Override
 						public void run() {
 							if (GameController.isGameEnd) { // stop running if game end
 								return;

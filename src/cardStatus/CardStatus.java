@@ -46,6 +46,7 @@ public class CardStatus {
 				e.printStackTrace();
 			}
 			Platform.runLater(new Runnable() {
+				@Override
 				public void run() {
 					GameController.gameScreen.getCardStatusPane().getChildren().removeAll(image);
 				}

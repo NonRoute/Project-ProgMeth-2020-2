@@ -16,10 +16,12 @@ public class BotNormal extends Bot {
 		super(health, money, deck, playingSide);
 	}
 
+	@Override
 	public int getMaxCardCostCanDraw() {
 		return GameController.turn + 2;
 	}
 
+	@Override
 	public CardInHandPane selectCard() { // select Trickable card first
 		ArrayList<CardInHandPane> cardsCanPlay = getAllCardsCanPlay();
 		if (cardsCanPlay.size() > 0) {
@@ -35,6 +37,7 @@ public class BotNormal extends Bot {
 		}
 	}
 
+	@Override
 	public int selectRow() { // 70% select row that have nearest enemy first
 		Random rd = new Random();
 		ArrayList<Integer> rowCanPlay = getPlayableRow();

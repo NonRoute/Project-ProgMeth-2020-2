@@ -36,6 +36,7 @@ public class CardStatusShowChangedHealth extends CardStatus {
 		healthPane.getChildren().addAll(health, text);
 	}
 
+	@Override
 	public void showImage() {
 		setUpImage();
 		setUpHealth();
@@ -47,6 +48,7 @@ public class CardStatusShowChangedHealth extends CardStatus {
 				e.printStackTrace();
 			}
 			Platform.runLater(new Runnable() {
+				@Override
 				public void run() {
 					GameController.gameScreen.getCardStatusPane().getChildren().removeAll(image, healthPane);
 				}

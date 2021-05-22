@@ -21,6 +21,7 @@ public abstract class Trick implements Cloneable {
 
 	public abstract void activate();
 
+	@Override
 	public Object clone() {
 		try {
 			return super.clone();

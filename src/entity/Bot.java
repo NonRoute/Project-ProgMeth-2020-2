@@ -74,6 +74,7 @@ public abstract class Bot extends Controller {
 						GameController.threadDrawCard.join();
 					}
 					Platform.runLater(new Runnable() {
+						@Override
 						public void run() { // play
 							CardInHandPane selectCard = selectCard();
 							useCard(cardsInHandPane.indexOf(selectCard));

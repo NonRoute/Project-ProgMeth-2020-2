@@ -85,6 +85,7 @@ public class CardInHandPane extends CardPane {
 		GridPane.setHalignment(stackPane, HPos.CENTER);
 	}
 
+	@Override
 	public void addCardImage(Image image) {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
@@ -156,6 +157,7 @@ public class CardInHandPane extends CardPane {
 		return GameController.selectedCardPane == this;
 	}
 
+	@Override
 	public void setCardAbility(Card card) {
 		addCardAbility(RenderableHolder.cost, card, card.getCost(), card.getCost(), 3, 0, 2);
 
@@ -171,6 +173,7 @@ public class CardInHandPane extends CardPane {
 		}
 	}
 
+	@Override
 	public void setMouseEvent() {
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -179,10 +182,10 @@ public class CardInHandPane extends CardPane {
 					SoundHolder.selectCard.play();
 					switch (card.getPlayingSide()) {
 					case LEFT:
-						((HandPane) GameController.gameScreen.getLeftCardsInHand()).setSelectedCard(cardPane);
+						GameController.gameScreen.getLeftCardsInHand().setSelectedCard(cardPane);
 						break;
 					case RIGHT:
-						((HandPane) GameController.gameScreen.getRightCardsInHand()).setSelectedCard(cardPane);
+						GameController.gameScreen.getRightCardsInHand().setSelectedCard(cardPane);
 						break;
 					}
 				} else {

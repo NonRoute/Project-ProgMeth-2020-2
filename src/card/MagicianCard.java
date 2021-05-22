@@ -24,29 +24,35 @@ public class MagicianCard extends FighterCard implements Trickable {
 		}
 	}
 	
+	@Override
 	public void activateTrick() {
 		trick.activate();
 	}
 
+	@Override
 	public Object clone() {
 		MagicianCard card = (MagicianCard) super.clone();
 		card.setTrick((Trick) card.getTrick().clone());
 		return card;
 	}
 
+	@Override
 	public Trick getTrick() {
 		return trick;
 	}
 
+	@Override
 	public String setDescription() {
 		return trick.getDescription();
 	}
 
+	@Override
 	public void setPlayingSide(Direction playingSide) {
 		this.playingSide = playingSide;
 		trick.setPlayingSide(playingSide);
 	}
 
+	@Override
 	public void setTrick(Trick trick) {
 		this.trick = trick;
 	}

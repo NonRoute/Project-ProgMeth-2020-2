@@ -71,6 +71,7 @@ public class CardOnBoardPane extends CardPane {
 		GridPane.setHalignment(stackPane, HPos.CENTER);
 	}
 
+	@Override
 	public void addCardImage(Image image) {
 		ImageView imageView = new ImageView(image);
 		imageView.setPreserveRatio(true);
@@ -83,7 +84,7 @@ public class CardOnBoardPane extends CardPane {
 	public void attack() {
 		Thread thread = new Thread(() -> {
 			boolean attack = false;
-			FighterCard card = (FighterCard) getCard();
+			FighterCard card = getCard();
 			switch (card.getPlayingSide()) {
 			case LEFT:
 				for (int i = 1; i <= card.getAttackRange(); i++) {
@@ -104,6 +105,7 @@ public class CardOnBoardPane extends CardPane {
 			}
 			if (attack) { // if card attack, make delay
 				Platform.runLater(new Runnable() {
+					@Override
 					public void run() {
 						new CardAttack(card.getRow(), card.getColumn()); // show cardAttack image
 					}
@@ -120,6 +122,7 @@ public class CardOnBoardPane extends CardPane {
 		GameController.threadAttack = thread;
 	}
 
+	@Override
 	public FighterCard getCard() {
 		return (FighterCard) card;
 	}
@@ -146,6 +149,7 @@ public class CardOnBoardPane extends CardPane {
 					if (GameController.board.isEmpty(card.getRow(), getNextColumnMove())) {
 						// can move to next cell
 						Platform.runLater(new Runnable() {
+							@Override
 							public void run() {
 								playMoveSound();
 								GameController.board.removeCardOnBoard(card.getRow(), card.getColumn());
@@ -157,6 +161,7 @@ public class CardOnBoardPane extends CardPane {
 					} else if (GameController.board.isOutOfBoard(card.getRow(), getNextColumnMove())) {
 						// can attack controller
 						Platform.runLater(new Runnable() {
+							@Override
 							public void run() {
 								if (card.getColumn() == 0) {
 									GameController.leftSideController.reduceHealth(card.getAttackDamage());
@@ -225,6 +230,7 @@ public class CardOnBoardPane extends CardPane {
 		}
 	}
 
+	@Override
 	public void setCardAbility(Card card) {
 		if (card instanceof FighterCard) {
 			addCardAbility(RenderableHolder.attackDamage, card, ((FighterCard) card).getAttackDamage(),

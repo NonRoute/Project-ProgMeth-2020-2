@@ -18,6 +18,7 @@ public class Card implements Cloneable {
 		this.cost = cost;
 	}
 
+	@Override
 	public Object clone() {
 		try {
 			Card card = (Card) super.clone();

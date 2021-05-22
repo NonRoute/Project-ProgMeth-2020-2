@@ -9,6 +9,7 @@ public class Player extends Controller {
 		super(health, money, deck, playingSide);
 	}
 
+	@Override
 	public int getMaxCardCostCanDraw() {
 		return GameController.turn + 2;
 	}

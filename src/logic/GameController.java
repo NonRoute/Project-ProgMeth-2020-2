@@ -147,6 +147,7 @@ public class GameController {
 				board.attackAllCard();
 				threadAttackAllCard.join(); // wait atackAllCard finish
 				Platform.runLater(new Runnable() {
+					@Override
 					public void run() {
 						board.update();
 						board.removeDeadCards();
@@ -211,6 +212,7 @@ public class GameController {
 					threadBotPlay.join(); // wait for bot finish play
 				}
 				Platform.runLater(new Runnable() {
+					@Override
 					public void run() {
 						if (isPhaseOneEnd) { // two controller have played
 							startMoveCard();

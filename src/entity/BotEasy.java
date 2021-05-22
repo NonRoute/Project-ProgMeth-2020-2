@@ -14,10 +14,12 @@ public class BotEasy extends Bot {
 		super(health, money, deck, playingSide);
 	}
 
+	@Override
 	public int getMaxCardCostCanDraw() {
 		return GameController.turn + 4;
 	}
 
+	@Override
 	public CardInHandPane selectCard() { // select by random
 		ArrayList<CardInHandPane> cardsCanPlay = getAllCardsCanPlay();
 		if (cardsCanPlay.size() > 0) {
@@ -28,6 +30,7 @@ public class BotEasy extends Bot {
 		}
 	}
 
+	@Override
 	public int selectRow() { // select by random
 		ArrayList<Integer> rowCanPlay = getPlayableRow();
 		if (rowCanPlay.size() > 0) {

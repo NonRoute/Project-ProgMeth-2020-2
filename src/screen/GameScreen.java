@@ -90,6 +90,7 @@ public class GameScreen {
 		getSoundList();
 		playSound();
 		AnimationTimer animation = new AnimationTimer() {
+			@Override
 			public void handle(long now) {
 				paintComponent();
 				updateStartNextPhaseButton();
